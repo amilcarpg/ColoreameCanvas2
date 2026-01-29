@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Colorea con balde de pintura</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="ad-slot">
+        <!-- Pegue aquí el snippet real de Google AdSense (HEADER). -->
+        <div class="ad-placeholder">Zona de anuncio (Header)</div>
+      </div>
+    </header>
+
+    <main class="app">
+      <section class="toolbar" aria-label="Controles de coloreado">
+        <div class="asset-picker">
+          <label for="assetSelect">Elige un dibujo</label>
+          <select id="assetSelect" aria-label="Lista de dibujos"></select>
+        </div>
+        <div class="palette" id="palette" aria-label="Paleta de colores"></div>
+        <div class="controls">
+          <button id="undoBtn" type="button">Deshacer</button>
+          <button id="resetBtn" type="button">Reiniciar</button>
+          <button id="saveBtn" type="button">Guardar</button>
+        </div>
+        <div class="status" id="status">Color activo</div>
+      </section>
+
+      <section class="canvas-wrap" aria-label="Área de coloreo">
+        <canvas id="canvas" width="600" height="600"></canvas>
+        <div class="hint">Clic o toque para pintar con balde</div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="ad-slot">
+        <!-- Pegue aquí el snippet real de Google AdSense (FOOTER). -->
+        <div class="ad-placeholder">Zona de anuncio (Footer)</div>
+      </div>
+    </footer>
+
+    <script src="assets-list.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

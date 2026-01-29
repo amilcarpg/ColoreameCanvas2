@@ -1,0 +1,19 @@
+# OS
+.DS_Store
+
+# Editors
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Build artifacts (not expected but safe)
+dist/
+
+# Local server files
+*.pid
+
+# Optional: ignore generated archives
+*.zip
+
