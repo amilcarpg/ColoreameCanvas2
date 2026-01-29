@@ -25,12 +25,13 @@ const resetBtn = document.getElementById("resetBtn");
 const saveBtn = document.getElementById("saveBtn");
 const statusEl = document.getElementById("status");
 const canvasWrap = document.querySelector(".canvas-wrap");
+const ASSETS_LIST = Array.isArray(window.ASSETS) ? window.ASSETS : [];
 
 let activeColor = COLORS[0];
 let originalImageData = null;
 let undoStack = [];
 let fillInProgress = false;
-let currentAsset = ASSETS[0];
+let currentAsset = ASSETS_LIST[0];
 let isImageLoaded = false;
 let fitRaf = null;
 
@@ -70,12 +71,12 @@ function buildPalette() {
 
 function buildAssetSelect() {
   assetSelect.innerHTML = "";
-  if (!ASSETS || ASSETS.length === 0) {
+  if (ASSETS_LIST.length === 0) {
     assetSelect.disabled = true;
     setStatus("No hay assets configurados en assets-list.js");
     return;
   }
-  ASSETS.forEach((asset, index) => {
+  ASSETS_LIST.forEach((asset, index) => {
     const option = document.createElement("option");
     option.value = asset.src;
     option.textContent = asset.label;
@@ -83,7 +84,7 @@ function buildAssetSelect() {
     assetSelect.appendChild(option);
   });
   assetSelect.addEventListener("change", () => {
-    const selected = ASSETS.find((asset) => asset.src === assetSelect.value);
+    const selected = ASSETS_LIST.find((asset) => asset.src === assetSelect.value);
     if (!selected) return;
     currentAsset = selected;
     loadImage(currentAsset.src);
@@ -297,7 +298,9 @@ saveBtn.addEventListener("click", save);
 
 buildPalette();
 buildAssetSelect();
-loadImage(currentAsset.src);
+if (currentAsset) {
+  loadImage(currentAsset.src);
+}
 updateUndoButton();
 
 window.addEventListener("resize", scheduleFit);
