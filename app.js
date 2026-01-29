@@ -303,3 +303,58 @@ updateUndoButton();
 window.addEventListener("resize", scheduleFit);
 
 // TODO: Para imágenes muy grandes, considerar mover floodFillAsync a un Web Worker.
+
+const consentBanner = document.getElementById("consentBanner");
+const consentAccept = document.getElementById("consentAccept");
+const consentReject = document.getElementById("consentReject");
+const CONSENT_KEY = "coloreame_consent_v1";
+
+function applyConsent(mode) {
+  if (typeof gtag !== "function") return;
+  const granted = mode === "granted";
+  gtag("consent", "update", {
+    analytics_storage: granted ? "granted" : "denied",
+    ad_storage: granted ? "granted" : "denied",
+    ad_user_data: granted ? "granted" : "denied",
+    ad_personalization: granted ? "granted" : "denied",
+  });
+}
+
+function showConsentBanner() {
+  if (!consentBanner) return;
+  consentBanner.style.display = "block";
+}
+
+function hideConsentBanner() {
+  if (!consentBanner) return;
+  consentBanner.style.display = "none";
+}
+
+function initConsent() {
+  if (!consentBanner) return;
+  const saved = localStorage.getItem(CONSENT_KEY);
+  if (saved === "granted" || saved === "denied") {
+    applyConsent(saved);
+    hideConsentBanner();
+    return;
+  }
+  showConsentBanner();
+}
+
+if (consentAccept) {
+  consentAccept.addEventListener("click", () => {
+    localStorage.setItem(CONSENT_KEY, "granted");
+    applyConsent("granted");
+    hideConsentBanner();
+  });
+}
+
+if (consentReject) {
+  consentReject.addEventListener("click", () => {
+    localStorage.setItem(CONSENT_KEY, "denied");
+    applyConsent("denied");
+    hideConsentBanner();
+  });
+}
+
+initConsent();

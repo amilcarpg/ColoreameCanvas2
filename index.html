@@ -3,7 +3,28 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Colorea con balde de pintura</title>
+    <title>Colorea con balde de pintura | Dibujos para niños</title>
+    <meta
+      name="description"
+      content="Página de colorear con balde de pintura en HTML5 Canvas. Elige un dibujo y pinta por regiones con un clic o toque."
+    />
+    <meta name="robots" content="index,follow" />
+    <meta name="theme-color" content="#fff7e6" />
+    <link rel="canonical" href="https://example.com/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Colorea con balde de pintura" />
+    <meta
+      property="og:description"
+      content="Colorea dibujos para niños con un balde de pintura en Canvas."
+    />
+    <meta property="og:url" content="https://example.com/" />
+    <meta property="og:locale" content="es_ES" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Colorea con balde de pintura" />
+    <meta
+      name="twitter:description"
+      content="Colorea dibujos para niños con un balde de pintura en Canvas."
+    />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
@@ -15,6 +36,10 @@
     </header>
 
     <main class="app">
+      <header class="app-header">
+        <h1>Colorea con balde de pintura</h1>
+        <p>Elige un dibujo y pinta por regiones con un clic o toque.</p>
+      </header>
       <section class="toolbar" aria-label="Controles de coloreado">
         <div class="asset-picker">
           <label for="assetSelect">Elige un dibujo</label>
@@ -40,8 +65,41 @@
         <!-- Pegue aquí el snippet real de Google AdSense (FOOTER). -->
         <div class="ad-placeholder">Zona de anuncio (Footer)</div>
       </div>
+      <section class="privacy" id="privacy">
+        <h2>Política de privacidad</h2>
+        <p>
+          Esta página puede usar Google Analytics y anuncios (AdSense) para medir
+          el uso y mostrar publicidad. Puedes aceptar o rechazar el uso de cookies
+          para medición y anuncios en el banner de consentimiento.
+        </p>
+      </section>
     </footer>
 
+    <div class="consent-banner" id="consentBanner" role="dialog" aria-live="polite">
+      <div class="consent-content">
+        <p>
+          Usamos cookies para analítica y anuncios. Puedes aceptar o rechazar.
+        </p>
+        <div class="consent-actions">
+          <button id="consentReject" type="button">Rechazar</button>
+          <button id="consentAccept" type="button">Aceptar</button>
+        </div>
+      </div>
+    </div>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RTJTM1J5LK"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('consent', 'default', {
+        analytics_storage: 'denied',
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied'
+      });
+      gtag('config', 'G-RTJTM1J5LK', { anonymize_ip: true });
+    </script>
     <script src="assets-list.js"></script>
     <script src="app.js"></script>
   </body>
