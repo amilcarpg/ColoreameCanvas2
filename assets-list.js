@@ -5,7 +5,7 @@
  * puedan ser coloreadas en una aplicación web o proyecto similar.
  */
 
-export const ASSETS = [
+const ASSETS = [
   { label: "Pony mágico", src: "assets/pony1.png" },
   { label: "Pony Princesa", src: "assets/pony2.png" },
   { label: "Pony 3", src: "assets/pony3.png" },
@@ -22,3 +22,6 @@ export const ASSETS = [
   { label: "Paisaje 4", src: "assets/landscape4.png" },
   { label: "Paisaje 5", src: "assets/landscape5.png" }
 ];
+
+// Exponer en el scope global para app.js (script clásico).
+window.ASSETS = ASSETS;
