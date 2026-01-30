@@ -14,5 +14,15 @@ window.ASSETS = [
   { label: "Paisaje 2", src: "assets/landscape2.png" },
   { label: "Paisaje 3", src: "assets/landscape3.png" },
   { label: "Paisaje 4", src: "assets/landscape4.png" },
-  { label: "Paisaje 5", src: "assets/landscape5.png" }
+  { label: "Paisaje 5", src: "assets/landscape5.png" },
+   { label: "Casa simple", src: "assets/outline_house.png" },
+  { label: "Casa flotante", src: "assets/houseboat.png" },
+  { label: "Bungaló", src: "assets/bungalow.png" },
+  { label: "Castillo", src: "assets/castle.png" },
+  { label: "Catedral gótica", src: "assets/gothic2.png" },
+  { label: "Casa entramada", src: "assets/half_timbered.png" },
+  { label: "Gradería", src: "assets/grandstand.png" },
+  { label: "Montañas Urales", src: "assets/ural_mountain.png" },
+  { label: "Bosque de Argonne", src: "assets/argonne_forest.png" },
+  { label: "Bosque Negro", src: "assets/black_forest.png" }
 ];
