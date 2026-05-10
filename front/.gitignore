@@ -17,3 +17,8 @@ dist/
 # Optional: ignore generated archives
 *.zip
 
+# Python backend
+backend/.venv/
+backend/output/
+backend/__pycache__/
+*.pyc

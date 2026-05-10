@@ -1,25 +1,38 @@
 const MAX_CANVAS_SIZE = 1200;
 const TOLERANCE = 20;
 const UNDO_LIMIT = 10;
+const MOBILE_UNDO_LIMIT = 6;
+const CONTOUR_LUMA_LIMIT = 150;
+const CONTOUR_CHANNEL_SPREAD_LIMIT = 50;
+const CONTOUR_ALPHA_LIMIT = 20;
+const ANALYTICS_ID = "G-RTJTM1J5LK";
+const ADSENSE_CLIENT = "ca-pub-2193465688766661";
+const GOOGLE_CONSENT_DENIED = {
+  analytics_storage: "denied",
+  ad_storage: "denied",
+  ad_user_data: "denied",
+  ad_personalization: "denied",
+};
 const COLORS = [
-  "#ef5350",
-  "#ec407a",
-  "#ab47bc",
-  "#5c6bc0",
-  "#42a5f5",
-  "#26a69a",
-  "#66bb6a",
-  "#ffee58",
-  "#ffca28",
-  "#ff7043",
-  "#8d6e63",
-  "#78909c",
+  { name: "rojo", hex: "#ef5350" },
+  { name: "rosa", hex: "#ec407a" },
+  { name: "morado", hex: "#ab47bc" },
+  { name: "azul", hex: "#5c6bc0" },
+  { name: "celeste", hex: "#42a5f5" },
+  { name: "turquesa", hex: "#26a69a" },
+  { name: "verde", hex: "#66bb6a" },
+  { name: "amarillo", hex: "#ffee58" },
+  { name: "naranja", hex: "#ffca28" },
+  { name: "coral", hex: "#ff7043" },
+  { name: "café", hex: "#8d6e63" },
+  { name: "gris", hex: "#78909c" },
 ];
 
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 const paletteEl = document.getElementById("palette");
 const assetSelect = document.getElementById("assetSelect");
+const assetGallery = document.getElementById("assetGallery");
 const undoBtn = document.getElementById("undoBtn");
 const resetBtn = document.getElementById("resetBtn");
 const saveBtn = document.getElementById("saveBtn");
@@ -34,9 +47,16 @@ let fillInProgress = false;
 let currentAsset = ASSETS_LIST[0];
 let isImageLoaded = false;
 let fitRaf = null;
+let analyticsLoaded = false;
+let adsLoaded = false;
+let gtagDefaultsInitialized = false;
 
 function setStatus(text) {
   statusEl.textContent = text;
+}
+
+function getActiveColorLabel() {
+  return `Color activo: ${activeColor.name}`;
 }
 
 function hexToRgba(hex) {
@@ -50,12 +70,13 @@ function hexToRgba(hex) {
 
 function buildPalette() {
   paletteEl.innerHTML = "";
-  COLORS.forEach((color, index) => {
+  COLORS.forEach((color) => {
     const swatch = document.createElement("button");
     swatch.type = "button";
     swatch.className = "color-swatch";
-    swatch.style.background = color;
-    swatch.setAttribute("aria-label", `Color ${index + 1}`);
+    swatch.style.background = color.hex;
+    swatch.setAttribute("aria-label", `Color ${color.name}`);
+    swatch.setAttribute("title", color.name);
     if (color === activeColor) swatch.classList.add("active");
     swatch.addEventListener("click", () => {
       activeColor = color;
@@ -63,14 +84,32 @@ function buildPalette() {
         .querySelectorAll(".color-swatch")
         .forEach((el) => el.classList.remove("active"));
       swatch.classList.add("active");
-      setStatus(`Color activo: ${color}`);
+      setStatus(getActiveColorLabel());
     });
     paletteEl.appendChild(swatch);
   });
 }
 
+function selectAsset(asset) {
+  if (!asset || currentAsset === asset) return;
+  currentAsset = asset;
+  assetSelect.value = asset.src;
+  updateActiveAssetButton();
+  loadImage(currentAsset.src);
+}
+
+function updateActiveAssetButton() {
+  if (!assetGallery) return;
+  assetGallery.querySelectorAll(".asset-thumb").forEach((button) => {
+    const isActive = button.dataset.src === currentAsset?.src;
+    button.classList.toggle("active", isActive);
+    button.setAttribute("aria-pressed", String(isActive));
+  });
+}
+
 function buildAssetSelect() {
   assetSelect.innerHTML = "";
+  if (assetGallery) assetGallery.innerHTML = "";
   if (ASSETS_LIST.length === 0) {
     assetSelect.disabled = true;
     setStatus("No hay assets configurados en assets-list.js");
@@ -82,13 +121,31 @@ function buildAssetSelect() {
     option.textContent = asset.label;
     if (index === 0) option.selected = true;
     assetSelect.appendChild(option);
+
+    if (assetGallery) {
+      const button = document.createElement("button");
+      const image = document.createElement("img");
+      const label = document.createElement("span");
+      button.type = "button";
+      button.className = "asset-thumb";
+      button.dataset.src = asset.src;
+      button.setAttribute("aria-label", `Elegir ${asset.label}`);
+      button.setAttribute("aria-pressed", String(index === 0));
+      image.src = asset.src;
+      image.alt = "";
+      image.loading = "lazy";
+      label.textContent = asset.label;
+      button.append(image, label);
+      button.addEventListener("click", () => selectAsset(asset));
+      assetGallery.appendChild(button);
+    }
   });
   assetSelect.addEventListener("change", () => {
     const selected = ASSETS_LIST.find((asset) => asset.src === assetSelect.value);
     if (!selected) return;
-    currentAsset = selected;
-    loadImage(currentAsset.src);
+    selectAsset(selected);
   });
+  updateActiveAssetButton();
 }
 
 function updateUndoButton() {
@@ -124,12 +181,43 @@ function scheduleFit() {
   });
 }
 
-function pushUndo() {
-  if (!originalImageData) return;
-  const snapshot = ctx.getImageData(0, 0, canvas.width, canvas.height);
+function getUndoLimit() {
+  return window.matchMedia("(max-width: 700px)").matches
+    ? MOBILE_UNDO_LIMIT
+    : UNDO_LIMIT;
+}
+
+function pushUndoRegion(snapshot) {
+  if (!snapshot) return;
   undoStack.push(snapshot);
-  if (undoStack.length > UNDO_LIMIT) {
+  const undoLimit = getUndoLimit();
+  while (undoStack.length > undoLimit) {
     undoStack.shift();
+  }
+  updateUndoButton();
+}
+
+function createUndoRegion(sourceData, width, bounds) {
+  const regionWidth = bounds.maxX - bounds.minX + 1;
+  const regionHeight = bounds.maxY - bounds.minY + 1;
+  const snapshot = ctx.createImageData(regionWidth, regionHeight);
+  for (let row = 0; row < regionHeight; row += 1) {
+    const sourceStart = ((bounds.minY + row) * width + bounds.minX) * 4;
+    const sourceEnd = sourceStart + regionWidth * 4;
+    const targetStart = row * regionWidth * 4;
+    snapshot.data.set(sourceData.subarray(sourceStart, sourceEnd), targetStart);
+  }
+  return {
+    x: bounds.minX,
+    y: bounds.minY,
+    imageData: snapshot,
+  };
+}
+
+function trimUndoStack() {
+  const undoLimit = getUndoLimit();
+  if (undoStack.length > undoLimit) {
+    undoStack = undoStack.slice(-undoLimit);
   }
   updateUndoButton();
 }
@@ -137,7 +225,7 @@ function pushUndo() {
 function undo() {
   if (undoStack.length === 0 || fillInProgress) return;
   const prev = undoStack.pop();
-  ctx.putImageData(prev, 0, 0);
+  ctx.putImageData(prev.imageData, prev.x, prev.y);
   updateUndoButton();
 }
 
@@ -179,11 +267,32 @@ function colorWithinTolerance(a, b, tol) {
   );
 }
 
+function getLuma(r, g, b) {
+  return r * 0.299 + g * 0.587 + b * 0.114;
+}
+
+function isContourColor(data, dataIndex) {
+  const alpha = data[dataIndex + 3];
+  if (alpha <= CONTOUR_ALPHA_LIMIT) return false;
+  const r = data[dataIndex];
+  const g = data[dataIndex + 1];
+  const b = data[dataIndex + 2];
+  const spread = Math.max(r, g, b) - Math.min(r, g, b);
+  return getLuma(r, g, b) <= CONTOUR_LUMA_LIMIT &&
+    spread <= CONTOUR_CHANNEL_SPREAD_LIMIT;
+}
+
 function floodFillAsync(startX, startY, fillColor, tolerance) {
   if (fillInProgress) return;
   const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
   const { data, width, height } = imageData;
+  const originalData = originalImageData?.data;
   const startIndex = (startY * width + startX) * 4;
+  if (originalData && isContourColor(originalData, startIndex)) {
+    setStatus("Toca una zona blanca para pintar");
+    return;
+  }
+
   const targetColor = [
     data[startIndex],
     data[startIndex + 1],
@@ -196,9 +305,17 @@ function floodFillAsync(startX, startY, fillColor, tolerance) {
   fillInProgress = true;
   updateUndoButton();
 
+  const beforeData = new Uint8ClampedArray(data);
   const visited = new Uint8Array(width * height);
   const queue = [];
   let head = 0;
+  let changedCount = 0;
+  const bounds = {
+    minX: width,
+    minY: height,
+    maxX: 0,
+    maxY: 0,
+  };
   queue.push(startY * width + startX);
 
   const maxPerFrame = 30000;
@@ -212,6 +329,9 @@ function floodFillAsync(startX, startY, fillColor, tolerance) {
       const px = idx % width;
       const py = (idx / width) | 0;
       const dataIndex = idx * 4;
+      if (originalData && isContourColor(originalData, dataIndex)) {
+        continue;
+      }
       const currentColor = [
         data[dataIndex],
         data[dataIndex + 1],
@@ -223,10 +343,19 @@ function floodFillAsync(startX, startY, fillColor, tolerance) {
         continue;
       }
 
+      if (colorWithinTolerance(currentColor, fillColor, 0)) {
+        continue;
+      }
+
       data[dataIndex] = fillColor[0];
       data[dataIndex + 1] = fillColor[1];
       data[dataIndex + 2] = fillColor[2];
       data[dataIndex + 3] = fillColor[3];
+      changedCount += 1;
+      bounds.minX = Math.min(bounds.minX, px);
+      bounds.minY = Math.min(bounds.minY, py);
+      bounds.maxX = Math.max(bounds.maxX, px);
+      bounds.maxY = Math.max(bounds.maxY, py);
 
       if (px > 0) queue.push(idx - 1);
       if (px < width - 1) queue.push(idx + 1);
@@ -241,6 +370,10 @@ function floodFillAsync(startX, startY, fillColor, tolerance) {
     } else {
       ctx.putImageData(imageData, 0, 0);
       fillInProgress = false;
+      if (changedCount > 0) {
+        pushUndoRegion(createUndoRegion(beforeData, width, bounds));
+        setStatus(getActiveColorLabel());
+      }
       updateUndoButton();
     }
   };
@@ -267,7 +400,8 @@ function loadImage(src) {
     undoStack = [];
     isImageLoaded = true;
     updateUndoButton();
-    setStatus(`Color activo: ${activeColor}`);
+    updateActiveAssetButton();
+    setStatus(getActiveColorLabel());
     scheduleFit();
   };
 
@@ -288,8 +422,7 @@ canvas.addEventListener("pointerdown", (event) => {
   }
   const point = getCanvasPoint(event);
   if (!point) return;
-  pushUndo();
-  floodFillAsync(point.x, point.y, hexToRgba(activeColor), TOLERANCE);
+  floodFillAsync(point.x, point.y, hexToRgba(activeColor.hex), TOLERANCE);
 });
 
 undoBtn.addEventListener("click", undo);
@@ -304,6 +437,7 @@ if (currentAsset) {
 updateUndoButton();
 
 window.addEventListener("resize", scheduleFit);
+window.addEventListener("resize", trimUndoStack);
 
 // TODO: Para imágenes muy grandes, considerar mover floodFillAsync a un Web Worker.
 
@@ -312,15 +446,76 @@ const consentAccept = document.getElementById("consentAccept");
 const consentReject = document.getElementById("consentReject");
 const CONSENT_KEY = "coloreame_consent_v1";
 
+function loadScript(src, options = {}) {
+  return new Promise((resolve, reject) => {
+    if (document.querySelector(`script[src="${src}"]`)) {
+      resolve();
+      return;
+    }
+    const script = document.createElement("script");
+    script.src = src;
+    script.async = true;
+    if (options.crossOrigin) {
+      script.crossOrigin = options.crossOrigin;
+    }
+    script.addEventListener("load", resolve, { once: true });
+    script.addEventListener("error", reject, { once: true });
+    document.head.appendChild(script);
+  });
+}
+
+function initGtagDefaults() {
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = window.gtag || function gtag() {
+    window.dataLayer.push(arguments);
+  };
+  if (gtagDefaultsInitialized) return;
+  gtagDefaultsInitialized = true;
+  window.gtag("consent", "default", GOOGLE_CONSENT_DENIED);
+}
+
+function loadAnalytics() {
+  if (analyticsLoaded) return;
+  analyticsLoaded = true;
+  initGtagDefaults();
+  loadScript(`https://www.googletagmanager.com/gtag/js?id=${ANALYTICS_ID}`)
+    .then(() => {
+      window.gtag("js", new Date());
+      window.gtag("config", ANALYTICS_ID, { anonymize_ip: true });
+    })
+    .catch(() => {
+      analyticsLoaded = false;
+    });
+}
+
+function loadAds() {
+  if (adsLoaded) return;
+  adsLoaded = true;
+  window.adsbygoogle = window.adsbygoogle || [];
+  window.adsbygoogle.requestNonPersonalizedAds = 1;
+  loadScript(
+    `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT}`,
+    { crossOrigin: "anonymous" }
+  ).catch(() => {
+    adsLoaded = false;
+  });
+}
+
+function loadThirdPartyServices() {
+  loadAnalytics();
+  loadAds();
+}
+
 function applyConsent(mode) {
-  if (typeof gtag !== "function") return;
+  initGtagDefaults();
   const granted = mode === "granted";
-  gtag("consent", "update", {
+  window.gtag("consent", "update", {
     analytics_storage: granted ? "granted" : "denied",
     ad_storage: granted ? "granted" : "denied",
     ad_user_data: granted ? "granted" : "denied",
-    ad_personalization: granted ? "granted" : "denied",
+    ad_personalization: "denied",
   });
+  if (granted) loadThirdPartyServices();
 }
 
 function showConsentBanner() {

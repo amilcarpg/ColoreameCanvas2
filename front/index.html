@@ -10,6 +10,11 @@
     />
     <meta name="robots" content="index,follow" />
     <meta name="theme-color" content="#fff7e6" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; base-uri 'self'; object-src 'none'; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; script-src 'self' https://www.googletagmanager.com https://pagead2.googlesyndication.com; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://pagead2.googlesyndication.com; frame-src https://googleads.g.doubleclick.net https://tpc.googlesyndication.com;"
+    />
     <link rel="canonical" href="https://paintme.club/" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Colorea con balde de pintura" />
@@ -26,8 +31,6 @@
       content="Colorea dibujos para niños con un balde de pintura en Canvas."
     />
     <link rel="stylesheet" href="styles.css" />
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2193465688766661"
-     crossorigin="anonymous"></script>
   </head>
   <body>
     <header class="site-header">
@@ -44,8 +47,19 @@
       </header>
       <section class="toolbar" aria-label="Controles de coloreado">
         <div class="asset-picker">
-          <label for="assetSelect">Elige un dibujo</label>
-          <select id="assetSelect" aria-label="Lista de dibujos"></select>
+          <div class="asset-picker-title">Elige un dibujo</div>
+          <select
+            class="native-asset-select"
+            id="assetSelect"
+            aria-label="Lista de dibujos"
+            aria-hidden="true"
+            tabindex="-1"
+          ></select>
+          <div
+            class="asset-gallery"
+            id="assetGallery"
+            aria-label="Galería de dibujos"
+          ></div>
         </div>
         <div class="palette" id="palette" aria-label="Paleta de colores"></div>
         <div class="controls">
@@ -70,9 +84,10 @@
       <section class="privacy" id="privacy">
         <h2>Política de privacidad</h2>
         <p>
-          Esta página puede usar Google Analytics y anuncios (AdSense) para medir
-          el uso y mostrar publicidad. Puedes aceptar o rechazar el uso de cookies
-          para medición y anuncios en el banner de consentimiento.
+          Esta página funciona sin crear cuentas ni pedir datos personales. Si
+          aceptas, se cargan Google Analytics y AdSense para medición básica y
+          anuncios no personalizados. Si rechazas, esos servicios no se cargan.
+          No coloques nombres, correos ni datos de menores en la página.
         </p>
       </section>
     </footer>
@@ -80,7 +95,8 @@
     <div class="consent-banner" id="consentBanner" role="dialog" aria-live="polite">
       <div class="consent-content">
         <p>
-          Usamos cookies para analítica y anuncios. Puedes aceptar o rechazar.
+          Podemos cargar analítica y anuncios no personalizados. Puedes aceptar
+          o rechazar; el juego funciona igual.
         </p>
         <div class="consent-actions">
           <button id="consentReject" type="button">Rechazar</button>
@@ -89,19 +105,6 @@
       </div>
     </div>
 
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RTJTM1J5LK"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('consent', 'default', {
-        analytics_storage: 'denied',
-        ad_storage: 'denied',
-        ad_user_data: 'denied',
-        ad_personalization: 'denied'
-      });
-      gtag('config', 'G-RTJTM1J5LK', { anonymize_ip: true });
-    </script>
     <script src="assets-list.js"></script>
     <script src="app.js"></script>
   </body>
