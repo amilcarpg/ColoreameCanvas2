@@ -25,6 +25,8 @@ const CATEGORY_LABELS = {
   princesas: "Princesas",
 };
 
+const SAFE_QUERY_VALUE = /^[a-z0-9-]{1,64}$/;
+
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 const paletteEl = document.getElementById("palette");
@@ -39,12 +41,21 @@ const browseNoteEl = document.getElementById("browseNote");
 const contextTitleEl = document.getElementById("contextTitle");
 const contextMetaEl = document.getElementById("contextMeta");
 const appLeadEl = document.getElementById("appLead");
-const ASSETS_LIST = Array.isArray(window.ASSETS) ? window.ASSETS : [];
+const RAW_ASSETS_LIST = Array.isArray(window.ASSETS) ? window.ASSETS : [];
+const ASSETS_LIST = RAW_ASSETS_LIST.filter(isValidAssetRecord);
+const ASSET_BY_SLUG = new Map(ASSETS_LIST.map((asset) => [asset.slug, asset]));
+const VALID_CATEGORIES = new Set(
+  ASSETS_LIST.map((asset) => asset.category).filter(Boolean)
+);
 
 const currentUrl = new URL(window.location.href);
-const requestedAssetSlug = currentUrl.searchParams.get("asset");
-const requestedCategory = currentUrl.searchParams.get("category");
-const requestedAsset = ASSETS_LIST.find((asset) => asset.slug === requestedAssetSlug);
+const requestedAssetSlug = normalizeQueryParam(currentUrl.searchParams.get("asset"));
+const requestedCategory = normalizeQueryParam(
+  currentUrl.searchParams.get("category")
+);
+const requestedAsset = requestedAssetSlug
+  ? ASSET_BY_SLUG.get(requestedAssetSlug) || null
+  : null;
 
 let activeColor = COLORS[0];
 let originalImageData = null;
@@ -52,9 +63,41 @@ let undoStack = [];
 let fillInProgress = false;
 let isImageLoaded = false;
 let fitRaf = null;
-let activeCategory = requestedCategory || requestedAsset?.category || "";
+let imageLoadRequestId = 0;
+let fillRequestId = 0;
+let activeCategory = getSanitizedCategory(
+  requestedCategory,
+  requestedAsset?.category || ""
+);
 let visibleAssets = getVisibleAssets();
 let currentAsset = getInitialAsset();
+const fillWorker = createFillWorker();
+
+function isValidAssetRecord(asset) {
+  return Boolean(
+    asset &&
+      typeof asset.label === "string" &&
+      typeof asset.slug === "string" &&
+      typeof asset.category === "string" &&
+      typeof asset.src === "string" &&
+      SAFE_QUERY_VALUE.test(asset.slug) &&
+      SAFE_QUERY_VALUE.test(asset.category) &&
+      asset.src.startsWith("assets/") &&
+      /\.(png|svg)$/i.test(asset.src)
+  );
+}
+
+function normalizeQueryParam(value) {
+  if (typeof value !== "string") return "";
+  const trimmed = value.trim().toLowerCase();
+  return SAFE_QUERY_VALUE.test(trimmed) ? trimmed : "";
+}
+
+function getSanitizedCategory(category, fallback = "") {
+  if (category && VALID_CATEGORIES.has(category)) return category;
+  if (fallback && VALID_CATEGORIES.has(fallback)) return fallback;
+  return "";
+}
 
 function getVisibleAssets() {
   if (!activeCategory) return [...ASSETS_LIST];
@@ -126,6 +169,16 @@ function buildAssetSelect() {
   });
 }
 
+function createFillWorker() {
+  if (typeof Worker !== "function") return null;
+
+  try {
+    return new Worker("paint-worker.js?v=20260712-1");
+  } catch {
+    return null;
+  }
+}
+
 function getCategoryLabel(category) {
   return CATEGORY_LABELS[category] || "Dibujos";
 }
@@ -182,6 +235,22 @@ function syncUrl() {
   }
 
   window.history.replaceState({}, "", nextUrl);
+}
+
+function normalizeInitialUrlState() {
+  const requestedCategoryIsValid = requestedCategory && VALID_CATEGORIES.has(requestedCategory);
+  const requestedAssetIsValid = requestedAssetSlug && ASSET_BY_SLUG.has(requestedAssetSlug);
+  const assetCategory = requestedAsset?.category || "";
+  const shouldNormalize =
+    Boolean(currentUrl.searchParams.get("asset")) !== Boolean(requestedAssetIsValid) ||
+    Boolean(currentUrl.searchParams.get("category")) !== Boolean(requestedCategoryIsValid) ||
+    (requestedAssetIsValid &&
+      requestedCategoryIsValid &&
+      assetCategory &&
+      requestedCategory !== assetCategory);
+
+  if (!shouldNormalize) return;
+  syncUrl();
 }
 
 function updateUndoButton() {
@@ -273,7 +342,7 @@ function colorWithinTolerance(a, b, tol) {
   );
 }
 
-function floodFillAsync(startX, startY, fillColor, tolerance) {
+function floodFillFallback(startX, startY, fillColor, tolerance) {
   if (fillInProgress) return;
   const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
   const { data, width, height } = imageData;
@@ -342,37 +411,135 @@ function floodFillAsync(startX, startY, fillColor, tolerance) {
   requestAnimationFrame(step);
 }
 
-function loadImage(src) {
-  const img = new Image();
-  img.crossOrigin = "anonymous";
+function drawLoadedSource(sourceWidth, sourceHeight, draw) {
+  let scale = 1;
+  if (sourceWidth > MAX_CANVAS_SIZE || sourceHeight > MAX_CANVAS_SIZE) {
+    scale = Math.min(MAX_CANVAS_SIZE / sourceWidth, MAX_CANVAS_SIZE / sourceHeight);
+  }
+  canvas.width = Math.round(sourceWidth * scale);
+  canvas.height = Math.round(sourceHeight * scale);
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  draw(canvas.width, canvas.height);
+  originalImageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+  undoStack = [];
+  isImageLoaded = true;
+  updateUndoButton();
+  setStatus(`Color activo: ${activeColor}`);
+  scheduleFit();
+  updateContext();
+  syncUrl();
+}
+
+async function loadImage(src) {
+  const requestId = ++imageLoadRequestId;
   isImageLoaded = false;
   setStatus("Cargando imagen...");
-  img.src = src;
-  img.onload = () => {
-    let scale = 1;
-    if (img.width > MAX_CANVAS_SIZE || img.height > MAX_CANVAS_SIZE) {
-      scale = Math.min(MAX_CANVAS_SIZE / img.width, MAX_CANVAS_SIZE / img.height);
-    }
-    canvas.width = Math.round(img.width * scale);
-    canvas.height = Math.round(img.height * scale);
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-    originalImageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-    undoStack = [];
-    isImageLoaded = true;
-    updateUndoButton();
-    setStatus(`Color activo: ${activeColor}`);
-    scheduleFit();
-    updateContext();
-    syncUrl();
-  };
 
-  img.onerror = () => {
+  try {
+    if (typeof createImageBitmap === "function") {
+      const response = await fetch(src, { cache: "force-cache" });
+      if (!response.ok) {
+        throw new Error(`No se pudo descargar ${src}`);
+      }
+      const blob = await response.blob();
+      const bitmap = await createImageBitmap(blob);
+
+      if (requestId !== imageLoadRequestId) {
+        bitmap.close?.();
+        return;
+      }
+
+      drawLoadedSource(bitmap.width, bitmap.height, (drawWidth, drawHeight) => {
+        ctx.drawImage(bitmap, 0, 0, drawWidth, drawHeight);
+      });
+      bitmap.close?.();
+      return;
+    }
+
+    const img = new Image();
+    img.crossOrigin = "anonymous";
+    img.decoding = "async";
+    img.fetchPriority = "high";
+    img.src = src;
+    await img.decode();
+
+    if (requestId !== imageLoadRequestId) return;
+
+    drawLoadedSource(img.width, img.height, (drawWidth, drawHeight) => {
+      ctx.drawImage(img, 0, 0, drawWidth, drawHeight);
+    });
+  } catch {
+    if (requestId !== imageLoadRequestId) return;
     isImageLoaded = false;
     setStatus(
       "No se pudo cargar la imagen. Verifica el archivo seleccionado en /assets/"
     );
+  }
+}
+
+function floodFillAsync(startX, startY, fillColor, tolerance) {
+  if (!fillWorker) {
+    floodFillFallback(startX, startY, fillColor, tolerance);
+    return;
+  }
+
+  if (fillInProgress) return;
+
+  const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+  const startIndex = (startY * canvas.width + startX) * 4;
+  const targetColor = [
+    imageData.data[startIndex],
+    imageData.data[startIndex + 1],
+    imageData.data[startIndex + 2],
+    imageData.data[startIndex + 3],
+  ];
+
+  if (colorWithinTolerance(targetColor, fillColor, tolerance)) return;
+
+  fillInProgress = true;
+  setStatus("Pintando...");
+  updateUndoButton();
+
+  const requestId = ++fillRequestId;
+
+  const handleMessage = (event) => {
+    const { id, buffer } = event.data || {};
+    if (id !== requestId || !buffer) return;
+
+    fillWorker.removeEventListener("message", handleMessage);
+    fillWorker.removeEventListener("error", handleError);
+
+    const result = new Uint8ClampedArray(buffer);
+    const filledImage = new ImageData(result, canvas.width, canvas.height);
+    ctx.putImageData(filledImage, 0, 0);
+    fillInProgress = false;
+    setStatus(`Color activo: ${activeColor}`);
+    updateUndoButton();
   };
+
+  const handleError = () => {
+    fillWorker.removeEventListener("message", handleMessage);
+    fillWorker.removeEventListener("error", handleError);
+    fillInProgress = false;
+    setStatus("No se pudo completar el pintado. Intenta de nuevo.");
+    updateUndoButton();
+  };
+
+  fillWorker.addEventListener("message", handleMessage);
+  fillWorker.addEventListener("error", handleError);
+  fillWorker.postMessage(
+    {
+      id: requestId,
+      width: canvas.width,
+      height: canvas.height,
+      startX,
+      startY,
+      fillColor,
+      tolerance,
+      buffer: imageData.data.buffer,
+    },
+    [imageData.data.buffer]
+  );
 }
 
 function selectAssetBySlug(slug) {
@@ -425,6 +592,7 @@ if (allBtn) {
 buildPalette();
 buildAssetSelect();
 updateContext();
+normalizeInitialUrlState();
 if (currentAsset) {
   selectAssetBySlug(currentAsset.slug);
 }
@@ -446,6 +614,18 @@ function applyConsent(mode) {
     ad_user_data: granted ? "granted" : "denied",
     ad_personalization: granted ? "granted" : "denied",
   });
+
+  if (granted && typeof window.loadThirdPartyScript === "function") {
+    window
+      .loadThirdPartyScript(
+        "adsense",
+        "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2193465688766661",
+        {
+          crossOrigin: "anonymous",
+        }
+      )
+      .catch(() => {});
+  }
 }
 
 function showConsentBanner() {

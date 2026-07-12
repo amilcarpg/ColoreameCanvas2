@@ -31,6 +31,11 @@
       name="twitter:description"
       content="Elige un dibujo, toca una zona y píntala al instante."
     />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob:; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com; frame-src 'none'; upgrade-insecure-requests"
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -392,21 +397,7 @@
       </footer>
     </div>
 
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RTJTM1J5LK"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-      gtag("consent", "default", {
-        analytics_storage: "denied",
-        ad_storage: "denied",
-        ad_user_data: "denied",
-        ad_personalization: "denied",
-      });
-      gtag("config", "G-RTJTM1J5LK", { anonymize_ip: true });
-    </script>
-    <script src="home.js?v=20260712-1"></script>
+    <script src="analytics-init.js?v=20260712-3"></script>
+    <script src="home.js?v=20260712-2"></script>
   </body>
 </html>

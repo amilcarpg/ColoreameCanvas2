@@ -3,6 +3,15 @@ const siteNav = document.getElementById("siteNav");
 const navLinks = Array.from(document.querySelectorAll(".nav-link"));
 const trackLinks = document.querySelectorAll("[data-track]");
 const faqItems = document.querySelectorAll(".faq-item");
+const sectionMap = navLinks
+  .map((link) => {
+    const id = link.getAttribute("href");
+    if (!id || !id.startsWith("#")) return null;
+    const section = document.querySelector(id);
+    if (!section) return null;
+    return { link, section };
+  })
+  .filter(Boolean);
 
 function trackEvent(name, params = {}) {
   if (typeof window.gtag !== "function") return;
@@ -20,26 +29,16 @@ function toggleMenu(forceOpen) {
 }
 
 function updateActiveLink() {
-  const sections = navLinks
-    .map((link) => {
-      const id = link.getAttribute("href");
-      if (!id || !id.startsWith("#")) return null;
-      return { link, section: document.querySelector(id) };
-    })
-    .filter(Boolean);
-
-  const marker = window.scrollY + 140;
-  let active = sections[0];
-
-  sections.forEach((item) => {
-    if (item.section && item.section.offsetTop <= marker) {
-      active = item;
-    }
-  });
-
   navLinks.forEach((link) => link.classList.remove("active"));
-  if (active?.link) {
-    active.link.classList.add("active");
+}
+
+function setActiveLink(targetId) {
+  updateActiveLink();
+  const activeItem = sectionMap.find(
+    (item) => item.section.id === targetId || `#${item.section.id}` === targetId
+  );
+  if (activeItem?.link) {
+    activeItem.link.classList.add("active");
   }
 }
 
@@ -76,11 +75,49 @@ faqItems.forEach((item, index) => {
   });
 });
 
-window.addEventListener("scroll", updateActiveLink, { passive: true });
+if ("IntersectionObserver" in window && sectionMap.length > 0) {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      const visibleEntries = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+
+      if (visibleEntries.length > 0) {
+        setActiveLink(`#${visibleEntries[0].target.id}`);
+      }
+    },
+    {
+      rootMargin: "-20% 0px -55% 0px",
+      threshold: [0.2, 0.45, 0.7],
+    }
+  );
+
+  sectionMap.forEach((item) => observer.observe(item.section));
+} else {
+  window.addEventListener(
+    "scroll",
+    () => {
+      const marker = window.scrollY + 140;
+      let active = sectionMap[0];
+
+      sectionMap.forEach((item) => {
+        if (item.section.offsetTop <= marker) {
+          active = item;
+        }
+      });
+
+      if (active?.section?.id) {
+        setActiveLink(`#${active.section.id}`);
+      }
+    },
+    { passive: true }
+  );
+}
+
 window.addEventListener("resize", () => {
   if (window.innerWidth > 820) {
     toggleMenu(false);
   }
 });
 
-updateActiveLink();
+setActiveLink("#inicio");

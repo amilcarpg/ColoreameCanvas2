@@ -25,12 +25,12 @@
       name="twitter:description"
       content="Colorea dibujos para niños con un balde de pintura en Canvas."
     />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self'; script-src 'self' https://www.googletagmanager.com https://pagead2.googlesyndication.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://pagead2.googlesyndication.com; worker-src 'self'; frame-src https://googleads.g.doubleclick.net https://tpc.googlesyndication.com; upgrade-insecure-requests"
+    />
     <link rel="stylesheet" href="paint.css?v=20260712-1" />
-    <script
-      async
-      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2193465688766661"
-      crossorigin="anonymous"
-    ></script>
   </head>
   <body>
     <header class="site-header">
@@ -97,22 +97,8 @@
       </div>
     </div>
 
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RTJTM1J5LK"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-      gtag("consent", "default", {
-        analytics_storage: "denied",
-        ad_storage: "denied",
-        ad_user_data: "denied",
-        ad_personalization: "denied",
-      });
-      gtag("config", "G-RTJTM1J5LK", { anonymize_ip: true });
-    </script>
+    <script src="analytics-init.js?v=20260712-3"></script>
     <script src="assets-list.js?v=20260712-1"></script>
-    <script src="paint.js?v=20260712-1"></script>
+    <script src="paint.js?v=20260712-4"></script>
   </body>
 </html>
