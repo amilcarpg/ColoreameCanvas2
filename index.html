@@ -3,106 +3,410 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Colorea con balde de pintura | Dibujos para niños</title>
+    <title>Dibujos para colorear gratis online | PaintMe.club</title>
     <meta
       name="description"
-      content="Página de colorear con balde de pintura en HTML5 Canvas. Elige un dibujo y pinta por regiones con un clic o toque."
+      content="Dibujos para colorear gratis online para niños y familias. Elige un dibujo, toca para pintar y guarda tu creación en PNG."
     />
     <meta name="robots" content="index,follow" />
-    <meta name="theme-color" content="#fff7e6" />
+    <meta name="theme-color" content="#fff7ea" />
     <link rel="canonical" href="https://paintme.club/" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Colorea con balde de pintura" />
+    <meta
+      property="og:title"
+      content="Dibujos para colorear gratis online | PaintMe.club"
+    />
     <meta
       property="og:description"
-      content="Colorea dibujos para niños con un balde de pintura en Canvas."
+      content="Colorea online sin registro desde tu celular o computadora."
     />
     <meta property="og:url" content="https://paintme.club/" />
     <meta property="og:locale" content="es_ES" />
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="Colorea con balde de pintura" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Dibujos para colorear gratis online | PaintMe.club"
+    />
     <meta
       name="twitter:description"
-      content="Colorea dibujos para niños con un balde de pintura en Canvas."
+      content="Elige un dibujo, toca una zona y píntala al instante."
     />
-    <link rel="stylesheet" href="styles.css" />
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2193465688766661"
-     crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="home.css" />
   </head>
   <body>
-    <header class="site-header">
-      <div class="ad-slot">
-        <!-- Pegue aquí el snippet real de Google AdSense (HEADER). -->
-        <div class="ad-placeholder">Zona de anuncio (Header)</div>
-      </div>
-    </header>
-
-    <main class="app">
-      <header class="app-header">
-        <h1>Colorea con balde de pintura</h1>
-        <p>Elige un dibujo y pinta por regiones con un clic o toque.</p>
+    <div class="page-shell">
+      <header class="site-header" id="inicio">
+        <div class="container header-row">
+          <a class="brand" href="#inicio" aria-label="PaintMe.club, volver al inicio">
+            <span class="brand-paint">Paint</span><span class="brand-me">Me</span><span class="brand-club">.club</span>
+          </a>
+          <button
+            class="menu-toggle"
+            type="button"
+            aria-expanded="false"
+            aria-controls="siteNav"
+            aria-label="Abrir menú"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+          <nav class="site-nav" id="siteNav" aria-label="Principal">
+            <a class="nav-link active" href="#inicio">Inicio</a>
+            <a class="nav-link" href="#categorias">Categorías</a>
+            <a class="nav-link" href="#dibujos">Dibujos</a>
+            <a class="nav-link" href="#faq">FAQ</a>
+          </nav>
+        </div>
       </header>
-      <section class="toolbar" aria-label="Controles de coloreado">
-        <div class="asset-picker">
-          <label for="assetSelect">Elige un dibujo</label>
-          <select id="assetSelect" aria-label="Lista de dibujos"></select>
-        </div>
-        <div class="palette" id="palette" aria-label="Paleta de colores"></div>
-        <div class="controls">
-          <button id="undoBtn" type="button">Deshacer</button>
-          <button id="resetBtn" type="button">Reiniciar</button>
-          <button id="saveBtn" type="button">Guardar</button>
-        </div>
-        <div class="status" id="status">Color activo</div>
-      </section>
 
-      <section class="canvas-wrap" aria-label="Área de coloreo">
-        <canvas id="canvas" width="600" height="600"></canvas>
-        <div class="hint">Clic o toque para pintar con balde</div>
-      </section>
-    </main>
+      <main>
+        <section class="hero" aria-labelledby="hero-title">
+          <div class="hero-decor hero-decor-cloud cloud-a" aria-hidden="true"></div>
+          <div class="hero-decor hero-decor-cloud cloud-b" aria-hidden="true"></div>
+          <div class="hero-decor hero-decor-star star-a" aria-hidden="true">✦</div>
+          <div class="hero-decor hero-decor-star star-b" aria-hidden="true">✦</div>
+          <div class="hero-decor hero-decor-sun" aria-hidden="true"></div>
+          <div class="container hero-grid">
+            <div class="hero-copy">
+              <p class="eyebrow">Para niños, familias y ratos creativos</p>
+              <h1 id="hero-title">Dibujos para colorear gratis online</h1>
+              <p class="hero-text">
+                Elige un dibujo, toca una zona y píntala al instante. Sin registro,
+                desde tu celular o computadora.
+              </p>
+              <div class="hero-actions">
+                <a class="button button-primary track-cta" href="paint.html?asset=dinosaurio&category=dinosaurios" data-track="cta_hero_principal">
+                  <span class="button-icon">✏️</span>
+                  Empezar a colorear
+                </a>
+                <a class="button button-secondary" href="#categorias">
+                  <span class="button-icon">▦</span>
+                  Ver categorías
+                </a>
+              </div>
+              <div class="hero-kid">
+                <div class="hero-kid-illustration" aria-hidden="true">
+                  <div class="kid-hill hill-left"></div>
+                  <div class="kid-hill hill-right"></div>
+                  <div class="kid-path"></div>
+                  <div class="kid-head"></div>
+                  <div class="kid-body"></div>
+                  <div class="kid-tablet"></div>
+                  <div class="kid-cup">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </div>
+                </div>
+                <p class="hero-kid-note">
+                  Colorea en segundos con una experiencia simple y lista para jugar.
+                </p>
+              </div>
+            </div>
 
-    <footer class="site-footer">
-      <div class="ad-slot">
-        <!-- Pegue aquí el snippet real de Google AdSense (FOOTER). -->
-        <div class="ad-placeholder">Zona de anuncio (Footer)</div>
-      </div>
-      <section class="privacy" id="privacy">
-        <h2>Política de privacidad</h2>
-        <p>
-          Esta página puede usar Google Analytics y anuncios (AdSense) para medir
-          el uso y mostrar publicidad. Puedes aceptar o rechazar el uso de cookies
-          para medición y anuncios en el banner de consentimiento.
-        </p>
-      </section>
-    </footer>
+            <div class="hero-preview">
+              <div class="app-card">
+                <div class="app-card-toolbar">
+                  <button type="button" aria-label="Volver">‹</button>
+                  <div class="toolbar-actions">
+                    <button type="button" aria-label="Deshacer">↶</button>
+                    <button type="button" aria-label="Rehacer">↷</button>
+                  </div>
+                  <button type="button" aria-label="Descargar">⬇</button>
+                </div>
+                <div class="app-card-canvas">
+                  <div class="canvas-badge">Coloreando ahora</div>
+                  <div class="canvas-cloud cloud-one"></div>
+                  <div class="canvas-cloud cloud-two"></div>
+                  <img src="assets/dinosaur.png" alt="Vista previa de un dibujo para colorear" />
+                  <div class="canvas-grass"></div>
+                </div>
+                <div class="app-card-palette" aria-label="Paleta de colores decorativa">
+                  <span style="--swatch:#ff5a5f"></span>
+                  <span style="--swatch:#ff8b00"></span>
+                  <span style="--swatch:#ffca28"></span>
+                  <span style="--swatch:#7ac943"></span>
+                  <span style="--swatch:#5ec8ff"></span>
+                  <span style="--swatch:#2d8cff"></span>
+                  <span style="--swatch:#8d5cf6"></span>
+                  <span style="--swatch:#9b5a2e"></span>
+                  <span style="--swatch:#ff7eb6"></span>
+                </div>
+                <div class="app-card-footer">
+                  <div class="tool active">
+                    <span>🪣</span>
+                    <strong>Balde</strong>
+                  </div>
+                  <div class="tool">
+                    <span>🖌️</span>
+                    <strong>Pincel</strong>
+                  </div>
+                  <div class="tool">
+                    <span>⌫</span>
+                    <strong>Borrador</strong>
+                  </div>
+                  <div class="tool">
+                    <span>↶</span>
+                    <strong>Deshacer</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
-    <div class="consent-banner" id="consentBanner" role="dialog" aria-live="polite">
-      <div class="consent-content">
-        <p>
-          Usamos cookies para analítica y anuncios. Puedes aceptar o rechazar.
-        </p>
-        <div class="consent-actions">
-          <button id="consentReject" type="button">Rechazar</button>
-          <button id="consentAccept" type="button">Aceptar</button>
+        <section class="benefits">
+          <div class="container benefits-grid">
+            <article class="benefit-card">
+              <div class="benefit-icon green">🎁</div>
+              <div>
+                <h2>Gratis</h2>
+                <p>100% gratis para todos.</p>
+              </div>
+            </article>
+            <article class="benefit-card">
+              <div class="benefit-icon blue">👤</div>
+              <div>
+                <h2>Sin registro</h2>
+                <p>Empieza a colorear al instante.</p>
+              </div>
+            </article>
+            <article class="benefit-card">
+              <div class="benefit-icon yellow">📱</div>
+              <div>
+                <h2>Funciona en móvil</h2>
+                <p>Desde tu celular, tableta o computadora.</p>
+              </div>
+            </article>
+            <article class="benefit-card">
+              <div class="benefit-icon purple">🖼️</div>
+              <div>
+                <h2>Guarda en PNG</h2>
+                <p>Descarga y comparte tu dibujo.</p>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="section categories" id="categorias" aria-labelledby="categorias-title">
+          <div class="container">
+            <div class="section-heading">
+              <p class="section-kicker">Explora por tema</p>
+              <h2 id="categorias-title">Categorías</h2>
+            </div>
+            <div class="categories-grid">
+              <a class="category-card lime track-category" href="paint.html?category=animales" data-track="categoria_animales">
+                <div class="category-emoji" aria-hidden="true">🦁</div>
+                <span>Animales</span>
+              </a>
+              <a class="category-card sky track-category" href="paint.html?category=vehiculos" data-track="categoria_vehiculos">
+                <div class="category-emoji" aria-hidden="true">🚗</div>
+                <span>Vehículos</span>
+              </a>
+              <a class="category-card coral track-category" href="paint.html?category=navidad" data-track="categoria_navidad">
+                <div class="category-emoji" aria-hidden="true">🎄</div>
+                <span>Navidad</span>
+              </a>
+              <a class="category-card lilac track-category" href="paint.html?category=fantasia" data-track="categoria_fantasia">
+                <div class="category-emoji" aria-hidden="true">🦄</div>
+                <span>Fantasía</span>
+              </a>
+              <a class="category-card mint track-category" href="paint.html?category=dinosaurios" data-track="categoria_dinosaurios">
+                <div class="category-emoji" aria-hidden="true">🦖</div>
+                <span>Dinosaurios</span>
+              </a>
+              <a class="category-card pink track-category" href="paint.html?category=princesas" data-track="categoria_princesas">
+                <div class="category-emoji" aria-hidden="true">👸</div>
+                <span>Princesas</span>
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <section class="section popular" id="dibujos" aria-labelledby="dibujos-title">
+          <div class="container">
+            <div class="section-heading">
+              <p class="section-kicker">Listos para empezar</p>
+              <h2 id="dibujos-title">Dibujos populares</h2>
+            </div>
+            <div class="popular-grid">
+              <article class="popular-card">
+                <div class="popular-thumb"><span aria-hidden="true">🐱</span></div>
+                <h3>Gato</h3>
+                <a class="mini-button track-drawing" href="paint.html?asset=gato&category=animales" data-track="dibujo_gato">Colorear</a>
+              </article>
+              <article class="popular-card">
+                <div class="popular-thumb"><span aria-hidden="true">🐶</span></div>
+                <h3>Perro</h3>
+                <a class="mini-button track-drawing" href="paint.html?asset=perro&category=animales" data-track="dibujo_perro">Colorear</a>
+              </article>
+              <article class="popular-card">
+                <div class="popular-thumb"><span aria-hidden="true">🚙</span></div>
+                <h3>Auto</h3>
+                <a class="mini-button track-drawing" href="paint.html?asset=auto&category=vehiculos" data-track="dibujo_auto">Colorear</a>
+              </article>
+              <article class="popular-card">
+                <div class="popular-thumb"><span aria-hidden="true">🎄</span></div>
+                <h3>Árbol de navidad</h3>
+                <a class="mini-button track-drawing" href="paint.html?asset=arbol-navidad&category=navidad" data-track="dibujo_navidad">Colorear</a>
+              </article>
+              <article class="popular-card">
+                <div class="popular-thumb"><span aria-hidden="true">🦖</span></div>
+                <h3>Dinosaurio</h3>
+                <a class="mini-button track-drawing" href="paint.html?asset=dinosaurio&category=dinosaurios" data-track="dibujo_dinosaurio">Colorear</a>
+              </article>
+              <article class="popular-card">
+                <div class="popular-thumb"><span aria-hidden="true">🏰</span></div>
+                <h3>Castillo</h3>
+                <a class="mini-button track-drawing" href="paint.html?asset=castillo&category=fantasia" data-track="dibujo_castillo">Colorear</a>
+              </article>
+              <article class="popular-card">
+                <div class="popular-thumb"><span aria-hidden="true">🦋</span></div>
+                <h3>Mariposa</h3>
+                <a class="mini-button track-drawing" href="paint.html?asset=mariposa&category=animales" data-track="dibujo_mariposa">Colorear</a>
+              </article>
+              <article class="popular-card">
+                <div class="popular-thumb"><span aria-hidden="true">🚀</span></div>
+                <h3>Cohete</h3>
+                <a class="mini-button track-drawing" href="paint.html?asset=cohete&category=vehiculos" data-track="dibujo_cohete">Colorear</a>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="section how-it-works" aria-labelledby="como-funciona-title">
+          <div class="container">
+            <div class="section-heading">
+              <p class="section-kicker">Muy fácil de usar</p>
+              <h2 id="como-funciona-title">Cómo funciona</h2>
+            </div>
+            <div class="steps-grid">
+              <article class="step-card">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                  <h3>Elige un dibujo</h3>
+                  <p>Explora nuestras categorías y abre tu favorito.</p>
+                </div>
+              </article>
+              <article class="step-card">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                  <h3>Toca para colorear</h3>
+                  <p>Toca una zona y píntala con el color que más te guste.</p>
+                </div>
+              </article>
+              <article class="step-card">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                  <h3>Guarda tu creación</h3>
+                  <p>Descarga tu dibujo en PNG y compártelo con quien quieras.</p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="section learn" aria-labelledby="aprender-title">
+          <div class="container">
+            <div class="section-heading">
+              <p class="section-kicker">Valor para toda la familia</p>
+              <h2 id="aprender-title">Aprender jugando</h2>
+            </div>
+            <div class="learn-grid">
+              <article class="learn-card warm">
+                <div class="learn-figure">💡</div>
+                <div>
+                  <h3>Estimula la creatividad</h3>
+                  <p>Colorear ayuda a imaginar, mezclar colores y crear historias propias.</p>
+                </div>
+              </article>
+              <article class="learn-card cool">
+                <div class="learn-figure">✋</div>
+                <div>
+                  <h3>Mejora la coordinación</h3>
+                  <p>Tocar, seleccionar y colorear fortalece la motricidad fina y la atención.</p>
+                </div>
+              </article>
+              <article class="learn-card fresh">
+                <div class="learn-figure">😊</div>
+                <div>
+                  <h3>Diversión sin complicaciones</h3>
+                  <p>Una experiencia simple, segura y sin distracciones para disfrutar en familia.</p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="section faq" id="faq" aria-labelledby="faq-title">
+          <div class="container">
+            <div class="section-heading">
+              <p class="section-kicker">Respuestas rápidas</p>
+              <h2 id="faq-title">Preguntas frecuentes</h2>
+            </div>
+            <div class="faq-list">
+              <details class="faq-item">
+                <summary>¿Necesito crear una cuenta?</summary>
+                <p>No. Puedes entrar y empezar a colorear de inmediato, sin registro.</p>
+              </details>
+              <details class="faq-item">
+                <summary>¿Funciona en celular?</summary>
+                <p>Sí. La experiencia está pensada para funcionar bien en celular, tablet y computadora.</p>
+              </details>
+              <details class="faq-item">
+                <summary>¿Puedo guardar mi dibujo?</summary>
+                <p>Sí. Cuando termines, puedes descargar tu creación en formato PNG.</p>
+              </details>
+              <details class="faq-item">
+                <summary>¿Tiene costo?</summary>
+                <p>No. PaintMe.club ofrece dibujos para colorear gratis online.</p>
+              </details>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer" id="contacto">
+        <div class="container footer-grid">
+          <div class="footer-brand">
+            <a class="brand footer-brand-link" href="#inicio">
+              <span class="brand-paint">Paint</span><span class="brand-me">Me</span><span class="brand-club">.club</span>
+            </a>
+            <p>Dibujos para colorear online para niños y familias.</p>
+          </div>
+          <nav class="footer-nav" aria-label="Secundaria">
+            <a href="#inicio">Inicio</a>
+            <a href="#categorias">Categorías</a>
+            <a href="paint.html#privacy">Política de privacidad</a>
+            <a href="#contacto">Contacto</a>
+          </nav>
         </div>
-      </div>
+      </footer>
     </div>
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-RTJTM1J5LK"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('consent', 'default', {
-        analytics_storage: 'denied',
-        ad_storage: 'denied',
-        ad_user_data: 'denied',
-        ad_personalization: 'denied'
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("consent", "default", {
+        analytics_storage: "denied",
+        ad_storage: "denied",
+        ad_user_data: "denied",
+        ad_personalization: "denied",
       });
-      gtag('config', 'G-RTJTM1J5LK', { anonymize_ip: true });
+      gtag("config", "G-RTJTM1J5LK", { anonymize_ip: true });
     </script>
-    <script src="assets-list.js"></script>
-    <script src="app.js"></script>
+    <script src="home.js"></script>
   </body>
 </html>

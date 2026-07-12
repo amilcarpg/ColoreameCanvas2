@@ -16,6 +16,15 @@ const COLORS = [
   "#78909c",
 ];
 
+const CATEGORY_LABELS = {
+  animales: "Animales",
+  vehiculos: "Vehículos",
+  navidad: "Navidad",
+  fantasia: "Fantasía",
+  dinosaurios: "Dinosaurios",
+  princesas: "Princesas",
+};
+
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 const paletteEl = document.getElementById("palette");
@@ -23,17 +32,44 @@ const assetSelect = document.getElementById("assetSelect");
 const undoBtn = document.getElementById("undoBtn");
 const resetBtn = document.getElementById("resetBtn");
 const saveBtn = document.getElementById("saveBtn");
+const allBtn = document.getElementById("allBtn");
 const statusEl = document.getElementById("status");
 const canvasWrap = document.querySelector(".canvas-wrap");
+const browseNoteEl = document.getElementById("browseNote");
+const contextTitleEl = document.getElementById("contextTitle");
+const contextMetaEl = document.getElementById("contextMeta");
+const appLeadEl = document.getElementById("appLead");
 const ASSETS_LIST = Array.isArray(window.ASSETS) ? window.ASSETS : [];
+
+const currentUrl = new URL(window.location.href);
+const requestedAssetSlug = currentUrl.searchParams.get("asset");
+const requestedCategory = currentUrl.searchParams.get("category");
+const requestedAsset = ASSETS_LIST.find((asset) => asset.slug === requestedAssetSlug);
 
 let activeColor = COLORS[0];
 let originalImageData = null;
 let undoStack = [];
 let fillInProgress = false;
-let currentAsset = ASSETS_LIST[0];
 let isImageLoaded = false;
 let fitRaf = null;
+let activeCategory = requestedCategory || requestedAsset?.category || "";
+let visibleAssets = getVisibleAssets();
+let currentAsset = getInitialAsset();
+
+function getVisibleAssets() {
+  if (!activeCategory) return [...ASSETS_LIST];
+  const filtered = ASSETS_LIST.filter((asset) => asset.category === activeCategory);
+  return filtered.length > 0 ? filtered : [...ASSETS_LIST];
+}
+
+function getInitialAsset() {
+  if (requestedAsset && visibleAssets.some((asset) => asset.slug === requestedAsset.slug)) {
+    return requestedAsset;
+  }
+
+  const featured = visibleAssets.find((asset) => asset.featured);
+  return featured || visibleAssets[0] || null;
+}
 
 function setStatus(text) {
   statusEl.textContent = text;
@@ -71,24 +107,81 @@ function buildPalette() {
 
 function buildAssetSelect() {
   assetSelect.innerHTML = "";
-  if (ASSETS_LIST.length === 0) {
+  if (visibleAssets.length === 0) {
     assetSelect.disabled = true;
-    setStatus("No hay assets configurados en assets-list.js");
+    setStatus("No hay dibujos disponibles.");
     return;
   }
-  ASSETS_LIST.forEach((asset, index) => {
+
+  assetSelect.disabled = false;
+
+  visibleAssets.forEach((asset) => {
     const option = document.createElement("option");
-    option.value = asset.src;
+    option.value = asset.slug || asset.src;
     option.textContent = asset.label;
-    if (index === 0) option.selected = true;
+    if (currentAsset && option.value === (currentAsset.slug || currentAsset.src)) {
+      option.selected = true;
+    }
     assetSelect.appendChild(option);
   });
-  assetSelect.addEventListener("change", () => {
-    const selected = ASSETS_LIST.find((asset) => asset.src === assetSelect.value);
-    if (!selected) return;
-    currentAsset = selected;
-    loadImage(currentAsset.src);
-  });
+}
+
+function getCategoryLabel(category) {
+  return CATEGORY_LABELS[category] || "Dibujos";
+}
+
+function updateContext() {
+  const countLabel = `${visibleAssets.length} dibujo${visibleAssets.length === 1 ? "" : "s"}`;
+  const categoryText = activeCategory
+    ? `${getCategoryLabel(activeCategory)} · ${countLabel}`
+    : `${countLabel} disponibles`;
+
+  if (contextTitleEl) {
+    contextTitleEl.textContent = currentAsset
+      ? currentAsset.label
+      : "PaintMe.club";
+  }
+
+  if (contextMetaEl) {
+    contextMetaEl.textContent = categoryText;
+  }
+
+  if (appLeadEl) {
+    appLeadEl.textContent = activeCategory
+      ? `Explora la categoría ${getCategoryLabel(activeCategory).toLowerCase()} y pinta por regiones con un clic o toque.`
+      : "Elige un dibujo y pinta por regiones con un clic o toque.";
+  }
+
+  if (browseNoteEl) {
+    browseNoteEl.textContent = activeCategory
+      ? `Estás viendo ${getCategoryLabel(activeCategory)}. Puedes cambiar de dibujo dentro de esta categoría o usar “Ver todos”.`
+      : "Estás viendo todos los dibujos disponibles. Elige uno desde la lista y empieza a colorear.";
+  }
+
+  if (allBtn) {
+    allBtn.hidden = !activeCategory;
+    allBtn.disabled = !activeCategory;
+  }
+
+  document.title = currentAsset
+    ? `${currentAsset.label} para colorear | PaintMe.club`
+    : "Colorea con balde de pintura | PaintMe.club";
+}
+
+function syncUrl() {
+  const nextUrl = new URL(window.location.href);
+  nextUrl.searchParams.delete("asset");
+  nextUrl.searchParams.delete("category");
+
+  if (activeCategory) {
+    nextUrl.searchParams.set("category", activeCategory);
+  }
+
+  if (currentAsset?.slug) {
+    nextUrl.searchParams.set("asset", currentAsset.slug);
+  }
+
+  window.history.replaceState({}, "", nextUrl);
 }
 
 function updateUndoButton() {
@@ -154,7 +247,8 @@ function save() {
     if (!blob) return;
     const link = document.createElement("a");
     link.href = URL.createObjectURL(blob);
-    link.download = "colorea.png";
+    const safeName = currentAsset?.slug || "colorea";
+    link.download = `${safeName}.png`;
     link.click();
     URL.revokeObjectURL(link.href);
   });
@@ -269,6 +363,8 @@ function loadImage(src) {
     updateUndoButton();
     setStatus(`Color activo: ${activeColor}`);
     scheduleFit();
+    updateContext();
+    syncUrl();
   };
 
   img.onerror = () => {
@@ -277,6 +373,28 @@ function loadImage(src) {
       "No se pudo cargar la imagen. Verifica el archivo seleccionado en /assets/"
     );
   };
+}
+
+function selectAssetBySlug(slug) {
+  const selected = visibleAssets.find((asset) => asset.slug === slug);
+  if (!selected) return;
+  currentAsset = selected;
+  assetSelect.value = selected.slug || selected.src;
+  loadImage(selected.src);
+}
+
+function clearCategoryFilter() {
+  activeCategory = "";
+  visibleAssets = [...ASSETS_LIST];
+  currentAsset = visibleAssets.find((asset) => asset.slug === currentAsset?.slug)
+    || visibleAssets.find((asset) => asset.featured)
+    || visibleAssets[0]
+    || null;
+  buildAssetSelect();
+  updateContext();
+  if (currentAsset) {
+    selectAssetBySlug(currentAsset.slug);
+  }
 }
 
 canvas.addEventListener("pointerdown", (event) => {
@@ -292,20 +410,27 @@ canvas.addEventListener("pointerdown", (event) => {
   floodFillAsync(point.x, point.y, hexToRgba(activeColor), TOLERANCE);
 });
 
+assetSelect.addEventListener("change", () => {
+  selectAssetBySlug(assetSelect.value);
+});
+
 undoBtn.addEventListener("click", undo);
 resetBtn.addEventListener("click", reset);
 saveBtn.addEventListener("click", save);
 
+if (allBtn) {
+  allBtn.addEventListener("click", clearCategoryFilter);
+}
+
 buildPalette();
 buildAssetSelect();
+updateContext();
 if (currentAsset) {
-  loadImage(currentAsset.src);
+  selectAssetBySlug(currentAsset.slug);
 }
 updateUndoButton();
 
 window.addEventListener("resize", scheduleFit);
-
-// TODO: Para imágenes muy grandes, considerar mover floodFillAsync a un Web Worker.
 
 const consentBanner = document.getElementById("consentBanner");
 const consentAccept = document.getElementById("consentAccept");
