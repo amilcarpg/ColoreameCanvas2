@@ -836,6 +836,16 @@ summary {
   filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.1));
 }
 
+.category-preview {
+  padding: 8px 4px 0;
+}
+
+.category-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
 .category-card span {
   position: relative;
   z-index: 1;
@@ -905,9 +915,11 @@ summary {
   box-shadow: inset 0 0 0 1px rgba(73, 109, 175, 0.08);
 }
 
-.popular-thumb span {
-  font-size: 4rem;
-  line-height: 1;
+.popular-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 8px;
 }
 
 .popular-card h3 {
