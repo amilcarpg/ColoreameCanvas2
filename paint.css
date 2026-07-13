@@ -139,13 +139,17 @@ body {
 .app {
   display: grid;
   grid-template-columns: 260px 1fr;
+  grid-template-areas:
+    "header header"
+    "toolbar canvas"
+    "control canvas";
   gap: 24px;
   padding: 0 24px 24px;
   align-items: start;
 }
 
 .app-header {
-  grid-column: 1 / -1;
+  grid-area: header;
   text-align: center;
   color: var(--ink);
 }
@@ -161,11 +165,16 @@ body {
   font-size: 0.95rem;
 }
 
-.toolbar {
+.toolbar,
+.control-panel {
   background: var(--card);
   border-radius: 16px;
   padding: 16px;
   box-shadow: 0 10px 24px var(--shadow);
+}
+
+.toolbar {
+  grid-area: toolbar;
   display: flex;
   flex-direction: column;
   gap: var(--gap);
@@ -237,6 +246,11 @@ body {
   gap: 10px;
 }
 
+.control-panel {
+  grid-area: control;
+  align-self: start;
+}
+
 button {
   border: none;
   background: var(--accent);
@@ -263,6 +277,7 @@ button:disabled {
 }
 
 .canvas-wrap {
+  grid-area: canvas;
   background: var(--card);
   border-radius: 18px;
   padding: 16px;
@@ -301,11 +316,12 @@ button:disabled {
 
   .app {
     grid-template-columns: 1fr;
+    grid-template-areas:
+      "header"
+      "toolbar"
+      "canvas"
+      "control";
     padding: 0 16px 24px;
-  }
-
-  .toolbar {
-    flex-direction: column;
   }
 
   .palette {

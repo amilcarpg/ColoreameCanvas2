@@ -58,18 +58,19 @@
         </div>
         <div class="browse-note" id="browseNote"></div>
         <div class="palette" id="palette" aria-label="Paleta de colores"></div>
-        <div class="controls">
-          <button id="undoBtn" type="button">Deshacer</button>
-          <button id="resetBtn" type="button">Reiniciar</button>
-          <button id="saveBtn" type="button">Guardar</button>
-          <button id="allBtn" type="button">Ver todos</button>
-        </div>
         <div class="status" id="status">Color activo</div>
       </section>
 
       <section class="canvas-wrap" aria-label="Área de coloreo">
         <canvas id="canvas" width="600" height="600"></canvas>
         <div class="hint">Clic o toque para pintar con balde</div>
+      </section>
+
+      <section class="control-panel controls" aria-label="Acciones de coloreado">
+        <button id="undoBtn" type="button">Deshacer</button>
+        <button id="resetBtn" type="button">Reiniciar</button>
+        <button id="saveBtn" type="button">Guardar</button>
+        <button id="allBtn" type="button">Ver todos</button>
       </section>
     </main>
 
