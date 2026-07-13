@@ -240,24 +240,35 @@ body {
   transform: scale(1.04);
 }
 
+.brush-tools {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.brush-size {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  color: var(--ink);
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+.brush-tools input[type="range"] {
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
+.brush-tools button.active {
+  background: #2a2a2a;
+  color: #ffffff;
+}
+
 .controls {
   display: grid;
   grid-template-columns: 1fr;
   gap: 10px;
-}
-
-.paint-mode-link {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 40px;
-  padding: 10px 12px;
-  border-radius: 12px;
-  background: #fff7ea;
-  color: var(--ink);
-  font-size: 0.92rem;
-  font-weight: 700;
-  text-decoration: none;
 }
 
 .control-panel {
@@ -283,6 +294,20 @@ button:active {
 button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+.secondary-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: #fff7ea;
+  color: var(--ink);
+  font-size: 0.92rem;
+  font-weight: 700;
+  text-decoration: none;
 }
 
 .status {
