@@ -43,10 +43,7 @@ const saveBtn = document.getElementById("saveBtn");
 const allBtn = document.getElementById("allBtn");
 const statusEl = document.getElementById("status");
 const canvasWrap = document.querySelector(".canvas-wrap");
-const zoomInBtn = document.getElementById("zoomInBtn");
-const zoomOutBtn = document.getElementById("zoomOutBtn");
 const zoomResetBtn = document.getElementById("zoomResetBtn");
-const zoomValueEl = document.getElementById("zoomValue");
 const browseNoteEl = document.getElementById("browseNote");
 const contextTitleEl = document.getElementById("contextTitle");
 const contextMetaEl = document.getElementById("contextMeta");
@@ -92,6 +89,12 @@ let hasUnsavedChanges = false;
 let exitGuardActive = false;
 let allowExitAfterConfirm = false;
 let zoomLevel = 1;
+let isPinching = false;
+let pinchStartDistance = 0;
+let pinchStartZoom = 1;
+let pinchStartCenter = null;
+let pinchStartScroll = null;
+const activePointers = new Map();
 
 function isValidPngAssetRecord(asset) {
   return Boolean(
@@ -287,16 +290,8 @@ function updateUndoButton() {
 }
 
 function updateZoomUi() {
-  if (zoomValueEl) {
-    zoomValueEl.textContent = `${Math.round(zoomLevel * 100)}%`;
-  }
-
-  if (zoomOutBtn) {
-    zoomOutBtn.disabled = zoomLevel <= 1;
-  }
-
-  if (zoomInBtn) {
-    zoomInBtn.disabled = zoomLevel >= 3;
+  if (zoomResetBtn) {
+    zoomResetBtn.disabled = zoomLevel <= 1;
   }
 }
 
@@ -343,9 +338,103 @@ function fitCanvasToContainer() {
   updateZoomUi();
 }
 
-function setZoom(nextZoom) {
+function setZoom(nextZoom, focalPoint = null) {
+  const previousRect = focalPoint ? canvas.getBoundingClientRect() : null;
+  const focusRatio = previousRect
+    ? {
+        x: (focalPoint.x - previousRect.left) / previousRect.width,
+        y: (focalPoint.y - previousRect.top) / previousRect.height,
+      }
+    : null;
+
   zoomLevel = Math.min(3, Math.max(1, nextZoom));
-  scheduleFit();
+  fitCanvasToContainer();
+
+  if (!canvasWrap || !focusRatio) return;
+
+  const nextRect = canvas.getBoundingClientRect();
+  const targetX = nextRect.left + nextRect.width * focusRatio.x;
+  const targetY = nextRect.top + nextRect.height * focusRatio.y;
+  canvasWrap.scrollLeft += targetX - focalPoint.x;
+  canvasWrap.scrollTop += targetY - focalPoint.y;
+}
+
+function resetZoom() {
+  setZoom(1);
+  if (!canvasWrap) return;
+  canvasWrap.scrollLeft = 0;
+  canvasWrap.scrollTop = 0;
+}
+
+function getPinchPoints() {
+  return Array.from(activePointers.values()).slice(0, 2);
+}
+
+function getDistance(a, b) {
+  return Math.hypot(a.x - b.x, a.y - b.y);
+}
+
+function getCenter(a, b) {
+  return {
+    x: (a.x + b.x) / 2,
+    y: (a.y + b.y) / 2,
+  };
+}
+
+function cancelStrokeForPinch(pointerId) {
+  if (!isDrawing) return;
+
+  const previous = undoStack.pop();
+  if (previous) {
+    paintCtx.putImageData(previous, 0, 0);
+    renderComposite();
+    setUnsavedChanges(!isPaintLayerBlank());
+  }
+
+  isDrawing = false;
+  lastPoint = null;
+  if (typeof pointerId === "number") {
+    canvas.releasePointerCapture?.(pointerId);
+  }
+  updateUndoButton();
+}
+
+function beginPinch(event) {
+  if (activePointers.size < 2) return;
+  cancelStrokeForPinch(event?.pointerId);
+  const [first, second] = getPinchPoints();
+  pinchStartDistance = getDistance(first, second);
+  pinchStartZoom = zoomLevel;
+  pinchStartCenter = getCenter(first, second);
+  pinchStartScroll = canvasWrap
+    ? { left: canvasWrap.scrollLeft, top: canvasWrap.scrollTop }
+    : null;
+  isPinching = pinchStartDistance > 0;
+}
+
+function updatePinch() {
+  if (!isPinching || activePointers.size < 2 || pinchStartDistance <= 0) return;
+  const [first, second] = getPinchPoints();
+  const center = getCenter(first, second);
+  const nextZoom = pinchStartZoom * (getDistance(first, second) / pinchStartDistance);
+  setZoom(nextZoom, center);
+}
+
+function trackPointer(event) {
+  activePointers.set(event.pointerId, {
+    x: event.clientX,
+    y: event.clientY,
+  });
+}
+
+function releasePointer(event) {
+  activePointers.delete(event.pointerId);
+  if (activePointers.size < 2) {
+    isPinching = false;
+    pinchStartDistance = 0;
+    pinchStartCenter = null;
+    pinchStartScroll = null;
+  }
 }
 
 function scheduleFit() {
@@ -501,6 +590,16 @@ function drawBrushSegment(from, to) {
 
 function startStroke(event) {
   event.preventDefault();
+  canvas.setPointerCapture?.(event.pointerId);
+  trackPointer(event);
+
+  if (activePointers.size >= 2) {
+    beginPinch(event);
+    return;
+  }
+
+  if (isPinching) return;
+
   if (!isImageLoaded) {
     setStatus("La imagen aún está cargando...");
     return;
@@ -511,7 +610,6 @@ function startStroke(event) {
 
   isDrawing = true;
   lastPoint = point;
-  canvas.setPointerCapture?.(event.pointerId);
   pushUndo();
   drawBrushSegment(point, point);
   setUnsavedChanges(true);
@@ -519,6 +617,16 @@ function startStroke(event) {
 }
 
 function continueStroke(event) {
+  if (activePointers.has(event.pointerId)) {
+    trackPointer(event);
+  }
+
+  if (isPinching) {
+    event.preventDefault();
+    updatePinch();
+    return;
+  }
+
   if (!isDrawing) return;
   event.preventDefault();
 
@@ -530,12 +638,15 @@ function continueStroke(event) {
 }
 
 function endStroke(event) {
-  if (!isDrawing) return;
-  isDrawing = false;
-  lastPoint = null;
   canvas.releasePointerCapture?.(event.pointerId);
-  setStatus(eraseMode ? "Borrador activo" : `Pincel activo: ${activeColor}`);
-  updateUndoButton();
+  releasePointer(event);
+
+  if (isDrawing) {
+    isDrawing = false;
+    lastPoint = null;
+    setStatus(eraseMode ? "Borrador activo" : `Pincel activo: ${activeColor}`);
+    updateUndoButton();
+  }
 }
 
 function drawLoadedSource(sourceWidth, sourceHeight, draw) {
@@ -564,6 +675,7 @@ function drawLoadedSource(sourceWidth, sourceHeight, draw) {
   isImageLoaded = true;
   setUnsavedChanges(false);
   zoomLevel = 1;
+  resetZoom();
   renderComposite();
   updateUndoButton();
   setStatus(`Pincel activo: ${activeColor}`);
@@ -669,16 +781,8 @@ if (allBtn) {
   allBtn.addEventListener("click", clearCategoryFilter);
 }
 
-zoomInBtn?.addEventListener("click", () => {
-  setZoom(zoomLevel + 0.25);
-});
-
-zoomOutBtn?.addEventListener("click", () => {
-  setZoom(zoomLevel - 0.25);
-});
-
 zoomResetBtn?.addEventListener("click", () => {
-  setZoom(1);
+  resetZoom();
 });
 
 buildPalette();
