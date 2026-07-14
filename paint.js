@@ -33,9 +33,17 @@ const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 const paletteEl = document.getElementById("palette");
 const assetSelect = document.getElementById("assetSelect");
+const assetSearch = document.getElementById("assetSearch");
+const categoryFiltersEl = document.getElementById("categoryFilters");
+const assetGallery = document.getElementById("assetGallery");
+const paletteSelect = document.getElementById("paletteSelect");
+const customColorInput = document.getElementById("customColor");
+const restoreBtn = document.getElementById("restoreBtn");
 const undoBtn = document.getElementById("undoBtn");
 const resetBtn = document.getElementById("resetBtn");
 const saveBtn = document.getElementById("saveBtn");
+const nextBtn = document.getElementById("nextBtn");
+const surpriseBtn = document.getElementById("surpriseBtn");
 const allBtn = document.getElementById("allBtn");
 const statusEl = document.getElementById("status");
 const canvasWrap = document.querySelector(".canvas-wrap");
@@ -46,6 +54,8 @@ const contextMetaEl = document.getElementById("contextMeta");
 const appLeadEl = document.getElementById("appLead");
 const RAW_ASSETS_LIST = Array.isArray(window.ASSETS) ? window.ASSETS : [];
 const ASSETS_LIST = RAW_ASSETS_LIST.filter(isValidAssetRecord);
+const PM = window.PaintMe || {};
+const PALETTES = PM.PALETTES || { base: { label: "Base", colors: COLORS } };
 const ASSET_BY_SLUG = new Map(ASSETS_LIST.map((asset) => [asset.slug, asset]));
 const VALID_CATEGORIES = new Set(
   ASSETS_LIST.map((asset) => asset.category).filter(Boolean)
@@ -86,6 +96,9 @@ let pinchStartCenter = null;
 let pinchStartScroll = null;
 let pendingFillPointerId = null;
 let pendingFillPoint = null;
+let activePalette = "base";
+let hasPaintedCurrentAsset = false;
+let autosaveTimer = null;
 const activePointers = new Map();
 const fillWorker = createFillWorker();
 
@@ -134,6 +147,174 @@ function setStatus(text) {
   statusEl.textContent = text;
 }
 
+function trackProductEvent(name, params = {}) {
+  if (typeof PM.trackEvent === "function") {
+    PM.trackEvent(name, params);
+  } else if (typeof window.gtag === "function") {
+    window.gtag("event", name, params);
+  }
+}
+
+function getTrackingPayload(extra = {}) {
+  return {
+    asset_slug: currentAsset?.slug || "",
+    category: currentAsset?.category || activeCategory || "",
+    mode: "bucket",
+    ...extra,
+  };
+}
+
+function getGalleryAssets() {
+  const query = assetSearch?.value || "";
+  if (typeof PM.filterAssets === "function") {
+    return PM.filterAssets(visibleAssets, "", query);
+  }
+  const normalized = query.trim().toLowerCase();
+  return visibleAssets.filter((asset) => {
+    if (!normalized) return true;
+    return `${asset.label} ${asset.slug} ${asset.category}`.toLowerCase().includes(normalized);
+  });
+}
+
+function syncAssetSurface() {
+  if (assetSelect && currentAsset) {
+    assetSelect.value = currentAsset.slug || currentAsset.src;
+  }
+  document.querySelectorAll(".asset-card").forEach((card) => {
+    card.classList.toggle("active", card.dataset.slug === currentAsset?.slug);
+  });
+  updateRestoreButton();
+}
+
+function buildCategoryFilters() {
+  if (!categoryFiltersEl) return;
+  categoryFiltersEl.innerHTML = "";
+  const categories = ["", ...Array.from(VALID_CATEGORIES)];
+
+  categories.forEach((category) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "category-chip";
+    button.textContent = category ? getCategoryLabel(category) : "Todos";
+    button.classList.toggle("active", category === activeCategory);
+    button.addEventListener("click", () => {
+      activeCategory = category;
+      visibleAssets = getVisibleAssets();
+      currentAsset = visibleAssets.find((asset) => asset.slug === currentAsset?.slug)
+        || visibleAssets.find((asset) => asset.featured)
+        || visibleAssets[0]
+        || null;
+      buildAssetSelect();
+      buildGallery();
+      buildCategoryFilters();
+      updateContext();
+      if (currentAsset) selectAssetBySlug(currentAsset.slug, "gallery");
+    });
+    categoryFiltersEl.appendChild(button);
+  });
+}
+
+function buildGallery() {
+  if (!assetGallery) return;
+  const assets = getGalleryAssets();
+  assetGallery.innerHTML = "";
+
+  if (assets.length === 0) {
+    const empty = document.createElement("div");
+    empty.className = "browse-note";
+    empty.textContent = "No encontramos dibujos con esa búsqueda.";
+    assetGallery.appendChild(empty);
+    return;
+  }
+
+  assets.forEach((asset) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "asset-card";
+    button.dataset.slug = asset.slug;
+    button.classList.toggle("active", asset.slug === currentAsset?.slug);
+    button.setAttribute("aria-label", `Colorear ${asset.label}`);
+    button.innerHTML = `<img src="${asset.src}" alt="" loading="lazy" /><span>${asset.label}</span>`;
+    button.addEventListener("click", () => selectAssetBySlug(asset.slug, "gallery"));
+    assetGallery.appendChild(button);
+  });
+}
+
+function buildPaletteOptions() {
+  if (!paletteSelect) return;
+  paletteSelect.innerHTML = "";
+  Object.entries(PALETTES).forEach(([key, palette]) => {
+    const option = document.createElement("option");
+    option.value = key;
+    option.textContent = palette.label;
+    option.selected = key === activePalette;
+    paletteSelect.appendChild(option);
+  });
+}
+
+function getActiveColors() {
+  return PALETTES[activePalette]?.colors || COLORS;
+}
+
+function updateRestoreButton() {
+  if (!restoreBtn || !currentAsset) return;
+  const saved = PM.loadLocalDrawing?.("bucket", currentAsset.slug);
+  restoreBtn.hidden = !saved;
+}
+
+function markFirstPaint() {
+  if (hasPaintedCurrentAsset) return;
+  hasPaintedCurrentAsset = true;
+  trackProductEvent("first_paint", getTrackingPayload());
+}
+
+function scheduleAutosave() {
+  if (!currentAsset || !isImageLoaded) return;
+  window.clearTimeout(autosaveTimer);
+  autosaveTimer = window.setTimeout(() => {
+    const saved = PM.saveLocalDrawing?.("bucket", currentAsset.slug, canvas.toDataURL("image/png"));
+    if (saved) {
+      setStatus("Guardado localmente");
+      updateRestoreButton();
+    }
+  }, 450);
+}
+
+function restoreSavedDrawing() {
+  if (!currentAsset) return;
+  const saved = PM.loadLocalDrawing?.("bucket", currentAsset.slug);
+  if (!saved?.dataUrl) return;
+  const image = new Image();
+  image.onload = () => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+    undoStack = [];
+    setUnsavedChanges(false);
+    updateUndoButton();
+    setStatus("Dibujo restaurado");
+    trackProductEvent("return_to_saved", getTrackingPayload());
+  };
+  image.src = saved.dataUrl;
+}
+
+function goToRelativeAsset(method) {
+  const candidates = getGalleryAssets();
+  const fromAsset = currentAsset?.slug || "";
+  const nextAsset =
+    method === "surprise"
+      ? PM.getRandomAsset?.(candidates, currentAsset)
+      : PM.getNextAsset?.(candidates, currentAsset);
+  if (!nextAsset) return;
+  trackProductEvent("next_drawing", {
+    from_asset: fromAsset,
+    to_asset: nextAsset.slug,
+    category: activeCategory || nextAsset.category,
+    mode: "bucket",
+    method,
+  });
+  selectAssetBySlug(nextAsset.slug, method);
+}
+
 function ensureExitGuard() {
   if (exitGuardActive) return;
   window.history.pushState({ paintExitGuard: true }, "", window.location.href);
@@ -172,7 +353,7 @@ function hexToRgba(hex) {
 
 function buildPalette() {
   paletteEl.innerHTML = "";
-  COLORS.forEach((color, index) => {
+  getActiveColors().forEach((color, index) => {
     const swatch = document.createElement("button");
     swatch.type = "button";
     swatch.className = "color-swatch";
@@ -223,7 +404,7 @@ function createFillWorker() {
 }
 
 function getCategoryLabel(category) {
-  return CATEGORY_LABELS[category] || "Dibujos";
+  return PM.getCategoryLabel?.(category) || CATEGORY_LABELS[category] || "Dibujos";
 }
 
 function updateContext() {
@@ -420,6 +601,7 @@ function fillAtPoint(point) {
   if (!canStartFill(imageData, point.x, point.y, fillColor, TOLERANCE)) return;
   pushUndo();
   if (floodFillAsync(point.x, point.y, fillColor, TOLERANCE, imageData)) {
+    markFirstPaint();
     setUnsavedChanges(true);
   }
 }
@@ -447,6 +629,7 @@ function undo() {
   const prev = undoStack.pop();
   ctx.putImageData(prev, 0, 0);
   setUnsavedChanges(!isCanvasPristine());
+  scheduleAutosave();
   updateUndoButton();
 }
 
@@ -455,6 +638,8 @@ function reset() {
   ctx.putImageData(originalImageData, 0, 0);
   undoStack = [];
   setUnsavedChanges(false);
+  PM.clearLocalDrawing?.("bucket", currentAsset?.slug);
+  updateRestoreButton();
   updateUndoButton();
 }
 
@@ -469,6 +654,7 @@ function save() {
     link.click();
     URL.revokeObjectURL(link.href);
     setUnsavedChanges(false);
+    trackProductEvent("save_png", getTrackingPayload());
   });
 }
 
@@ -608,6 +794,7 @@ function floodFillFallback(startX, startY, fillColor, tolerance, imageData) {
     } else {
       ctx.putImageData(workingImageData, 0, 0);
       fillInProgress = false;
+      scheduleAutosave();
       updateUndoButton();
     }
   };
@@ -629,6 +816,7 @@ function drawLoadedSource(sourceWidth, sourceHeight, draw) {
   lineMask = buildLineMask(originalImageData);
   undoStack = [];
   isImageLoaded = true;
+  hasPaintedCurrentAsset = false;
   setUnsavedChanges(false);
   zoomLevel = 1;
   resetZoom();
@@ -637,6 +825,7 @@ function drawLoadedSource(sourceWidth, sourceHeight, draw) {
   scheduleFit();
   updateContext();
   syncUrl();
+  syncAssetSurface();
 }
 
 async function loadImage(src) {
@@ -728,6 +917,7 @@ function floodFillAsync(startX, startY, fillColor, tolerance, imageData) {
     ctx.putImageData(filledImage, 0, 0);
     fillInProgress = false;
     setStatus(`Color activo: ${activeColor}`);
+    scheduleAutosave();
     updateUndoButton();
   };
 
@@ -759,11 +949,13 @@ function floodFillAsync(startX, startY, fillColor, tolerance, imageData) {
   return true;
 }
 
-function selectAssetBySlug(slug) {
+function selectAssetBySlug(slug, source = "select") {
   const selected = visibleAssets.find((asset) => asset.slug === slug);
   if (!selected) return;
   currentAsset = selected;
   assetSelect.value = selected.slug || selected.src;
+  syncAssetSurface();
+  trackProductEvent("asset_selected", getTrackingPayload({ source }));
   loadImage(selected.src);
 }
 
@@ -775,9 +967,11 @@ function clearCategoryFilter() {
     || visibleAssets[0]
     || null;
   buildAssetSelect();
+  buildGallery();
+  buildCategoryFilters();
   updateContext();
   if (currentAsset) {
-    selectAssetBySlug(currentAsset.slug);
+    selectAssetBySlug(currentAsset.slug, "gallery");
   }
 }
 
@@ -858,12 +1052,34 @@ canvas.addEventListener("pointerleave", (event) => {
 });
 
 assetSelect.addEventListener("change", () => {
-  selectAssetBySlug(assetSelect.value);
+  selectAssetBySlug(assetSelect.value, "select");
+});
+
+assetSearch?.addEventListener("input", buildGallery);
+
+paletteSelect?.addEventListener("change", () => {
+  activePalette = paletteSelect.value;
+  activeColor = getActiveColors()[0] || activeColor;
+  buildPalette();
+  trackProductEvent("palette_selected", getTrackingPayload({ palette_name: activePalette }));
+  setStatus(`Color activo: ${activeColor}`);
+});
+
+customColorInput?.addEventListener("input", () => {
+  activeColor = customColorInput.value;
+  document
+    .querySelectorAll(".color-swatch")
+    .forEach((el) => el.classList.remove("active"));
+  trackProductEvent("custom_color_used", getTrackingPayload());
+  setStatus(`Color activo: ${activeColor}`);
 });
 
 undoBtn.addEventListener("click", undo);
 resetBtn.addEventListener("click", reset);
 saveBtn.addEventListener("click", save);
+nextBtn?.addEventListener("click", () => goToRelativeAsset("next"));
+surpriseBtn?.addEventListener("click", () => goToRelativeAsset("surprise"));
+restoreBtn?.addEventListener("click", restoreSavedDrawing);
 
 if (allBtn) {
   allBtn.addEventListener("click", clearCategoryFilter);
@@ -873,12 +1089,15 @@ zoomResetBtn?.addEventListener("click", () => {
   resetZoom();
 });
 
+buildPaletteOptions();
 buildPalette();
 buildAssetSelect();
+buildCategoryFilters();
+buildGallery();
 updateContext();
 normalizeInitialUrlState();
 if (currentAsset) {
-  selectAssetBySlug(currentAsset.slug);
+  selectAssetBySlug(currentAsset.slug, PM.getSource?.() || "direct");
 }
 updateUndoButton();
 updateZoomUi();

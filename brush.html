@@ -58,7 +58,22 @@
           <label for="assetSelect">Elige un dibujo PNG</label>
           <select id="assetSelect" aria-label="Lista de dibujos PNG"></select>
         </div>
+        <div class="gallery-tools" aria-label="Explorar dibujos">
+          <label class="search-label" for="assetSearch">Buscar dibujo</label>
+          <input id="assetSearch" type="search" autocomplete="off" placeholder="Buscar por nombre" />
+          <div class="category-filters" id="categoryFilters" aria-label="Filtrar por categoría"></div>
+        </div>
+        <div class="asset-gallery" id="assetGallery" aria-label="Galería de dibujos PNG"></div>
         <div class="browse-note" id="browseNote"></div>
+        <button class="restore-button" id="restoreBtn" type="button" hidden>
+          Continuar dibujo guardado
+        </button>
+        <div class="palette-tools" aria-label="Paletas de color">
+          <label for="paletteSelect">Paleta</label>
+          <select id="paletteSelect" aria-label="Elegir paleta"></select>
+          <label for="customColor">Color personalizado</label>
+          <input id="customColor" type="color" value="#ef5350" />
+        </div>
         <div class="palette" id="palette" aria-label="Paleta de colores"></div>
         <div class="brush-tools" aria-label="Herramientas de pincel">
           <label class="brush-size" for="brushSize">
@@ -90,6 +105,8 @@
         <button id="undoBtn" type="button">Deshacer</button>
         <button id="resetBtn" type="button">Reiniciar</button>
         <button id="saveBtn" type="button">Guardar</button>
+        <button id="nextBtn" type="button">Siguiente</button>
+        <button id="surpriseBtn" type="button">Dibujo sorpresa</button>
         <button id="allBtn" type="button">Ver todos</button>
         <a class="secondary-action" href="paint.html">Usar balde de pintura</a>
       </section>
@@ -121,6 +138,7 @@
 
     <script src="analytics-init.js?v=20260712-3"></script>
     <script src="assets-list.js?v=20260712-1"></script>
+    <script src="app-utils.js?v=20260714-1"></script>
     <script src="brush.js?v=20260713-5"></script>
   </body>
 </html>

@@ -209,6 +209,99 @@ body {
   outline: 3px solid #ffd199;
 }
 
+.gallery-tools,
+.palette-tools {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.gallery-tools label,
+.palette-tools label {
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.gallery-tools input,
+.palette-tools select,
+.palette-tools input[type="color"] {
+  width: 100%;
+  min-height: 40px;
+  border: 2px solid #f0d6b8;
+  border-radius: 12px;
+  background: #fff9f1;
+  padding: 8px 10px;
+  font: inherit;
+}
+
+.palette-tools input[type="color"] {
+  padding: 4px;
+}
+
+.category-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.category-chip {
+  min-height: 34px;
+  padding: 7px 10px;
+  border-radius: 999px;
+  background: #fff7ea;
+  font-size: 0.84rem;
+  box-shadow: none;
+}
+
+.category-chip.active {
+  background: #2a2a2a;
+  color: #ffffff;
+}
+
+.asset-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  max-height: 360px;
+  overflow: auto;
+  padding-right: 2px;
+}
+
+.asset-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-height: 128px;
+  padding: 8px;
+  border: 2px solid transparent;
+  border-radius: 12px;
+  background: #fffaf3;
+  color: var(--ink);
+  box-shadow: none;
+}
+
+.asset-card.active {
+  border-color: #2a2a2a;
+  background: #fff0d8;
+}
+
+.asset-card img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.asset-card span {
+  display: block;
+  overflow: hidden;
+  font-size: 0.82rem;
+  line-height: 1.15;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .browse-note {
   min-height: 42px;
   padding: 10px 12px;
@@ -217,6 +310,11 @@ body {
   color: var(--muted);
   font-size: 0.92rem;
   line-height: 1.35;
+}
+
+.restore-button {
+  background: #2a2a2a;
+  color: #ffffff;
 }
 
 .palette {
@@ -358,10 +456,19 @@ button:disabled {
   .palette {
     grid-template-columns: repeat(6, 1fr);
   }
+
+  .asset-gallery {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    max-height: 300px;
+  }
 }
 
 @media (max-width: 600px) {
   .palette {
     grid-template-columns: repeat(4, 1fr);
+  }
+
+  .asset-gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }

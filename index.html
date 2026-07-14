@@ -65,6 +65,7 @@
           <nav class="site-nav" id="siteNav" aria-label="Principal">
             <a class="nav-link active" href="#inicio">Inicio</a>
             <a class="nav-link" href="#categorias">Categorías</a>
+            <a class="nav-link" href="#packs">Packs</a>
             <a class="nav-link" href="#dibujos">Dibujos</a>
             <a class="nav-link" href="#faq">FAQ</a>
           </nav>
@@ -87,15 +88,15 @@
                 desde tu celular o computadora.
               </p>
               <div class="hero-actions">
-                <a class="button button-primary track-cta" href="paint.html?asset=dinosaurio&category=dinosaurios" data-track="cta_hero_principal">
+                <a class="button button-primary track-cta" href="paint.html?asset=dinosaurio&category=dinosaurios&source=home" data-track="cta_hero_principal">
                   <span class="button-icon">✏️</span>
                   Empezar a colorear
                 </a>
-                <a class="button button-secondary track-cta" href="brush.html?asset=dinosaurio&category=dinosaurios" data-track="cta_hero_pincel">
+                <a class="button button-secondary track-cta" href="brush.html?asset=dinosaurio&category=dinosaurios&source=home" data-track="cta_hero_pincel">
                   <span class="button-icon">🖌️</span>
                   Pintar con pincel
                 </a>
-                <a class="button button-secondary track-cta" href="paint.html" data-track="cta_hero_todos">
+                <a class="button button-secondary track-cta" href="paint.html?source=home" data-track="cta_hero_todos">
                   <span class="button-icon">▦</span>
                   Ver todos los dibujos
                 </a>
@@ -212,42 +213,83 @@
               <h2 id="categorias-title">Categorías</h2>
             </div>
             <div class="categories-grid">
-              <a class="category-card lime track-category" href="paint.html?category=animales" data-track="categoria_animales">
+              <a class="category-card lime track-category" href="paint.html?category=animales&source=home" data-track="categoria_animales">
                 <div class="category-emoji category-preview" aria-hidden="true">
                   <img src="assets/cat-v2.png" alt="" />
                 </div>
                 <span>Animales</span>
               </a>
-              <a class="category-card sky track-category" href="paint.html?category=vehiculos" data-track="categoria_vehiculos">
+              <a class="category-card sky track-category" href="paint.html?category=vehiculos&source=home" data-track="categoria_vehiculos">
                 <div class="category-emoji category-preview" aria-hidden="true">
                   <img src="assets/car-v2.png" alt="" />
                 </div>
                 <span>Vehículos</span>
               </a>
-              <a class="category-card coral track-category" href="paint.html?category=navidad" data-track="categoria_navidad">
+              <a class="category-card coral track-category" href="paint.html?category=navidad&source=home" data-track="categoria_navidad">
                 <div class="category-emoji category-preview" aria-hidden="true">
                   <img src="assets/christmas-tree-v2.png" alt="" />
                 </div>
                 <span>Navidad</span>
               </a>
-              <a class="category-card lilac track-category" href="paint.html?category=fantasia" data-track="categoria_fantasia">
+              <a class="category-card lilac track-category" href="paint.html?category=fantasia&source=home" data-track="categoria_fantasia">
                 <div class="category-emoji category-preview" aria-hidden="true">
                   <img src="assets/unicorn-v2.png" alt="" />
                 </div>
                 <span>Fantasía</span>
               </a>
-              <a class="category-card mint track-category" href="paint.html?category=dinosaurios" data-track="categoria_dinosaurios">
+              <a class="category-card mint track-category" href="paint.html?category=dinosaurios&source=home" data-track="categoria_dinosaurios">
                 <div class="category-emoji category-preview" aria-hidden="true">
                   <img src="assets/dinosaur-v2.png" alt="" />
                 </div>
                 <span>Dinosaurios</span>
               </a>
-              <a class="category-card pink track-category" href="paint.html?category=princesas" data-track="categoria_princesas">
+              <a class="category-card pink track-category" href="paint.html?category=princesas&source=home" data-track="categoria_princesas">
                 <div class="category-emoji category-preview" aria-hidden="true">
                   <img src="assets/princess-v2.png" alt="" />
                 </div>
                 <span>Princesas</span>
               </a>
+            </div>
+          </div>
+        </section>
+
+        <section class="section popular" id="packs" aria-labelledby="packs-title">
+          <div class="container">
+            <div class="section-heading">
+              <p class="section-kicker">Colecciones listas</p>
+              <h2 id="packs-title">Packs temáticos</h2>
+            </div>
+            <div class="popular-grid">
+              <article class="popular-card">
+                <div class="popular-thumb"><img src="assets/cat-v2.png" alt="Pack de animales para colorear" /></div>
+                <h3>Animales</h3>
+                <a class="mini-button" href="packs/animales.html">Ver pack</a>
+              </article>
+              <article class="popular-card">
+                <div class="popular-thumb"><img src="assets/car-v2.png" alt="Pack de vehículos para colorear" /></div>
+                <h3>Vehículos</h3>
+                <a class="mini-button" href="packs/vehiculos.html">Ver pack</a>
+              </article>
+              <article class="popular-card">
+                <div class="popular-thumb"><img src="assets/christmas-tree-v2.png" alt="Pack de navidad para colorear" /></div>
+                <h3>Navidad</h3>
+                <a class="mini-button" href="packs/navidad.html">Ver pack</a>
+              </article>
+              <article class="popular-card">
+                <div class="popular-thumb"><img src="assets/unicorn-v2.png" alt="Pack de fantasía para colorear" /></div>
+                <h3>Fantasía</h3>
+                <a class="mini-button" href="packs/fantasia.html">Ver pack</a>
+              </article>
+              <article class="popular-card">
+                <div class="popular-thumb"><img src="assets/dinosaur-v2.png" alt="Pack de dinosaurios para colorear" /></div>
+                <h3>Dinosaurios</h3>
+                <a class="mini-button" href="packs/dinosaurios.html">Ver pack</a>
+              </article>
+              <article class="popular-card">
+                <div class="popular-thumb"><img src="assets/princess-v2.png" alt="Pack de princesas para colorear" /></div>
+                <h3>Princesas</h3>
+                <a class="mini-button" href="packs/princesas.html">Ver pack</a>
+              </article>
             </div>
           </div>
         </section>
@@ -262,42 +304,42 @@
               <article class="popular-card">
                 <div class="popular-thumb"><img src="assets/cat-v2.png" alt="Dibujo de gato para colorear" /></div>
                 <h3>Gato</h3>
-                <a class="mini-button track-drawing" href="paint.html?asset=gato&category=animales" data-track="dibujo_gato">Colorear</a>
+                <a class="mini-button track-drawing" href="paint.html?asset=gato&category=animales&source=home" data-track="dibujo_gato">Colorear</a>
               </article>
               <article class="popular-card">
                 <div class="popular-thumb"><img src="assets/dog-v2.png" alt="Dibujo de perro para colorear" /></div>
                 <h3>Perro</h3>
-                <a class="mini-button track-drawing" href="paint.html?asset=perro&category=animales" data-track="dibujo_perro">Colorear</a>
+                <a class="mini-button track-drawing" href="paint.html?asset=perro&category=animales&source=home" data-track="dibujo_perro">Colorear</a>
               </article>
               <article class="popular-card">
                 <div class="popular-thumb"><img src="assets/car-v2.png" alt="Dibujo de auto para colorear" /></div>
                 <h3>Auto</h3>
-                <a class="mini-button track-drawing" href="paint.html?asset=auto&category=vehiculos" data-track="dibujo_auto">Colorear</a>
+                <a class="mini-button track-drawing" href="paint.html?asset=auto&category=vehiculos&source=home" data-track="dibujo_auto">Colorear</a>
               </article>
               <article class="popular-card">
                 <div class="popular-thumb"><img src="assets/christmas-tree-v2.png" alt="Dibujo de árbol de navidad para colorear" /></div>
                 <h3>Árbol de navidad</h3>
-                <a class="mini-button track-drawing" href="paint.html?asset=arbol-navidad&category=navidad" data-track="dibujo_navidad">Colorear</a>
+                <a class="mini-button track-drawing" href="paint.html?asset=arbol-navidad&category=navidad&source=home" data-track="dibujo_navidad">Colorear</a>
               </article>
               <article class="popular-card">
                 <div class="popular-thumb"><img src="assets/dinosaur-v2.png" alt="Dibujo de dinosaurio para colorear" /></div>
                 <h3>Dinosaurio</h3>
-                <a class="mini-button track-drawing" href="paint.html?asset=dinosaurio&category=dinosaurios" data-track="dibujo_dinosaurio">Colorear</a>
+                <a class="mini-button track-drawing" href="paint.html?asset=dinosaurio&category=dinosaurios&source=home" data-track="dibujo_dinosaurio">Colorear</a>
               </article>
               <article class="popular-card">
                 <div class="popular-thumb"><img src="assets/castle-v2.png" alt="Dibujo de castillo para colorear" /></div>
                 <h3>Castillo</h3>
-                <a class="mini-button track-drawing" href="paint.html?asset=castillo&category=fantasia" data-track="dibujo_castillo">Colorear</a>
+                <a class="mini-button track-drawing" href="paint.html?asset=castillo&category=fantasia&source=home" data-track="dibujo_castillo">Colorear</a>
               </article>
               <article class="popular-card">
                 <div class="popular-thumb"><img src="assets/butterfly-v2.png" alt="Dibujo de mariposa para colorear" /></div>
                 <h3>Mariposa</h3>
-                <a class="mini-button track-drawing" href="paint.html?asset=mariposa&category=animales" data-track="dibujo_mariposa">Colorear</a>
+                <a class="mini-button track-drawing" href="paint.html?asset=mariposa&category=animales&source=home" data-track="dibujo_mariposa">Colorear</a>
               </article>
               <article class="popular-card">
                 <div class="popular-thumb"><img src="assets/rocket-v2.png" alt="Dibujo de cohete para colorear" /></div>
                 <h3>Cohete</h3>
-                <a class="mini-button track-drawing" href="paint.html?asset=cohete&category=vehiculos" data-track="dibujo_cohete">Colorear</a>
+                <a class="mini-button track-drawing" href="paint.html?asset=cohete&category=vehiculos&source=home" data-track="dibujo_cohete">Colorear</a>
               </article>
             </div>
           </div>
