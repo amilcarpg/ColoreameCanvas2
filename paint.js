@@ -1,6 +1,8 @@
 const MAX_CANVAS_SIZE = 1200;
 const TOLERANCE = 20;
 const UNDO_LIMIT = 10;
+const LINE_ALPHA_THRESHOLD = 16;
+const LINE_BRIGHTNESS_THRESHOLD = 245;
 const COLORS = [
   "#ef5350",
   "#ec407a",
@@ -37,6 +39,10 @@ const saveBtn = document.getElementById("saveBtn");
 const allBtn = document.getElementById("allBtn");
 const statusEl = document.getElementById("status");
 const canvasWrap = document.querySelector(".canvas-wrap");
+const zoomInBtn = document.getElementById("zoomInBtn");
+const zoomOutBtn = document.getElementById("zoomOutBtn");
+const zoomResetBtn = document.getElementById("zoomResetBtn");
+const zoomValueEl = document.getElementById("zoomValue");
 const browseNoteEl = document.getElementById("browseNote");
 const contextTitleEl = document.getElementById("contextTitle");
 const contextMetaEl = document.getElementById("contextMeta");
@@ -71,6 +77,11 @@ let activeCategory = getSanitizedCategory(
 );
 let visibleAssets = getVisibleAssets();
 let currentAsset = getInitialAsset();
+let lineMask = null;
+let hasUnsavedChanges = false;
+let exitGuardActive = false;
+let allowExitAfterConfirm = false;
+let zoomLevel = 1;
 const fillWorker = createFillWorker();
 
 function isValidAssetRecord(asset) {
@@ -116,6 +127,33 @@ function getInitialAsset() {
 
 function setStatus(text) {
   statusEl.textContent = text;
+}
+
+function ensureExitGuard() {
+  if (exitGuardActive) return;
+  window.history.pushState({ paintExitGuard: true }, "", window.location.href);
+  exitGuardActive = true;
+}
+
+function setUnsavedChanges(value) {
+  hasUnsavedChanges = Boolean(value);
+  if (hasUnsavedChanges) {
+    ensureExitGuard();
+  }
+}
+
+function isCanvasPristine() {
+  if (!originalImageData) return true;
+  const current = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+  const original = originalImageData.data;
+
+  if (current.length !== original.length) return false;
+
+  for (let index = 0; index < current.length; index += 1) {
+    if (current[index] !== original[index]) return false;
+  }
+
+  return true;
 }
 
 function hexToRgba(hex) {
@@ -173,7 +211,7 @@ function createFillWorker() {
   if (typeof Worker !== "function") return null;
 
   try {
-    return new Worker("paint-worker.js?v=20260712-1");
+    return new Worker("paint-worker.js?v=20260713-2");
   } catch {
     return null;
   }
@@ -259,23 +297,46 @@ function updateUndoButton() {
   saveBtn.disabled = !originalImageData || fillInProgress;
 }
 
+function updateZoomUi() {
+  if (zoomValueEl) {
+    zoomValueEl.textContent = `${Math.round(zoomLevel * 100)}%`;
+  }
+
+  if (zoomOutBtn) {
+    zoomOutBtn.disabled = zoomLevel <= 1;
+  }
+
+  if (zoomInBtn) {
+    zoomInBtn.disabled = zoomLevel >= 3;
+  }
+}
+
 function fitCanvasToContainer() {
   if (!canvasWrap || canvas.width === 0 || canvas.height === 0) return;
   const styles = getComputedStyle(canvasWrap);
   const paddingX =
     parseFloat(styles.paddingLeft) + parseFloat(styles.paddingRight);
+  const paddingY =
+    parseFloat(styles.paddingTop) + parseFloat(styles.paddingBottom);
   const innerWidth = Math.max(0, canvasWrap.clientWidth - paddingX);
   const maxDisplayWidth = 980;
   const maxDisplayHeight = Math.min(window.innerHeight * 0.6, 720);
-  const scale = Math.min(
+  const baseScale = Math.min(
     innerWidth / canvas.width,
     maxDisplayWidth / canvas.width,
-    maxDisplayHeight / canvas.height
+    Math.max(240, maxDisplayHeight - paddingY) / canvas.height
   );
+  const scale = Math.max(0.1, baseScale) * zoomLevel;
   const displayWidth = Math.round(canvas.width * scale);
   const displayHeight = Math.round(canvas.height * scale);
   canvas.style.width = `${displayWidth}px`;
   canvas.style.height = `${displayHeight}px`;
+  updateZoomUi();
+}
+
+function setZoom(nextZoom) {
+  zoomLevel = Math.min(3, Math.max(1, nextZoom));
+  scheduleFit();
 }
 
 function scheduleFit() {
@@ -300,6 +361,7 @@ function undo() {
   if (undoStack.length === 0 || fillInProgress) return;
   const prev = undoStack.pop();
   ctx.putImageData(prev, 0, 0);
+  setUnsavedChanges(!isCanvasPristine());
   updateUndoButton();
 }
 
@@ -307,6 +369,7 @@ function reset() {
   if (!originalImageData || fillInProgress) return;
   ctx.putImageData(originalImageData, 0, 0);
   undoStack = [];
+  setUnsavedChanges(false);
   updateUndoButton();
 }
 
@@ -320,6 +383,7 @@ function save() {
     link.download = `${safeName}.png`;
     link.click();
     URL.revokeObjectURL(link.href);
+    setUnsavedChanges(false);
   });
 }
 
@@ -342,10 +406,55 @@ function colorWithinTolerance(a, b, tol) {
   );
 }
 
-function floodFillFallback(startX, startY, fillColor, tolerance) {
-  if (fillInProgress) return;
-  const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+function buildLineMask(imageData) {
   const { data, width, height } = imageData;
+  const nextMask = new Uint8Array(width * height);
+
+  for (let index = 0; index < data.length; index += 4) {
+    const alpha = data[index + 3];
+    if (alpha < LINE_ALPHA_THRESHOLD) continue;
+
+    const brightness = (data[index] + data[index + 1] + data[index + 2]) / 3;
+    if (brightness <= LINE_BRIGHTNESS_THRESHOLD) {
+      nextMask[index / 4] = 1;
+    }
+  }
+
+  return nextMask;
+}
+
+function isLinePixel(x, y) {
+  if (!lineMask) return false;
+  return lineMask[y * canvas.width + x] === 1;
+}
+
+function canStartFill(imageData, startX, startY, fillColor, tolerance) {
+  if (isLinePixel(startX, startY)) {
+    setStatus("Las líneas del dibujo están protegidas.");
+    return false;
+  }
+
+  const startIndex = (startY * imageData.width + startX) * 4;
+  const targetColor = [
+    imageData.data[startIndex],
+    imageData.data[startIndex + 1],
+    imageData.data[startIndex + 2],
+    imageData.data[startIndex + 3],
+  ];
+
+  if (colorWithinTolerance(targetColor, fillColor, tolerance)) {
+    setStatus(`Color activo: ${activeColor}`);
+    return false;
+  }
+
+  return true;
+}
+
+function floodFillFallback(startX, startY, fillColor, tolerance, imageData) {
+  if (fillInProgress) return false;
+  const workingImageData =
+    imageData || ctx.getImageData(0, 0, canvas.width, canvas.height);
+  const { data, width, height } = workingImageData;
   const startIndex = (startY * width + startX) * 4;
   const targetColor = [
     data[startIndex],
@@ -354,9 +463,15 @@ function floodFillFallback(startX, startY, fillColor, tolerance) {
     data[startIndex + 3],
   ];
 
-  if (colorWithinTolerance(targetColor, fillColor, tolerance)) return;
+  if (isLinePixel(startX, startY)) {
+    setStatus("Las líneas del dibujo están protegidas.");
+    return false;
+  }
+
+  if (colorWithinTolerance(targetColor, fillColor, tolerance)) return false;
 
   fillInProgress = true;
+  setStatus("Pintando...");
   updateUndoButton();
 
   const visited = new Uint8Array(width * height);
@@ -382,6 +497,10 @@ function floodFillFallback(startX, startY, fillColor, tolerance) {
         data[dataIndex + 3],
       ];
 
+      if (lineMask?.[idx]) {
+        continue;
+      }
+
       if (!colorWithinTolerance(currentColor, targetColor, tolerance)) {
         continue;
       }
@@ -399,16 +518,17 @@ function floodFillFallback(startX, startY, fillColor, tolerance) {
     }
 
     if (head < queue.length) {
-      ctx.putImageData(imageData, 0, 0);
+      ctx.putImageData(workingImageData, 0, 0);
       requestAnimationFrame(step);
     } else {
-      ctx.putImageData(imageData, 0, 0);
+      ctx.putImageData(workingImageData, 0, 0);
       fillInProgress = false;
       updateUndoButton();
     }
   };
 
   requestAnimationFrame(step);
+  return true;
 }
 
 function drawLoadedSource(sourceWidth, sourceHeight, draw) {
@@ -421,8 +541,11 @@ function drawLoadedSource(sourceWidth, sourceHeight, draw) {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   draw(canvas.width, canvas.height);
   originalImageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+  lineMask = buildLineMask(originalImageData);
   undoStack = [];
   isImageLoaded = true;
+  setUnsavedChanges(false);
+  zoomLevel = 1;
   updateUndoButton();
   setStatus(`Color activo: ${activeColor}`);
   scheduleFit();
@@ -477,24 +600,29 @@ async function loadImage(src) {
   }
 }
 
-function floodFillAsync(startX, startY, fillColor, tolerance) {
+function floodFillAsync(startX, startY, fillColor, tolerance, imageData) {
   if (!fillWorker) {
-    floodFillFallback(startX, startY, fillColor, tolerance);
-    return;
+    return floodFillFallback(startX, startY, fillColor, tolerance, imageData);
   }
 
-  if (fillInProgress) return;
+  if (fillInProgress) return false;
 
-  const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+  const workingImageData =
+    imageData || ctx.getImageData(0, 0, canvas.width, canvas.height);
   const startIndex = (startY * canvas.width + startX) * 4;
   const targetColor = [
-    imageData.data[startIndex],
-    imageData.data[startIndex + 1],
-    imageData.data[startIndex + 2],
-    imageData.data[startIndex + 3],
+    workingImageData.data[startIndex],
+    workingImageData.data[startIndex + 1],
+    workingImageData.data[startIndex + 2],
+    workingImageData.data[startIndex + 3],
   ];
 
-  if (colorWithinTolerance(targetColor, fillColor, tolerance)) return;
+  if (isLinePixel(startX, startY)) {
+    setStatus("Las líneas del dibujo están protegidas.");
+    return false;
+  }
+
+  if (colorWithinTolerance(targetColor, fillColor, tolerance)) return false;
 
   fillInProgress = true;
   setStatus("Pintando...");
@@ -536,10 +664,13 @@ function floodFillAsync(startX, startY, fillColor, tolerance) {
       startY,
       fillColor,
       tolerance,
-      buffer: imageData.data.buffer,
+      lineMask,
+      buffer: workingImageData.data.buffer,
     },
-    [imageData.data.buffer]
+    [workingImageData.data.buffer]
   );
+
+  return true;
 }
 
 function selectAssetBySlug(slug) {
@@ -573,8 +704,13 @@ canvas.addEventListener("pointerdown", (event) => {
   }
   const point = getCanvasPoint(event);
   if (!point) return;
+  const fillColor = hexToRgba(activeColor);
+  const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+  if (!canStartFill(imageData, point.x, point.y, fillColor, TOLERANCE)) return;
   pushUndo();
-  floodFillAsync(point.x, point.y, hexToRgba(activeColor), TOLERANCE);
+  if (floodFillAsync(point.x, point.y, fillColor, TOLERANCE, imageData)) {
+    setUnsavedChanges(true);
+  }
 });
 
 assetSelect.addEventListener("change", () => {
@@ -589,6 +725,18 @@ if (allBtn) {
   allBtn.addEventListener("click", clearCategoryFilter);
 }
 
+zoomInBtn?.addEventListener("click", () => {
+  setZoom(zoomLevel + 0.25);
+});
+
+zoomOutBtn?.addEventListener("click", () => {
+  setZoom(zoomLevel - 0.25);
+});
+
+zoomResetBtn?.addEventListener("click", () => {
+  setZoom(1);
+});
+
 buildPalette();
 buildAssetSelect();
 updateContext();
@@ -597,8 +745,36 @@ if (currentAsset) {
   selectAssetBySlug(currentAsset.slug);
 }
 updateUndoButton();
+updateZoomUi();
 
 window.addEventListener("resize", scheduleFit);
+window.addEventListener("popstate", () => {
+  if (!exitGuardActive) return;
+
+  if (allowExitAfterConfirm) {
+    allowExitAfterConfirm = false;
+    return;
+  }
+
+  if (!hasUnsavedChanges) {
+    exitGuardActive = false;
+    window.history.back();
+    return;
+  }
+
+  const shouldLeave = window.confirm(
+    "Tienes cambios sin guardar. Si sales ahora, perderás tu dibujo. ¿Quieres salir?"
+  );
+
+  if (shouldLeave) {
+    allowExitAfterConfirm = true;
+    exitGuardActive = false;
+    window.history.back();
+    return;
+  }
+
+  window.history.pushState({ paintExitGuard: true }, "", window.location.href);
+});
 
 const consentBanner = document.getElementById("consentBanner");
 const consentAccept = document.getElementById("consentAccept");

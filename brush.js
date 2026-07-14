@@ -43,6 +43,10 @@ const saveBtn = document.getElementById("saveBtn");
 const allBtn = document.getElementById("allBtn");
 const statusEl = document.getElementById("status");
 const canvasWrap = document.querySelector(".canvas-wrap");
+const zoomInBtn = document.getElementById("zoomInBtn");
+const zoomOutBtn = document.getElementById("zoomOutBtn");
+const zoomResetBtn = document.getElementById("zoomResetBtn");
+const zoomValueEl = document.getElementById("zoomValue");
 const browseNoteEl = document.getElementById("browseNote");
 const contextTitleEl = document.getElementById("contextTitle");
 const contextMetaEl = document.getElementById("contextMeta");
@@ -83,6 +87,11 @@ let activeCategory = getSanitizedCategory(
 );
 let visibleAssets = getVisibleAssets();
 let currentAsset = getInitialAsset();
+let lineMask = null;
+let hasUnsavedChanges = false;
+let exitGuardActive = false;
+let allowExitAfterConfirm = false;
+let zoomLevel = 1;
 
 function isValidPngAssetRecord(asset) {
   return Boolean(
@@ -127,6 +136,29 @@ function getInitialAsset() {
 
 function setStatus(text) {
   statusEl.textContent = text;
+}
+
+function ensureExitGuard() {
+  if (exitGuardActive) return;
+  window.history.pushState({ brushExitGuard: true }, "", window.location.href);
+  exitGuardActive = true;
+}
+
+function setUnsavedChanges(value) {
+  hasUnsavedChanges = Boolean(value);
+  if (hasUnsavedChanges) {
+    ensureExitGuard();
+  }
+}
+
+function isPaintLayerBlank() {
+  const { data } = paintCtx.getImageData(0, 0, paintLayer.width, paintLayer.height);
+
+  for (let index = 3; index < data.length; index += 4) {
+    if (data[index] !== 0) return false;
+  }
+
+  return true;
 }
 
 function buildPalette() {
@@ -254,6 +286,20 @@ function updateUndoButton() {
   saveBtn.disabled = disabled;
 }
 
+function updateZoomUi() {
+  if (zoomValueEl) {
+    zoomValueEl.textContent = `${Math.round(zoomLevel * 100)}%`;
+  }
+
+  if (zoomOutBtn) {
+    zoomOutBtn.disabled = zoomLevel <= 1;
+  }
+
+  if (zoomInBtn) {
+    zoomInBtn.disabled = zoomLevel >= 3;
+  }
+}
+
 function syncToolButtons() {
   if (!eraserBtn) return;
   eraserBtn.classList.toggle("active", eraseMode);
@@ -279,18 +325,27 @@ function fitCanvasToContainer() {
   const styles = getComputedStyle(canvasWrap);
   const paddingX =
     parseFloat(styles.paddingLeft) + parseFloat(styles.paddingRight);
+  const paddingY =
+    parseFloat(styles.paddingTop) + parseFloat(styles.paddingBottom);
   const innerWidth = Math.max(0, canvasWrap.clientWidth - paddingX);
   const maxDisplayWidth = 980;
   const maxDisplayHeight = Math.min(window.innerHeight * 0.6, 720);
-  const scale = Math.min(
+  const baseScale = Math.min(
     innerWidth / canvas.width,
     maxDisplayWidth / canvas.width,
-    maxDisplayHeight / canvas.height
+    Math.max(240, maxDisplayHeight - paddingY) / canvas.height
   );
+  const scale = Math.max(0.1, baseScale) * zoomLevel;
   const displayWidth = Math.round(canvas.width * scale);
   const displayHeight = Math.round(canvas.height * scale);
   canvas.style.width = `${displayWidth}px`;
   canvas.style.height = `${displayHeight}px`;
+  updateZoomUi();
+}
+
+function setZoom(nextZoom) {
+  zoomLevel = Math.min(3, Math.max(1, nextZoom));
+  scheduleFit();
 }
 
 function scheduleFit() {
@@ -329,6 +384,7 @@ function buildLineLayer(sourceCanvas) {
 
   const imageData = lineCtx.getImageData(0, 0, lineLayer.width, lineLayer.height);
   const data = imageData.data;
+  lineMask = new Uint8Array(lineLayer.width * lineLayer.height);
 
   for (let index = 0; index < data.length; index += 4) {
     const red = data[index];
@@ -342,6 +398,7 @@ function buildLineLayer(sourceCanvas) {
     data[index + 1] = 0;
     data[index + 2] = 0;
     data[index + 3] = Math.min(255, lineAlpha * LINE_DARKNESS_MULTIPLIER, alpha);
+    lineMask[index / 4] = data[index + 3] > 0 ? 1 : 0;
   }
 
   lineCtx.putImageData(imageData, 0, 0);
@@ -371,6 +428,7 @@ function undo() {
   if (undoStack.length === 0 || !isImageLoaded) return;
   const prev = undoStack.pop();
   paintCtx.putImageData(prev, 0, 0);
+  setUnsavedChanges(!isPaintLayerBlank());
   renderComposite();
   updateUndoButton();
 }
@@ -379,6 +437,7 @@ function reset() {
   if (!isImageLoaded) return;
   paintCtx.clearRect(0, 0, paintLayer.width, paintLayer.height);
   undoStack = [];
+  setUnsavedChanges(false);
   renderComposite();
   updateUndoButton();
 }
@@ -394,6 +453,7 @@ function save() {
     link.download = `${safeName}-pincel.png`;
     link.click();
     URL.revokeObjectURL(link.href);
+    setUnsavedChanges(false);
   });
 }
 
@@ -428,6 +488,14 @@ function drawBrushSegment(from, to) {
   paintCtx.lineTo(to.x, to.y);
   paintCtx.stroke();
   paintCtx.restore();
+
+  if (lineMask) {
+    paintCtx.save();
+    paintCtx.globalCompositeOperation = "destination-out";
+    paintCtx.drawImage(lineLayer, 0, 0);
+    paintCtx.restore();
+  }
+
   renderComposite();
 }
 
@@ -446,6 +514,7 @@ function startStroke(event) {
   canvas.setPointerCapture?.(event.pointerId);
   pushUndo();
   drawBrushSegment(point, point);
+  setUnsavedChanges(true);
   setStatus(eraseMode ? "Borrando..." : "Pintando con pincel...");
 }
 
@@ -493,6 +562,8 @@ function drawLoadedSource(sourceWidth, sourceHeight, draw) {
   buildLineLayer(sourceCanvas);
   undoStack = [];
   isImageLoaded = true;
+  setUnsavedChanges(false);
+  zoomLevel = 1;
   renderComposite();
   updateUndoButton();
   setStatus(`Pincel activo: ${activeColor}`);
@@ -598,6 +669,18 @@ if (allBtn) {
   allBtn.addEventListener("click", clearCategoryFilter);
 }
 
+zoomInBtn?.addEventListener("click", () => {
+  setZoom(zoomLevel + 0.25);
+});
+
+zoomOutBtn?.addEventListener("click", () => {
+  setZoom(zoomLevel - 0.25);
+});
+
+zoomResetBtn?.addEventListener("click", () => {
+  setZoom(1);
+});
+
 buildPalette();
 buildAssetSelect();
 updateBrushSize();
@@ -608,8 +691,36 @@ if (currentAsset) {
   selectAssetBySlug(currentAsset.slug);
 }
 updateUndoButton();
+updateZoomUi();
 
 window.addEventListener("resize", scheduleFit);
+window.addEventListener("popstate", () => {
+  if (!exitGuardActive) return;
+
+  if (allowExitAfterConfirm) {
+    allowExitAfterConfirm = false;
+    return;
+  }
+
+  if (!hasUnsavedChanges) {
+    exitGuardActive = false;
+    window.history.back();
+    return;
+  }
+
+  const shouldLeave = window.confirm(
+    "Tienes cambios sin guardar. Si sales ahora, perderás tu dibujo. ¿Quieres salir?"
+  );
+
+  if (shouldLeave) {
+    allowExitAfterConfirm = true;
+    exitGuardActive = false;
+    window.history.back();
+    return;
+  }
+
+  window.history.pushState({ brushExitGuard: true }, "", window.location.href);
+});
 
 const consentBanner = document.getElementById("consentBanner");
 const consentAccept = document.getElementById("consentAccept");

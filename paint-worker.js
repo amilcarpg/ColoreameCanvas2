@@ -1,5 +1,15 @@
 self.addEventListener("message", (event) => {
-  const { id, width, height, startX, startY, fillColor, tolerance, buffer } =
+  const {
+    id,
+    width,
+    height,
+    startX,
+    startY,
+    fillColor,
+    tolerance,
+    lineMask,
+    buffer,
+  } =
     event.data || {};
 
   if (
@@ -14,6 +24,8 @@ self.addEventListener("message", (event) => {
   }
 
   const data = new Uint8ClampedArray(buffer);
+  const protectedPixels =
+    lineMask instanceof Uint8Array ? lineMask : new Uint8Array(width * height);
   const totalPixels = width * height;
   const visited = new Uint8Array(totalPixels);
   const queue = new Uint32Array(totalPixels);
@@ -40,6 +52,7 @@ self.addEventListener("message", (event) => {
     const idx = queue[head++];
     if (visited[idx]) continue;
     visited[idx] = 1;
+    if (protectedPixels[idx]) continue;
 
     const px = idx % width;
     const py = (idx / width) | 0;
