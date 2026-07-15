@@ -1,0 +1,4 @@
+storeFile=/absolute/path/to/release.keystore
+storePassword=replace-me
+keyAlias=paintme
+keyPassword=replace-me
