@@ -12,9 +12,21 @@ Proyecto web estático (sin backend) para pintar por regiones usando flood fill 
 ## PNGs recomendados
 - Líneas negras sobre fondo blanco, sin grises en las líneas.
 - Contornos cerrados (evita fugas del balde).
-- Resolución recomendada: hasta 1200x1200 (el proyecto reescala si es mayor).
+- Resolución para pintar: máximo de 1200 px en el lado mayor; el lienzo no utiliza más detalle.
 - Si hay bordes anti-aliased, ajusta la tolerancia en `paint.js` (por defecto 20).
 - El modo pincel (`brush.html`) filtra y carga solo archivos `.png`.
+
+## Regla obligatoria para el administrador al agregar un dibujo
+
+Cada vez que el administrador agregue un dibujo, debe preparar y registrar estas tres variantes antes de publicarlo:
+
+- `base_png/<archivo>.png`: maestro, conservado a la mayor resolución disponible.
+- `assets/<archivo>.png` o `assets/<coleccion>/<archivo>.png`: versión para pintar, máximo 1200 px en el lado mayor.
+- `assets/thumbs/<archivo>.png`: miniatura de selección, máximo 360 px en el lado mayor.
+
+En `assets-list.js`, el administrador debe registrar `src` para la versión de pintura y `thumbnailSrc` para la miniatura. La galería carga solo `thumbnailSrc`; el lienzo carga `src` al seleccionar el dibujo. Ambas versiones deben ser PNG optimizados y conservar la misma proporción.
+
+En la web, la galería se muestra bajo demanda al abrir **Explorar dibujos**. No se crean sus tarjetas ni se descargan sus miniaturas durante la carga inicial de la página.
 
 ## AdSense (recomendaciones)
 - Mantener anuncios SOLO en header y footer (ya están los slots).
@@ -31,4 +43,5 @@ Proyecto web estático (sin backend) para pintar por regiones usando flood fill 
 - `brush.css`
 - `brush.js`
 - `assets-list.js`
-- `assets/*.png`
+- `assets/<coleccion>/*.png`
+- `assets/thumbs/*.png`

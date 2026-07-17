@@ -56,13 +56,16 @@
           <label for="assetSelect">Elige un dibujo</label>
           <select id="assetSelect" aria-label="Lista de dibujos"></select>
         </div>
-        <div class="gallery-tools" aria-label="Explorar dibujos">
-          <label class="search-label" for="assetSearch">Buscar dibujo</label>
-          <input id="assetSearch" type="search" autocomplete="off" placeholder="Buscar por nombre" />
-          <div class="category-filters" id="categoryFilters" aria-label="Filtrar por categoría"></div>
-        </div>
-        <div class="asset-gallery" id="assetGallery" aria-label="Galería de dibujos"></div>
-        <div class="browse-note" id="browseNote"></div>
+        <details class="gallery-browser" id="galleryBrowser">
+          <summary>Explorar dibujos</summary>
+          <div class="gallery-tools" aria-label="Explorar dibujos">
+            <label class="search-label" for="assetSearch">Buscar dibujo</label>
+            <input id="assetSearch" type="search" autocomplete="off" placeholder="Buscar por nombre" />
+            <div class="category-filters" id="categoryFilters" aria-label="Filtrar por categoría"></div>
+          </div>
+          <div class="asset-gallery" id="assetGallery" aria-label="Galería de dibujos"></div>
+          <div class="browse-note" id="browseNote"></div>
+        </details>
         <button class="restore-button" id="restoreBtn" type="button" hidden>
           Continuar dibujo guardado
         </button>
@@ -120,8 +123,8 @@
     </div>
 
     <script src="analytics-init.js?v=20260712-3"></script>
-    <script src="assets-list.js?v=20260712-1"></script>
-    <script src="app-utils.js?v=20260714-1"></script>
-    <script src="paint.js?v=20260713-8"></script>
+    <script src="assets-list.js?v=20260717-1"></script>
+    <script src="app-utils.js?v=20260717-2"></script>
+    <script src="paint.js?v=20260717-2"></script>
   </body>
 </html>

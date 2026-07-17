@@ -345,14 +345,6 @@
       "pack": "navidad",
       "featured": false,
       "file": "outline_house.png"
-    },
-    {
-      "slug": "casa-flotante",
-      "label": "Casa flotante",
-      "category": "vehiculos",
-      "pack": "vehiculos",
-      "featured": false,
-      "file": "houseboat.png"
     }
   ]
 }

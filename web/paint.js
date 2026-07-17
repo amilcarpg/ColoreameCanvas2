@@ -25,6 +25,7 @@ const CATEGORY_LABELS = {
   fantasia: "Fantasía",
   dinosaurios: "Dinosaurios",
   princesas: "Princesas",
+  gabby: "Gabby",
 };
 
 const SAFE_QUERY_VALUE = /^[a-z0-9-]{1,64}$/;
@@ -36,6 +37,7 @@ const assetSelect = document.getElementById("assetSelect");
 const assetSearch = document.getElementById("assetSearch");
 const categoryFiltersEl = document.getElementById("categoryFilters");
 const assetGallery = document.getElementById("assetGallery");
+const galleryBrowser = document.getElementById("galleryBrowser");
 const paletteSelect = document.getElementById("paletteSelect");
 const customColorInput = document.getElementById("customColor");
 const restoreBtn = document.getElementById("restoreBtn");
@@ -99,6 +101,7 @@ let pendingFillPoint = null;
 let activePalette = "base";
 let hasPaintedCurrentAsset = false;
 let autosaveTimer = null;
+let galleryInitialized = false;
 const activePointers = new Map();
 const fillWorker = createFillWorker();
 
@@ -109,10 +112,14 @@ function isValidAssetRecord(asset) {
       typeof asset.slug === "string" &&
       typeof asset.category === "string" &&
       typeof asset.src === "string" &&
+      (asset.thumbnailSrc === undefined || typeof asset.thumbnailSrc === "string") &&
       SAFE_QUERY_VALUE.test(asset.slug) &&
       SAFE_QUERY_VALUE.test(asset.category) &&
       asset.src.startsWith("assets/") &&
-      /\.(png|svg)$/i.test(asset.src)
+      /\.(png|svg)$/i.test(asset.src) &&
+      (asset.thumbnailSrc === undefined || (
+        asset.thumbnailSrc.startsWith("assets/") && /\.png$/i.test(asset.thumbnailSrc)
+      ))
   );
 }
 
@@ -235,7 +242,7 @@ function buildGallery() {
     button.classList.toggle("active", asset.slug === currentAsset?.slug);
     button.setAttribute("aria-label", `Colorear ${asset.label}`);
     const image = document.createElement("img");
-    image.src = asset.src;
+    image.src = asset.thumbnailSrc || asset.src;
     image.alt = "";
     image.loading = "lazy";
     const label = document.createElement("span");
@@ -244,6 +251,19 @@ function buildGallery() {
     button.addEventListener("click", () => selectAssetBySlug(asset.slug, "gallery"));
     assetGallery.appendChild(button);
   });
+}
+
+function ensureGalleryBuilt() {
+  if (galleryInitialized) return;
+  galleryInitialized = true;
+  buildCategoryFilters();
+  buildGallery();
+}
+
+function refreshGalleryIfBuilt() {
+  if (!galleryInitialized) return;
+  buildCategoryFilters();
+  buildGallery();
 }
 
 function buildPaletteOptions() {
@@ -974,8 +994,7 @@ function clearCategoryFilter() {
     || visibleAssets[0]
     || null;
   buildAssetSelect();
-  buildGallery();
-  buildCategoryFilters();
+  refreshGalleryIfBuilt();
   updateContext();
   if (currentAsset) {
     selectAssetBySlug(currentAsset.slug, "gallery");
@@ -1062,7 +1081,14 @@ assetSelect.addEventListener("change", () => {
   selectAssetBySlug(assetSelect.value, "select");
 });
 
-assetSearch?.addEventListener("input", buildGallery);
+assetSearch?.addEventListener("input", () => {
+  ensureGalleryBuilt();
+  buildGallery();
+});
+
+galleryBrowser?.addEventListener("toggle", () => {
+  if (galleryBrowser.open) ensureGalleryBuilt();
+});
 
 paletteSelect?.addEventListener("change", () => {
   activePalette = paletteSelect.value;
@@ -1099,8 +1125,6 @@ zoomResetBtn?.addEventListener("click", () => {
 buildPaletteOptions();
 buildPalette();
 buildAssetSelect();
-buildCategoryFilters();
-buildGallery();
 updateContext();
 normalizeInitialUrlState();
 if (currentAsset) {

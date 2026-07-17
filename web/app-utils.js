@@ -6,6 +6,7 @@ const PaintMe = (() => {
     fantasia: "Fantasía",
     dinosaurios: "Dinosaurios",
     princesas: "Princesas",
+    gabby: "Gabby",
   };
 
   const PALETTES = {
@@ -121,6 +122,13 @@ const PaintMe = (() => {
       description: "Princesas, coronas, vestidos y carruajes para colorear.",
       category: "princesas",
       featuredAssets: ["princesa", "corona-real", "carruaje-real", "vestido-princesa"],
+    },
+    gabby: {
+      slug: "gabby",
+      label: "Gabby para colorear",
+      description: "Dibujos de Gabby y sus amigos para pintar online.",
+      category: "gabby",
+      featuredAssets: ["gabby-gato-volador", "gabby-pintando", "gabby-gato-espacial", "gabby-amigos", "gabby-cumpleanos", "gabby-casa-magica"],
     },
   };
 

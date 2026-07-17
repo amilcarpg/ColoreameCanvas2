@@ -261,11 +261,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.paintme.club/dibujos/casa-flotante.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://www.paintme.club/packs/animales.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
@@ -296,4 +291,5 @@
     <priority>0.85</priority>
   </url>
 </urlset>
+
 
