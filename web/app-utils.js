@@ -177,35 +177,95 @@ const PaintMe = (() => {
     return `paintme_autosave_v1:${mode}:${assetSlug}`;
   }
 
-  function saveLocalDrawing(mode, assetSlug, dataUrl) {
+  const AUTOSAVE_DATABASE = "paintme-autosaves";
+  const AUTOSAVE_STORE = "drawings";
+
+  function openAutosaveDatabase() {
+    if (!("indexedDB" in window)) return Promise.resolve(null);
+    return new Promise((resolve) => {
+      const request = indexedDB.open(AUTOSAVE_DATABASE, 1);
+      request.onupgradeneeded = () => {
+        if (!request.result.objectStoreNames.contains(AUTOSAVE_STORE)) {
+          request.result.createObjectStore(AUTOSAVE_STORE);
+        }
+      };
+      request.onsuccess = () => resolve(request.result);
+      request.onerror = () => resolve(null);
+    });
+  }
+
+  function runAutosaveTransaction(mode, operation) {
+    return openAutosaveDatabase().then((database) => {
+      if (!database) return null;
+      return new Promise((resolve) => {
+        const transaction = database.transaction(AUTOSAVE_STORE, mode);
+        const store = transaction.objectStore(AUTOSAVE_STORE);
+        let result = null;
+        operation(store, (value) => {
+          result = value;
+        });
+        transaction.oncomplete = () => {
+          database.close();
+          resolve(result);
+        };
+        transaction.onerror = () => {
+          database.close();
+          resolve(null);
+        };
+      });
+    });
+  }
+
+  async function saveLocalDrawing(mode, assetSlug, dataUrl) {
     if (!mode || !assetSlug || !dataUrl) return false;
+    const key = getAutosaveKey(mode, assetSlug);
+    const saved = await runAutosaveTransaction("readwrite", (store, resolve) => {
+      store.put({ dataUrl, updatedAt: Date.now() }, key);
+      resolve(true);
+    });
+    if (saved === true) return true;
     try {
-      localStorage.setItem(
-        getAutosaveKey(mode, assetSlug),
-        JSON.stringify({ dataUrl, updatedAt: Date.now() })
-      );
+      localStorage.setItem(key, JSON.stringify({ dataUrl, updatedAt: Date.now() }));
       return true;
     } catch {
       return false;
     }
   }
 
-  function loadLocalDrawing(mode, assetSlug) {
+  async function loadLocalDrawing(mode, assetSlug) {
     if (!mode || !assetSlug) return null;
+    const key = getAutosaveKey(mode, assetSlug);
+    const saved = await runAutosaveTransaction("readonly", (store, resolve) => {
+      const request = store.get(key);
+      request.onsuccess = () => resolve(request.result || null);
+      request.onerror = () => resolve(null);
+    });
+    if (typeof saved?.dataUrl === "string") return saved;
+
+    // One-time migration from the old localStorage format.
     try {
-      const raw = localStorage.getItem(getAutosaveKey(mode, assetSlug));
+      const raw = localStorage.getItem(key);
       if (!raw) return null;
       const parsed = JSON.parse(raw);
-      return typeof parsed?.dataUrl === "string" ? parsed : null;
+      if (typeof parsed?.dataUrl !== "string") return null;
+      if (await saveLocalDrawing(mode, assetSlug, parsed.dataUrl)) {
+        localStorage.removeItem(key);
+      }
+      return parsed;
     } catch {
       return null;
     }
   }
 
-  function clearLocalDrawing(mode, assetSlug) {
+  async function clearLocalDrawing(mode, assetSlug) {
     if (!mode || !assetSlug) return;
+    const key = getAutosaveKey(mode, assetSlug);
+    await runAutosaveTransaction("readwrite", (store, resolve) => {
+      store.delete(key);
+      resolve(true);
+    });
     try {
-      localStorage.removeItem(getAutosaveKey(mode, assetSlug));
+      localStorage.removeItem(key);
     } catch {}
   }
 

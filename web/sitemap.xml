@@ -241,16 +241,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.paintme.club/dibujos/paisaje-1.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.paintme.club/dibujos/paisaje-2.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://www.paintme.club/dibujos/paisaje-3.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -272,41 +262,6 @@
   </url>
   <url>
     <loc>https://www.paintme.club/dibujos/casa-flotante.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.paintme.club/dibujos/bungalo.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.paintme.club/dibujos/catedral-gotica.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.paintme.club/dibujos/casa-entramada.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.paintme.club/dibujos/graderia.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.paintme.club/dibujos/montanas-urales.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.paintme.club/dibujos/bosque-argonne.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.paintme.club/dibujos/bosque-negro.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -341,3 +296,4 @@
     <priority>0.85</priority>
   </url>
 </urlset>
+

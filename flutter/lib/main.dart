@@ -1,3 +1,4 @@
+import 'dart:typed_data';
 import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
@@ -679,6 +680,7 @@ class _EditorPageState extends State<EditorPage> {
   bool _busy = false;
   bool _showGestureHint = true;
   bool _firstColorTracked = false;
+  String? _loadError;
 
   @override
   void initState() {
@@ -687,19 +689,28 @@ class _EditorPageState extends State<EditorPage> {
   }
 
   Future<void> _load() async {
-    final bytes = await rootBundle.load(widget.drawing.asset);
-    final source = img.decodePng(bytes.buffer.asUint8List());
-    final saved = await _storage.load(widget.drawing.slug);
-    if (source == null) return;
-    final engine = DrawingEngine.fromSource(
-      source,
-      savedColor: saved == null ? null : Uint8List.fromList(saved.colorPng),
-    );
-    _engine = engine;
-    _autosave = AutosaveController(_storage, widget.drawing.slug, engine);
-    await _refreshLayers();
-    if (!await _preferences.isOnboardingComplete() && mounted) {
-      WidgetsBinding.instance.addPostFrameCallback((_) => _showOnboarding());
+    if (mounted) setState(() => _loadError = null);
+    try {
+      final bytes = await rootBundle.load(widget.drawing.asset);
+      final source = img.decodePng(bytes.buffer.asUint8List());
+      final saved = await _storage.load(widget.drawing.slug);
+      if (source == null) throw StateError('El dibujo no es un PNG válido.');
+      final engine = DrawingEngine.fromSource(
+        source,
+        savedColor: saved == null ? null : Uint8List.fromList(saved.colorPng),
+      );
+      _engine = engine;
+      _autosave = AutosaveController(_storage, widget.drawing.slug, engine);
+      await _refreshLayers();
+      if (!await _preferences.isOnboardingComplete() && mounted) {
+        WidgetsBinding.instance.addPostFrameCallback((_) => _showOnboarding());
+      }
+    } catch (_) {
+      if (mounted) {
+        setState(() {
+          _loadError = 'No pudimos abrir este dibujo. Intenta nuevamente.';
+        });
+      }
     }
   }
 
@@ -931,6 +942,29 @@ class _EditorPageState extends State<EditorPage> {
     final engine = _engine;
     final colorLayer = _colorLayer;
     final lineLayer = _lineLayer;
+    if (_loadError != null) {
+      return Scaffold(
+        body: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(24),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Icon(Icons.error_outline, size: 48),
+                const SizedBox(height: 12),
+                Text(_loadError!, textAlign: TextAlign.center),
+                const SizedBox(height: 16),
+                FilledButton.icon(
+                  onPressed: _load,
+                  icon: const Icon(Icons.refresh),
+                  label: const Text('Reintentar'),
+                ),
+              ],
+            ),
+          ),
+        ),
+      );
+    }
     if (engine == null || colorLayer == null || lineLayer == null) {
       return const Scaffold(body: Center(child: CircularProgressIndicator()));
     }

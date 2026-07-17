@@ -234,7 +234,13 @@ function buildGallery() {
     button.dataset.slug = asset.slug;
     button.classList.toggle("active", asset.slug === currentAsset?.slug);
     button.setAttribute("aria-label", `Colorear ${asset.label}`);
-    button.innerHTML = `<img src="${asset.src}" alt="" loading="lazy" /><span>${asset.label}</span>`;
+    const image = document.createElement("img");
+    image.src = asset.src;
+    image.alt = "";
+    image.loading = "lazy";
+    const label = document.createElement("span");
+    label.textContent = asset.label;
+    button.append(image, label);
     button.addEventListener("click", () => selectAssetBySlug(asset.slug, "gallery"));
     assetGallery.appendChild(button);
   });
@@ -256,10 +262,11 @@ function getActiveColors() {
   return PALETTES[activePalette]?.colors || COLORS;
 }
 
-function updateRestoreButton() {
+async function updateRestoreButton() {
   if (!restoreBtn || !currentAsset) return;
-  const saved = PM.loadLocalDrawing?.("bucket", currentAsset.slug);
-  restoreBtn.hidden = !saved;
+  const slug = currentAsset.slug;
+  const saved = await PM.loadLocalDrawing?.("bucket", slug);
+  if (currentAsset?.slug === slug) restoreBtn.hidden = !saved;
 }
 
 function markFirstPaint() {
@@ -271,18 +278,18 @@ function markFirstPaint() {
 function scheduleAutosave() {
   if (!currentAsset || !isImageLoaded) return;
   window.clearTimeout(autosaveTimer);
-  autosaveTimer = window.setTimeout(() => {
-    const saved = PM.saveLocalDrawing?.("bucket", currentAsset.slug, canvas.toDataURL("image/png"));
+  autosaveTimer = window.setTimeout(async () => {
+    const saved = await PM.saveLocalDrawing?.("bucket", currentAsset.slug, canvas.toDataURL("image/png"));
     if (saved) {
       setStatus("Guardado localmente");
       updateRestoreButton();
-    }
+    } else setStatus("No pudimos guardar este dibujo en el dispositivo.");
   }, 450);
 }
 
-function restoreSavedDrawing() {
+async function restoreSavedDrawing() {
   if (!currentAsset) return;
-  const saved = PM.loadLocalDrawing?.("bucket", currentAsset.slug);
+  const saved = await PM.loadLocalDrawing?.("bucket", currentAsset.slug);
   if (!saved?.dataUrl) return;
   const image = new Image();
   image.onload = () => {
@@ -633,13 +640,13 @@ function undo() {
   updateUndoButton();
 }
 
-function reset() {
+async function reset() {
   if (!originalImageData || fillInProgress) return;
   ctx.putImageData(originalImageData, 0, 0);
   undoStack = [];
   setUnsavedChanges(false);
-  PM.clearLocalDrawing?.("bucket", currentAsset?.slug);
-  updateRestoreButton();
+  await PM.clearLocalDrawing?.("bucket", currentAsset?.slug);
+  await updateRestoreButton();
   updateUndoButton();
 }
 

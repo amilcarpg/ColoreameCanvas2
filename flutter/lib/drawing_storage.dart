@@ -12,7 +12,19 @@ class DrawingStorage {
           directoryProvider ?? getApplicationDocumentsDirectory;
 
   static const _indexFile = 'index.json';
+  static Future<void> _writeQueue = Future.value();
   final Future<Directory> Function() _directoryProvider;
+
+  Future<T> _afterPendingWrites<T>(Future<T> Function() operation) async {
+    await _writeQueue;
+    return operation();
+  }
+
+  Future<void> _enqueueWrite(Future<void> Function() operation) {
+    final next = _writeQueue.then((_) => operation());
+    _writeQueue = next.catchError((_) {});
+    return next;
+  }
 
   Future<Directory> _sessionsDirectory() async {
     final directory = await _directoryProvider();
@@ -44,6 +56,8 @@ class DrawingStorage {
         }
       } on FormatException {
         // A corrupt index must not hide a child's saved artwork.
+      } on TypeError {
+        // A corrupt index must not hide a child's saved artwork.
       }
     }
     // Migration for v1 PNG-only sessions.
@@ -74,7 +88,7 @@ class DrawingStorage {
     );
   }
 
-  Future<List<DrawingSession>> list() async {
+  Future<List<DrawingSession>> list() => _afterPendingWrites(() async {
     final metadata = await _readIndex();
     final output = <DrawingSession>[];
     for (final entry in metadata.entries) {
@@ -90,9 +104,9 @@ class DrawingStorage {
     }
     output.sort((a, b) => b.updatedAt.compareTo(a.updatedAt));
     return output;
-  }
+  });
 
-  Future<DrawingSession?> load(String slug) async {
+  Future<DrawingSession?> load(String slug) => _afterPendingWrites(() async {
     final file = await _file(slug);
     if (!await file.exists()) return null;
     final metadata = await _readIndex();
@@ -110,9 +124,9 @@ class DrawingStorage {
       isFavorite: item.isFavorite,
       colorPng: await file.readAsBytes(),
     );
-  }
+  });
 
-  Future<void> save(String slug, Uint8List colorPng) async {
+  Future<void> save(String slug, Uint8List colorPng) => _enqueueWrite(() async {
     final file = await _file(slug);
     await file.writeAsBytes(colorPng, flush: true);
     final metadata = await _readIndex();
@@ -123,25 +137,21 @@ class DrawingStorage {
       isFavorite: previous?.isFavorite ?? false,
     );
     await _writeIndex(metadata);
-  }
+  });
 
   Future<void> complete(String slug) async =>
-      _update(slug, status: DrawingStatus.completed);
+      _enqueueWrite(() => _update(slug, status: DrawingStatus.completed));
 
-  Future<void> toggleFavorite(String slug) async {
-    final current = await load(slug);
-    if (current == null) {
-      final metadata = await _readIndex();
-      metadata[slug] = _SessionMetadata(
-        updatedAt: DateTime.now(),
-        status: DrawingStatus.inProgress,
-        isFavorite: !(metadata[slug]?.isFavorite ?? false),
-      );
-      await _writeIndex(metadata);
-      return;
-    }
-    await _update(slug, isFavorite: !current.isFavorite);
-  }
+  Future<void> toggleFavorite(String slug) => _enqueueWrite(() async {
+    final metadata = await _readIndex();
+    final current = metadata[slug];
+    metadata[slug] = _SessionMetadata(
+      updatedAt: DateTime.now(),
+      status: current?.status ?? DrawingStatus.inProgress,
+      isFavorite: !(current?.isFavorite ?? false),
+    );
+    await _writeIndex(metadata);
+  });
 
   Future<void> _update(
     String slug, {
@@ -159,13 +169,13 @@ class DrawingStorage {
     await _writeIndex(metadata);
   }
 
-  Future<void> clear(String slug) async {
+  Future<void> clear(String slug) => _enqueueWrite(() async {
     final file = await _file(slug);
     if (await file.exists()) await file.delete();
     final metadata = await _readIndex();
     metadata.remove(slug);
     await _writeIndex(metadata);
-  }
+  });
 }
 
 class _SessionMetadata {
@@ -183,9 +193,10 @@ class _SessionMetadata {
         updatedAt:
             DateTime.tryParse(json['updatedAt'] as String? ?? '') ??
             DateTime.now(),
-        status: json['status'] == 'completed'
-            ? DrawingStatus.completed
-            : DrawingStatus.inProgress,
+        status:
+            json['status'] == 'completed'
+                ? DrawingStatus.completed
+                : DrawingStatus.inProgress,
         isFavorite: json['isFavorite'] as bool? ?? false,
       );
 

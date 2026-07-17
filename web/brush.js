@@ -241,7 +241,13 @@ function buildGallery() {
     button.dataset.slug = asset.slug;
     button.classList.toggle("active", asset.slug === currentAsset?.slug);
     button.setAttribute("aria-label", `Pintar ${asset.label}`);
-    button.innerHTML = `<img src="${asset.src}" alt="" loading="lazy" /><span>${asset.label}</span>`;
+    const image = document.createElement("img");
+    image.src = asset.src;
+    image.alt = "";
+    image.loading = "lazy";
+    const label = document.createElement("span");
+    label.textContent = asset.label;
+    button.append(image, label);
     button.addEventListener("click", () => selectAssetBySlug(asset.slug, "gallery"));
     assetGallery.appendChild(button);
   });
@@ -263,10 +269,11 @@ function getActiveColors() {
   return PALETTES[activePalette]?.colors || COLORS;
 }
 
-function updateRestoreButton() {
+async function updateRestoreButton() {
   if (!restoreBtn || !currentAsset) return;
-  const saved = PM.loadLocalDrawing?.("brush", currentAsset.slug);
-  restoreBtn.hidden = !saved;
+  const slug = currentAsset.slug;
+  const saved = await PM.loadLocalDrawing?.("brush", slug);
+  if (currentAsset?.slug === slug) restoreBtn.hidden = !saved;
 }
 
 function markFirstPaint() {
@@ -278,19 +285,19 @@ function markFirstPaint() {
 function scheduleAutosave() {
   if (!currentAsset || !isImageLoaded) return;
   window.clearTimeout(autosaveTimer);
-  autosaveTimer = window.setTimeout(() => {
+  autosaveTimer = window.setTimeout(async () => {
     renderComposite();
-    const saved = PM.saveLocalDrawing?.("brush", currentAsset.slug, canvas.toDataURL("image/png"));
+    const saved = await PM.saveLocalDrawing?.("brush", currentAsset.slug, canvas.toDataURL("image/png"));
     if (saved) {
       setStatus("Guardado localmente");
       updateRestoreButton();
-    }
+    } else setStatus("No pudimos guardar este dibujo en el dispositivo.");
   }, 450);
 }
 
-function restoreSavedDrawing() {
+async function restoreSavedDrawing() {
   if (!currentAsset) return;
-  const saved = PM.loadLocalDrawing?.("brush", currentAsset.slug);
+  const saved = await PM.loadLocalDrawing?.("brush", currentAsset.slug);
   if (!saved?.dataUrl) return;
   const image = new Image();
   image.onload = () => {
@@ -710,13 +717,13 @@ function undo() {
   updateUndoButton();
 }
 
-function reset() {
+async function reset() {
   if (!isImageLoaded) return;
   paintCtx.clearRect(0, 0, paintLayer.width, paintLayer.height);
   undoStack = [];
   setUnsavedChanges(false);
-  PM.clearLocalDrawing?.("brush", currentAsset?.slug);
-  updateRestoreButton();
+  await PM.clearLocalDrawing?.("brush", currentAsset?.slug);
+  await updateRestoreButton();
   renderComposite();
   updateUndoButton();
 }
@@ -1072,12 +1079,9 @@ function applyConsent(mode) {
   if (granted && typeof window.loadThirdPartyScript === "function") {
     window
       .loadThirdPartyScript(
-        "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js",
-        {
-          async: true,
-          crossorigin: "anonymous",
-          dataset: { adClient: "ca-pub-0000000000000000" },
-        }
+        "adsense",
+        "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2193465688766661",
+        { crossOrigin: "anonymous" }
       )
       .catch(() => {});
   }
