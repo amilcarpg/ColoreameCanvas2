@@ -444,7 +444,7 @@ Continuación de la lista restante: WEB-07, MOB-09, MOB-10, QA-03 y DOC-01 compl
 **Cierre 07/10/2026:** implementado y verificado; ver [cambios, pruebas y límites](implementation-2026-10-07/web-first-five.md).
 **Archivos:** [checks.cjs](audit-2026-10-03/checks.cjs) como referencia; suite mantenible nueva fuera del archivo histórico.  
 **Trabajo:** assertions/exit no cero para helpers, relleno, contornos, catálogos, dimensiones y rutas; distinguir informe diagnóstico de gate; conservar evidencia histórica.  
-**Aceptación:** introducir W1/W2 deliberadamente hace fallar el check; versión corregida pasa; CI no continúa por un JSON con complete:false.  
+**Aceptación:** introducir W1/W2 deliberadamente hace fallar el check; versión corregida pasa; un JSON con complete:false no se considera aprobado. Los checks web son manuales y locales por decisión del 08/10/2026.
 **Dependencias:** WEB-01/02, CAT-01. Derechos/SEO se agregan al existir sus esquemas.
 
 ### QA-02 — Pruebas de navegador de continuidad y exportación
@@ -464,12 +464,13 @@ Continuación de la lista restante: WEB-07, MOB-09, MOB-10, QA-03 y DOC-01 compl
 **Aceptación:** fixtures fallan con comportamiento defectuoso y pasan tras corrección; analyzer/tests terminan con resultado verificable; no considerar un proceso sin salida como aprobado.  
 **Dependencias:** MOB-01/02/03/05/06/07, entorno Flutter disponible.
 
-### CI-01 — Checks antes de publicar Pages y rollback documentado
+### CI-01 — Validación local manual, publicación Pages y rollback documentado
 **P0 publicación web · Parcial · 2–4 h · Origen workflow**  
+**Cambio de alcance 08/10/2026:** por instrucción del usuario, se elimina toda validación/generación del workflow Pages. Python y checks web se ejecutan manualmente en local; Actions solo publica `web/` desde Git. Se conservan los scripts para uso local y el runbook de rollback. La comprobación del nuevo despliegue remoto sigue pendiente.
 **Continuación 07/10/2026:** Validación requerida antes de deploy, mismo gate en PR y publicación exclusiva de web; revisión registrada y runbook de rollback concreto. YAML/gates locales aprobados; ejecución y rollback remotos pendientes, sin publicar. Ver [implementación y verificaciones](implementation-2026-10-07/remaining-code.md).
 **Archivos:** [deploy-pages.yml](../.github/workflows/deploy-pages.yml), instrucciones de despliegue.  
-**Trabajo:** job de validación requerido antes de upload/deploy; ejecutarlo también en PR; publicar únicamente web; registrar revisión desplegada y procedimiento de retorno a versión verificada.  
-**Aceptación:** un check fallido impide deploy; docs/evidencia no entran al sitio; commit publicado identificable; rollback concreto documentado y verificable sin publicación automática durante este backlog.  
+**Trabajo:** generar y validar manualmente en local, subir fuentes/resultados a Git; Pages publica únicamente web sin checks en CI; registrar revisión desplegada y procedimiento de retorno a versión verificada.
+**Aceptación:** workflow Pages sin job de validación, Python ni Node; docs/evidencia no entran al sitio; commit publicado identificable; instrucciones de checks locales y rollback disponibles.
 **Dependencias:** QA-01; QA-02 según capacidad/entorno.
 
 ### CI-02 — CI y smoke tests de release móvil
@@ -498,7 +499,7 @@ Continuación de la lista restante: WEB-07, MOB-09, MOB-10, QA-03 y DOC-01 compl
 
 ## Orden de ejecución recomendado
 
-1. **Núcleo web:** WEB-01/02 y QA-01; después WEB-03/04/05/06/09 y QA-02. WEB-08 protege la obra; CI-01 prepara despliegues con checks.
+1. **Núcleo web:** WEB-01/02 y QA-01; después WEB-03/04/05/06/09 y QA-02. WEB-08 protege la obra; CI-01 documenta checks locales manuales y publicación sin validación en CI.
 2. **Experiencia y contenido piloto:** UX-01 a UX-04, CAT-01/02/04, WEB-07 y SEO-01/02. CAT-02 necesita evidencia externa de derechos.
 3. **Validación sin terceros si falta autorización:** UX-05, preparación de PRIV-01/02/03 y DATA-01. DATA-02 y ADS-01 permanecen condicionados al tratamiento permitido. COM-01/02/03 están pospuestos por decisión del usuario; disponer de contenido aprobado no los reactiva.
 4. **Android solo ante demanda:** MOB-02/01/06/07/08, QA-03, MOB-11 y CI-02. Si hay ads, también MOB-03/04/05 y ADS-02; release sin ads es una opción.

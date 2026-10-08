@@ -55,7 +55,7 @@ El editor no contiene slots publicitarios ni carga AdSense. La web de esta revis
 
 ## Comprobaciones de fiabilidad web
 
-Desde la raíz del repositorio: `node scripts/check-web.cjs`. El comando verifica sintaxis, helpers, relleno, catálogo y almacenamiento; devuelve código distinto de cero ante una regresión y se ejecuta antes de Pages.
+Desde la raíz del repositorio: `node scripts/check-web.cjs`. El comando verifica sintaxis, helpers, relleno, catálogo y almacenamiento; devuelve código distinto de cero ante una regresión. Se ejecuta manualmente en local antes de subir los cambios.
 
 `node scripts/verify-web-gate.cjs` comprueba que los defectos originales de helpers y cola sean detectados. `node scripts/check-web.cjs --browser` añade pruebas de Chrome con Playwright disponible en desarrollo; configurar `PAINTME_PLAYWRIGHT_PATH` y, si hace falta, `PAINTME_BROWSER_PATH`.
 
@@ -82,6 +82,6 @@ Cambiar entre Balde y Pincel guarda antes de navegar, conserva asset/categoría 
 
 La suite incluye veinte ediciones/guardados sobre un fixture de 1200×1200 y comprueba el presupuesto compartido de historial: balde 10 pasos/32 MiB, pincel 20 pasos/48 MiB. Los límites incluyen pasado y futuro; no limitan la RAM total. Los tiempos registrados son de Windows headless con automatización y persistencia, no latencia táctil o perfil de Android modesto.
 
-Pages valida Node, regresiones históricas y pipeline en PR y antes de deploy. Publica únicamente `web/` y registra la revisión. [Runbook y rollback](../docs/DEPLOYMENT-RUNBOOK.md). La ejecución remota necesita una publicación autorizada; esta sesión no hace push ni despliega.
+Desde el 08/10/2026, la generación de PNG/catálogos y todas las comprobaciones web son manuales y locales. Pages solo publica los archivos de `web/` guardados en Git y registra la revisión, sin generar ni validar en CI. [Runbook y rollback](../docs/DEPLOYMENT-RUNBOOK.md).
 
 [Mejoras de código restantes: resultados](../docs/implementation-2026-10-07/remaining-code.md).

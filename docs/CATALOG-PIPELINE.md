@@ -2,11 +2,12 @@
 
 Fuente técnica: `base_png/catalog.json`. Los PNG maestros permanecen en `base_png/`; se conservan sus bytes y resolución. Editar esa fuente, no los catálogos generados.
 
+**Decisión 08/10/2026:** la generación y las comprobaciones son manuales y locales. GitHub Pages publica los archivos ya generados y guardados en Git; no ejecuta Python, regenera PNG ni compara sus bytes en Linux.
+
 ## Ejecutar desde la raíz
 
 ```powershell
 python -m pip install -r scripts/requirements-catalog.txt
-python scripts/build_catalog.py
 python scripts/build_catalog.py --write
 python scripts/build_catalog.py
 python scripts/check-artwork.py --report-dir docs/qa-evidence/catalogo
@@ -14,7 +15,9 @@ python -m unittest discover -s tests -p test_catalog_pipeline.py -v
 node scripts/check-web.cjs
 ```
 
-La instalación es preparación del entorno; no se ejecuta al abrir la web. Python 3 y las versiones fijadas de Pillow/NumPy son necesarios. El primer comando del generador solo verifica, sin escribir; devuelve 1 si hay diferencias. `--write` aplica las salidas. Repetir la verificación debe devolver cero diferencias. `--out-dir <carpeta>` permite revisar una salida aislada; no elimina archivos antiguos ni publica nada.
+La instalación es preparación del entorno; no se ejecuta al abrir la web. Python 3 y las versiones fijadas de Pillow/NumPy son necesarios. `--write` aplica las salidas; el comando posterior sin esa opción comprueba sin escribir y debe devolver cero diferencias en el mismo entorno local. `--out-dir <carpeta>` permite revisar una salida aislada; no elimina archivos antiguos ni publica nada.
+
+Revisar los cambios y guardar en el commit las salidas de `web/` y Flutter junto con la fuente modificada. Después del push a `main`, Pages publica únicamente `web/`, sin generar ni validar. Para los comandos de revisión y publicación, ver [runbook](DEPLOYMENT-RUNBOOK.md).
 
 ## Agregar o cambiar una entrada
 

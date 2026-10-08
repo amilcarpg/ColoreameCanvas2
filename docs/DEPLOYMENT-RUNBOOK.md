@@ -1,24 +1,27 @@
-# Pages: validación, publicación y rollback
+# Pages: validación local manual, publicación y rollback
 
-Los cambios de esta sesión son locales. Este documento no ejecuta ni autoriza una publicación.
+Desde el 08/10/2026, por decisión del usuario, la generación y las pruebas se ejecutan manualmente en el equipo local. Actions solo publica lo subido a Git.
 
 ## Validación antes de publicar
 
-El workflow `deploy-pages.yml` ejecuta `validate` en PR hacia main, push a main y ejecución manual. El job `deploy` necesita que `validate` termine correctamente y no corre en PR. El único directorio que se sube es `web/`; `docs/`, pruebas y SDKs locales quedan fuera del artefacto.
+El workflow `deploy-pages.yml` ejecuta únicamente `deploy` con push a main o ejecución manual. No corre en PR, no instala Python/Node ni genera imágenes o ejecuta pruebas. El único directorio que se sube es `web/`; `docs/`, pruebas y SDKs locales quedan fuera del artefacto.
 
 Repetir desde la raíz:
 
 ```powershell
-node scripts/check-web.cjs
-node scripts/verify-web-gate.cjs
 python -m pip install -r scripts/requirements-catalog.txt
+python scripts/build_catalog.py --write
 python scripts/build_catalog.py
 python -m unittest discover -s tests -p test_catalog_pipeline.py
+node scripts/check-web.cjs
+node scripts/verify-web-gate.cjs
 ```
 
-Para continuidad/exportación usar también la suite de navegador descrita en `web/README.md`. El workflow básico no ejecuta esa matriz física ni activa anuncios. Un check fallido detiene el workflow; los diagnósticos históricos no sustituyen assertions.
+Ejecutar cada comando manualmente y revisar su resultado; ante un fallo, corregir antes de publicar. Para continuidad/exportación usar también la suite de navegador descrita en `web/README.md`. Los diagnósticos históricos no sustituyen las pruebas actuales.
 
-Después de una publicación autorizada, conservar URL del run, `GITHUB_SHA` del resumen de deploy, resultado del job validate y smoke público de home/editor/guardar/restaurar/exportación. No afirmar que se publicó la revisión local sin esa evidencia.
+Revisar `git diff` y `git status`, incluir fuentes y resultados generados en el commit y hacer push a `main`. Pages publica exactamente el contenido de `web/` de esa revisión; no exige evidencia de validación local ni bloquea la publicación por tests. Los PNG solo se regeneran cuando ejecutas el comando local con `--write`.
+
+Después de una publicación, conservar URL del run, `GITHUB_SHA` del resumen de deploy, resultados de pruebas locales y smoke público de home/editor/guardar/restaurar/exportación. No afirmar que se publicó la revisión local sin esa evidencia.
 
 ## Rollback por revisión
 
