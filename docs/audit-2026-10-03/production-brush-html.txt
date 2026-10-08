@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Colorea con pincel | Dibujos PNG para niños</title>
+    <meta
+      name="description"
+      content="Página de colorear con pincel en HTML5 Canvas. Elige un dibujo PNG en blanco y negro, pinta a mano y guarda tu creación."
+    />
+    <meta name="robots" content="index,follow" />
+    <meta name="theme-color" content="#fff7e6" />
+    <link rel="canonical" href="https://www.paintme.club/brush.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Colorea con pincel" />
+    <meta
+      property="og:description"
+      content="Colorea dibujos PNG en blanco y negro con pincel en Canvas."
+    />
+    <meta property="og:url" content="https://www.paintme.club/brush.html" />
+    <meta property="og:locale" content="es_ES" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Colorea con pincel" />
+    <meta
+      name="twitter:description"
+      content="Colorea dibujos PNG en blanco y negro con pincel en Canvas."
+    />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self'; script-src 'self' https://www.googletagmanager.com https://pagead2.googlesyndication.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://pagead2.googlesyndication.com; frame-src https://googleads.g.doubleclick.net https://tpc.googlesyndication.com; upgrade-insecure-requests"
+    />
+    <link rel="stylesheet" href="brush.css?v=20260713-4" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="topbar">
+        <a class="home-link" href="index.html">← Volver al inicio</a>
+        <div class="topbar-copy">
+          <strong id="contextTitle">PaintMe.club</strong>
+          <span id="contextMeta">Dibujo PNG listo para pintar</span>
+        </div>
+      </div>
+      <div class="ad-slot">
+        <div class="ad-placeholder">Zona de anuncio (Header)</div>
+      </div>
+    </header>
+
+    <main class="app">
+      <header class="app-header">
+        <h1>Colorea con pincel</h1>
+        <p id="appLead">
+          Elige un dibujo PNG en blanco y negro y pinta a mano con pincel.
+        </p>
+      </header>
+      <section class="toolbar" aria-label="Controles de pincel">
+        <div class="asset-picker">
+          <label for="assetSelect">Elige un dibujo PNG</label>
+          <select id="assetSelect" aria-label="Lista de dibujos PNG"></select>
+        </div>
+        <details class="gallery-browser" id="galleryBrowser">
+          <summary>Explorar dibujos</summary>
+          <div class="gallery-tools" aria-label="Explorar dibujos">
+            <label class="search-label" for="assetSearch">Buscar dibujo</label>
+            <input id="assetSearch" type="search" autocomplete="off" placeholder="Buscar por nombre" />
+            <div class="category-filters" id="categoryFilters" aria-label="Filtrar por categoría"></div>
+          </div>
+          <div class="asset-gallery" id="assetGallery" aria-label="Galería de dibujos PNG"></div>
+          <div class="browse-note" id="browseNote"></div>
+        </details>
+        <button class="restore-button" id="restoreBtn" type="button" hidden>
+          Continuar dibujo guardado
+        </button>
+        <div class="palette-tools" aria-label="Paletas de color">
+          <label for="paletteSelect">Paleta</label>
+          <select id="paletteSelect" aria-label="Elegir paleta"></select>
+          <label for="customColor">Color personalizado</label>
+          <input id="customColor" type="color" value="#ef5350" />
+        </div>
+        <div class="palette" id="palette" aria-label="Paleta de colores"></div>
+        <div class="brush-tools" aria-label="Herramientas de pincel">
+          <label class="brush-size" for="brushSize">
+            Grosor del pincel
+            <span id="brushSizeValue">18 px</span>
+          </label>
+          <input
+            id="brushSize"
+            type="range"
+            min="4"
+            max="64"
+            step="2"
+            value="18"
+          />
+          <button id="eraserBtn" type="button" aria-pressed="false">Borrador</button>
+        </div>
+        <div class="status" id="status">Pincel activo</div>
+      </section>
+
+      <section class="canvas-wrap" aria-label="Área de coloreo con pincel">
+        <div class="zoom-controls" aria-label="Controles de zoom">
+          <button id="zoomResetBtn" type="button">Ajustar</button>
+        </div>
+        <canvas id="canvas" width="600" height="600"></canvas>
+        <div class="hint">Arrastra el dedo o mouse para pintar con pincel</div>
+      </section>
+
+      <section class="control-panel controls" aria-label="Acciones de coloreado">
+        <button id="undoBtn" type="button">Deshacer</button>
+        <button id="resetBtn" type="button">Reiniciar</button>
+        <button id="saveBtn" type="button">Guardar</button>
+        <button id="nextBtn" type="button">Siguiente</button>
+        <button id="surpriseBtn" type="button">Dibujo sorpresa</button>
+        <button id="allBtn" type="button">Ver todos</button>
+        <a class="secondary-action" href="paint.html">Usar balde de pintura</a>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="ad-slot">
+        <div class="ad-placeholder">Zona de anuncio (Footer)</div>
+      </div>
+      <section class="privacy" id="privacy">
+        <h2>Política de privacidad</h2>
+        <p>
+          Esta página puede usar Google Analytics y anuncios (AdSense) para medir
+          el uso y mostrar publicidad. Puedes aceptar o rechazar el uso de cookies
+          para medición y anuncios en el banner de consentimiento.
+        </p>
+      </section>
+    </footer>
+
+    <div class="consent-banner" id="consentBanner" role="dialog" aria-live="polite">
+      <div class="consent-content">
+        <p>Usamos cookies para analítica y anuncios. Puedes aceptar o rechazar.</p>
+        <div class="consent-actions">
+          <button id="consentReject" type="button">Rechazar</button>
+          <button id="consentAccept" type="button">Aceptar</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="analytics-init.js?v=20260712-3"></script>
+    <script src="assets-list.js?v=20260717-1"></script>
+    <script src="app-utils.js?v=20260717-2"></script>
+    <script src="brush.js?v=20260717-2"></script>
+  </body>
+</html>

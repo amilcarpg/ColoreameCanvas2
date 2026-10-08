@@ -1,0 +1,6 @@
+body { margin: 0 auto; max-width: 880px; padding: 16px; font: 18px/1.6 "Segoe UI", sans-serif; color: #1e293b; background: #fffaf3; }
+header, nav { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+section { padding: 12px 0; border-top: 1px solid #d6c4a7; }
+a { display: inline-flex; min-height: 44px; align-items: center; color: #163a70; padding: 4px 8px; }
+:focus-visible { outline: 3px solid #1447c4; outline-offset: 3px; }
+@media print { header { display: none; } body { background: white; } }

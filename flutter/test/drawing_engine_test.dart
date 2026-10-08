@@ -40,9 +40,12 @@ void main() {
         erase: true,
       );
       final output = img.decodePng(engine.exportPng())!;
-      expect(output.getPixel(1, 2).r, 255);
-      expect(output.getPixel(3, 2).r, 255);
-      expect(output.getPixel(2, 2).r, 0);
+      final left = output.getPixel(1, 2),
+          right = output.getPixel(3, 2),
+          line = output.getPixel(2, 2);
+      expect([left.r, left.g, left.b, left.a], [255, 0, 0, 255]);
+      expect([right.r, right.g, right.b, right.a], [255, 255, 255, 255]);
+      expect([line.r, line.g, line.b, line.a], [0, 0, 0, 255]);
     },
   );
 }

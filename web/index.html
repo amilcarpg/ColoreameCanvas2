@@ -32,18 +32,10 @@
       content="Elige un dibujo, toca una zona y píntala al instante."
     />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
-    <meta
-      http-equiv="Content-Security-Policy"
-      content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob:; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com; frame-src 'none'; upgrade-insecure-requests"
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700;800&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="home.css?v=20260712-1" />
-  </head>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob:; connect-src 'self'; worker-src 'self'; frame-src 'none'; upgrade-insecure-requests" />
+    <link rel="stylesheet" href="home.css?v=20261007-3" />
+  <link rel="stylesheet" href="privacy-controls.css?v=20261007-4" />
+</head>
   <body>
     <div class="page-shell">
       <header class="site-header" id="inicio">
@@ -125,12 +117,12 @@
             <div class="hero-preview">
               <div class="app-card">
                 <div class="app-card-toolbar">
-                  <button type="button" aria-label="Volver">‹</button>
+                  <span class="preview-icon" aria-hidden="true">‹</span>
                   <div class="toolbar-actions">
-                    <button type="button" aria-label="Deshacer">↶</button>
-                    <button type="button" aria-label="Rehacer">↷</button>
+                    <span class="preview-icon" aria-hidden="true">↶</span>
+                    <span class="preview-icon" aria-hidden="true">↷</span>
                   </div>
-                  <button type="button" aria-label="Descargar">⬇</button>
+                  <span class="preview-icon" aria-hidden="true">⬇</span>
                 </div>
                 <div class="app-card-canvas">
                   <div class="canvas-badge">Coloreando ahora</div>
@@ -179,7 +171,7 @@
               <div class="benefit-icon green">🎁</div>
               <div>
                 <h2>Gratis</h2>
-                <p>100% gratis para todos.</p>
+                <p>Colorear y descargar PNG es gratis.</p>
               </div>
             </article>
             <article class="benefit-card">
@@ -213,37 +205,37 @@
               <h2 id="categorias-title">Categorías</h2>
             </div>
             <div class="categories-grid">
-              <a class="category-card lime track-category" href="paint.html?category=animales&source=home" data-track="categoria_animales">
+              <a class="category-card lime track-category" href="categorias/animales.html" data-track="categoria_animales">
                 <div class="category-emoji category-preview" aria-hidden="true">
                   <img src="assets/cat-v2.png" alt="" />
                 </div>
                 <span>Animales</span>
               </a>
-              <a class="category-card sky track-category" href="paint.html?category=vehiculos&source=home" data-track="categoria_vehiculos">
+              <a class="category-card sky track-category" href="categorias/vehiculos.html" data-track="categoria_vehiculos">
                 <div class="category-emoji category-preview" aria-hidden="true">
                   <img src="assets/car-v2.png" alt="" />
                 </div>
                 <span>Vehículos</span>
               </a>
-              <a class="category-card coral track-category" href="paint.html?category=navidad&source=home" data-track="categoria_navidad">
+              <a class="category-card coral track-category" href="categorias/navidad.html" data-track="categoria_navidad">
                 <div class="category-emoji category-preview" aria-hidden="true">
                   <img src="assets/christmas-tree-v2.png" alt="" />
                 </div>
                 <span>Navidad</span>
               </a>
-              <a class="category-card lilac track-category" href="paint.html?category=fantasia&source=home" data-track="categoria_fantasia">
+              <a class="category-card lilac track-category" href="categorias/fantasia.html" data-track="categoria_fantasia">
                 <div class="category-emoji category-preview" aria-hidden="true">
                   <img src="assets/unicorn-v2.png" alt="" />
                 </div>
                 <span>Fantasía</span>
               </a>
-              <a class="category-card mint track-category" href="paint.html?category=dinosaurios&source=home" data-track="categoria_dinosaurios">
+              <a class="category-card mint track-category" href="categorias/dinosaurios.html" data-track="categoria_dinosaurios">
                 <div class="category-emoji category-preview" aria-hidden="true">
                   <img src="assets/dinosaur-v2.png" alt="" />
                 </div>
                 <span>Dinosaurios</span>
               </a>
-              <a class="category-card pink track-category" href="paint.html?category=princesas&source=home" data-track="categoria_princesas">
+              <a class="category-card pink track-category" href="categorias/princesas.html" data-track="categoria_princesas">
                 <div class="category-emoji category-preview" aria-hidden="true">
                   <img src="assets/princess-v2.png" alt="" />
                 </div>
@@ -381,28 +373,28 @@
           <div class="container">
             <div class="section-heading">
               <p class="section-kicker">Valor para toda la familia</p>
-              <h2 id="aprender-title">Aprender jugando</h2>
+              <h2 id="aprender-title">Un rato creativo en familia</h2>
             </div>
             <div class="learn-grid">
               <article class="learn-card warm">
                 <div class="learn-figure">💡</div>
                 <div>
-                  <h3>Estimula la creatividad</h3>
-                  <p>Colorear ayuda a imaginar, mezclar colores y crear historias propias.</p>
+                  <h3>Elige tus colores</h3>
+                  <p>Prueba colores y crea una versión propia de cada dibujo.</p>
                 </div>
               </article>
               <article class="learn-card cool">
                 <div class="learn-figure">✋</div>
                 <div>
-                  <h3>Mejora la coordinación</h3>
-                  <p>Tocar, seleccionar y colorear fortalece la motricidad fina y la atención.</p>
+                  <h3>Dos formas de pintar</h3>
+                  <p>Rellena una zona con el balde o dibuja trazos con el pincel.</p>
                 </div>
               </article>
               <article class="learn-card fresh">
                 <div class="learn-figure">😊</div>
                 <div>
                   <h3>Diversión sin complicaciones</h3>
-                  <p>Una experiencia simple, segura y sin distracciones para disfrutar en familia.</p>
+                  <p>Una actividad sin registro para colorear con acompañamiento adulto.</p>
                 </div>
               </article>
             </div>
@@ -448,14 +440,15 @@
           <nav class="footer-nav" aria-label="Secundaria">
             <a href="#inicio">Inicio</a>
             <a href="#categorias">Categorías</a>
-            <a href="paint.html#privacy">Política de privacidad</a>
-            <a href="#contacto">Contacto</a>
+            <a href="privacy.html">Privacidad web y aplicación</a><a href="adults.html">Para adultos</a>
+            <a href="adults.html#contacto">Contacto</a>
           </nav>
         </div>
       </footer>
     </div>
-
-    <script src="analytics-init.js?v=20260712-3"></script>
-    <script src="home.js?v=20260712-2"></script>
+    <script src="product-events.js?v=20261007-4"></script>
+<script src="privacy.js?v=20261007-4"></script>
+<script src="analytics-init.js?v=20261007-4"></script>
+<script src="home.js?v=20261007-4"></script>
   </body>
 </html>

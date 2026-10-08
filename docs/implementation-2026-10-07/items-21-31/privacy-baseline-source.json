@@ -1,0 +1,41 @@
+{
+  "scope": "Source inspection before change; no network/cookie claim",
+  "files": {
+    "web/analytics-init.js": {
+      "sha256": "78f0414f99001b5029d6f6c7b3496010fe938c91fba4305c30f29e34fd86e302",
+      "external_origins": [
+        "https://www.googletagmanager.com"
+      ]
+    },
+    "web/paint.js": {
+      "sha256": "195a176c3d9969bc71787d4976f158ac3609aa68e73d873cea561fdc943601dc",
+      "external_origins": []
+    },
+    "web/brush.js": {
+      "sha256": "82b048772e8708f08825a37d04b449667dc2bbe0a15615998d22574e799cd33c",
+      "external_origins": []
+    },
+    "web/index.html": {
+      "sha256": "3eea1806d321bb643aae95e2540543fd46d6f9fca35f0e4056087c6844427071",
+      "external_origins": [
+        "https://fonts.googleapis.com",
+        "https://fonts.gstatic.com",
+        "https://region1.google-analytics.com",
+        "https://www.google-analytics.com",
+        "https://www.googletagmanager.com",
+        "https://www.paintme.club"
+      ]
+    },
+    "web/privacy.html": {
+      "sha256": "50da2ba533c305f5ec18861ccb11dce913ca7a64ad4eb716758679fcaf1cbda3",
+      "external_origins": []
+    }
+  },
+  "findings": [
+    "GA is queued at visibility before consent",
+    "Accept grants analytics_storage/ad_storage/ad_user_data/ad_personalization",
+    "Home imports Google Fonts",
+    "Old policy describes mobile only",
+    "No network HAR was captured before this change"
+  ]
+}

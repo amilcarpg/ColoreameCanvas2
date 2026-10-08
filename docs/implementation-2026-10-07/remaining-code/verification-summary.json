@@ -1,0 +1,106 @@
+{
+  "date": "2026-10-07",
+  "revision": "Local uncommitted working tree; no deployment",
+  "node": {
+    "passed": 45,
+    "failed": 0
+  },
+  "browser": {
+    "chromium": {
+      "passed": 75,
+      "failed": 0
+    },
+    "webkit": {
+      "passed": 75,
+      "failed": 0
+    }
+  },
+  "flutter": {
+    "version": "3.47.6",
+    "dart": "3.13.5",
+    "analyze": "No issues found",
+    "tests_passed": 24,
+    "tests_failed": 0
+  },
+  "mobile_filesystem_autosave": {
+    "passed": 12,
+    "failed": 0
+  },
+  "catalog_pipeline": {
+    "tests_passed": 8,
+    "generated_outputs_checked": 227,
+    "differences": 0
+  },
+  "historical_gate": "W1 and W2 each exit 1; corrected gate exits 0",
+  "performance_scope": "Synthetic 1200px fixture in Windows headless browsers, including automation and save; not physical device RAM/CPU or touch latency",
+  "profiles": [
+    {
+      "browser": "chromium",
+      "mode": "brush",
+      "edits": 20,
+      "min_ms": 134,
+      "median_ms": 165.0,
+      "max_ms": 233,
+      "history_steps": 8,
+      "history_bytes": 46080000,
+      "long_tasks_ms": [
+        60
+      ],
+      "js_heap_bytes": 63045816
+    },
+    {
+      "browser": "chromium",
+      "mode": "paint",
+      "edits": 20,
+      "min_ms": 281,
+      "median_ms": 323.5,
+      "max_ms": 514,
+      "history_steps": 5,
+      "history_bytes": 28800000,
+      "long_tasks_ms": [],
+      "js_heap_bytes": 98118416
+    },
+    {
+      "browser": "webkit",
+      "mode": "brush",
+      "edits": 20,
+      "min_ms": 229,
+      "median_ms": 246.0,
+      "max_ms": 274,
+      "history_steps": 8,
+      "history_bytes": 46080000,
+      "long_tasks_ms": [],
+      "js_heap_bytes": null
+    },
+    {
+      "browser": "webkit",
+      "mode": "paint",
+      "edits": 20,
+      "min_ms": 262,
+      "median_ms": 292.0,
+      "max_ms": 339,
+      "history_steps": 5,
+      "history_bytes": 28800000,
+      "long_tasks_ms": [],
+      "js_heap_bytes": null
+    }
+  ],
+  "android_debug_build": {
+    "result": "BUILD SUCCESSFUL",
+    "exit_code": 0,
+    "final_build_seconds": 99,
+    "compile_sdk": 36,
+    "target_sdk": 36,
+    "min_sdk": 24,
+    "installed": false,
+    "production_signed": false
+  },
+  "android_native_guards": {
+    "expected_rejections": 3,
+    "scope": "Gradle dry-run"
+  },
+  "ios_shell_guards": {
+    "passed": 6,
+    "scope": "Synthetic local shell; no Xcode"
+  }
+}

@@ -174,3 +174,6 @@ a {
     align-items: flex-start;
   }
 }
+
+.adult-guide a { text-decoration: underline; font-weight: 600; }
+.adult-guide p, .adult-guide li { line-height: 1.6; }

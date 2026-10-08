@@ -1,0 +1,7 @@
+.privacy-controls { margin: 16px auto; padding: 12px; max-width: 880px; border: 1px solid #d6c4a7; background: #fffaf3; color: #172554; }
+.privacy-controls summary, [data-privacy] button, [data-privacy] a { min-height: 44px; padding: 10px; }
+[data-privacy] { font: 16px/1.5 "Segoe UI", sans-serif; color: #172554; }
+[data-privacy] button { margin: 4px; border: 1px solid #334155; border-radius: 8px; background: white; color: #172554; cursor: pointer; }
+[data-privacy] :focus-visible, .privacy-controls summary:focus-visible { outline: 3px solid #1447c4; outline-offset: 2px; }
+[data-privacy] a { display: inline-flex; color: #163a70; }
+@media print { .privacy-controls, [data-privacy] { display: none !important; } }

@@ -1,78 +1,126 @@
+import 'dart:async';
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 import 'ad_service.dart';
+import 'banner_controller.dart';
 import 'entitlement_repository.dart';
-import 'product_analytics.dart';
 
-/// Solo se usa en catálogo. Los IDs de producción se inyectan en release.
 class CatalogAdBanner extends StatefulWidget {
   const CatalogAdBanner({
     super.key,
     required this.service,
     this.entitlements = const EntitlementRepository(),
-    this.analytics = const DisabledProductAnalytics(),
   });
   final AdService service;
   final EntitlementRepository entitlements;
-  final ProductAnalytics analytics;
-
   @override
   State<CatalogAdBanner> createState() => _CatalogAdBannerState();
 }
 
 class _CatalogAdBannerState extends State<CatalogAdBanner> {
-  BannerAd? _ad;
-
+  late final BannerController<_GoogleBanner> _controller;
   @override
   void initState() {
     super.initState();
-    widget.service.addListener(_loadWhenReady);
-    _loadWhenReady();
+    _controller = BannerController(
+      allowed: () async {
+        final adFree = await widget.entitlements.hasAdFreeEntitlement();
+        // Permission and mount state can change while entitlement is pending.
+        return mounted && widget.service.ready && !adFree;
+      },
+      create: () => _GoogleBanner(
+        widget.service.config.unitId(release: !kDebugMode, ios: Platform.isIOS),
+      ),
+      onChanged: () {
+        if (mounted) setState(() {});
+      },
+    );
+    widget.service.addListener(_refresh);
+    _refresh();
   }
 
-  Future<void> _loadWhenReady() async {
-    if (!widget.service.ready || _ad != null) return;
-    if (await widget.entitlements.hasAdFreeEntitlement() || _ad != null) return;
-    final id = const String.fromEnvironment(
-      'ADMOB_BANNER_ID',
-      defaultValue: '',
-    );
-    final testId = Platform.isIOS
-        ? 'ca-app-pub-3940256099942544/2934735716'
-        : 'ca-app-pub-3940256099942544/6300978111';
-    _ad = BannerAd(
-      size: AdSize.banner,
-      adUnitId: id.isEmpty ? testId : id,
-      request: const AdRequest(nonPersonalizedAds: true),
-      listener: BannerAdListener(
-        onAdLoaded: (_) => mounted ? setState(() {}) : null,
-        onAdImpression: (_) => widget.analytics.track('ad_impression'),
-        onAdFailedToLoad: (ad, _) => ad.dispose(),
-      ),
-    )..load();
+  void _refresh() => unawaited(_controller.refresh());
+  @override
+  void didUpdateWidget(CatalogAdBanner oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.service != widget.service) {
+      oldWidget.service.removeListener(_refresh);
+      widget.service.addListener(_refresh);
+    }
+    _refresh();
   }
 
   @override
   void dispose() {
-    widget.service.removeListener(_loadWhenReady);
-    _ad?.dispose();
+    widget.service.removeListener(_refresh);
+    _controller.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    final ad = _ad;
-    if (ad == null) return const SizedBox.shrink();
+    final resource = _controller.resource;
+    if (resource == null) return const SizedBox.shrink();
     return SafeArea(
       top: false,
-      child: SizedBox(
-        width: ad.size.width.toDouble(),
-        height: ad.size.height.toDouble(),
-        child: AdWidget(ad: ad),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          const Text('Publicidad'),
+          SizedBox(
+            width: resource.ad.size.width.toDouble(),
+            height: resource.ad.size.height.toDouble(),
+            child: AdWidget(ad: resource.ad),
+          ),
+        ],
       ),
     );
+  }
+}
+
+class _GoogleBanner implements BannerResource {
+  _GoogleBanner(String id) {
+    ad = BannerAd(
+      size: AdSize.banner,
+      adUnitId: id,
+      request: const AdRequest(nonPersonalizedAds: true),
+      listener: BannerAdListener(
+        onAdLoaded: (_) {
+          if (!_loaded.isCompleted) _loaded.complete();
+        },
+        onAdFailedToLoad: (_, error) {
+          if (!_loaded.isCompleted) {
+            _loaded.completeError(StateError('banner_load_failed'));
+          }
+        },
+      ),
+    );
+  }
+  late final BannerAd ad;
+  final _loaded = Completer<void>();
+  bool _disposed = false;
+  @override
+  Future<void> load() async {
+    // Attach the error handler before the platform can emit a load failure.
+    final result = _loaded.future;
+    unawaited(
+      ad.load().catchError((Object _) {
+        if (!_loaded.isCompleted) {
+          _loaded.completeError(StateError('banner_load_failed'));
+        }
+      }),
+    );
+    await result;
+  }
+
+  @override
+  void dispose() {
+    if (_disposed) return;
+    _disposed = true;
+    unawaited(ad.dispose().catchError((Object _) {}));
   }
 }

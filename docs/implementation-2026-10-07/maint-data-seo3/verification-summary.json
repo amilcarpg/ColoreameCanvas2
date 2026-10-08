@@ -1,0 +1,43 @@
+{
+  "web_gate": {
+    "passed": 50,
+    "failed": 0,
+    "html_routes": 63,
+    "sitemap_urls": 61
+  },
+  "chromium_full": {
+    "passed": 78,
+    "failed": 0
+  },
+  "webkit_full": {
+    "passed": 78,
+    "failed": 0
+  },
+  "english_final_each_browser": {
+    "passed": 3,
+    "failed": 0
+  },
+  "flutter_analyze": "No issues found",
+  "flutter_tests": {
+    "passed": 32,
+    "failed": 0
+  },
+  "android_debug": {
+    "exit_code": 0,
+    "final_build_seconds": 74,
+    "artifact": {
+      "path": "flutter\\build\\app\\outputs\\flutter-apk\\app-debug.apk",
+      "bytes": 216702852,
+      "sha256": "8c960dd99e1d54d1671388b285a552ee2a3131f5b8c5f2730257a7eb7a4bc68c"
+    },
+    "analytics_deactivated": true
+  },
+  "ios": {
+    "analytics_deactivated": true,
+    "minimum_version": "15.0",
+    "built": false
+  },
+  "production_published": false,
+  "external_receipt_verified": false,
+  "known_pending": "Brush reconstruction changes some antialiased outline pixels; unmasked painting is preserved."
+}

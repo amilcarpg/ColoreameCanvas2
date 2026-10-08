@@ -1,0 +1,12 @@
+{
+  "scope": "Local DEBUG APK rebuilt after final Dart/Gradle changes; not installed or production signed. Ads default disabled in Dart; native SDK included.",
+  "path": "flutter\\build\\app\\outputs\\flutter-apk\\app-debug.apk",
+  "size_bytes": 216576677,
+  "sha256": "1318bdcecfff45d03a827d33c0b4e938c87776c0a3c5c30edaacd4621dedf538",
+  "aapt_badging": [
+    "package: name='club.paintme.paintme_app' versionCode='1' versionName='1.0.0' platformBuildVersionName='16' platformBuildVersionCode='36' compileSdkVersion='36' compileSdkVersionCodename='16'",
+    "sdkVersion:'24'",
+    "targetSdkVersion:'36'",
+    "native-code: 'arm64-v8a' 'armeabi-v7a' 'x86_64'"
+  ]
+}

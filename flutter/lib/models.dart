@@ -12,6 +12,8 @@ class Drawing {
     required this.asset,
     required this.keywords,
     required this.featured,
+    this.theme = '',
+    this.difficulty = 'por-revisar',
   });
 
   final String label;
@@ -21,6 +23,8 @@ class Drawing {
   final String asset;
   final List<String> keywords;
   final bool featured;
+  final String theme;
+  final String difficulty;
 
   factory Drawing.fromJson(Map<String, dynamic> json) => Drawing(
     label: json['label'] as String,
@@ -30,6 +34,8 @@ class Drawing {
     asset: json['asset'] as String,
     keywords: List<String>.from(json['keywords'] as List<dynamic>),
     featured: json['featured'] as bool? ?? false,
+    theme: json['theme'] as String? ?? json['category'] as String,
+    difficulty: json['difficulty'] as String? ?? 'por-revisar',
   );
 }
 
@@ -48,12 +54,14 @@ class DrawingSession {
     required this.colorPng,
     this.status = DrawingStatus.inProgress,
     this.isFavorite = false,
+    this.hasDrawing = true,
   });
   final String slug;
   final DateTime updatedAt;
   final Uint8List colorPng;
   final DrawingStatus status;
   final bool isFavorite;
+  final bool hasDrawing;
 
   DrawingSession copyWith({
     Uint8List? colorPng,
@@ -66,6 +74,7 @@ class DrawingSession {
     updatedAt: updatedAt ?? this.updatedAt,
     status: status ?? this.status,
     isFavorite: isFavorite ?? this.isFavorite,
+    hasDrawing: hasDrawing,
   );
 }
 

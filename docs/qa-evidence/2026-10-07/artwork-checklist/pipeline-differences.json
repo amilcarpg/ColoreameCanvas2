@@ -1,0 +1,93 @@
+{
+  "byte_mismatches": 11,
+  "items": [
+    {
+      "slug": "gato",
+      "role": "web",
+      "path": "web/assets/cat-v2.png",
+      "pixel_equal": true,
+      "changed_pixels": 0,
+      "max_channel_delta": 0
+    },
+    {
+      "slug": "gato",
+      "role": "flutter",
+      "path": "flutter/assets/drawings_mobile/cat-v2.png",
+      "pixel_equal": true,
+      "changed_pixels": 0,
+      "max_channel_delta": 0
+    },
+    {
+      "slug": "mariposa",
+      "role": "thumbnail",
+      "path": "web/assets/thumbs/butterfly-v2.png",
+      "pixel_equal": true,
+      "changed_pixels": 0,
+      "max_channel_delta": 0
+    },
+    {
+      "slug": "camion",
+      "role": "web",
+      "path": "web/assets/camion.png",
+      "pixel_equal": true,
+      "changed_pixels": 0,
+      "max_channel_delta": 0
+    },
+    {
+      "slug": "camion",
+      "role": "flutter",
+      "path": "flutter/assets/drawings_mobile/camion.png",
+      "pixel_equal": true,
+      "changed_pixels": 0,
+      "max_channel_delta": 0
+    },
+    {
+      "slug": "regalo-navidad",
+      "role": "thumbnail",
+      "path": "web/assets/thumbs/regalo-navidad.png",
+      "pixel_equal": true,
+      "changed_pixels": 0,
+      "max_channel_delta": 0
+    },
+    {
+      "slug": "dragon",
+      "role": "thumbnail",
+      "path": "web/assets/thumbs/dragon.png",
+      "pixel_equal": true,
+      "changed_pixels": 0,
+      "max_channel_delta": 0
+    },
+    {
+      "slug": "pterodactilo",
+      "role": "web",
+      "path": "web/assets/pterodactilo.png",
+      "pixel_equal": true,
+      "changed_pixels": 0,
+      "max_channel_delta": 0
+    },
+    {
+      "slug": "pterodactilo",
+      "role": "flutter",
+      "path": "flutter/assets/drawings_mobile/pterodactilo.png",
+      "pixel_equal": true,
+      "changed_pixels": 0,
+      "max_channel_delta": 0
+    },
+    {
+      "slug": "pony-4",
+      "role": "web",
+      "path": "web/assets/pony4.png",
+      "pixel_equal": true,
+      "changed_pixels": 0,
+      "max_channel_delta": 0
+    },
+    {
+      "slug": "pony-4",
+      "role": "flutter",
+      "path": "flutter/assets/drawings_mobile/pony4.png",
+      "pixel_equal": true,
+      "changed_pixels": 0,
+      "max_channel_delta": 0
+    }
+  ]
+}

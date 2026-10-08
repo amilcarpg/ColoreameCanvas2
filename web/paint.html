@@ -26,105 +26,81 @@
       content="Colorea dibujos para niños con un balde de pintura en Canvas."
     />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
-    <meta
-      http-equiv="Content-Security-Policy"
-      content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self'; script-src 'self' https://www.googletagmanager.com https://pagead2.googlesyndication.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://pagead2.googlesyndication.com; worker-src 'self'; frame-src https://googleads.g.doubleclick.net https://tpc.googlesyndication.com; upgrade-insecure-requests"
-    />
-    <link rel="stylesheet" href="paint.css?v=20260713-4" />
-  </head>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob:; connect-src 'self'; worker-src 'self'; frame-src 'none'; upgrade-insecure-requests" />
+    <link rel="stylesheet" href="paint.css?v=20261007-3" />
+    <link rel="stylesheet" href="editor-layout.css?v=20261007-3" />
+  <link rel="stylesheet" href="privacy-controls.css?v=20261007-5" />
+</head>
   <body>
-    <header class="site-header">
-      <div class="topbar">
-        <a class="home-link" href="index.html">← Volver al inicio</a>
-        <div class="topbar-copy">
-          <strong id="contextTitle">PaintMe.club</strong>
-          <span id="contextMeta">Dibujo listo para colorear</span>
-        </div>
-      </div>
-      <div class="ad-slot">
-        <div class="ad-placeholder">Zona de anuncio (Header)</div>
-      </div>
-    </header>
+    <header class="site-header"><div class="topbar"><a class="home-link" href="adults.html">Para adultos</a><div class="topbar-copy"><strong id="contextTitle">PaintMe</strong><span id="contextMeta">Dibujo listo</span></div></div></header>
 
-    <main class="app">
-      <header class="app-header">
-        <h1>Colorea con balde de pintura</h1>
-        <p id="appLead">Elige un dibujo y pinta por regiones con un clic o toque.</p>
-      </header>
-      <section class="toolbar" aria-label="Controles de coloreado">
-        <div class="asset-picker">
-          <label for="assetSelect">Elige un dibujo</label>
-          <select id="assetSelect" aria-label="Lista de dibujos"></select>
-        </div>
-        <details class="gallery-browser" id="galleryBrowser">
-          <summary>Explorar dibujos</summary>
-          <div class="gallery-tools" aria-label="Explorar dibujos">
-            <label class="search-label" for="assetSearch">Buscar dibujo</label>
-            <input id="assetSearch" type="search" autocomplete="off" placeholder="Buscar por nombre" />
-            <div class="category-filters" id="categoryFilters" aria-label="Filtrar por categoría"></div>
-          </div>
-          <div class="asset-gallery" id="assetGallery" aria-label="Galería de dibujos"></div>
-          <div class="browse-note" id="browseNote"></div>
-        </details>
-        <button class="restore-button" id="restoreBtn" type="button" hidden>
-          Continuar dibujo guardado
-        </button>
-        <div class="palette-tools" aria-label="Paletas de color">
-          <label for="paletteSelect">Paleta</label>
-          <select id="paletteSelect" aria-label="Elegir paleta"></select>
-          <label for="customColor">Color personalizado</label>
-          <input id="customColor" type="color" value="#ef5350" />
-        </div>
-        <div class="palette" id="palette" aria-label="Paleta de colores"></div>
-        <div class="status" id="status">Color activo</div>
-      </section>
-
+    <main class="app" id="actividad">
+      <header class="app-header"><h1>Colorea con balde</h1><p id="appLead">Elige colores y pinta a tu manera.</p></header>
       <section class="canvas-wrap" aria-label="Área de coloreo">
-        <div class="zoom-controls" aria-label="Controles de zoom">
-          <button id="zoomResetBtn" type="button">Ajustar</button>
-        </div>
-        <canvas id="canvas" width="600" height="600"></canvas>
-        <div class="hint">Clic o toque para pintar con balde</div>
+        <div class="zoom-controls"><button id="zoomResetBtn" type="button">Ajustar</button></div>
+        <canvas id="canvas" width="600" height="600" aria-label="Dibujo para pintar con balde" aria-describedby="canvasHelp"></canvas>
+        <div class="hint" id="canvasHelp">Toca una zona para pintarla. Dos dedos para ampliar.</div>
       </section>
-
+      <section class="toolbar" aria-label="Colores y estado">
+        <div class="palette" id="palette" role="group" aria-label="Elige un color"></div>
+        <div class="status" id="status" role="status" aria-live="polite" aria-atomic="true">Cargando dibujo…</div>
+        <button class="restore-button" id="restoreBtn" type="button" hidden>Continuar dibujo guardado</button>
+        <div id="localSaveStatus" class="save-state" data-state="idle" role="status" aria-live="polite">Sin cambios por guardar</div>
+        <button id="retrySaveBtn" class="restore-button" type="button" hidden>Reintentar guardado</button>
+        <details id="toolOptions" class="advanced-options"><summary>Más colores y herramientas</summary>
+          <div class="palette-tools"><label for="paletteSelect">Paleta</label><select id="paletteSelect"></select><label for="customColor">Color personalizado</label><input id="customColor" type="color" value="#ef5350" /></div>
+        </details>
+      </section>
       <section class="control-panel controls" aria-label="Acciones de coloreado">
-        <button id="undoBtn" type="button">Deshacer</button>
-        <button id="resetBtn" type="button">Reiniciar</button>
-        <button id="saveBtn" type="button">Guardar</button>
-        <button id="nextBtn" type="button">Siguiente</button>
-        <button id="surpriseBtn" type="button">Dibujo sorpresa</button>
-        <button id="allBtn" type="button">Ver todos</button>
-        <a class="paint-mode-link" href="brush.html">Usar pincel</a>
+        <button id="undoBtn" type="button">Deshacer</button><button id="redoBtn" type="button">Rehacer</button>
+        <button id="saveBtn" type="button" title="Descarga con ayuda de un adulto">Descargar PNG</button><button id="nextBtn" type="button">Siguiente</button>
+        <button id="pngPreviewBtn" type="button" hidden>Ver PNG para guardar</button>
       </section>
+      <div id="exportStatus" class="export-state" data-state="idle" role="status" aria-live="polite"></div>
+      <details id="otherActions" class="other-actions"><summary>Más acciones</summary><button id="resetBtn" type="button">Reiniciar</button><button id="surpriseBtn" type="button">Dibujo sorpresa</button></details>
+      <details class="gallery-browser" id="galleryBrowser"><summary>Elegir otro dibujo</summary>
+        <h2>Continuar en este dispositivo</h2><div id="savedGallery" class="asset-gallery saved-gallery" aria-label="Copias guardadas"></div><p id="savedGalleryStatus" role="status" aria-live="polite"></p>
+        <div class="category-filters" id="categoryFilters" aria-label="Temas"></div>
+        <div class="asset-gallery" id="assetGallery" aria-label="Dibujos"></div><div class="browse-note" id="browseNote" role="status"></div>
+        <details id="catalogAdvanced"><summary>Buscar por nombre · adultos</summary><div class="gallery-tools">
+          <label for="assetSearch">Buscar dibujo</label><input id="assetSearch" type="search" autocomplete="off" placeholder="Buscar por nombre" />
+          <label for="assetSelect">Lista de dibujos</label><select id="assetSelect"></select>
+        </div></details><button id="allBtn" type="button">Ver todos</button>
+      </details>
+      <details id="adultArea" class="adult-area"><summary>Zona para adultos</summary>
+        <p>Descarga, impresión y preferencias. Pintar no requiere aceptar analítica.</p>
+        <button id="printDrawingBtn" type="button">Imprimir dibujo</button><button id="privacySettingsBtn" type="button">Preferencias de privacidad</button>
+        <nav aria-label="Enlaces para adultos"><a class="mode-link" href="brush.html">Usar pincel</a><a href="adults.html">Información para familias y docentes</a><a href="privacy.html">Privacidad web y aplicación</a><a href="index.html">Volver al inicio</a></nav>
+        <p>Los dibujos quedan en este dispositivo y en este modo. Cambiar de modo no transfiere las capas.</p><div class="consent-banner" id="consentBanner" data-privacy aria-label="Preferencias para adultos"><p id="privacyStatus" role="status" aria-live="polite"></p><label><input id="analyticsChoice" type="checkbox" disabled /> Analítica opcional (desactivada)</label><div class="consent-actions"><button id="consentReject" type="button">Rechazar</button><button id="consentAccept" type="button">Guardar preferencias</button><button id="consentRevoke" type="button">Revocar permisos opcionales</button></div><a href="privacy.html#web">Información de privacidad web</a></div>
+      </details>
     </main>
+    <img id="printPreviewImage" alt="Dibujo preparado para imprimir" hidden />
+    <footer class="site-footer"><p>PaintMe · una actividad para compartir en familia.</p></footer>
 
-    <footer class="site-footer">
-      <div class="ad-slot">
-        <div class="ad-placeholder">Zona de anuncio (Footer)</div>
-      </div>
-      <section class="privacy" id="privacy">
-        <h2>Política de privacidad</h2>
-        <p>
-          Esta página puede usar Google Analytics y anuncios (AdSense) para medir
-          el uso y mostrar publicidad. Puedes aceptar o rechazar el uso de cookies
-          para medición y anuncios en el banner de consentimiento.
-        </p>
-      </section>
-    </footer>
-
-    <div class="consent-banner" id="consentBanner" role="dialog" aria-live="polite">
-      <div class="consent-content">
-        <p>Usamos cookies para analítica y anuncios. Puedes aceptar o rechazar.</p>
-        <div class="consent-actions">
-          <button id="consentReject" type="button">Rechazar</button>
-          <button id="consentAccept" type="button">Aceptar</button>
-        </div>
-      </div>
-    </div>
-
-    <script src="analytics-init.js?v=20260712-3"></script>
-    <script src="assets-list.js?v=20260717-1"></script>
-    <script src="app-utils.js?v=20260717-2"></script>
-    <script src="paint.js?v=20260717-2"></script>
+    <dialog id="resetDialog" class="editor-dialog" aria-labelledby="resetDialogTitle">
+      <h2 id="resetDialogTitle">¿Reiniciar este dibujo?</h2>
+      <p>Después podrás recuperar tu dibujo con Deshacer antes de seguir pintando.</p>
+      <form method="dialog" class="dialog-actions">
+        <button value="cancel" autofocus>Conservar dibujo</button>
+        <button value="reset">Reiniciar dibujo</button>
+      </form>
+    </dialog>
+    <dialog id="pngPreviewDialog" class="editor-dialog png-dialog" aria-labelledby="pngPreviewTitle">
+      <h2 id="pngPreviewTitle">Tu dibujo en PNG</h2>
+      <img id="pngPreviewImage" alt="Vista previa del dibujo para guardar" />
+      <p>Si la descarga no empieza, puedes guardar la imagen desde las opciones de tu navegador.</p>
+      <a id="pngFallbackDownload" download>Descargar por enlace alternativo</a>
+      <form method="dialog" class="dialog-actions"><button autofocus>Cerrar</button></form>
+    </dialog>
+    <script src="product-events.js?v=20261007-5"></script>
+<script src="privacy.js?v=20261007-5"></script>
+<script src="analytics-init.js?v=20261007-5"></script>
+<script src="assets-list.js?v=20261007-3"></script>
+    <script src="editor-i18n.js?v=20261007-6"></script>
+<script src="flood-fill.js?v=20261007-3"></script>
+    <script src="catalog-meta.js?v=20261007-3"></script>
+    <script src="app-utils.js?v=20261007-5"></script>
+    <script src="editor-ui.js?v=20261007-6"></script>
+<script src="paint.js?v=20261007-5"></script>
   </body>
 </html>

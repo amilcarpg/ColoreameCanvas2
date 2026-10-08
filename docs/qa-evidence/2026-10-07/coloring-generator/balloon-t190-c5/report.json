@@ -1,0 +1,164 @@
+{
+  "schemaVersion": 1,
+  "source_sha256": "c77e528ea2b7686945ed39cc70767fa60c8a4afe35fca825006687ba56c6428e",
+  "source_format": "PNG",
+  "source_size": [
+    1254,
+    1254
+  ],
+  "options": {
+    "mode": "outline",
+    "size": 1200,
+    "threshold": 190,
+    "noise": 64,
+    "close": 5,
+    "thickness": 4,
+    "colors": 6,
+    "detail": "simple"
+  },
+  "mode_used": "outline",
+  "web_size": [
+    1200,
+    1200
+  ],
+  "master_size": [
+    1200,
+    1200
+  ],
+  "thumbnail_size": [
+    360,
+    360
+  ],
+  "regions": [
+    {
+      "id": 1,
+      "pixels": 1075611,
+      "touches_edge": true,
+      "seed": [
+        525,
+        628
+      ],
+      "bbox": [
+        0,
+        0,
+        1200,
+        1200
+      ]
+    },
+    {
+      "id": 2,
+      "pixels": 184473,
+      "touches_edge": false,
+      "seed": [
+        661,
+        402
+      ],
+      "bbox": [
+        497,
+        52,
+        348,
+        723
+      ]
+    },
+    {
+      "id": 3,
+      "pixels": 39590,
+      "touches_edge": false,
+      "seed": [
+        861,
+        411
+      ],
+      "bbox": [
+        724,
+        108,
+        217,
+        633
+      ]
+    },
+    {
+      "id": 4,
+      "pixels": 5186,
+      "touches_edge": false,
+      "seed": [
+        602,
+        793
+      ],
+      "bbox": [
+        502,
+        779,
+        203,
+        30
+      ]
+    },
+    {
+      "id": 5,
+      "pixels": 24198,
+      "touches_edge": false,
+      "seed": [
+        603,
+        883
+      ],
+      "bbox": [
+        500,
+        815,
+        207,
+        132
+      ]
+    },
+    {
+      "id": 6,
+      "pixels": 4536,
+      "touches_edge": false,
+      "seed": [
+        599,
+        963
+      ],
+      "bbox": [
+        472,
+        953,
+        258,
+        22
+      ]
+    },
+    {
+      "id": 7,
+      "pixels": 28628,
+      "touches_edge": false,
+      "seed": [
+        599,
+        1044
+      ],
+      "bbox": [
+        481,
+        981,
+        243,
+        135
+      ]
+    }
+  ],
+  "region_count": 7,
+  "enclosed_regions_over_16px": 6,
+  "tiny_regions_under_16px": 0,
+  "line_pixel_ratio": 0.0540125,
+  "removed_line_components": 46,
+  "regions_before_repair": 10,
+  "filled_small_interiors": 0,
+  "changed_line_pixels": 28435,
+  "warnings": [
+    "La reparación/grosor/redimensión cambió la conectividad; comprobar uniones y separaciones."
+  ],
+  "review_required": true,
+  "technical_status": "needs_review",
+  "elapsed_ms": 574,
+  "versions": {
+    "pillow": "12.3.0",
+    "numpy": "2.3.5",
+    "opencv": "5.0.0"
+  },
+  "output_sha256": {
+    "master": "3ca37754fbb48924ad2ac4dbeb879abe91cf8b18d3726939f2b1330cede9c2ec",
+    "drawing": "3ca37754fbb48924ad2ac4dbeb879abe91cf8b18d3726939f2b1330cede9c2ec",
+    "thumbnail": "7a5e53fc7b7e149aac22b710b9e0cd047e5fc6cfc2cf63034583e6ffd33c7798",
+    "regions": "ab864fc87a1e67caaa33eb58039a43aec70179384e14b92c9feda70e5f98cacc"
+  }
+}

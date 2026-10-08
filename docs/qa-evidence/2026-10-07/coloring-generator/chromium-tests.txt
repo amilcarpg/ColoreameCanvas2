@@ -1,0 +1,22 @@
+Engine chromium 154.0.8037.98
+✔ Five originals: UI agrees with CLI, exact region fill, protected lines, reset and download (9872.3464ms)
+✔ Pending conversion and settings changes discard stale results and allow regeneration (3935.3186ms)
+✔ Own file upload, mobile layout, report download, invalid input and origin checks (2147.8953ms)
+✔ tortoise in actual paint editor: contours, undo, autosave, restore and PNG (1333.6176ms)
+✔ tortoise in actual brush editor: contours, undo, autosave, restore and PNG (1560.0597ms)
+✔ fox in actual paint editor: contours, undo, autosave, restore and PNG (1371.9088ms)
+✔ fox in actual brush editor: contours, undo, autosave, restore and PNG (1611.7803ms)
+✔ balloon in actual paint editor: contours, undo, autosave, restore and PNG (1409.9747ms)
+✔ balloon in actual brush editor: contours, undo, autosave, restore and PNG (1609.3641ms)
+✔ flower in actual paint editor: contours, undo, autosave, restore and PNG (1466.8933ms)
+✔ flower in actual brush editor: contours, undo, autosave, restore and PNG (1615.1657ms)
+✔ house-photo in actual paint editor: contours, undo, autosave, restore and PNG (1557.6404ms)
+✔ house-photo in actual brush editor: contours, undo, autosave, restore and PNG (1605.0022ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 31902.1107

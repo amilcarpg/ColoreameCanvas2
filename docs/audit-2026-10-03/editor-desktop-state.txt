@@ -1,0 +1,54 @@
+- banner:
+  - link "← Volver al inicio":
+    - /url: index.html
+  - strong: Dinosaurio feliz
+  - generic: Dinosaurios · 4 dibujos
+  - generic: Zona de anuncio (Header)
+- main:
+  - heading "Colorea con balde de pintura" [level=1]
+  - paragraph: Explora la categoría dinosaurios y pinta por regiones con un clic o toque.
+  - region "Controles de coloreado":
+    - generic: Elige un dibujo
+    - combobox "Lista de dibujos":
+      - option "Dinosaurio feliz" [selected]
+      - option "Triceratops"
+      - option "Brontosaurio"
+      - option "Pterodáctilo"
+    - generic "Explorar dibujos"
+    - generic "Paletas de color":
+      - generic: Paleta
+      - combobox "Elegir paleta":
+        - option "Base" [selected]
+      - generic: Color personalizado
+      - textbox "Color personalizado": "#ef5350"
+    - generic "Paleta de colores":
+      - button "Color 1"
+      - button "Color 2"
+      - button "Color 3"
+      - button "Color 4"
+      - button "Color 5"
+      - button "Color 6"
+      - button "Color 7"
+      - button "Color 8"
+      - button "Color 9"
+      - button "Color 10"
+      - button "Color 11"
+      - button "Color 12"
+    - generic: No pudimos guardar este dibujo en el dispositivo.
+  - region "Área de coloreo":
+    - generic "Controles de zoom":
+      - button "Ajustar" [disabled]
+    - generic: Clic o toque para pintar con balde
+  - region "Acciones de coloreado":
+    - button "Deshacer"
+    - button "Reiniciar"
+    - button "Guardar"
+    - button "Siguiente"
+    - button "Dibujo sorpresa"
+    - button "Ver todos"
+    - link "Usar pincel":
+      - /url: brush.html
+- contentinfo:
+  - generic: Zona de anuncio (Footer)
+  - heading "Política de privacidad" [level=2]
+  - paragraph: Esta página puede usar Google Analytics y anuncios (AdSense) para medir el uso y mostrar publicidad. Puedes aceptar o rechazar el uso de cookies para medición y anuncios en el banner de consentimiento.

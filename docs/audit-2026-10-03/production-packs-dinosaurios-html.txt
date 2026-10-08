@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dinosaurios para colorear | PaintMe.club</title>
+    <meta name="description" content="Dinosaurios amigables para pintar con balde o pincel." />
+    <meta name="robots" content="index,follow" />
+    <meta name="theme-color" content="#fff7ea" />
+    <link rel="canonical" href="https://www.paintme.club/packs/dinosaurios.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Dinosaurios para colorear | PaintMe.club" />
+    <meta property="og:description" content="Dinosaurios amigables para pintar con balde o pincel." />
+    <meta property="og:url" content="https://www.paintme.club/packs/dinosaurios.html" />
+    <meta property="og:image" content="https://www.paintme.club/assets/dinosaur-v2.png" />
+    <link rel="stylesheet" href="../seo.css?v=20260714-1" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="topbar">
+        <a class="brand" href="../index.html">PaintMe.club</a>
+        <nav aria-label="Principal">
+          <a href="../index.html">Inicio</a>
+          <a href="../paint.html">Colorear</a>
+          <a href="../brush.html">Pincel</a>
+        </nav>
+      </header>
+      <main>
+        <section class="hero">
+          <div>
+            <h1>Dinosaurios para colorear</h1>
+            <p>Dinosaurios amigables para pintar con balde o pincel.</p>
+            <div class="actions">
+              <a class="button" href="../paint.html?category=dinosaurios&source=seo_page">Abrir pack</a>
+              <a class="button secondary" href="../categorias/dinosaurios.html">Ver categoría</a>
+            </div>
+          </div>
+          <div class="preview"><img src="../assets/dinosaur-v2.png" alt="Dinosaurios para colorear" /></div>
+        </section>
+        <section class="section">
+          <h2>Dibujos del pack</h2>
+          <div class="grid"><a class="card" href="../dibujos/dinosaurio.html"><img src="../assets/dinosaur-v2.png" alt="Dinosaurio feliz para colorear" loading="lazy" /><strong>Dinosaurio feliz</strong></a><a class="card" href="../dibujos/triceratops.html"><img src="../assets/triceratops.png" alt="Triceratops para colorear" loading="lazy" /><strong>Triceratops</strong></a><a class="card" href="../dibujos/brontosaurio.html"><img src="../assets/brontosaurio.png" alt="Brontosaurio para colorear" loading="lazy" /><strong>Brontosaurio</strong></a><a class="card" href="../dibujos/pterodactilo.html"><img src="../assets/pterodactilo.png" alt="Pterodáctilo para colorear" loading="lazy" /><strong>Pterodáctilo</strong></a></div>
+        </section>
+      </main>
+      <footer class="footer">
+        <strong>PaintMe.club</strong>
+        <nav aria-label="Secundaria">
+          <a href="../categorias/animales.html">Animales</a>
+          <a href="../categorias/dinosaurios.html">Dinosaurios</a>
+          <a href="../categorias/princesas.html">Princesas</a>
+        </nav>
+      </footer>
+    </div>
+  </body>
+</html>

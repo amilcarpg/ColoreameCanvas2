@@ -1,0 +1,32 @@
+[
+  {
+    "slug": "tortoise",
+    "prompt": "Use case: illustration-story. Asset type: original test input for a children's coloring-page converter. Create a single square black-and-white coloring illustration of a friendly tortoise, full body in three-quarter view, with a rounded shell divided into six large enclosed panels, four simple legs and a small smiling face. Bold clean continuous black outlines, white background, broad white interiors, fully closed outer silhouette. Centered subject with generous margins. No color, no gray shading, no texture, no writing, no watermark, no logo, no border frame. This is one illustration, not a sheet of multiple images.",
+    "tool": "built-in image_gen",
+    "generated_source": "C:\\Users\\amilc\\.codex\\generated_images\\01a116b6-8910-7503-8519-1e7d4350b2ae\\exec-aa0dd121-fcc0-4a46-8fea-c75a1ebd525f.png"
+  },
+  {
+    "slug": "fox",
+    "prompt": "Use case: illustration-story. Asset type: original test input for a coloring-page converter. Create one square flat-color illustration of a friendly sitting fox, full body, orange head and body, white muzzle, chest and tail tip, dark paws. Clean thick black outlines fully enclose each major color region. Simple large shapes, white background, ample margins. Solid uniform fills only; no shading, gradients or texture. No text, logos, watermark, border or additional objects. Original generic animal, no existing character.",
+    "tool": "built-in image_gen",
+    "generated_source": "C:\\Users\\amilc\\.codex\\generated_images\\01a116b6-8910-7503-8519-1e7d4350b2ae\\exec-8f1e69e8-7bef-4c05-811a-1ba2dc54e348.png"
+  },
+  {
+    "slug": "balloon",
+    "prompt": "Use case: illustration-story. Asset type: original scanned-pencil test input for a coloring-page converter. Create one square image resembling a photographed graphite-pencil drawing of a simple hot-air balloon on lightly textured off-white paper. Five large vertical enclosed balloon panels, a rectangular basket, two suspension ropes, and two small clouds. Full objects centered with generous margins. Visible hand-drawn gray pencil strokes and mild paper grain, gentle uneven illumination, but readable continuous silhouettes. No lettering, logos, watermark, border or colored ink.",
+    "tool": "built-in image_gen",
+    "generated_source": "C:\\Users\\amilc\\.codex\\generated_images\\01a116b6-8910-7503-8519-1e7d4350b2ae\\exec-ceacdf72-931d-4676-b3df-cdaf29c7d14e.png"
+  },
+  {
+    "slug": "flower",
+    "prompt": "Use case: illustration-story. Asset type: original flat illustration test input for a coloring-page converter. Create a single simple flower in a square image on pure white. Six broad rounded coral-red petals around a round golden-yellow center, one thick green stem and two large green leaves. Use completely flat solid shapes with crisp boundaries, no black outlines, no gradients, no shadows, no texture. Full plant centered, generous margins. No lettering, logo, watermark, border or other objects.",
+    "tool": "built-in image_gen",
+    "generated_source": "C:\\Users\\amilc\\.codex\\generated_images\\01a116b6-8910-7503-8519-1e7d4350b2ae\\exec-6ac8b3a6-8db6-403d-8fd6-5fe8315a7843.png"
+  },
+  {
+    "slug": "house-photo",
+    "prompt": "Use case: product-mockup. Asset type: original photorealistic test input for a coloring-page converter. A front-facing small handcrafted wooden toy house on a plain light cream surface. Simple pitched roof, rectangular facade, one door and two square windows. Natural pale wood grain, soft diffuse daylight and one gentle contact shadow, neutral nearly white background. Square composition, full toy centered with generous margins. Photograph, not an illustration. No people, lettering, brands, logos, watermark or additional objects.",
+    "tool": "built-in image_gen",
+    "generated_source": "C:\\Users\\amilc\\.codex\\generated_images\\01a116b6-8910-7503-8519-1e7d4350b2ae\\exec-ac195735-ee84-4ee8-aeec-90d2620938f5.png"
+  }
+]

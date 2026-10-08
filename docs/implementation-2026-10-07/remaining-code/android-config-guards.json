@@ -1,0 +1,20 @@
+{
+  "scope": "Gradle dry-run guard only; no signed release, profile APK, ads request or account validation.",
+  "cases": [
+    {
+      "case": "release_test",
+      "exit_code": 1,
+      "expected_guard": "never test"
+    },
+    {
+      "case": "profile_test",
+      "exit_code": 1,
+      "expected_guard": "never test"
+    },
+    {
+      "case": "production_missing",
+      "exit_code": 1,
+      "expected_guard": "Set a confirmed production ADMOB_APP_ID."
+    }
+  ]
+}

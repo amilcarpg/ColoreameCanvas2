@@ -1,0 +1,201 @@
+{
+  "scope": "Local default build; outbound requests not intercepted or blocked by the runner. CSP is active. HAR contains artificial test traffic only.",
+  "cases": [
+    {
+      "page": "index.html",
+      "state": "undecided",
+      "third_party_requests": 0,
+      "cookies": 0,
+      "activity_preserved": true
+    },
+    {
+      "page": "index.html",
+      "state": "save",
+      "third_party_requests": 0,
+      "cookies": 0,
+      "activity_preserved": true
+    },
+    {
+      "page": "index.html",
+      "state": "reject",
+      "third_party_requests": 0,
+      "cookies": 0,
+      "activity_preserved": true
+    },
+    {
+      "page": "index.html",
+      "state": "revoke",
+      "third_party_requests": 0,
+      "cookies": 0,
+      "activity_preserved": true
+    },
+    {
+      "page": "paint.html",
+      "state": "undecided",
+      "third_party_requests": 0,
+      "cookies": 0,
+      "activity_preserved": true
+    },
+    {
+      "page": "paint.html",
+      "state": "save",
+      "third_party_requests": 0,
+      "cookies": 0,
+      "activity_preserved": true
+    },
+    {
+      "page": "paint.html",
+      "state": "reject",
+      "third_party_requests": 0,
+      "cookies": 0,
+      "activity_preserved": true
+    },
+    {
+      "page": "paint.html",
+      "state": "revoke",
+      "third_party_requests": 0,
+      "cookies": 0,
+      "activity_preserved": true
+    },
+    {
+      "page": "brush.html",
+      "state": "undecided",
+      "third_party_requests": 0,
+      "cookies": 0,
+      "activity_preserved": true
+    },
+    {
+      "page": "brush.html",
+      "state": "save",
+      "third_party_requests": 0,
+      "cookies": 0,
+      "activity_preserved": true
+    },
+    {
+      "page": "brush.html",
+      "state": "reject",
+      "third_party_requests": 0,
+      "cookies": 0,
+      "activity_preserved": true
+    },
+    {
+      "page": "brush.html",
+      "state": "revoke",
+      "third_party_requests": 0,
+      "cookies": 0,
+      "activity_preserved": true
+    },
+    {
+      "page": "adults.html",
+      "state": "undecided",
+      "third_party_requests": 0,
+      "cookies": 0,
+      "activity_preserved": true
+    },
+    {
+      "page": "adults.html",
+      "state": "save",
+      "third_party_requests": 0,
+      "cookies": 0,
+      "activity_preserved": true
+    },
+    {
+      "page": "adults.html",
+      "state": "reject",
+      "third_party_requests": 0,
+      "cookies": 0,
+      "activity_preserved": true
+    },
+    {
+      "page": "adults.html",
+      "state": "revoke",
+      "third_party_requests": 0,
+      "cookies": 0,
+      "activity_preserved": true
+    },
+    {
+      "page": "privacy.html",
+      "state": "undecided",
+      "third_party_requests": 0,
+      "cookies": 0,
+      "activity_preserved": true
+    },
+    {
+      "page": "privacy.html",
+      "state": "save",
+      "third_party_requests": 0,
+      "cookies": 0,
+      "activity_preserved": true
+    },
+    {
+      "page": "privacy.html",
+      "state": "reject",
+      "third_party_requests": 0,
+      "cookies": 0,
+      "activity_preserved": true
+    },
+    {
+      "page": "privacy.html",
+      "state": "revoke",
+      "third_party_requests": 0,
+      "cookies": 0,
+      "activity_preserved": true
+    },
+    {
+      "page": "categorias/animales.html",
+      "state": "undecided",
+      "third_party_requests": 0,
+      "cookies": 0,
+      "activity_preserved": true
+    },
+    {
+      "page": "categorias/animales.html",
+      "state": "save",
+      "third_party_requests": 0,
+      "cookies": 0,
+      "activity_preserved": true
+    },
+    {
+      "page": "categorias/animales.html",
+      "state": "reject",
+      "third_party_requests": 0,
+      "cookies": 0,
+      "activity_preserved": true
+    },
+    {
+      "page": "categorias/animales.html",
+      "state": "revoke",
+      "third_party_requests": 0,
+      "cookies": 0,
+      "activity_preserved": true
+    },
+    {
+      "page": "packs/animales.html",
+      "state": "undecided",
+      "third_party_requests": 0,
+      "cookies": 0,
+      "activity_preserved": true
+    },
+    {
+      "page": "packs/animales.html",
+      "state": "save",
+      "third_party_requests": 0,
+      "cookies": 0,
+      "activity_preserved": true
+    },
+    {
+      "page": "packs/animales.html",
+      "state": "reject",
+      "third_party_requests": 0,
+      "cookies": 0,
+      "activity_preserved": true
+    },
+    {
+      "page": "packs/animales.html",
+      "state": "revoke",
+      "third_party_requests": 0,
+      "cookies": 0,
+      "activity_preserved": true
+    }
+  ]
+}

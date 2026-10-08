@@ -552,7 +552,7 @@ summary {
   justify-content: space-between;
 }
 
-.app-card-toolbar button {
+.app-card-toolbar .preview-icon {
   width: 44px;
   height: 44px;
   border: 0;
@@ -1306,7 +1306,7 @@ summary {
     border-radius: 28px;
   }
 
-  .app-card-toolbar button {
+  .app-card-toolbar .preview-icon {
     width: 38px;
     height: 38px;
   }
@@ -1315,3 +1315,6 @@ summary {
     font-size: 0.8rem;
   }
 }
+
+:where(a, button, summary):focus-visible { outline: 3px solid #1447c4; outline-offset: 3px; }
+.app-card-toolbar .preview-icon { display: inline-flex; align-items: center; justify-content: center; }

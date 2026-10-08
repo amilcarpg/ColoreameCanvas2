@@ -4,30 +4,9 @@ const LINE_ALPHA_THRESHOLD = 238;
 const LINE_DARKNESS_MULTIPLIER = 1.5;
 const MAX_COLOR_CHANNEL_SPREAD = 24;
 const MAX_COLORED_PIXEL_RATIO = 0.01;
-const COLORS = [
-  "#ef5350",
-  "#ec407a",
-  "#ab47bc",
-  "#5c6bc0",
-  "#42a5f5",
-  "#26a69a",
-  "#66bb6a",
-  "#ffee58",
-  "#ffca28",
-  "#ff7043",
-  "#8d6e63",
-  "#78909c",
-];
+const COLORS = window.PaintMe?.PALETTES?.base?.colors || [];
 
-const CATEGORY_LABELS = {
-  animales: "Animales",
-  vehiculos: "Vehículos",
-  navidad: "Navidad",
-  fantasia: "Fantasía",
-  dinosaurios: "Dinosaurios",
-  princesas: "Princesas",
-  gabby: "Gabby",
-};
+const CATEGORY_LABELS = window.PaintMe?.CATEGORY_LABELS || {};
 
 const SAFE_QUERY_VALUE = /^[a-z0-9-]{1,64}$/;
 
@@ -46,12 +25,18 @@ const brushSizeInput = document.getElementById("brushSize");
 const brushSizeValue = document.getElementById("brushSizeValue");
 const eraserBtn = document.getElementById("eraserBtn");
 const undoBtn = document.getElementById("undoBtn");
+const redoBtn = document.getElementById("redoBtn");
 const resetBtn = document.getElementById("resetBtn");
 const saveBtn = document.getElementById("saveBtn");
 const nextBtn = document.getElementById("nextBtn");
 const surpriseBtn = document.getElementById("surpriseBtn");
 const allBtn = document.getElementById("allBtn");
 const statusEl = document.getElementById("status");
+const localSaveStatus = document.getElementById("localSaveStatus");
+const retrySaveBtn = document.getElementById("retrySaveBtn");
+const exportStatus = document.getElementById("exportStatus");
+const pngPreviewBtn = document.getElementById("pngPreviewBtn");
+const resetDialog = document.getElementById("resetDialog");
 const canvasWrap = document.querySelector(".canvas-wrap");
 const zoomResetBtn = document.getElementById("zoomResetBtn");
 const browseNoteEl = document.getElementById("browseNote");
@@ -60,8 +45,14 @@ const contextMetaEl = document.getElementById("contextMeta");
 const appLeadEl = document.getElementById("appLead");
 const RAW_ASSETS_LIST = Array.isArray(window.ASSETS) ? window.ASSETS : [];
 const ASSETS_LIST = RAW_ASSETS_LIST.filter(isValidPngAssetRecord);
-const PM = window.PaintMe || {};
-const PALETTES = PM.PALETTES || { base: { label: "Base", colors: COLORS } };
+const PM = window.PaintMe;
+if (!window.PaintMeEditorUI?.buildGallery || !PM?.PALETTES?.base || !PM?.createAutosaveController) {
+  if (statusEl) statusEl.textContent = "No se pudo iniciar el editor. Recarga la página para cargar sus herramientas.";
+  canvas.style.pointerEvents = "none";
+  document.querySelectorAll(".controls button").forEach((button) => { button.disabled = true; });
+  throw new Error("PaintMe: faltan las herramientas compartidas del editor");
+}
+const PALETTES = PM.PALETTES;
 const ASSET_BY_SLUG = new Map(ASSETS_LIST.map((asset) => [asset.slug, asset]));
 const VALID_CATEGORIES = new Set(
   ASSETS_LIST.map((asset) => asset.category).filter(Boolean)
@@ -84,7 +75,8 @@ const requestedAsset = requestedAssetSlug
 let activeColor = COLORS[0];
 let brushSize = Number(brushSizeInput?.value || 18);
 let eraseMode = false;
-let undoStack = [];
+const history = PM.createHistory(UNDO_LIMIT, 48 * 1024 * 1024);
+const undoStack = history.past;
 let isImageLoaded = false;
 let isDrawing = false;
 let lastPoint = null;
@@ -108,7 +100,29 @@ let pinchStartCenter = null;
 let pinchStartScroll = null;
 let activePalette = "base";
 let hasPaintedCurrentAsset = false;
-let autosaveTimer = null;
+let drawingOpenedAt = performance.now();
+let switchingAsset = false;
+let restoreRequestId = 0;
+let drawingRevision = 0;
+let restoringDrawing = false;
+let exportInProgress = false;
+let exportRequestId = 0;
+let exportPreviewSnapshot = null;
+let exportPreviewFilename = "";
+let resetUndoSnapshot = null;
+let restoreButtonRequestId = 0;
+let unreadableSavedDrawing = null;
+let imageLoadAbort = null;
+const autosave = PM.createAutosaveController("brush", (saved, slug, revision) => {
+  if (currentAsset?.slug !== slug || revision !== drawingRevision || isDrawing) return;
+  trackProductEvent(saved ? "local_save_success" : "local_save_failure", getTrackingPayload({result: saved ? "success" : "failure", reason: "storage"}));
+  if (saved) setUnsavedChanges(false);
+  setSaveState(saved ? "saved" : "error");
+  if (!saved) setStatus("No pudimos guardar. Descarga el PNG antes de salir.");
+  updateRestoreButton();
+}, (slug, revision) => {
+  if (currentAsset?.slug === slug && revision === drawingRevision && !isDrawing) setSaveState("saving");
+});
 let galleryInitialized = false;
 const activePointers = new Map();
 
@@ -196,68 +210,17 @@ function syncAssetSurface() {
   }
   document.querySelectorAll(".asset-card").forEach((card) => {
     card.classList.toggle("active", card.dataset.slug === currentAsset?.slug);
+    card.setAttribute("aria-pressed", String(card.dataset.slug === currentAsset?.slug));
   });
   updateRestoreButton();
 }
 
 function buildCategoryFilters() {
-  if (!categoryFiltersEl) return;
-  categoryFiltersEl.innerHTML = "";
-  const categories = ["", ...Array.from(VALID_CATEGORIES)];
-
-  categories.forEach((category) => {
-    const button = document.createElement("button");
-    button.type = "button";
-    button.className = "category-chip";
-    button.textContent = category ? getCategoryLabel(category) : "Todos";
-    button.classList.toggle("active", category === activeCategory);
-    button.addEventListener("click", () => {
-      activeCategory = category;
-      visibleAssets = getVisibleAssets();
-      currentAsset = visibleAssets.find((asset) => asset.slug === currentAsset?.slug)
-        || visibleAssets.find((asset) => asset.featured)
-        || visibleAssets[0]
-        || null;
-      buildAssetSelect();
-      buildGallery();
-      buildCategoryFilters();
-      updateContext();
-      if (currentAsset) selectAssetBySlug(currentAsset.slug, "gallery");
-    });
-    categoryFiltersEl.appendChild(button);
-  });
+  window.PaintMeEditorUI.buildCategoryFilters({categoryFiltersEl, VALID_CATEGORIES, activeCategory, getCategoryLabel, changeCategory});
 }
 
 function buildGallery() {
-  if (!assetGallery) return;
-  const assets = getGalleryAssets();
-  assetGallery.innerHTML = "";
-
-  if (assets.length === 0) {
-    const empty = document.createElement("div");
-    empty.className = "browse-note";
-    empty.textContent = "No encontramos dibujos con esa búsqueda.";
-    assetGallery.appendChild(empty);
-    return;
-  }
-
-  assets.forEach((asset) => {
-    const button = document.createElement("button");
-    button.type = "button";
-    button.className = "asset-card";
-    button.dataset.slug = asset.slug;
-    button.classList.toggle("active", asset.slug === currentAsset?.slug);
-    button.setAttribute("aria-label", `Pintar ${asset.label}`);
-    const image = document.createElement("img");
-    image.src = asset.thumbnailSrc || asset.src;
-    image.alt = "";
-    image.loading = "lazy";
-    const label = document.createElement("span");
-    label.textContent = asset.label;
-    button.append(image, label);
-    button.addEventListener("click", () => selectAssetBySlug(asset.slug, "gallery"));
-    assetGallery.appendChild(button);
-  });
+  window.PaintMeEditorUI.buildGallery({assetGallery, getGalleryAssets, currentAsset, selectAssetBySlug});
 }
 
 function ensureGalleryBuilt() {
@@ -274,67 +237,174 @@ function refreshGalleryIfBuilt() {
 }
 
 function buildPaletteOptions() {
-  if (!paletteSelect) return;
-  paletteSelect.innerHTML = "";
-  Object.entries(PALETTES).forEach(([key, palette]) => {
-    const option = document.createElement("option");
-    option.value = key;
-    option.textContent = palette.label;
-    option.selected = key === activePalette;
-    paletteSelect.appendChild(option);
-  });
+  window.PaintMeEditorUI.buildPaletteOptions({paletteSelect, PALETTES, activePalette});
 }
 
 function getActiveColors() {
   return PALETTES[activePalette]?.colors || COLORS;
 }
 
+function editorIsBusy() {
+  return switchingAsset || restoringDrawing || exportInProgress || isDrawing;
+}
+
+function setSaveState(state, message = "") {
+  const labels = {
+    idle: "Sin cambios por guardar",
+    pending: "Cambios pendientes de guardar",
+    saving: "Guardando en este dispositivo…",
+    saved: "Guardado en este dispositivo",
+    available: "Hay un dibujo guardado en este dispositivo. Puedes continuar.",
+    restored: "Dibujo recuperado de este dispositivo",
+    error: "No pudimos guardar. Reintenta o descarga el PNG.",
+  };
+  if (localSaveStatus) {
+    localSaveStatus.dataset.state = state;
+    localSaveStatus.textContent = message || labels[state] || "";
+  }
+  if (retrySaveBtn) retrySaveBtn.hidden = state !== "error";
+}
+
 async function updateRestoreButton() {
   if (!restoreBtn || !currentAsset) return;
   const slug = currentAsset.slug;
-  const saved = await PM.loadLocalDrawing?.("brush", slug);
-  if (currentAsset?.slug === slug) restoreBtn.hidden = !saved;
+  const request = ++restoreButtonRequestId;
+  const saved = await PM.loadLocalDrawing("brush", slug);
+  if (currentAsset?.slug !== slug || request !== restoreButtonRequestId) return;
+  const readable = saved && !(unreadableSavedDrawing?.slug === slug && unreadableSavedDrawing.dataUrl === saved.dataUrl);
+  restoreBtn.hidden = !readable;
+  if (readable && !hasUnsavedChanges && localSaveStatus?.dataset.state === "idle") setSaveState("available");
+  if (galleryBrowser?.open) refreshSavedGallery();
+}
+
+async function retryLocalSave() {
+  if (!isImageLoaded || editorIsBusy()) return;
+  setUnsavedChanges(true);
+  if (scheduleAutosave()) await autosave.flush();
 }
 
 function markFirstPaint() {
   if (hasPaintedCurrentAsset) return;
   hasPaintedCurrentAsset = true;
-  trackProductEvent("first_paint", getTrackingPayload());
+  trackProductEvent("first_paint", getTrackingPayload({time_band: window.PaintMeEvents.timeBand(performance.now() - drawingOpenedAt)}));
 }
 
 function scheduleAutosave() {
-  if (!currentAsset || !isImageLoaded) return;
-  window.clearTimeout(autosaveTimer);
-  autosaveTimer = window.setTimeout(async () => {
-    renderComposite();
-    const saved = await PM.saveLocalDrawing?.("brush", currentAsset.slug, canvas.toDataURL("image/png"));
-    if (saved) {
-      setStatus("Guardado localmente");
-      updateRestoreButton();
-    } else setStatus("No pudimos guardar este dibujo en el dispositivo.");
-  }, 450);
+  if (!currentAsset || !isImageLoaded) return false;
+  drawingRevision += 1;
+  try {
+    const scheduled = autosave.schedule(currentAsset.slug, canvas.toDataURL("image/png"), drawingRevision);
+    if (!scheduled) throw new Error("Invalid drawing snapshot");
+    setSaveState("pending");
+    return true;
+  } catch {
+    setUnsavedChanges(true);
+    setSaveState("error");
+    setStatus("No pudimos preparar el guardado. Descarga el PNG antes de salir.");
+    return false;
+  }
 }
 
+function updateNavigationState() {
+  const blocked = editorIsBusy();
+  [assetSelect, nextBtn, surpriseBtn, allBtn].forEach((control) => {
+    if (control) control.disabled = blocked || (control === allBtn && !activeCategory);
+  });
+  document.querySelectorAll(".asset-card, .category-chip").forEach((control) => { control.disabled = blocked || control.dataset.unreadable === "true"; });
+  [paletteSelect, customColorInput, document.getElementById("brushSize"), document.getElementById("eraserBtn")].forEach((control) => {
+    if (control) control.disabled = blocked || !isImageLoaded;
+  });
+  document.querySelectorAll(".color-swatch").forEach((control) => { control.disabled = blocked || !isImageLoaded; });
+  updateUndoButton();
+}
+
+function flushOnLeave() {
+  if (isDrawing) {
+    isDrawing = false;
+    lastPoint = null;
+    renderComposite();
+  }
+  const captured = !hasUnsavedChanges || scheduleAutosave();
+  const backedUp = captured && autosave.backup();
+  autosave.flush();
+  return backedUp;
+}
+
+window.addEventListener("pagehide", flushOnLeave);
+document.addEventListener("visibilitychange", () => {
+  if (document.visibilityState === "hidden") flushOnLeave();
+});
+window.addEventListener("beforeunload", (event) => {
+  const backedUp = flushOnLeave();
+  if ((hasUnsavedChanges && !backedUp)) {
+    event.preventDefault();
+    event.returnValue = "";
+  }
+});
+
+PM.bindEditorNavigation({
+  mode: "brush", getAsset: () => currentAsset, getCategory: () => activeCategory,
+  isBusy: editorIsBusy,
+  setBusy: (value) => { switchingAsset = value; updateNavigationState(); },
+  setStatus,
+  save: async () => {
+    const captured = !hasUnsavedChanges || scheduleAutosave();
+    const saved = await autosave.flush();
+    return captured && (saved || !hasUnsavedChanges);
+  },
+});
+
 async function restoreSavedDrawing() {
-  if (!currentAsset) return;
-  const saved = await PM.loadLocalDrawing?.("brush", currentAsset.slug);
-  if (!saved?.dataUrl) return;
-  const image = new Image();
-  image.onload = () => {
+  if (!currentAsset || !isImageLoaded || editorIsBusy()) return;
+  const slug = currentAsset.slug;
+  const request = ++restoreRequestId;
+  const revision = drawingRevision;
+  const loadId = imageLoadRequestId;
+  const current = () => currentAsset?.slug === slug && request === restoreRequestId && revision === drawingRevision && loadId === imageLoadRequestId;
+  restoringDrawing = true;
+  updateNavigationState();
+  setStatus("Recuperando dibujo…");
+  let saved;
+  try {
+    await autosave.flush();
+    saved = await PM.loadLocalDrawing("brush", slug);
+    if (!current()) return;
+    if (!saved?.dataUrl) {
+      setStatus("No hay una copia guardada para este dibujo.");
+      restoreBtn.hidden = true;
+      return;
+    }
+    const image = await PM.decodeSavedPng(saved.dataUrl);
+    if (!current()) return;
+    if (image.width !== canvas.width || image.height !== canvas.height) throw new Error("saved_dimensions");
     paintCtx.clearRect(0, 0, paintLayer.width, paintLayer.height);
-    paintCtx.drawImage(image, 0, 0, paintLayer.width, paintLayer.height);
+    paintCtx.drawImage(image, 0, 0);
     paintCtx.save();
     paintCtx.globalCompositeOperation = "destination-out";
     paintCtx.drawImage(lineLayer, 0, 0);
     paintCtx.restore();
-    undoStack = [];
-    setUnsavedChanges(false);
     renderComposite();
-    updateUndoButton();
+    drawingRevision += 1;
+    history.clear();
+    resetUndoSnapshot = null;
+    unreadableSavedDrawing = null;
+    setUnsavedChanges(false);
+    setSaveState("restored");
     setStatus("Dibujo restaurado");
-    trackProductEvent("return_to_saved", getTrackingPayload());
-  };
-  image.src = saved.dataUrl;
+    trackProductEvent("restore_success", getTrackingPayload({result: "success"}));
+  } catch {
+    if (!current()) return;
+    unreadableSavedDrawing = saved ? { slug, dataUrl: saved.dataUrl } : null;
+    setSaveState("error", "No se pudo recuperar la copia guardada. Puedes seguir pintando o descargar este dibujo.");
+    setStatus("No se pudo recuperar el dibujo guardado.");
+    trackProductEvent("restore_failure", getTrackingPayload({result: "failure", reason: "restore"}));
+    restoreBtn.hidden = true;
+  } finally {
+    if (request === restoreRequestId) {
+      restoringDrawing = false;
+      updateNavigationState();
+    }
+  }
 }
 
 function goToRelativeAsset(method) {
@@ -364,6 +434,7 @@ function ensureExitGuard() {
 function setUnsavedChanges(value) {
   hasUnsavedChanges = Boolean(value);
   if (hasUnsavedChanges) {
+    setSaveState("pending");
     ensureExitGuard();
   }
 }
@@ -379,47 +450,11 @@ function isPaintLayerBlank() {
 }
 
 function buildPalette() {
-  paletteEl.innerHTML = "";
-  getActiveColors().forEach((color, index) => {
-    const swatch = document.createElement("button");
-    swatch.type = "button";
-    swatch.className = "color-swatch";
-    swatch.style.background = color;
-    swatch.setAttribute("aria-label", `Color ${index + 1}`);
-    if (color === activeColor) swatch.classList.add("active");
-    swatch.addEventListener("click", () => {
-      activeColor = color;
-      eraseMode = false;
-      syncToolButtons();
-      document
-        .querySelectorAll(".color-swatch")
-        .forEach((el) => el.classList.remove("active"));
-      swatch.classList.add("active");
-      setStatus(`Pincel activo: ${color}`);
-    });
-    paletteEl.appendChild(swatch);
-  });
+  window.PaintMeEditorUI.buildPalette({paletteEl, colors: getActiveColors(), activeColor, getColorName: PM.getColorName, onColor(color) { activeColor = color; eraseMode = false; syncToolButtons(); setStatus(`Pincel activo: ${color}`); }});
 }
 
 function buildAssetSelect() {
-  assetSelect.innerHTML = "";
-  if (visibleAssets.length === 0) {
-    assetSelect.disabled = true;
-    setStatus("No hay dibujos PNG disponibles.");
-    return;
-  }
-
-  assetSelect.disabled = false;
-
-  visibleAssets.forEach((asset) => {
-    const option = document.createElement("option");
-    option.value = asset.slug || asset.src;
-    option.textContent = asset.label;
-    if (currentAsset && option.value === (currentAsset.slug || currentAsset.src)) {
-      option.selected = true;
-    }
-    assetSelect.appendChild(option);
-  });
+  window.PaintMeEditorUI.buildAssetSelect({assetSelect, visibleAssets, currentAsset, setStatus, emptyText: "No hay dibujos PNG disponibles."});
 }
 
 function getCategoryLabel(category) {
@@ -497,10 +532,16 @@ function normalizeInitialUrlState() {
 }
 
 function updateUndoButton() {
-  const disabled = !isImageLoaded;
+  const disabled = !isImageLoaded || editorIsBusy();
   undoBtn.disabled = disabled || undoStack.length === 0;
+  undoBtn.textContent = undoStack.length && undoStack[undoStack.length - 1] === resetUndoSnapshot ? "Recuperar reinicio" : "Deshacer";
+  redoBtn.disabled = disabled || history.future.length === 0;
   resetBtn.disabled = disabled;
+  document.getElementById("printDrawingBtn").disabled = disabled;
   saveBtn.disabled = disabled;
+  if (restoreBtn) restoreBtn.disabled = disabled;
+  if (retrySaveBtn) retrySaveBtn.disabled = disabled;
+  if (pngPreviewBtn) pngPreviewBtn.disabled = disabled;
 }
 
 function updateZoomUi() {
@@ -538,11 +579,11 @@ function fitCanvasToContainer() {
     parseFloat(styles.paddingTop) + parseFloat(styles.paddingBottom);
   const innerWidth = Math.max(0, canvasWrap.clientWidth - paddingX);
   const maxDisplayWidth = 980;
-  const maxDisplayHeight = Math.min(window.innerHeight * 0.6, 720);
+  const maxDisplayHeight = Math.min(window.innerHeight * (window.innerWidth <= 900 ? (window.innerHeight < 500 ? 0.4 : 0.3) : 0.65), 720);
   const baseScale = Math.min(
     innerWidth / canvas.width,
     maxDisplayWidth / canvas.width,
-    Math.max(240, maxDisplayHeight - paddingY) / canvas.height
+    Math.max(96, maxDisplayHeight - paddingY) / canvas.height
   );
   const scale = Math.max(0.1, baseScale) * zoomLevel;
   const displayWidth = Math.round(canvas.width * scale);
@@ -598,7 +639,7 @@ function getCenter(a, b) {
 function cancelStrokeForPinch(pointerId) {
   if (!isDrawing) return;
 
-  const previous = undoStack.pop();
+  const previous = history.cancelEdit();
   if (previous) {
     paintCtx.putImageData(previous, 0, 0);
     renderComposite();
@@ -720,16 +761,13 @@ function renderComposite() {
 function pushUndo() {
   if (!isImageLoaded) return;
   const snapshot = paintCtx.getImageData(0, 0, paintLayer.width, paintLayer.height);
-  undoStack.push(snapshot);
-  if (undoStack.length > UNDO_LIMIT) {
-    undoStack.shift();
-  }
+  history.push(snapshot);
   updateUndoButton();
 }
 
 function undo() {
-  if (undoStack.length === 0 || !isImageLoaded) return;
-  const prev = undoStack.pop();
+  if (undoStack.length === 0 || !isImageLoaded || editorIsBusy()) return;
+  const prev = history.undo(paintCtx.getImageData(0, 0, paintLayer.width, paintLayer.height));
   paintCtx.putImageData(prev, 0, 0);
   setUnsavedChanges(!isPaintLayerBlank());
   renderComposite();
@@ -737,31 +775,109 @@ function undo() {
   updateUndoButton();
 }
 
-async function reset() {
-  if (!isImageLoaded) return;
-  paintCtx.clearRect(0, 0, paintLayer.width, paintLayer.height);
-  undoStack = [];
-  setUnsavedChanges(false);
-  await PM.clearLocalDrawing?.("brush", currentAsset?.slug);
-  await updateRestoreButton();
+function redo() {
+  if (!history.future.length || !isImageLoaded || editorIsBusy()) return;
+  const next = history.redo(paintCtx.getImageData(0, 0, paintLayer.width, paintLayer.height));
+  paintCtx.putImageData(next, 0, 0);
   renderComposite();
+  setUnsavedChanges(!isPaintLayerBlank());
+  scheduleAutosave();
   updateUndoButton();
 }
 
-function save() {
-  if (!isImageLoaded) return;
-  renderComposite();
-  canvas.toBlob((blob) => {
-    if (!blob) return;
-    const link = document.createElement("a");
-    link.href = URL.createObjectURL(blob);
-    const safeName = currentAsset?.slug || "pincel";
-    link.download = `${safeName}-pincel.png`;
-    link.click();
-    URL.revokeObjectURL(link.href);
-    setUnsavedChanges(false);
-    trackProductEvent("save_png", getTrackingPayload());
-  });
+async function reset() {
+  if (!isImageLoaded || editorIsBusy()) return;
+  switchingAsset = true;
+  const slug = currentAsset.slug;
+  const revision = drawingRevision;
+  updateNavigationState();
+  try {
+    const confirmed = await PM.confirmReset(resetDialog);
+    if (!confirmed || currentAsset?.slug !== slug || revision !== drawingRevision) return;
+    restoreRequestId += 1;
+    drawingRevision += 1;
+    await autosave.cancel();
+    pushUndo();
+    resetUndoSnapshot = undoStack[undoStack.length - 1];
+    paintCtx.clearRect(0, 0, paintLayer.width, paintLayer.height);
+    renderComposite();
+    const cleared = await PM.clearLocalDrawing("brush", slug);
+    setUnsavedChanges(!cleared);
+    setSaveState(cleared ? "idle" : "error", cleared ? "Dibujo reiniciado. Recupera la obra anterior con Deshacer." : "No pudimos borrar la copia guardada. Puedes recuperar el dibujo anterior con Deshacer.");
+    setStatus(cleared ? "Dibujo reiniciado. Puedes recuperarlo con Deshacer." : "No pudimos borrar la copia guardada.");
+    await updateRestoreButton();
+  } finally {
+    switchingAsset = false;
+    updateNavigationState();
+    resetBtn.focus({ preventScroll: true });
+  }
+}
+
+async function save() {
+  if (!isImageLoaded || editorIsBusy()) return;
+  const request = ++exportRequestId;
+  const slug = currentAsset.slug;
+  const revision = drawingRevision;
+  const loadId = imageLoadRequestId;
+  const payload = getTrackingPayload();
+  const filename = slug + '-pincel.png';
+  const current = () => request === exportRequestId && currentAsset?.slug === slug && revision === drawingRevision && loadId === imageLoadRequestId;
+  exportInProgress = true;
+  exportPreviewSnapshot = null;
+  pngPreviewBtn.hidden = true;
+  exportStatus.dataset.state = "preparing";
+  exportStatus.textContent = "Preparando PNG…";
+  updateNavigationState();
+  try {
+    renderComposite();
+    const snapshot = PM.createCanvasSnapshot(canvas);
+    exportPreviewSnapshot = snapshot;
+    exportPreviewFilename = filename;
+    const blob = await PM.canvasToPngBlob(snapshot);
+    if (!current()) return;
+    PM.downloadPngBlob(blob, filename);
+    pngPreviewBtn.hidden = false;
+    exportStatus.dataset.state = "ready";
+    exportStatus.textContent = "PNG preparado para descargar. Revisa las descargas de tu navegador.";
+    trackProductEvent("save_png", { ...payload, export_result: "download_requested" });
+  } catch {
+    if (!current()) return;
+    let previewAvailable = false;
+    trackProductEvent("export_failure", {...getTrackingPayload(), result: "failure", reason: "encoding", export_result: "encoding_failed"});
+    try { previewAvailable = Boolean(exportPreviewSnapshot?.toDataURL("image/png")); } catch {}
+    pngPreviewBtn.hidden = !previewAvailable;
+    exportStatus.dataset.state = "error";
+    exportStatus.textContent = previewAvailable
+      ? "No pudimos preparar la descarga. Usa Ver PNG para guardar o vuelve a intentarlo."
+      : "No pudimos preparar el PNG. Intenta de nuevo; tu dibujo sigue en el editor.";
+  } finally {
+    if (request === exportRequestId) {
+      if (!current()) {
+        exportPreviewSnapshot = null;
+        pngPreviewBtn.hidden = true;
+        exportStatus.dataset.state = "cancelled";
+        exportStatus.textContent = "El dibujo cambió. Descarga su versión actual.";
+      }
+      exportInProgress = false;
+      updateNavigationState();
+    }
+  }
+}
+
+function openPngPreview() {
+  if (!exportPreviewSnapshot || editorIsBusy()) return;
+  try {
+    const dataUrl = exportPreviewSnapshot.toDataURL("image/png");
+    const dialog = document.getElementById("pngPreviewDialog");
+    const image = document.getElementById("pngPreviewImage");
+    const link = document.getElementById("pngFallbackDownload");
+    image.src = link.href = dataUrl;
+    link.download = exportPreviewFilename;
+    dialog.showModal();
+  } catch {
+    exportStatus.dataset.state = "error";
+    exportStatus.textContent = "No se pudo abrir la vista previa. Intenta descargar de nuevo.";
+  }
 }
 
 function getCanvasPoint(event) {
@@ -791,9 +907,15 @@ function drawBrushSegment(from, to) {
   }
 
   paintCtx.beginPath();
-  paintCtx.moveTo(from.x, from.y);
-  paintCtx.lineTo(to.x, to.y);
-  paintCtx.stroke();
+  if (from.x === to.x && from.y === to.y) {
+    paintCtx.fillStyle = eraseMode ? "rgba(0, 0, 0, 1)" : activeColor;
+    paintCtx.arc(from.x, from.y, brushSize / 2, 0, Math.PI * 2);
+    paintCtx.fill();
+  } else {
+    paintCtx.moveTo(from.x, from.y);
+    paintCtx.lineTo(to.x, to.y);
+    paintCtx.stroke();
+  }
   paintCtx.restore();
 
   if (lineMask) {
@@ -807,6 +929,7 @@ function drawBrushSegment(from, to) {
 }
 
 function startStroke(event) {
+  if (switchingAsset || restoringDrawing || exportInProgress) return;
   event.preventDefault();
   canvas.setPointerCapture?.(event.pointerId);
   trackPointer(event);
@@ -827,11 +950,13 @@ function startStroke(event) {
   if (!point) return;
 
   isDrawing = true;
+  drawingRevision += 1;
   lastPoint = point;
   pushUndo();
   drawBrushSegment(point, point);
   markFirstPaint();
   setUnsavedChanges(true);
+  updateNavigationState();
   setStatus(eraseMode ? "Borrando..." : "Pintando con pincel...");
 }
 
@@ -852,6 +977,7 @@ function continueStroke(event) {
   const point = getCanvasPoint(event);
   if (!point || !lastPoint) return;
 
+  drawingRevision += 1;
   drawBrushSegment(lastPoint, point);
   lastPoint = point;
 }
@@ -865,7 +991,7 @@ function endStroke(event) {
     lastPoint = null;
     scheduleAutosave();
     setStatus(eraseMode ? "Borrador activo" : `Pincel activo: ${activeColor}`);
-    updateUndoButton();
+    updateNavigationState();
   }
 }
 
@@ -891,10 +1017,14 @@ function drawLoadedSource(sourceWidth, sourceHeight, draw) {
   }
 
   buildLineLayer(sourceCanvas);
-  undoStack = [];
+  history.clear();
+  resetUndoSnapshot = null;
   isImageLoaded = true;
+  drawingOpenedAt = performance.now();
+  trackProductEvent("drawing_open", getTrackingPayload({result: "success"}));
   hasPaintedCurrentAsset = false;
   setUnsavedChanges(false);
+  setSaveState("idle");
   zoomLevel = 1;
   resetZoom();
   renderComposite();
@@ -908,6 +1038,22 @@ function drawLoadedSource(sourceWidth, sourceHeight, draw) {
 
 async function loadImage(src) {
   const requestId = ++imageLoadRequestId;
+  imageLoadAbort?.abort();
+  const controller = new AbortController();
+  imageLoadAbort = controller;
+  const loadTimeout = setTimeout(() => controller.abort(), 10000);
+  const waitForDecode = (promise) => new Promise((resolve, reject) => {
+    const abort = () => reject(new Error("image_load_timeout"));
+    controller.signal.addEventListener("abort", abort, { once: true });
+    if (controller.signal.aborted) abort();
+    Promise.resolve(promise).then((value) => {
+      if (controller.signal.aborted) {
+        value?.close?.();
+        reject(new Error("image_load_timeout"));
+      } else resolve(value);
+    }, reject).finally(() => controller.signal.removeEventListener("abort", abort));
+  });
+  let bitmap;
   isImageLoaded = false;
   updateUndoButton();
   setStatus("Cargando PNG...");
@@ -918,22 +1064,18 @@ async function loadImage(src) {
     }
 
     if (typeof createImageBitmap === "function") {
-      const response = await fetch(src, { cache: "force-cache" });
+      const response = await fetch(src, { cache: "force-cache", signal: controller.signal });
       if (!response.ok) {
         throw new Error(`No se pudo descargar ${src}`);
       }
       const blob = await response.blob();
-      const bitmap = await createImageBitmap(blob);
+      bitmap = await waitForDecode(createImageBitmap(blob));
 
-      if (requestId !== imageLoadRequestId) {
-        bitmap.close?.();
-        return;
-      }
+      if (requestId !== imageLoadRequestId) return;
 
       drawLoadedSource(bitmap.width, bitmap.height, (targetCtx, drawWidth, drawHeight) => {
         targetCtx.drawImage(bitmap, 0, 0, drawWidth, drawHeight);
       });
-      bitmap.close?.();
       return;
     }
 
@@ -942,7 +1084,7 @@ async function loadImage(src) {
     img.decoding = "async";
     img.fetchPriority = "high";
     img.src = src;
-    await img.decode();
+    await waitForDecode(img.decode());
 
     if (requestId !== imageLoadRequestId) return;
 
@@ -952,35 +1094,71 @@ async function loadImage(src) {
   } catch {
     if (requestId !== imageLoadRequestId) return;
     isImageLoaded = false;
+    trackProductEvent("drawing_load_failure", getTrackingPayload({result: "failure", reason: "load"}));
     updateUndoButton();
     setStatus("No se pudo cargar. Usa un PNG en blanco y negro desde /assets/.");
+  } finally {
+    clearTimeout(loadTimeout);
+    bitmap?.close?.();
+    if (imageLoadAbort === controller) imageLoadAbort = null;
   }
 }
 
-function selectAssetBySlug(slug, source = "select") {
+async function selectAssetBySlug(slug, source = "select") {
   const selected = visibleAssets.find((asset) => asset.slug === slug);
-  if (!selected) return;
+  if (!selected || editorIsBusy()) {
+    syncAssetSurface();
+    return false;
+  }
+  if (isImageLoaded && currentAsset?.slug === slug) {
+    syncAssetSurface();
+    return true;
+  }
+  switchingAsset = true;
+  restoreRequestId += 1;
+  updateNavigationState();
+  if (isDrawing) { isDrawing = false; lastPoint = null; }
+  const captured = !hasUnsavedChanges || scheduleAutosave();
+  const saved = await autosave.flush();
+  if (!captured || (!saved && hasUnsavedChanges)) {
+    switchingAsset = false;
+    updateNavigationState();
+    syncAssetSurface();
+    setStatus("No pudimos guardar. Descarga el PNG antes de cambiar de dibujo.");
+    return false;
+  }
   currentAsset = selected;
+  drawingRevision += 1;
   assetSelect.value = selected.slug || selected.src;
   syncAssetSurface();
   trackProductEvent("asset_selected", getTrackingPayload({ source }));
-  loadImage(selected.src);
+  await loadImage(selected.src);
+  switchingAsset = false;
+  updateNavigationState();
+  updateRestoreButton();
+  return true;
 }
 
-function clearCategoryFilter() {
-  activeCategory = "";
-  visibleAssets = [...ASSETS_LIST];
-  currentAsset = visibleAssets.find((asset) => asset.slug === currentAsset?.slug)
-    || visibleAssets.find((asset) => asset.featured)
-    || visibleAssets[0]
-    || null;
+async function changeCategory(category) {
+  if (editorIsBusy()) return;
+  const previousCategory = activeCategory;
+  const previousAssets = visibleAssets;
+  activeCategory = category;
+  visibleAssets = getVisibleAssets();
+  const selected = visibleAssets.find((asset) => asset.slug === currentAsset?.slug)
+    || visibleAssets.find((asset) => asset.featured) || visibleAssets[0];
+  if (selected && !(await selectAssetBySlug(selected.slug, "gallery"))) {
+    activeCategory = previousCategory;
+    visibleAssets = previousAssets;
+  }
   buildAssetSelect();
   refreshGalleryIfBuilt();
   updateContext();
-  if (currentAsset) {
-    selectAssetBySlug(currentAsset.slug, "gallery");
-  }
+  syncUrl();
+  updateNavigationState();
 }
+
+function clearCategoryFilter() { return changeCategory(""); }
 
 canvas.addEventListener("pointerdown", startStroke);
 canvas.addEventListener("pointermove", continueStroke);
@@ -998,7 +1176,7 @@ assetSearch?.addEventListener("input", () => {
 });
 
 galleryBrowser?.addEventListener("toggle", () => {
-  if (galleryBrowser.open) ensureGalleryBuilt();
+  if (galleryBrowser.open) { ensureGalleryBuilt(); refreshSavedGallery(); }
 });
 
 paletteSelect?.addEventListener("change", () => {
@@ -1017,7 +1195,7 @@ customColorInput?.addEventListener("input", () => {
   syncToolButtons();
   document
     .querySelectorAll(".color-swatch")
-    .forEach((el) => el.classList.remove("active"));
+    .forEach((el) => { el.classList.remove("active"); el.setAttribute("aria-pressed", "false"); });
   trackProductEvent("custom_color_used", getTrackingPayload());
   setStatus(`Pincel activo: ${activeColor}`);
 });
@@ -1029,11 +1207,14 @@ eraserBtn.addEventListener("click", () => {
   setStatus(eraseMode ? "Borrador activo" : `Pincel activo: ${activeColor}`);
 });
 undoBtn.addEventListener("click", undo);
+redoBtn.addEventListener("click", redo);
 resetBtn.addEventListener("click", reset);
 saveBtn.addEventListener("click", save);
 nextBtn?.addEventListener("click", () => goToRelativeAsset("next"));
 surpriseBtn?.addEventListener("click", () => goToRelativeAsset("surprise"));
 restoreBtn?.addEventListener("click", restoreSavedDrawing);
+retrySaveBtn?.addEventListener("click", retryLocalSave);
+pngPreviewBtn?.addEventListener("click", openPngPreview);
 
 if (allBtn) {
   allBtn.addEventListener("click", clearCategoryFilter);
@@ -1071,9 +1252,9 @@ window.addEventListener("popstate", () => {
     return;
   }
 
-  const shouldLeave = window.confirm(
-    "Tienes cambios sin guardar. Si sales ahora, perderás tu dibujo. ¿Quieres salir?"
-  );
+  flushOnLeave();
+  const exitMessage = "Tienes cambios sin guardar. Si sales ahora, perderás tu dibujo. ¿Quieres salir?";
+  const shouldLeave = window.confirm(window.PaintMeI18n?.t(exitMessage) || exitMessage);
 
   if (shouldLeave) {
     allowExitAfterConfirm = true;
@@ -1085,44 +1266,58 @@ window.addEventListener("popstate", () => {
   window.history.pushState({ brushExitGuard: true }, "", window.location.href);
 });
 
-const consentBanner = document.getElementById("consentBanner");
-const consentAccept = document.getElementById("consentAccept");
-const consentReject = document.getElementById("consentReject");
-const CONSENT_KEY = "coloreame_consent_v1";
+let savedGalleryRequest = 0;
+async function refreshSavedGallery() {
+  const request = ++savedGalleryRequest;
+  const gallery = document.getElementById("savedGallery");
+  const message = document.getElementById("savedGalleryStatus");
+  gallery.replaceChildren();
+  message.textContent = "Buscando copias en este dispositivo…";
+  const result = await PM.listLocalDrawings("brush", ASSETS_LIST);
+  if (request !== savedGalleryRequest) return;
+  message.textContent = result.items.length ? `${result.items.length} copias locales disponibles.` : result.readable ? "Todavía no hay dibujos guardados en este modo." : "No pudimos consultar el almacenamiento. Puedes seguir pintando.";
+  for (const { asset, record } of result.items) {
+    const card = document.createElement("button");
+    card.type = "button";
+    card.className = "asset-card saved-card";
+    card.dataset.slug = asset.slug;
+    const preview = document.createElement("img");
+    preview.src = record.dataUrl;
+    preview.alt = "";
+    preview.loading = "lazy";
+    const label = document.createElement("span");
+    label.textContent = `Continuar ${asset.label}`;
+    preview.addEventListener("error", () => { preview.hidden = true; card.disabled = true; card.dataset.unreadable = "true"; label.textContent = `Copia no legible: ${asset.label}`; });
+    card.append(preview, label);
+    card.addEventListener("click", async () => {
+      if (editorIsBusy()) return;
+      if (!visibleAssets.some((candidate) => candidate.slug === asset.slug)) await changeCategory(asset.category);
+      if (await selectAssetBySlug(asset.slug, "continue")) await restoreSavedDrawing();
+    });
+    gallery.appendChild(card);
+  }
+  updateNavigationState();
+}
 
-function applyConsent(mode) {
-  if (typeof gtag !== "function") return;
-  const granted = mode === "granted";
-  gtag("consent", "update", {
-    analytics_storage: granted ? "granted" : "denied",
-    ad_storage: granted ? "granted" : "denied",
-    ad_user_data: granted ? "granted" : "denied",
-    ad_personalization: granted ? "granted" : "denied",
-  });
-
-  if (granted && typeof window.loadThirdPartyScript === "function") {
-    window
-      .loadThirdPartyScript(
-        "adsense",
-        "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2193465688766661",
-        { crossOrigin: "anonymous" }
-      )
-      .catch(() => {});
+async function printDrawing() {
+  if (!isImageLoaded || editorIsBusy()) return;
+  exportInProgress = true;
+  updateNavigationState();
+  try {
+    renderComposite();
+    const snapshot = PM.createCanvasSnapshot(canvas);
+    const dataUrl = snapshot.toDataURL("image/png");
+    await PM.decodeSavedPng(dataUrl);
+    const preview = document.getElementById("printPreviewImage");
+    preview.src = dataUrl;
+    await preview.decode();
+    window.print();
+  } catch {
+    exportStatus.dataset.state = "error";
+    exportStatus.textContent = "No pudimos preparar la impresión. Puedes descargar el PNG.";
+  } finally {
+    exportInProgress = false;
+    updateNavigationState();
   }
 }
-
-function setConsent(mode) {
-  localStorage.setItem(CONSENT_KEY, mode);
-  applyConsent(mode);
-  if (consentBanner) consentBanner.style.display = "none";
-}
-
-const savedConsent = localStorage.getItem(CONSENT_KEY);
-if (savedConsent === "granted" || savedConsent === "denied") {
-  applyConsent(savedConsent);
-} else if (consentBanner) {
-  consentBanner.style.display = "block";
-}
-
-consentAccept?.addEventListener("click", () => setConsent("granted"));
-consentReject?.addEventListener("click", () => setConsent("denied"));
+document.getElementById("printDrawingBtn").addEventListener("click", printDrawing);

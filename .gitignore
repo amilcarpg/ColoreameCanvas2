@@ -16,6 +16,7 @@ flutter/.flutter-plugins-dependencies
 flutter/.packages
 flutter/build/
 flutter/android/.gradle/
+flutter/android/build/
 flutter/android/local.properties
 flutter/android/key.properties
 flutter/ios/Flutter/ephemeral/
@@ -26,3 +27,12 @@ flutter/macos/Flutter/ephemeral/
 
 # Optional: ignore generated archives
 *.zip
+
+# Local Python tooling caches
+__pycache__/
+*.pyc
+
+# Isolated local SDKs and profiling artifacts
+.tools/
+
+flutter/ios/Flutter/AdMob.local.xcconfig

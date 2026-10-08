@@ -1,0 +1,35 @@
+{
+  "scope": "Windows headless synthetic 1200px fixture; timings include automation and persistent save, not device CPU/RAM or child touch latency.",
+  "engine": "chromium",
+  "mode": "brush",
+  "edit_and_save_wall_ms": [
+    177,
+    165,
+    164,
+    165,
+    164,
+    165,
+    148,
+    166,
+    233,
+    215,
+    183,
+    192,
+    158,
+    141,
+    134,
+    136,
+    166,
+    175,
+    135,
+    150
+  ],
+  "width": 1200,
+  "height": 1200,
+  "history_steps": 8,
+  "history_bytes": 46080000,
+  "long_tasks_ms": [
+    60
+  ],
+  "js_heap_bytes": 63045816
+}

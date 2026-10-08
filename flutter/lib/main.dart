@@ -1,19 +1,19 @@
-import 'dart:typed_data';
+import 'dart:async';
 import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:image/image.dart' as img;
 import 'package:url_launcher/url_launcher.dart';
 
-import 'ad_banner.dart';
+import 'catalog_widgets.dart';
+import 'adult_controls.dart';
+import 'drawing_thumbnail.dart';
 import 'ad_service.dart';
 import 'autosave_controller.dart';
 import 'catalog_repository.dart';
 import 'drawing_engine.dart';
 import 'drawing_storage.dart';
-import 'entitlement_repository.dart';
 import 'export_service.dart';
 import 'feedback_settings.dart';
 import 'layered_canvas.dart';
@@ -22,12 +22,19 @@ import 'paintme_theme.dart';
 import 'paintme_ui.dart';
 import 'preferences_repository.dart';
 import 'product_analytics.dart';
+import 'firebase_product_analytics.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final feedback = FeedbackSettings();
   final ads = AdService();
-  runApp(PaintMeApp(feedback: feedback, ads: ads));
+  runApp(
+    PaintMeApp(
+      feedback: feedback,
+      ads: ads,
+      analytics: FirebaseProductAnalytics.fromEnvironment(),
+    ),
+  );
   WidgetsBinding.instance.addPostFrameCallback((_) async {
     await feedback.load();
     await ads.initialize();
@@ -35,22 +42,34 @@ Future<void> main() async {
 }
 
 class PaintMeApp extends StatelessWidget {
-  const PaintMeApp({super.key, required this.feedback, required this.ads});
+  const PaintMeApp({
+    super.key,
+    required this.feedback,
+    required this.ads,
+    this.analytics = const DisabledProductAnalytics(),
+  });
   final FeedbackSettings feedback;
   final AdService ads;
+  final ProductAnalytics analytics;
   @override
   Widget build(BuildContext context) => MaterialApp(
     title: 'PaintMe',
     debugShowCheckedModeBanner: false,
     theme: paintMeTheme(),
-    home: CatalogPage(feedback: feedback, ads: ads),
+    home: CatalogPage(feedback: feedback, ads: ads, analytics: analytics),
   );
 }
 
 class CatalogPage extends StatefulWidget {
-  const CatalogPage({super.key, required this.feedback, required this.ads});
+  const CatalogPage({
+    super.key,
+    required this.feedback,
+    required this.ads,
+    this.analytics = const DisabledProductAnalytics(),
+  });
   final FeedbackSettings feedback;
   final AdService ads;
+  final ProductAnalytics analytics;
   @override
   State<CatalogPage> createState() => _CatalogPageState();
 }
@@ -59,7 +78,10 @@ class _CatalogPageState extends State<CatalogPage> {
   final _repository = CatalogRepository();
   final _search = TextEditingController();
   final _storage = DrawingStorage();
-  final _analytics = const DisabledProductAnalytics();
+  ProductAnalytics get _analytics => SanitizedProductAnalytics(
+    widget.analytics,
+    knownSlugs: (_drawings ?? []).map((drawing) => drawing.slug).toSet(),
+  );
   List<Drawing>? _drawings;
   List<DrawingSession> _sessions = const [];
   String _category = '';
@@ -68,6 +90,9 @@ class _CatalogPageState extends State<CatalogPage> {
   void initState() {
     super.initState();
     _repository.load().then((value) {
+      if (widget.analytics case final FirebaseProductAnalytics collector) {
+        collector.knownSlugs = value.map((drawing) => drawing.slug).toSet();
+      }
       if (mounted) setState(() => _drawings = value);
     });
     _refreshSessions();
@@ -88,7 +113,7 @@ class _CatalogPageState extends State<CatalogPage> {
 
   Future<void> _open(Drawing drawing) async {
     await _analytics.track(
-      'drawing_opened',
+      'drawing_open_requested',
       properties: {'slug': drawing.slug},
     );
     if (!mounted) return;
@@ -149,7 +174,11 @@ class _CatalogPageState extends State<CatalogPage> {
             tooltip: 'Privacidad y ajustes',
             onPressed: () => Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (_) => PrivacyPage(feedback: widget.feedback),
+                builder: (_) => PrivacyPage(
+                  feedback: widget.feedback,
+                  ads: widget.ads,
+                  analytics: widget.analytics,
+                ),
               ),
             ),
           ),
@@ -198,7 +227,7 @@ class _CatalogPageState extends State<CatalogPage> {
                   ),
                   if (_sessions.isNotEmpty) ...[
                     const SizedBox(height: 12),
-                    _ForYouRow(
+                    CatalogSuggestions(
                       drawings: drawings,
                       sessions: _sessions,
                       onOpen: _open,
@@ -213,7 +242,7 @@ class _CatalogPageState extends State<CatalogPage> {
                 scrollDirection: Axis.horizontal,
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 children: [
-                  _CategoryChip(
+                  CatalogCategoryChip(
                     label: 'Todos',
                     selected: _category.isEmpty,
                     color: PaintMeColors.coral,
@@ -222,10 +251,10 @@ class _CatalogPageState extends State<CatalogPage> {
                   ...CatalogRepository.categories.map(
                     (item) => Padding(
                       padding: const EdgeInsets.only(left: 8),
-                      child: _CategoryChip(
+                      child: CatalogCategoryChip(
                         label: item.label,
                         selected: _category == item.slug,
-                        color: _categoryColor(item.slug),
+                        color: catalogCategoryColor(item.slug),
                         onTap: () => setState(() => _category = item.slug),
                       ),
                     ),
@@ -251,7 +280,7 @@ class _CatalogPageState extends State<CatalogPage> {
                             childAspectRatio: .76,
                           ),
                       itemCount: visible.length,
-                      itemBuilder: (_, index) => _DrawingCard(
+                      itemBuilder: (_, index) => CatalogDrawingCard(
                         drawing: visible[index],
                         onTap: () => _open(visible[index]),
                         favorite: _favorite(visible[index].slug),
@@ -259,230 +288,9 @@ class _CatalogPageState extends State<CatalogPage> {
                       ),
                     ),
             ),
-            _CatalogAdArea(service: widget.ads),
+            CatalogAdArea(service: widget.ads),
           ],
         ),
-      ),
-    );
-  }
-}
-
-Color _categoryColor(String category) => switch (category) {
-  'animales' => PaintMeColors.mint,
-  'vehiculos' => PaintMeColors.sky,
-  'navidad' => PaintMeColors.coral,
-  'fantasia' => PaintMeColors.lilac,
-  'dinosaurios' => const Color(0xffa9dc67),
-  'princesas' => PaintMeColors.pink,
-  _ => PaintMeColors.coral,
-};
-
-class _CategoryChip extends StatelessWidget {
-  const _CategoryChip({
-    required this.label,
-    required this.selected,
-    required this.color,
-    required this.onTap,
-  });
-  final String label;
-  final bool selected;
-  final Color color;
-  final VoidCallback onTap;
-  @override
-  Widget build(BuildContext context) => Semantics(
-    button: true,
-    selected: selected,
-    label: label,
-    child: Material(
-      color: selected ? color : Colors.white,
-      borderRadius: PaintMeShape.extraLarge,
-      child: InkWell(
-        onTap: onTap,
-        borderRadius: PaintMeShape.extraLarge,
-        child: Container(
-          constraints: const BoxConstraints(minHeight: 48),
-          alignment: Alignment.center,
-          padding: const EdgeInsets.symmetric(horizontal: 18),
-          child: Text(
-            label,
-            style: TextStyle(
-              fontWeight: FontWeight.w800,
-              color: selected ? PaintMeColors.ink : PaintMeColors.inkSoft,
-            ),
-          ),
-        ),
-      ),
-    ),
-  );
-}
-
-class _DrawingCard extends StatelessWidget {
-  const _DrawingCard({
-    required this.drawing,
-    required this.onTap,
-    this.favorite = false,
-    this.onFavorite,
-  });
-  final Drawing drawing;
-  final VoidCallback onTap;
-  final bool favorite;
-  final VoidCallback? onFavorite;
-  @override
-  Widget build(BuildContext context) {
-    final color = _categoryColor(drawing.category);
-    return Semantics(
-      button: true,
-      label: 'Colorear ${drawing.label}',
-      child: Material(
-        color: Colors.transparent,
-        child: InkWell(
-          onTap: onTap,
-          borderRadius: PaintMeShape.large,
-          child: Ink(
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: PaintMeShape.large,
-              boxShadow: const [PaintMeShape.softShadow],
-            ),
-            child: LayoutBuilder(
-              builder: (context, constraints) => Column(
-                children: [
-                  Expanded(
-                    child: Stack(
-                      children: [
-                        Container(
-                          margin: const EdgeInsets.fromLTRB(10, 10, 10, 4),
-                          decoration: BoxDecoration(
-                            color: color.withValues(alpha: .18),
-                            borderRadius: PaintMeShape.medium,
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(10),
-                            child: Image.asset(
-                              drawing.asset,
-                              fit: BoxFit.contain,
-                              cacheWidth:
-                                  (constraints.maxWidth *
-                                          MediaQuery.devicePixelRatioOf(
-                                            context,
-                                          ))
-                                      .round(),
-                            ),
-                          ),
-                        ),
-                        if (onFavorite != null)
-                          Positioned(
-                            top: 6,
-                            right: 6,
-                            child: IconButton(
-                              tooltip: favorite
-                                  ? 'Quitar de favoritos'
-                                  : 'Añadir a favoritos',
-                              onPressed: onFavorite,
-                              icon: Icon(
-                                favorite
-                                    ? Icons.favorite
-                                    : Icons.favorite_border,
-                              ),
-                              color: PaintMeColors.coral,
-                            ),
-                          ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(10, 3, 10, 4),
-                    child: Text(
-                      drawing.label,
-                      maxLines: 2,
-                      textAlign: TextAlign.center,
-                      overflow: TextOverflow.ellipsis,
-                      style: Theme.of(context).textTheme.titleMedium,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 10),
-                    child: Text(
-                      'Colorear',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w800,
-                        color: color,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class _CatalogAdArea extends StatelessWidget {
-  const _CatalogAdArea({required this.service});
-  final AdService service;
-  @override
-  Widget build(BuildContext context) => Container(
-    color: Colors.white.withValues(alpha: .78),
-    padding: const EdgeInsets.only(top: 8),
-    child: SafeArea(
-      top: false,
-      child: AnimatedBuilder(
-        animation: service,
-        builder: (_, _) => service.ready
-            ? CatalogAdBanner(service: service)
-            : const SizedBox(height: 50),
-      ),
-    ),
-  );
-}
-
-class _ForYouRow extends StatelessWidget {
-  const _ForYouRow({
-    required this.drawings,
-    required this.sessions,
-    required this.onOpen,
-  });
-  final List<Drawing> drawings;
-  final List<DrawingSession> sessions;
-  final ValueChanged<Drawing> onOpen;
-
-  @override
-  Widget build(BuildContext context) {
-    final bySlug = {for (final drawing in drawings) drawing.slug: drawing};
-    final recent = sessions
-        .where((item) => item.status == DrawingStatus.inProgress)
-        .firstOrNull;
-    final favorite = sessions.where((item) => item.isFavorite).firstOrNull;
-    final suggestions = <Drawing>{
-      if (recent != null && bySlug[recent.slug] != null) bySlug[recent.slug]!,
-      if (favorite != null && bySlug[favorite.slug] != null)
-        bySlug[favorite.slug]!,
-      drawings.firstWhere(
-        (item) =>
-            recent == null || item.category != bySlug[recent.slug]?.category,
-        orElse: () => drawings.first,
-      ),
-    }.toList();
-    return SizedBox(
-      height: 72,
-      child: ListView.separated(
-        scrollDirection: Axis.horizontal,
-        itemCount: suggestions.length,
-        separatorBuilder: (_, _) => const SizedBox(width: 8),
-        itemBuilder: (_, index) {
-          final drawing = suggestions[index];
-          final isRecent = recent?.slug == drawing.slug;
-          return ActionChip(
-            avatar: Icon(isRecent ? Icons.play_arrow : Icons.auto_awesome),
-            label: Text(
-              isRecent ? 'Continúa: ${drawing.label}' : drawing.label,
-            ),
-            onPressed: () => onOpen(drawing),
-          );
-        },
       ),
     );
   }
@@ -505,10 +313,12 @@ class MyDrawingsPage extends StatefulWidget {
 
 class _MyDrawingsPageState extends State<MyDrawingsPage> {
   List<DrawingSession>? _sessions;
+  late final ThumbnailRepository _thumbnails;
 
   @override
   void initState() {
     super.initState();
+    _thumbnails = ThumbnailRepository(widget.storage);
     _reload();
   }
 
@@ -542,31 +352,39 @@ class _MyDrawingsPageState extends State<MyDrawingsPage> {
         ),
       ),
       body: PaintMeBackground(
-        child: ListView(
-          padding: const EdgeInsets.all(20),
-          children: [
-            _SessionSection(
-              title: 'Seguir coloreando',
-              sessions: progress,
-              drawings: drawings,
-              empty: 'Todavía no tienes dibujos en progreso.',
-              onOpen: widget.onOpen,
-              onFavorite: (slug) async {
-                await widget.storage.toggleFavorite(slug);
-                await _reload();
-              },
-            ),
-            const SizedBox(height: 24),
-            _SessionSection(
-              title: 'Terminados',
-              sessions: completed,
-              drawings: drawings,
-              empty: 'Cuando termines un dibujo, aparecerá aquí.',
-              onOpen: widget.onOpen,
-              onFavorite: (slug) async {
-                await widget.storage.toggleFavorite(slug);
-                await _reload();
-              },
+        child: CustomScrollView(
+          slivers: [
+            SliverPadding(
+              padding: const EdgeInsets.all(20),
+              sliver: SliverMainAxisGroup(
+                slivers: [
+                  _SessionSection(
+                    title: 'Seguir coloreando',
+                    sessions: progress,
+                    thumbnails: _thumbnails,
+                    drawings: drawings,
+                    empty: 'Todavía no tienes dibujos en progreso.',
+                    onOpen: widget.onOpen,
+                    onFavorite: (slug) async {
+                      await widget.storage.toggleFavorite(slug);
+                      await _reload();
+                    },
+                  ),
+                  const SliverToBoxAdapter(child: SizedBox(height: 24)),
+                  _SessionSection(
+                    title: 'Terminados',
+                    sessions: completed,
+                    thumbnails: _thumbnails,
+                    drawings: drawings,
+                    empty: 'Cuando termines un dibujo, aparecerá aquí.',
+                    onOpen: widget.onOpen,
+                    onFavorite: (slug) async {
+                      await widget.storage.toggleFavorite(slug);
+                      await _reload();
+                    },
+                  ),
+                ],
+              ),
             ),
           ],
         ),
@@ -579,6 +397,7 @@ class _SessionSection extends StatelessWidget {
   const _SessionSection({
     required this.title,
     required this.sessions,
+    required this.thumbnails,
     required this.drawings,
     required this.empty,
     required this.onOpen,
@@ -588,47 +407,67 @@ class _SessionSection extends StatelessWidget {
   final List<DrawingSession> sessions;
   final Map<String, Drawing> drawings;
   final String empty;
+  final ThumbnailRepository thumbnails;
   final ValueChanged<Drawing> onOpen;
   final ValueChanged<String> onFavorite;
 
   @override
-  Widget build(BuildContext context) => Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      Text(title, style: Theme.of(context).textTheme.headlineMedium),
-      const SizedBox(height: 8),
+  Widget build(BuildContext context) => SliverMainAxisGroup(
+    slivers: [
+      SliverToBoxAdapter(
+        child: Padding(
+          padding: const EdgeInsets.only(bottom: 8),
+          child: Text(title, style: Theme.of(context).textTheme.headlineMedium),
+        ),
+      ),
       if (sessions.isEmpty)
-        PaintMeSurface(padding: const EdgeInsets.all(16), child: Text(empty))
+        SliverToBoxAdapter(
+          child: PaintMeSurface(
+            padding: const EdgeInsets.all(16),
+            child: Text(empty),
+          ),
+        )
       else
-        ...sessions.map((session) {
-          final drawing = drawings[session.slug];
-          if (drawing == null) return const SizedBox.shrink();
-          return Padding(
-            padding: const EdgeInsets.only(bottom: 10),
-            child: PaintMeSurface(
-              child: ListTile(
-                leading: Image.asset(drawing.asset, width: 48, height: 48),
-                title: Text(drawing.label),
-                subtitle: Text(
-                  session.status == DrawingStatus.completed
-                      ? '¡Terminado!'
-                      : 'Toca para continuar',
-                ),
-                onTap: () => onOpen(drawing),
-                trailing: IconButton(
-                  tooltip: session.isFavorite
-                      ? 'Quitar de favoritos'
-                      : 'Añadir a favoritos',
-                  icon: Icon(
-                    session.isFavorite ? Icons.favorite : Icons.favorite_border,
+        SliverList(
+          delegate: SliverChildBuilderDelegate((context, index) {
+            final session = sessions[index];
+            final drawing = drawings[session.slug];
+            if (drawing == null) return const SizedBox.shrink();
+            return Padding(
+              padding: const EdgeInsets.only(bottom: 10),
+              child: PaintMeSurface(
+                child: ListTile(
+                  leading: DrawingThumbnail(
+                    drawing: drawing,
+                    session: session,
+                    repository: thumbnails,
                   ),
-                  color: PaintMeColors.coral,
-                  onPressed: () => onFavorite(session.slug),
+                  title: Text(drawing.label),
+                  subtitle: Text(
+                    session.status == DrawingStatus.completed
+                        ? '¡Terminado!'
+                        : (!session.hasDrawing && session.isFavorite
+                              ? 'Favorito; toca para abrir'
+                              : 'Toca para continuar'),
+                  ),
+                  onTap: () => onOpen(drawing),
+                  trailing: IconButton(
+                    tooltip: session.isFavorite
+                        ? 'Quitar de favoritos'
+                        : 'Añadir a favoritos',
+                    icon: Icon(
+                      session.isFavorite
+                          ? Icons.favorite
+                          : Icons.favorite_border,
+                    ),
+                    color: PaintMeColors.coral,
+                    onPressed: () => onFavorite(session.slug),
+                  ),
                 ),
               ),
-            ),
-          );
-        }),
+            );
+          }, childCount: sessions.length),
+        ),
     ],
   );
 }
@@ -640,16 +479,22 @@ class EditorPage extends StatefulWidget {
     required this.allDrawings,
     required this.feedback,
     required this.analytics,
+    this.storage,
+    this.exporter,
+    this.loadSource,
   });
   final Drawing drawing;
   final List<Drawing> allDrawings;
   final FeedbackSettings feedback;
   final ProductAnalytics analytics;
+  final DrawingStorage? storage;
+  final ExportService? exporter;
+  final Future<Uint8List> Function(Drawing)? loadSource;
   @override
   State<EditorPage> createState() => _EditorPageState();
 }
 
-class _EditorPageState extends State<EditorPage> {
+class _EditorPageState extends State<EditorPage> with WidgetsBindingObserver {
   static const colors = <int>[
     0xffef5350,
     0xffec407a,
@@ -664,8 +509,8 @@ class _EditorPageState extends State<EditorPage> {
     0xff8d6e63,
     0xff78909c,
   ];
-  final _storage = DrawingStorage();
-  final _export = ExportService();
+  late final _storage = widget.storage ?? DrawingStorage();
+  late final _export = widget.exporter ?? ExportService();
   final _preferences = PreferencesRepository();
   final _transform = TransformationController();
   final Set<int> _pointers = {};
@@ -678,21 +523,39 @@ class _EditorPageState extends State<EditorPage> {
   int _color = colors.first;
   int _brushSize = 18;
   bool _busy = false;
+  int _layerRevision = 0;
+  final _shareKey = GlobalKey();
   bool _showGestureHint = true;
   bool _firstColorTracked = false;
   String? _loadError;
+  AutosaveState _saveState = AutosaveState.idle;
 
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
     _load();
   }
+
+  final _openedTime = Stopwatch();
+  ProductAnalytics get _analytics => SanitizedProductAnalytics(
+    widget.analytics,
+    knownSlugs: widget.allDrawings.map((drawing) => drawing.slug).toSet(),
+  );
 
   Future<void> _load() async {
     if (mounted) setState(() => _loadError = null);
     try {
-      final bytes = await rootBundle.load(widget.drawing.asset);
-      final source = img.decodePng(bytes.buffer.asUint8List());
+      final loadSource = widget.loadSource;
+      final Uint8List bytes;
+      if (loadSource != null) {
+        bytes = await loadSource(widget.drawing);
+      } else {
+        final data = await rootBundle.load(widget.drawing.asset);
+        bytes = data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
+      }
+      if (!mounted) return;
+      final source = img.decodePng(bytes);
       final saved = await _storage.load(widget.drawing.slug);
       if (source == null) throw StateError('El dibujo no es un PNG válido.');
       final engine = DrawingEngine.fromSource(
@@ -700,12 +563,64 @@ class _EditorPageState extends State<EditorPage> {
         savedColor: saved == null ? null : Uint8List.fromList(saved.colorPng),
       );
       _engine = engine;
-      _autosave = AutosaveController(_storage, widget.drawing.slug, engine);
+      _autosave = AutosaveController(
+        _storage,
+        widget.drawing.slug,
+        engine.colorPng,
+        onState: (state) {
+          if (mounted) setState(() => _saveState = state);
+          if (state == AutosaveState.saved || state == AutosaveState.failed) {
+            unawaited(
+              _analytics.track(
+                state == AutosaveState.saved
+                    ? 'local_save_success'
+                    : 'local_save_failure',
+                properties: {
+                  'slug': widget.drawing.slug,
+                  'result': state == AutosaveState.saved
+                      ? 'success'
+                      : 'failure',
+                },
+              ),
+            );
+          }
+        },
+      );
       await _refreshLayers();
+      if (mounted) {
+        _openedTime.reset();
+        _openedTime.start();
+        if (saved != null) {
+          final restored = img.decodePng(saved.colorPng);
+          final valid =
+              restored != null &&
+              restored.width == engine.width &&
+              restored.height == engine.height;
+          await _analytics.track(
+            valid ? 'restore_success' : 'restore_failure',
+            properties: {
+              'slug': widget.drawing.slug,
+              'result': valid ? 'success' : 'failure',
+            },
+          );
+        }
+        await _analytics.track(
+          'drawing_opened',
+          properties: {'slug': widget.drawing.slug, 'result': 'success'},
+        );
+      }
       if (!await _preferences.isOnboardingComplete() && mounted) {
         WidgetsBinding.instance.addPostFrameCallback((_) => _showOnboarding());
       }
     } catch (_) {
+      await _analytics.track(
+        'drawing_load_failure',
+        properties: {
+          'slug': widget.drawing.slug,
+          'reason': 'load',
+          'result': 'failure',
+        },
+      );
       if (mounted) {
         setState(() {
           _loadError = 'No pudimos abrir este dibujo. Intenta nuevamente.';
@@ -733,7 +648,7 @@ class _EditorPageState extends State<EditorPage> {
           TextButton(
             onPressed: () async {
               await _preferences.completeOnboarding();
-              await widget.analytics.track(
+              await _analytics.track(
                 'onboarding_completed',
                 properties: {'skipped': true},
               );
@@ -744,7 +659,7 @@ class _EditorPageState extends State<EditorPage> {
           FilledButton(
             onPressed: () async {
               await _preferences.completeOnboarding();
-              await widget.analytics.track('onboarding_completed');
+              await _analytics.track('onboarding_completed');
               if (context.mounted) Navigator.pop(context);
             },
             child: const Text('¡Entendido!'),
@@ -757,6 +672,7 @@ class _EditorPageState extends State<EditorPage> {
   Future<void> _refreshLayers() async {
     final engine = _engine;
     if (engine == null) return;
+    final revision = ++_layerRevision;
     final color = await imageFromRgba(
       engine.colorBytes,
       engine.width,
@@ -765,7 +681,7 @@ class _EditorPageState extends State<EditorPage> {
     final line =
         _lineLayer ??
         await imageFromRgba(engine.lineBytes, engine.width, engine.height);
-    if (!mounted) {
+    if (!mounted || revision != _layerRevision || engine != _engine) {
       color.dispose();
       if (_lineLayer == null) line.dispose();
       return;
@@ -779,37 +695,62 @@ class _EditorPageState extends State<EditorPage> {
   }
 
   Offset _point(Offset local) => _transform.toScene(local);
-  bool get _drawingEnabled => _pointers.length == 1 && _tool != ToolMode.bucket;
+  bool get _drawingEnabled =>
+      !_busy && _pointers.length == 1 && _tool != ToolMode.bucket;
+  bool get _actionsBlocked => _busy || _pointers.isNotEmpty;
 
-  Future<void> _fill(Offset local) async {
-    final engine = _engine;
-    if (engine == null || _tool != ToolMode.bucket || _busy) return;
-    final point = _point(local);
+  Future<void> _edit(
+    Future<void> Function() operation, {
+    bool allowTap = false,
+  }) async {
+    if (_busy ||
+        !mounted ||
+        (allowTap ? _pointers.length > 1 : _pointers.isNotEmpty)) {
+      return;
+    }
     setState(() => _busy = true);
-    final filled = await engine.fill(
-      point.dx.round(),
-      point.dy.round(),
-      _color,
-    );
-    if (filled) {
+    try {
+      await operation();
+    } catch (_) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('No pudimos completar la acción. Puedes reintentar.'),
+          ),
+        );
+      }
+    } finally {
+      if (mounted) setState(() => _busy = false);
+    }
+  }
+
+  Future<void> _fill(Offset local) => _edit(() async {
+    final engine = _engine;
+    if (engine == null || _tool != ToolMode.bucket) return;
+    final point = _point(local);
+    if (await engine.fill(point.dx.round(), point.dy.round(), _color) &&
+        mounted) {
       widget.feedback.success();
       _trackFirstColor();
-      await _refreshLayers();
       _autosave?.schedule();
+      await _refreshLayers();
     }
-    if (mounted) setState(() => _busy = false);
-  }
+  }, allowTap: true);
 
   void _trackFirstColor() {
     if (_firstColorTracked) return;
     _firstColorTracked = true;
-    widget.analytics.track(
+    _analytics.track(
       'first_color_applied',
-      properties: {'slug': widget.drawing.slug},
+      properties: {
+        'slug': widget.drawing.slug,
+        'time_band': productTimeBand(_openedTime.elapsedMilliseconds),
+      },
     );
   }
 
   void _pointerDown(PointerDownEvent event) {
+    if (_busy) return;
     setState(() {
       _pointers.add(event.pointer);
       _stroke = _drawingEnabled ? [_point(event.localPosition)] : [];
@@ -835,9 +776,14 @@ class _EditorPageState extends State<EditorPage> {
       size: _brushSize,
       erase: _tool == ToolMode.eraser,
     );
-    _trackFirstColor();
-    await _refreshLayers();
-    _autosave?.schedule();
+    _busy = true;
+    try {
+      if (_tool != ToolMode.eraser) _trackFirstColor();
+      _autosave?.schedule();
+      await _refreshLayers();
+    } finally {
+      if (mounted) setState(() => _busy = false);
+    }
   }
 
   Future<void> _tap(TapUpDetails event) async {
@@ -846,72 +792,150 @@ class _EditorPageState extends State<EditorPage> {
 
   Future<bool> _confirmExit() async {
     final engine = _engine;
-    if (engine == null || !engine.hasChanges) return true;
-    return await showDialog<bool>(
-          context: context,
-          builder: (context) => AlertDialog(
-            title: const Text('¿Salir del dibujo?'),
-            content: const Text('Tu dibujo se guardó automáticamente.'),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.pop(context, false),
-                child: const Text('Seguir coloreando'),
+    if (engine == null) return true;
+    if (_actionsBlocked) return false;
+    if (!engine.hasChanges && _saveState == AutosaveState.idle) return true;
+    setState(() => _busy = true);
+    try {
+      final saved = await _autosave?.flush() ?? false;
+      if (!mounted) return false;
+      return await showDialog<bool>(
+            context: context,
+            builder: (context) => AlertDialog(
+              title: const Text('¿Salir del dibujo?'),
+              content: Text(
+                saved
+                    ? 'Tu dibujo se guardó en este dispositivo.'
+                    : 'No pudimos guardar. Seguir coloreando permite reintentar antes de salir.',
               ),
-              FilledButton(
-                onPressed: () => Navigator.pop(context, true),
-                child: const Text('Salir'),
-              ),
-            ],
-          ),
-        ) ??
-        false;
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(context, false),
+                  child: const Text('Seguir coloreando'),
+                ),
+                FilledButton(
+                  onPressed: () => Navigator.pop(context, true),
+                  child: Text(saved ? 'Salir' : 'Salir sin guardar'),
+                ),
+              ],
+            ),
+          ) ??
+          false;
+    } finally {
+      if (mounted) setState(() => _busy = false);
+    }
   }
 
-  Future<void> _undo() async {
+  Future<void> _undo() => _edit(() async {
     _engine?.undo();
-    await _refreshLayers();
     _autosave?.schedule();
-  }
-
-  Future<void> _reset() async {
-    _engine?.reset();
     await _refreshLayers();
+  });
+  Future<void> _redo() => _edit(() async {
+    _engine?.redo();
     _autosave?.schedule();
-  }
-
-  Future<void> _completeDrawing() async {
-    await _autosave?.flush();
-    await _storage.complete(widget.drawing.slug);
-    await widget.analytics.track(
-      'drawing_completed',
-      properties: {'slug': widget.drawing.slug},
-    );
-    if (!mounted) return;
-    await showDialog<void>(
+    await _refreshLayers();
+  });
+  Future<void> _reset() => _edit(() async {
+    if (_engine?.hasChanges != true) return;
+    final confirmed = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
-        icon: const Icon(Icons.celebration, size: 48, color: PaintMeColors.sun),
-        title: const Text('¡Qué dibujo tan genial!'),
-        content: const Text('Lo guardamos en tus dibujos terminados.'),
+        title: const Text('¿Reiniciar este dibujo?'),
+        content: const Text(
+          'Puedes cancelar o recuperar el dibujo con Deshacer antes de seguir pintando.',
+        ),
         actions: [
           TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: const Text('Seguir mirando'),
+            onPressed: () => Navigator.pop(context, false),
+            child: const Text('Cancelar'),
           ),
-          FilledButton.icon(
-            onPressed: () {
-              Navigator.pop(context);
-              _nextDrawing();
-            },
-            icon: const Icon(Icons.skip_next),
-            label: const Text('Otro dibujo'),
+          FilledButton(
+            onPressed: () => Navigator.pop(context, true),
+            child: const Text('Reiniciar'),
           ),
         ],
       ),
     );
+    if (confirmed != true || !mounted) return;
+    _engine?.reset();
+    _autosave?.schedule();
+    await _refreshLayers();
+  });
+  Future<void> _share() => _edit(() async {
+    if (!await requestAdultAccess(context) || !mounted) return;
+    final box = _shareKey.currentContext?.findRenderObject();
+    if (box is! RenderBox || !box.hasSize) return;
+    final result = await _export.saveAndShare(
+      slug: widget.drawing.slug,
+      png: _engine!.exportPng(),
+      origin: box.localToGlobal(Offset.zero) & box.size,
+    );
+    if (!mounted) return;
+    if (result == ExportOutcome.shared) {
+      await _analytics.track(
+        'drawing_shared',
+        properties: {'slug': widget.drawing.slug, 'result': 'success'},
+      );
+    } else if (result == ExportOutcome.failed) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text(
+            'No pudimos abrir Compartir. Puedes reintentar sin perder tu dibujo.',
+          ),
+        ),
+      );
+    }
+  });
+
+  Future<void> _completeDrawing() async {
+    if (_actionsBlocked || !mounted) return;
+    var next = false;
+    setState(() => _busy = true);
+    try {
+      final saved = await _autosave?.flush() ?? false;
+      if (!saved || !mounted) return;
+      await _storage.complete(widget.drawing.slug);
+      await _analytics.track(
+        'drawing_completed',
+        properties: {'slug': widget.drawing.slug},
+      );
+      if (!mounted) return;
+      next =
+          await showDialog<bool>(
+            context: context,
+            builder: (context) => AlertDialog(
+              icon: const Icon(
+                Icons.celebration,
+                size: 48,
+                color: PaintMeColors.sun,
+              ),
+              title: const Text('¡Dibujo terminado!'),
+              content: const Text('Lo guardamos en tus dibujos terminados.'),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(context, false),
+                  child: const Text('Seguir mirando'),
+                ),
+                FilledButton.icon(
+                  onPressed: () => Navigator.pop(context, true),
+                  icon: const Icon(Icons.skip_next),
+                  label: const Text('Otro dibujo'),
+                ),
+              ],
+            ),
+          ) ??
+          false;
+    } catch (_) {
+      if (mounted) setState(() => _saveState = AutosaveState.failed);
+    } finally {
+      if (mounted) setState(() => _busy = false);
+    }
+    if (next && mounted) await _nextDrawing();
   }
 
-  void _nextDrawing() {
+  Future<void> _nextDrawing() async {
+    if (!await _confirmExit() || !mounted) return;
     final index = widget.allDrawings.indexWhere(
       (item) => item.slug == widget.drawing.slug,
     );
@@ -929,8 +953,22 @@ class _EditorPageState extends State<EditorPage> {
   }
 
   @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.inactive ||
+        state == AppLifecycleState.paused ||
+        state == AppLifecycleState.hidden) {
+      final autosave = _autosave;
+      if (autosave != null) unawaited(autosave.flush());
+    }
+  }
+
+  @override
   void dispose() {
-    _autosave?.dispose();
+    _layerRevision++;
+    _engine?.dispose();
+    WidgetsBinding.instance.removeObserver(this);
+    final autosave = _autosave;
+    if (autosave != null) unawaited(autosave.dispose());
     _colorLayer?.dispose();
     _lineLayer?.dispose();
     _transform.dispose();
@@ -968,6 +1006,13 @@ class _EditorPageState extends State<EditorPage> {
     if (engine == null || colorLayer == null || lineLayer == null) {
       return const Scaffold(body: Center(child: CircularProgressIndicator()));
     }
+    final saveLabel = switch (_saveState) {
+      AutosaveState.idle => 'Sin cambios por guardar',
+      AutosaveState.pending => 'Cambios pendientes de guardar',
+      AutosaveState.saving => 'Guardando en este dispositivo…',
+      AutosaveState.saved => 'Guardado en este dispositivo',
+      AutosaveState.failed => 'No pudimos guardar. Reintenta antes de salir.',
+    };
     return PopScope(
       canPop: false,
       onPopInvokedWithResult: (didPop, _) async {
@@ -976,9 +1021,30 @@ class _EditorPageState extends State<EditorPage> {
         }
       },
       child: Scaffold(
+        bottomNavigationBar: SafeArea(
+          child: Row(
+            children: [
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.all(8),
+                  child: Semantics(liveRegion: true, child: Text(saveLabel)),
+                ),
+              ),
+              if (_saveState == AutosaveState.failed)
+                TextButton(
+                  onPressed: () => _autosave?.flush(),
+                  child: const Text('Reintentar'),
+                ),
+            ],
+          ),
+        ),
         backgroundColor: Colors.transparent,
         appBar: PaintMeTopBar(
-          title: Text(widget.drawing.label),
+          title: Text(
+            widget.drawing.label,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
           leading: PaintMeIconButton(
             icon: Icons.arrow_back,
             tooltip: 'Volver',
@@ -992,26 +1058,23 @@ class _EditorPageState extends State<EditorPage> {
             PaintMeIconButton(
               icon: Icons.undo,
               tooltip: 'Deshacer',
-              onPressed: engine.canUndo ? _undo : null,
+              onPressed: !_actionsBlocked && engine.canUndo ? _undo : null,
+            ),
+            PaintMeIconButton(
+              icon: Icons.redo,
+              tooltip: 'Rehacer',
+              onPressed: !_actionsBlocked && engine.canRedo ? _redo : null,
             ),
             PaintMeIconButton(
               icon: Icons.refresh,
               tooltip: 'Reiniciar',
-              onPressed: _reset,
+              onPressed: _actionsBlocked ? null : _reset,
             ),
             PaintMeIconButton(
               icon: Icons.ios_share,
               tooltip: 'Guardar o compartir',
-              onPressed: () async {
-                await _export.saveAndShare(
-                  slug: widget.drawing.slug,
-                  png: engine.exportPng(),
-                );
-                await widget.analytics.track(
-                  'drawing_shared',
-                  properties: {'slug': widget.drawing.slug},
-                );
-              },
+              key: _shareKey,
+              onPressed: _actionsBlocked ? null : _share,
             ),
           ],
         ),
@@ -1021,6 +1084,7 @@ class _EditorPageState extends State<EditorPage> {
               _ToolBar(
                 tool: _tool,
                 onTool: (value) {
+                  if (_actionsBlocked) return;
                   widget.feedback.selection();
                   setState(() => _tool = value);
                 },
@@ -1117,7 +1181,12 @@ class _EditorPageState extends State<EditorPage> {
                         onPointerDown: _pointerDown,
                         onPointerMove: _pointerMove,
                         onPointerUp: _pointerUp,
-                        onPointerCancel: _pointerUp,
+                        onPointerCancel: (event) {
+                          setState(() {
+                            _pointers.remove(event.pointer);
+                            _stroke = [];
+                          });
+                        },
                         child: InteractiveViewer(
                           transformationController: _transform,
                           panEnabled: _pointers.length >= 2,
@@ -1162,7 +1231,7 @@ class _EditorPageState extends State<EditorPage> {
                           backgroundColor: PaintMeColors.coral,
                           minimumSize: const Size.fromHeight(48),
                         ),
-                        onPressed: _completeDrawing,
+                        onPressed: _actionsBlocked ? null : _completeDrawing,
                         icon: const Icon(Icons.celebration),
                         label: const Text('Terminé'),
                       ),
@@ -1280,48 +1349,22 @@ class _ToolChoice extends StatelessWidget {
 }
 
 class PrivacyPage extends StatefulWidget {
-  const PrivacyPage({super.key, required this.feedback});
+  const PrivacyPage({
+    super.key,
+    required this.feedback,
+    required this.ads,
+    this.analytics = const DisabledProductAnalytics(),
+  });
   final FeedbackSettings feedback;
+  final AdService ads;
+  final ProductAnalytics analytics;
   @override
   State<PrivacyPage> createState() => _PrivacyPageState();
 }
 
 class _PrivacyPageState extends State<PrivacyPage> {
-  final _entitlements = const EntitlementRepository();
-
   Future<void> _openAdultSettings() async {
-    final answer = TextEditingController();
-    final allowed = await showDialog<bool>(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('Solo para adultos'),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const Text('Para continuar, responde: ¿cuánto es 4 + 3?'),
-            TextField(
-              controller: answer,
-              keyboardType: TextInputType.number,
-              autofocus: true,
-            ),
-          ],
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context, false),
-            child: const Text('Cancelar'),
-          ),
-          FilledButton(
-            onPressed: () => Navigator.pop(context, answer.text.trim() == '7'),
-            child: const Text('Continuar'),
-          ),
-        ],
-      ),
-    );
-    answer.dispose();
-    if (allowed != true || !mounted) return;
-    final adFree = await _entitlements.hasAdFreeEntitlement();
-    if (!mounted) return;
+    if (!await requestAdultAccess(context) || !mounted) return;
     await showModalBottomSheet<void>(
       context: context,
       showDragHandle: true,
@@ -1337,32 +1380,53 @@ class _PrivacyPageState extends State<PrivacyPage> {
                 style: Theme.of(context).textTheme.titleLarge,
               ),
               const SizedBox(height: 12),
-              ListTile(
-                leading: const Icon(Icons.privacy_tip_outlined),
-                title: const Text('Opciones de privacidad'),
-                onTap: () => ConsentForm.showPrivacyOptionsForm((_) {}),
-              ),
-              ListTile(
-                leading: const Icon(Icons.block_outlined),
-                title: Text(
-                  adFree ? 'Anuncios eliminados' : 'Eliminar anuncios',
+              if (widget.analytics
+                  case final FirebaseProductAnalytics analytics)
+                AnalyticsPreference(analytics: analytics),
+              if (widget.ads.privacyOptionsRequired)
+                ListTile(
+                  leading: const Icon(Icons.privacy_tip_outlined),
+                  title: const Text('Opciones de privacidad'),
+                  onTap: () async {
+                    final success = await widget.ads.showPrivacyOptions();
+                    if (!success && context.mounted) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text(
+                            'No pudimos abrir las opciones. Intenta nuevamente.',
+                          ),
+                        ),
+                      );
+                    }
+                  },
                 ),
-                subtitle: Text(
-                  adFree ? 'Gracias por apoyar PaintMe.' : 'Próximamente',
-                ),
-                onTap: null,
-              ),
               ListTile(
                 leading: const Icon(Icons.open_in_new),
                 title: const Text('Política de privacidad'),
                 onTap: () async {
                   final url = Uri.parse(
                     const String.fromEnvironment(
-                    'PRIVACY_POLICY_URL',
-                    defaultValue: 'https://www.paintme.club/privacy.html',
+                      'PRIVACY_POLICY_URL',
+                      defaultValue: 'https://www.paintme.club/privacy.html',
                     ),
                   );
-                  await launchUrl(url, mode: LaunchMode.externalApplication);
+                  try {
+                    final opened = await launchUrl(
+                      url,
+                      mode: LaunchMode.externalApplication,
+                    );
+                    if (!opened) throw StateError('external_link_unavailable');
+                  } catch (_) {
+                    if (context.mounted) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text(
+                            'No pudimos abrir el enlace. Intenta nuevamente.',
+                          ),
+                        ),
+                      );
+                    }
+                  }
                 },
               ),
             ],

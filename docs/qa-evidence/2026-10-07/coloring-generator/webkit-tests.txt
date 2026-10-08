@@ -1,0 +1,22 @@
+Engine webkit 26.5
+✔ Five originals: UI agrees with CLI, exact region fill, protected lines, reset and download (12969.5585ms)
+✔ Pending conversion and settings changes discard stale results and allow regeneration (4256.1956ms)
+✔ Own file upload, mobile layout, report download, invalid input and origin checks (2408.0866ms)
+✔ tortoise in actual paint editor: contours, undo, autosave, restore and PNG (2683.7605ms)
+✔ tortoise in actual brush editor: contours, undo, autosave, restore and PNG (2732.2293ms)
+✔ fox in actual paint editor: contours, undo, autosave, restore and PNG (2484.0592ms)
+✔ fox in actual brush editor: contours, undo, autosave, restore and PNG (2772.3031ms)
+✔ balloon in actual paint editor: contours, undo, autosave, restore and PNG (2262.1346ms)
+✔ balloon in actual brush editor: contours, undo, autosave, restore and PNG (2357.3896ms)
+✔ flower in actual paint editor: contours, undo, autosave, restore and PNG (2223.549ms)
+✔ flower in actual brush editor: contours, undo, autosave, restore and PNG (2304.7662ms)
+✔ house-photo in actual paint editor: contours, undo, autosave, restore and PNG (2299.2965ms)
+✔ house-photo in actual brush editor: contours, undo, autosave, restore and PNG (2243.9106ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 44543.3403

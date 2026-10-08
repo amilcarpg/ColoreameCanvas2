@@ -1,0 +1,255 @@
+{
+  "schemaVersion": 1,
+  "source_sha256": "73c4445b3caaf71c1d5aafc61f800f23b9c854057182930040a042f1d88027c7",
+  "source_format": "PNG",
+  "source_size": [
+    1254,
+    1254
+  ],
+  "options": {
+    "mode": "photo",
+    "size": 1200,
+    "threshold": 165,
+    "noise": 24,
+    "close": 1,
+    "thickness": 4,
+    "colors": 6,
+    "detail": "simple"
+  },
+  "mode_used": "photo",
+  "web_size": [
+    1200,
+    1200
+  ],
+  "master_size": [
+    1200,
+    1200
+  ],
+  "thumbnail_size": [
+    360,
+    360
+  ],
+  "regions": [
+    {
+      "id": 1,
+      "pixels": 963914,
+      "touches_edge": true,
+      "seed": [
+        992,
+        207
+      ],
+      "bbox": [
+        0,
+        0,
+        1200,
+        1200
+      ]
+    },
+    {
+      "id": 2,
+      "pixels": 385819,
+      "touches_edge": false,
+      "seed": [
+        580,
+        501
+      ],
+      "bbox": [
+        189,
+        186,
+        812,
+        790
+      ]
+    },
+    {
+      "id": 3,
+      "pixels": 33,
+      "touches_edge": false,
+      "seed": [
+        856,
+        373
+      ],
+      "bbox": [
+        856,
+        373,
+        19,
+        15
+      ]
+    },
+    {
+      "id": 4,
+      "pixels": 2392,
+      "touches_edge": false,
+      "seed": [
+        766,
+        666
+      ],
+      "bbox": [
+        742,
+        642,
+        50,
+        52
+      ]
+    },
+    {
+      "id": 5,
+      "pixels": 2337,
+      "touches_edge": false,
+      "seed": [
+        837,
+        666
+      ],
+      "bbox": [
+        812,
+        642,
+        50,
+        51
+      ]
+    },
+    {
+      "id": 6,
+      "pixels": 2380,
+      "touches_edge": false,
+      "seed": [
+        359,
+        669
+      ],
+      "bbox": [
+        335,
+        644,
+        49,
+        52
+      ]
+    },
+    {
+      "id": 7,
+      "pixels": 2369,
+      "touches_edge": false,
+      "seed": [
+        429,
+        667
+      ],
+      "bbox": [
+        405,
+        644,
+        50,
+        51
+      ]
+    },
+    {
+      "id": 8,
+      "pixels": 3127,
+      "touches_edge": false,
+      "seed": [
+        524,
+        971
+      ],
+      "bbox": [
+        507,
+        679,
+        170,
+        297
+      ]
+    },
+    {
+      "id": 9,
+      "pixels": 38570,
+      "touches_edge": false,
+      "seed": [
+        597,
+        754
+      ],
+      "bbox": [
+        529,
+        686,
+        138,
+        283
+      ]
+    },
+    {
+      "id": 10,
+      "pixels": 2325,
+      "touches_edge": false,
+      "seed": [
+        836,
+        738
+      ],
+      "bbox": [
+        813,
+        714,
+        48,
+        52
+      ]
+    },
+    {
+      "id": 11,
+      "pixels": 2373,
+      "touches_edge": false,
+      "seed": [
+        766,
+        739
+      ],
+      "bbox": [
+        742,
+        715,
+        49,
+        51
+      ]
+    },
+    {
+      "id": 12,
+      "pixels": 2360,
+      "touches_edge": false,
+      "seed": [
+        359,
+        740
+      ],
+      "bbox": [
+        335,
+        717,
+        49,
+        52
+      ]
+    },
+    {
+      "id": 13,
+      "pixels": 2340,
+      "touches_edge": false,
+      "seed": [
+        429,
+        740
+      ],
+      "bbox": [
+        405,
+        717,
+        50,
+        50
+      ]
+    }
+  ],
+  "region_count": 13,
+  "enclosed_regions_over_16px": 12,
+  "tiny_regions_under_16px": 0,
+  "line_pixel_ratio": 0.020597916666666667,
+  "removed_line_components": 2,
+  "regions_before_repair": 33,
+  "filled_small_interiors": 75,
+  "changed_line_pixels": 22295,
+  "warnings": [
+    "Una foto conserva texturas y puede dejar contornos abiertos; revisar o redibujar antes de publicar.",
+    "La reparación/grosor/redimensión cambió la conectividad; comprobar uniones y separaciones."
+  ],
+  "review_required": true,
+  "technical_status": "needs_review",
+  "elapsed_ms": 396,
+  "versions": {
+    "pillow": "12.3.0",
+    "numpy": "2.3.5",
+    "opencv": "5.0.0"
+  },
+  "output_sha256": {
+    "master": "3ecc678347c6fc699afb422ae4b96bce3634da342efe31752de5328b593a6622",
+    "drawing": "3ecc678347c6fc699afb422ae4b96bce3634da342efe31752de5328b593a6622",
+    "thumbnail": "32ad571344d091277adbfcca6d72171298f760e68ba4672236ed73707a3eb23e",
+    "regions": "25a172015e38643503cda33c204624aef655a8ee2f000663ee29f00f3902940c"
+  }
+}

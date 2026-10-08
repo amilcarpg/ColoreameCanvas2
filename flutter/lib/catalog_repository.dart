@@ -1,16 +1,10 @@
 import 'package:flutter/services.dart';
 
 import 'models.dart';
+import 'catalog_categories.dart';
 
 class CatalogRepository {
-  static const categories = <Category>[
-    Category('animales', 'Animales'),
-    Category('vehiculos', 'Vehículos'),
-    Category('navidad', 'Navidad'),
-    Category('fantasia', 'Fantasía'),
-    Category('dinosaurios', 'Dinosaurios'),
-    Category('princesas', 'Princesas'),
-  ];
+  static const categories = catalogCategories;
 
   Future<List<Drawing>> load() async =>
       decodeDrawings(await rootBundle.loadString('assets/catalog.json'));

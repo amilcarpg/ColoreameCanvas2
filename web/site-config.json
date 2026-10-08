@@ -1,0 +1,12 @@
+{
+  "analytics": {
+    "enabled": false,
+    "treatmentReviewed": false,
+    "measurementId": "",
+    "paths": ["/adults.html", "/packs/dinosaurios.html", "/en/dinosaur-coloring.html"]
+  },
+  "contact": {
+    "email": "",
+    "url": ""
+  }
+}

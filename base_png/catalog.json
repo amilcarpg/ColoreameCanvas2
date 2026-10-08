@@ -1,6 +1,6 @@
 {
-  "schemaVersion": 1,
-  "description": "Catálogo maestro de dibujos PNG. Cada archivo listado reside en esta carpeta y es la fuente para generar las variantes web y Flutter.",
+  "schemaVersion": 2,
+  "description": "Fuente única técnica para variantes y catálogos web/Flutter; plataformas explícitas. No acredita licencias ni autoriza publicación comercial.",
   "drawings": [
     {
       "slug": "dinosaurio",
@@ -8,7 +8,20 @@
       "category": "dinosaurios",
       "pack": "dinosaurios",
       "featured": true,
-      "file": "dinosaur-v2.png"
+      "file": "dinosaur-v2.png",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "webSrc": "assets/dinosaur-v2.png",
+      "thumbnailSrc": "assets/thumbs/dinosaur-v2.png",
+      "keywords": [
+        "dinosaurio",
+        "feliz",
+        "dinosaurios"
+      ],
+      "theme": "dinosaurios",
+      "difficulty": "medio"
     },
     {
       "slug": "gato",
@@ -16,7 +29,20 @@
       "category": "animales",
       "pack": "animales",
       "featured": true,
-      "file": "cat-v2.png"
+      "file": "cat-v2.png",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "webSrc": "assets/cat-v2.png",
+      "thumbnailSrc": "assets/thumbs/cat-v2.png",
+      "keywords": [
+        "gato",
+        "curioso",
+        "animales"
+      ],
+      "theme": "animales",
+      "difficulty": "medio"
     },
     {
       "slug": "perro",
@@ -24,7 +50,20 @@
       "category": "animales",
       "pack": "animales",
       "featured": true,
-      "file": "dog-v2.png"
+      "file": "dog-v2.png",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "webSrc": "assets/dog-v2.png",
+      "thumbnailSrc": "assets/thumbs/dog-v2.png",
+      "keywords": [
+        "perro",
+        "jugueton",
+        "animales"
+      ],
+      "theme": "animales",
+      "difficulty": "medio"
     },
     {
       "slug": "auto",
@@ -32,7 +71,20 @@
       "category": "vehiculos",
       "pack": "vehiculos",
       "featured": true,
-      "file": "car-v2.png"
+      "file": "car-v2.png",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "webSrc": "assets/car-v2.png",
+      "thumbnailSrc": "assets/thumbs/car-v2.png",
+      "keywords": [
+        "auto",
+        "rojo",
+        "vehiculos"
+      ],
+      "theme": "vehiculos",
+      "difficulty": "medio"
     },
     {
       "slug": "arbol-navidad",
@@ -40,7 +92,20 @@
       "category": "navidad",
       "pack": "navidad",
       "featured": true,
-      "file": "christmas-tree-v2.png"
+      "file": "christmas-tree-v2.png",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "webSrc": "assets/christmas-tree-v2.png",
+      "thumbnailSrc": "assets/thumbs/christmas-tree-v2.png",
+      "keywords": [
+        "arbol",
+        "de",
+        "navidad"
+      ],
+      "theme": "navidad",
+      "difficulty": "medio"
     },
     {
       "slug": "mariposa",
@@ -48,7 +113,19 @@
       "category": "animales",
       "pack": "animales",
       "featured": true,
-      "file": "butterfly-v2.png"
+      "file": "butterfly-v2.png",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "webSrc": "assets/butterfly-v2.png",
+      "thumbnailSrc": "assets/thumbs/butterfly-v2.png",
+      "keywords": [
+        "mariposa",
+        "animales"
+      ],
+      "theme": "animales",
+      "difficulty": "medio"
     },
     {
       "slug": "cohete",
@@ -56,7 +133,19 @@
       "category": "vehiculos",
       "pack": "vehiculos",
       "featured": true,
-      "file": "rocket-v2.png"
+      "file": "rocket-v2.png",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "webSrc": "assets/rocket-v2.png",
+      "thumbnailSrc": "assets/thumbs/rocket-v2.png",
+      "keywords": [
+        "cohete",
+        "vehiculos"
+      ],
+      "theme": "vehiculos",
+      "difficulty": "medio"
     },
     {
       "slug": "princesa",
@@ -64,7 +153,19 @@
       "category": "princesas",
       "pack": "princesas",
       "featured": true,
-      "file": "princess-v2.png"
+      "file": "princess-v2.png",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "webSrc": "assets/princess-v2.png",
+      "thumbnailSrc": "assets/thumbs/princess-v2.png",
+      "keywords": [
+        "princesa",
+        "princesas"
+      ],
+      "theme": "princesas",
+      "difficulty": "medio"
     },
     {
       "slug": "unicornio",
@@ -72,7 +173,19 @@
       "category": "fantasia",
       "pack": "fantasia",
       "featured": true,
-      "file": "unicorn-v2.png"
+      "file": "unicorn-v2.png",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "webSrc": "assets/unicorn-v2.png",
+      "thumbnailSrc": "assets/thumbs/unicorn-v2.png",
+      "keywords": [
+        "unicornio",
+        "fantasia"
+      ],
+      "theme": "fantasia",
+      "difficulty": "medio"
     },
     {
       "slug": "castillo",
@@ -80,7 +193,19 @@
       "category": "fantasia",
       "pack": "fantasia",
       "featured": true,
-      "file": "castle-v2.png"
+      "file": "castle-v2.png",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "webSrc": "assets/castle-v2.png",
+      "thumbnailSrc": "assets/thumbs/castle-v2.png",
+      "keywords": [
+        "castillo",
+        "fantasia"
+      ],
+      "theme": "fantasia",
+      "difficulty": "medio"
     },
     {
       "slug": "elefante",
@@ -88,7 +213,20 @@
       "category": "animales",
       "pack": "animales",
       "featured": false,
-      "file": "elefante.png"
+      "file": "elefante.png",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "webSrc": "assets/elefante.png",
+      "thumbnailSrc": "assets/thumbs/elefante.png",
+      "keywords": [
+        "elefante",
+        "alegre",
+        "animales"
+      ],
+      "theme": "animales",
+      "difficulty": "medio"
     },
     {
       "slug": "conejo",
@@ -96,7 +234,20 @@
       "category": "animales",
       "pack": "animales",
       "featured": false,
-      "file": "conejo.png"
+      "file": "conejo.png",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "webSrc": "assets/conejo.png",
+      "thumbnailSrc": "assets/thumbs/conejo.png",
+      "keywords": [
+        "conejo",
+        "saltarin",
+        "animales"
+      ],
+      "theme": "animales",
+      "difficulty": "medio"
     },
     {
       "slug": "pez",
@@ -104,7 +255,20 @@
       "category": "animales",
       "pack": "animales",
       "featured": false,
-      "file": "pez.png"
+      "file": "pez.png",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "webSrc": "assets/pez.png",
+      "thumbnailSrc": "assets/thumbs/pez.png",
+      "keywords": [
+        "pez",
+        "sonriente",
+        "animales"
+      ],
+      "theme": "animales",
+      "difficulty": "medio"
     },
     {
       "slug": "buho",
@@ -112,7 +276,20 @@
       "category": "animales",
       "pack": "animales",
       "featured": false,
-      "file": "buho.png"
+      "file": "buho.png",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "webSrc": "assets/buho.png",
+      "thumbnailSrc": "assets/thumbs/buho.png",
+      "keywords": [
+        "buho",
+        "amable",
+        "animales"
+      ],
+      "theme": "animales",
+      "difficulty": "medio"
     },
     {
       "slug": "camion",
@@ -120,7 +297,20 @@
       "category": "vehiculos",
       "pack": "vehiculos",
       "featured": false,
-      "file": "camion.png"
+      "file": "camion.png",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "webSrc": "assets/camion.png",
+      "thumbnailSrc": "assets/thumbs/camion.png",
+      "keywords": [
+        "camion",
+        "feliz",
+        "vehiculos"
+      ],
+      "theme": "vehiculos",
+      "difficulty": "medio"
     },
     {
       "slug": "avion",
@@ -128,7 +318,20 @@
       "category": "vehiculos",
       "pack": "vehiculos",
       "featured": false,
-      "file": "avion.png"
+      "file": "avion.png",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "webSrc": "assets/avion.png",
+      "thumbnailSrc": "assets/thumbs/avion.png",
+      "keywords": [
+        "avion",
+        "divertido",
+        "vehiculos"
+      ],
+      "theme": "vehiculos",
+      "difficulty": "medio"
     },
     {
       "slug": "barco",
@@ -136,7 +339,21 @@
       "category": "vehiculos",
       "pack": "vehiculos",
       "featured": false,
-      "file": "barco.png"
+      "file": "barco.png",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "webSrc": "assets/barco.png",
+      "thumbnailSrc": "assets/thumbs/barco.png",
+      "keywords": [
+        "barco",
+        "de",
+        "vela",
+        "vehiculos"
+      ],
+      "theme": "vehiculos",
+      "difficulty": "medio"
     },
     {
       "slug": "tren",
@@ -144,7 +361,20 @@
       "category": "vehiculos",
       "pack": "vehiculos",
       "featured": false,
-      "file": "tren.png"
+      "file": "tren.png",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "webSrc": "assets/tren.png",
+      "thumbnailSrc": "assets/thumbs/tren.png",
+      "keywords": [
+        "tren",
+        "juguete",
+        "vehiculos"
+      ],
+      "theme": "vehiculos",
+      "difficulty": "medio"
     },
     {
       "slug": "muneco-nieve",
@@ -152,7 +382,21 @@
       "category": "navidad",
       "pack": "navidad",
       "featured": false,
-      "file": "muneco-nieve.png"
+      "file": "muneco-nieve.png",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "webSrc": "assets/muneco-nieve.png",
+      "thumbnailSrc": "assets/thumbs/muneco-nieve.png",
+      "keywords": [
+        "muneco",
+        "de",
+        "nieve",
+        "navidad"
+      ],
+      "theme": "navidad",
+      "difficulty": "medio"
     },
     {
       "slug": "regalo-navidad",
@@ -160,7 +404,20 @@
       "category": "navidad",
       "pack": "navidad",
       "featured": false,
-      "file": "regalo-navidad.png"
+      "file": "regalo-navidad.png",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "webSrc": "assets/regalo-navidad.png",
+      "thumbnailSrc": "assets/thumbs/regalo-navidad.png",
+      "keywords": [
+        "regalo",
+        "navideno",
+        "navidad"
+      ],
+      "theme": "navidad",
+      "difficulty": "medio"
     },
     {
       "slug": "campana-navidad",
@@ -168,7 +425,20 @@
       "category": "navidad",
       "pack": "navidad",
       "featured": false,
-      "file": "campana-navidad.png"
+      "file": "campana-navidad.png",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "webSrc": "assets/campana-navidad.png",
+      "thumbnailSrc": "assets/thumbs/campana-navidad.png",
+      "keywords": [
+        "campana",
+        "navidena",
+        "navidad"
+      ],
+      "theme": "navidad",
+      "difficulty": "medio"
     },
     {
       "slug": "dragon",
@@ -176,7 +446,20 @@
       "category": "fantasia",
       "pack": "fantasia",
       "featured": false,
-      "file": "dragon.png"
+      "file": "dragon.png",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "webSrc": "assets/dragon.png",
+      "thumbnailSrc": "assets/thumbs/dragon.png",
+      "keywords": [
+        "dragon",
+        "bebe",
+        "fantasia"
+      ],
+      "theme": "fantasia",
+      "difficulty": "medio"
     },
     {
       "slug": "hada",
@@ -184,7 +467,20 @@
       "category": "fantasia",
       "pack": "fantasia",
       "featured": false,
-      "file": "hada.png"
+      "file": "hada.png",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "webSrc": "assets/hada.png",
+      "thumbnailSrc": "assets/thumbs/hada.png",
+      "keywords": [
+        "hada",
+        "magica",
+        "fantasia"
+      ],
+      "theme": "fantasia",
+      "difficulty": "medio"
     },
     {
       "slug": "sirena",
@@ -192,7 +488,20 @@
       "category": "fantasia",
       "pack": "fantasia",
       "featured": false,
-      "file": "sirena.png"
+      "file": "sirena.png",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "webSrc": "assets/sirena.png",
+      "thumbnailSrc": "assets/thumbs/sirena.png",
+      "keywords": [
+        "sirena",
+        "feliz",
+        "fantasia"
+      ],
+      "theme": "fantasia",
+      "difficulty": "medio"
     },
     {
       "slug": "triceratops",
@@ -200,7 +509,19 @@
       "category": "dinosaurios",
       "pack": "dinosaurios",
       "featured": false,
-      "file": "triceratops.png"
+      "file": "triceratops.png",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "webSrc": "assets/triceratops.png",
+      "thumbnailSrc": "assets/thumbs/triceratops.png",
+      "keywords": [
+        "triceratops",
+        "dinosaurios"
+      ],
+      "theme": "dinosaurios",
+      "difficulty": "medio"
     },
     {
       "slug": "brontosaurio",
@@ -208,7 +529,19 @@
       "category": "dinosaurios",
       "pack": "dinosaurios",
       "featured": false,
-      "file": "brontosaurio.png"
+      "file": "brontosaurio.png",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "webSrc": "assets/brontosaurio.png",
+      "thumbnailSrc": "assets/thumbs/brontosaurio.png",
+      "keywords": [
+        "brontosaurio",
+        "dinosaurios"
+      ],
+      "theme": "dinosaurios",
+      "difficulty": "medio"
     },
     {
       "slug": "pterodactilo",
@@ -216,7 +549,19 @@
       "category": "dinosaurios",
       "pack": "dinosaurios",
       "featured": false,
-      "file": "pterodactilo.png"
+      "file": "pterodactilo.png",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "webSrc": "assets/pterodactilo.png",
+      "thumbnailSrc": "assets/thumbs/pterodactilo.png",
+      "keywords": [
+        "pterodactilo",
+        "dinosaurios"
+      ],
+      "theme": "dinosaurios",
+      "difficulty": "medio"
     },
     {
       "slug": "corona-real",
@@ -224,7 +569,20 @@
       "category": "princesas",
       "pack": "princesas",
       "featured": false,
-      "file": "corona-real.png"
+      "file": "corona-real.png",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "webSrc": "assets/corona-real.png",
+      "thumbnailSrc": "assets/thumbs/corona-real.png",
+      "keywords": [
+        "corona",
+        "real",
+        "princesas"
+      ],
+      "theme": "princesas",
+      "difficulty": "medio"
     },
     {
       "slug": "carruaje-real",
@@ -232,7 +590,20 @@
       "category": "princesas",
       "pack": "princesas",
       "featured": false,
-      "file": "carruaje-real.png"
+      "file": "carruaje-real.png",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "webSrc": "assets/carruaje-real.png",
+      "thumbnailSrc": "assets/thumbs/carruaje-real.png",
+      "keywords": [
+        "carruaje",
+        "real",
+        "princesas"
+      ],
+      "theme": "princesas",
+      "difficulty": "medio"
     },
     {
       "slug": "vestido-princesa",
@@ -240,7 +611,21 @@
       "category": "princesas",
       "pack": "princesas",
       "featured": false,
-      "file": "vestido-princesa.png"
+      "file": "vestido-princesa.png",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "webSrc": "assets/vestido-princesa.png",
+      "thumbnailSrc": "assets/thumbs/vestido-princesa.png",
+      "keywords": [
+        "vestido",
+        "de",
+        "princesa",
+        "princesas"
+      ],
+      "theme": "princesas",
+      "difficulty": "medio"
     },
     {
       "slug": "pony-magico",
@@ -248,7 +633,20 @@
       "category": "fantasia",
       "pack": "fantasia",
       "featured": false,
-      "file": "pony1.png"
+      "file": "pony1.png",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "webSrc": "assets/pony1.png",
+      "thumbnailSrc": "assets/thumbs/pony1.png",
+      "keywords": [
+        "pony",
+        "magico",
+        "fantasia"
+      ],
+      "theme": "fantasia",
+      "difficulty": "medio"
     },
     {
       "slug": "pony-princesa",
@@ -256,7 +654,20 @@
       "category": "princesas",
       "pack": "princesas",
       "featured": false,
-      "file": "pony2.png"
+      "file": "pony2.png",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "webSrc": "assets/pony2.png",
+      "thumbnailSrc": "assets/thumbs/pony2.png",
+      "keywords": [
+        "pony",
+        "princesa",
+        "princesas"
+      ],
+      "theme": "princesas",
+      "difficulty": "medio"
     },
     {
       "slug": "pony-3",
@@ -264,7 +675,20 @@
       "category": "fantasia",
       "pack": "fantasia",
       "featured": false,
-      "file": "pony3.png"
+      "file": "pony3.png",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "webSrc": "assets/pony3.png",
+      "thumbnailSrc": "assets/thumbs/pony3.png",
+      "keywords": [
+        "pony",
+        "3",
+        "fantasia"
+      ],
+      "theme": "fantasia",
+      "difficulty": "medio"
     },
     {
       "slug": "pony-4",
@@ -272,79 +696,607 @@
       "category": "fantasia",
       "pack": "fantasia",
       "featured": false,
-      "file": "pony4.png"
+      "file": "pony4.png",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "webSrc": "assets/pony4.png",
+      "thumbnailSrc": "assets/thumbs/pony4.png",
+      "keywords": [
+        "pony",
+        "4",
+        "fantasia"
+      ],
+      "theme": "fantasia",
+      "difficulty": "medio"
     },
     {
       "slug": "casa-1",
       "label": "Casa 1",
-      "category": "navidad",
-      "pack": "navidad",
+      "category": "casas",
+      "pack": "casas",
       "featured": false,
-      "file": "house1.png"
+      "file": "house1.png",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "webSrc": "assets/house1.png",
+      "thumbnailSrc": "assets/thumbs/house1.png",
+      "keywords": [
+        "casa",
+        "1",
+        "navidad",
+        "casas"
+      ],
+      "theme": "casas",
+      "difficulty": "simple"
     },
     {
       "slug": "casa-2",
       "label": "Casa 2",
-      "category": "navidad",
-      "pack": "navidad",
+      "category": "casas",
+      "pack": "casas",
       "featured": false,
-      "file": "house2.png"
+      "file": "house2.png",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "webSrc": "assets/house2.png",
+      "thumbnailSrc": "assets/thumbs/house2.png",
+      "keywords": [
+        "casa",
+        "2",
+        "navidad",
+        "casas"
+      ],
+      "theme": "casas",
+      "difficulty": "simple"
     },
     {
       "slug": "casa-3",
       "label": "Casa 3",
-      "category": "navidad",
-      "pack": "navidad",
+      "category": "casas",
+      "pack": "casas",
       "featured": false,
-      "file": "house3.png"
+      "file": "house3.png",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "webSrc": "assets/house3.png",
+      "thumbnailSrc": "assets/thumbs/house3.png",
+      "keywords": [
+        "casa",
+        "3",
+        "navidad",
+        "casas"
+      ],
+      "theme": "casas",
+      "difficulty": "simple"
     },
     {
       "slug": "casa-4",
-      "label": "Casa 4",
+      "label": "Cohete sencillo",
       "category": "vehiculos",
       "pack": "vehiculos",
       "featured": false,
-      "file": "house4.png"
+      "file": "house4.png",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "webSrc": "assets/house4.png",
+      "thumbnailSrc": "assets/thumbs/house4.png",
+      "keywords": [
+        "cohete",
+        "sencillo",
+        "vehiculos"
+      ],
+      "theme": "vehiculos",
+      "difficulty": "simple"
     },
     {
       "slug": "casa-5",
       "label": "Casa 5",
-      "category": "navidad",
-      "pack": "navidad",
+      "category": "casas",
+      "pack": "casas",
       "featured": false,
-      "file": "house5.png"
+      "file": "house5.png",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "webSrc": "assets/house5.png",
+      "thumbnailSrc": "assets/thumbs/house5.png",
+      "keywords": [
+        "casa",
+        "5",
+        "navidad",
+        "casas"
+      ],
+      "theme": "casas",
+      "difficulty": "simple"
     },
     {
       "slug": "paisaje-3",
       "label": "Paisaje 3",
-      "category": "animales",
-      "pack": "animales",
+      "category": "paisajes",
+      "pack": "paisajes",
       "featured": false,
-      "file": "landscape3.png"
+      "file": "landscape3.png",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "webSrc": "assets/landscape3.png",
+      "thumbnailSrc": "assets/thumbs/landscape3.png",
+      "keywords": [
+        "paisaje",
+        "3",
+        "animales",
+        "paisajes"
+      ],
+      "theme": "paisajes",
+      "difficulty": "simple"
     },
     {
       "slug": "paisaje-4",
       "label": "Paisaje 4",
-      "category": "animales",
-      "pack": "animales",
+      "category": "paisajes",
+      "pack": "paisajes",
       "featured": false,
-      "file": "landscape4.png"
+      "file": "landscape4.png",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "webSrc": "assets/landscape4.png",
+      "thumbnailSrc": "assets/thumbs/landscape4.png",
+      "keywords": [
+        "paisaje",
+        "4",
+        "animales",
+        "paisajes"
+      ],
+      "theme": "paisajes",
+      "difficulty": "simple"
     },
     {
       "slug": "paisaje-5",
       "label": "Paisaje 5",
-      "category": "animales",
-      "pack": "animales",
+      "category": "paisajes",
+      "pack": "paisajes",
       "featured": false,
-      "file": "landscape5.png"
+      "file": "landscape5.png",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "webSrc": "assets/landscape5.png",
+      "thumbnailSrc": "assets/thumbs/landscape5.png",
+      "keywords": [
+        "paisaje",
+        "5",
+        "animales",
+        "paisajes"
+      ],
+      "theme": "paisajes",
+      "difficulty": "simple"
     },
     {
       "slug": "casa-simple",
       "label": "Casa simple",
-      "category": "navidad",
-      "pack": "navidad",
+      "category": "casas",
+      "pack": "casas",
       "featured": false,
-      "file": "outline_house.png"
+      "file": "outline_house.png",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "webSrc": "assets/outline_house.png",
+      "thumbnailSrc": "assets/thumbs/outline_house.png",
+      "keywords": [
+        "casa",
+        "simple",
+        "navidad",
+        "casas"
+      ],
+      "theme": "casas",
+      "difficulty": "simple"
+    },
+    {
+      "slug": "gabby-gato-volador",
+      "label": "Gabby gato volador",
+      "category": "gabby",
+      "pack": "gabby",
+      "featured": false,
+      "file": "gabby-01-gato-volador.png",
+      "platforms": [
+        "web"
+      ],
+      "webSrc": "assets/gabby/gabby-01-gato-volador.png",
+      "thumbnailSrc": "assets/thumbs/gabby-01-gato-volador.png",
+      "theme": "gabby",
+      "difficulty": "por-revisar",
+      "keywords": [
+        "gabby",
+        "gato",
+        "volador"
+      ]
+    },
+    {
+      "slug": "gabby-gato-flores",
+      "label": "Gabby gato con flores",
+      "category": "gabby",
+      "pack": "gabby",
+      "featured": false,
+      "file": "gabby-02-gato-flores.png",
+      "platforms": [
+        "web"
+      ],
+      "webSrc": "assets/gabby/gabby-02-gato-flores.png",
+      "thumbnailSrc": "assets/thumbs/gabby-02-gato-flores.png",
+      "theme": "gabby",
+      "difficulty": "por-revisar",
+      "keywords": [
+        "gabby",
+        "gato",
+        "flores"
+      ]
+    },
+    {
+      "slug": "gabby-auto",
+      "label": "Gabby auto",
+      "category": "gabby",
+      "pack": "gabby",
+      "featured": false,
+      "file": "gabby-03-auto.png",
+      "platforms": [
+        "web"
+      ],
+      "webSrc": "assets/gabby/gabby-03-auto.png",
+      "thumbnailSrc": "assets/thumbs/gabby-03-auto.png",
+      "theme": "gabby",
+      "difficulty": "por-revisar",
+      "keywords": [
+        "gabby",
+        "auto"
+      ]
+    },
+    {
+      "slug": "gabby-camping",
+      "label": "Gabby camping",
+      "category": "gabby",
+      "pack": "gabby",
+      "featured": false,
+      "file": "gabby-04-camping.png",
+      "platforms": [
+        "web"
+      ],
+      "webSrc": "assets/gabby/gabby-04-camping.png",
+      "thumbnailSrc": "assets/thumbs/gabby-04-camping.png",
+      "theme": "gabby",
+      "difficulty": "por-revisar",
+      "keywords": [
+        "gabby",
+        "camping"
+      ]
+    },
+    {
+      "slug": "gabby-casa-auto",
+      "label": "Gabby casa y auto",
+      "category": "gabby",
+      "pack": "gabby",
+      "featured": false,
+      "file": "gabby-05-casa-y-auto.png",
+      "platforms": [
+        "web"
+      ],
+      "webSrc": "assets/gabby/gabby-05-casa-y-auto.png",
+      "thumbnailSrc": "assets/thumbs/gabby-05-casa-y-auto.png",
+      "theme": "gabby",
+      "difficulty": "por-revisar",
+      "keywords": [
+        "gabby",
+        "casa",
+        "auto"
+      ]
+    },
+    {
+      "slug": "gabby-pintando",
+      "label": "Gabby pintando",
+      "category": "gabby",
+      "pack": "gabby",
+      "featured": false,
+      "file": "gabby-06-pintando.png",
+      "platforms": [
+        "web"
+      ],
+      "webSrc": "assets/gabby/gabby-06-pintando.png",
+      "thumbnailSrc": "assets/thumbs/gabby-06-pintando.png",
+      "theme": "gabby",
+      "difficulty": "por-revisar",
+      "keywords": [
+        "gabby",
+        "pintando",
+        "arte"
+      ]
+    },
+    {
+      "slug": "gabby-gato-espacial",
+      "label": "Gabby gato espacial",
+      "category": "gabby",
+      "pack": "gabby",
+      "featured": false,
+      "file": "gabby-07-gato-espacial.png",
+      "platforms": [
+        "web"
+      ],
+      "webSrc": "assets/gabby/gabby-07-gato-espacial.png",
+      "thumbnailSrc": "assets/thumbs/gabby-07-gato-espacial.png",
+      "theme": "gabby",
+      "difficulty": "por-revisar",
+      "keywords": [
+        "gabby",
+        "gato",
+        "espacio"
+      ]
+    },
+    {
+      "slug": "gabby-leyendo",
+      "label": "Gabby leyendo",
+      "category": "gabby",
+      "pack": "gabby",
+      "featured": false,
+      "file": "gabby-08-leyendo.png",
+      "platforms": [
+        "web"
+      ],
+      "webSrc": "assets/gabby/gabby-08-leyendo.png",
+      "thumbnailSrc": "assets/thumbs/gabby-08-leyendo.png",
+      "theme": "gabby",
+      "difficulty": "por-revisar",
+      "keywords": [
+        "gabby",
+        "leyendo",
+        "libro"
+      ]
+    },
+    {
+      "slug": "gabby-gato-simple",
+      "label": "Gabby gato simple",
+      "category": "gabby",
+      "pack": "gabby",
+      "featured": false,
+      "file": "gabby-09-gato-simple.png",
+      "platforms": [
+        "web"
+      ],
+      "webSrc": "assets/gabby/gabby-09-gato-simple.png",
+      "thumbnailSrc": "assets/thumbs/gabby-09-gato-simple.png",
+      "theme": "gabby",
+      "difficulty": "por-revisar",
+      "keywords": [
+        "gabby",
+        "gato"
+      ]
+    },
+    {
+      "slug": "gabby-amigos",
+      "label": "Gabby amigos",
+      "category": "gabby",
+      "pack": "gabby",
+      "featured": false,
+      "file": "gabby-10-amigos.png",
+      "platforms": [
+        "web"
+      ],
+      "webSrc": "assets/gabby/gabby-10-amigos.png",
+      "thumbnailSrc": "assets/thumbs/gabby-10-amigos.png",
+      "theme": "gabby",
+      "difficulty": "por-revisar",
+      "keywords": [
+        "gabby",
+        "amigos"
+      ]
+    },
+    {
+      "slug": "gabby-sala",
+      "label": "Gabby sala",
+      "category": "gabby",
+      "pack": "gabby",
+      "featured": false,
+      "file": "gabby-11-sala.png",
+      "platforms": [
+        "web"
+      ],
+      "webSrc": "assets/gabby/gabby-11-sala.png",
+      "thumbnailSrc": "assets/thumbs/gabby-11-sala.png",
+      "theme": "gabby",
+      "difficulty": "por-revisar",
+      "keywords": [
+        "gabby",
+        "sala",
+        "casa"
+      ]
+    },
+    {
+      "slug": "gabby-gato-disfraz",
+      "label": "Gabby gato disfrazado",
+      "category": "gabby",
+      "pack": "gabby",
+      "featured": false,
+      "file": "gabby-12-gato-disfraz.png",
+      "platforms": [
+        "web"
+      ],
+      "webSrc": "assets/gabby/gabby-12-gato-disfraz.png",
+      "thumbnailSrc": "assets/thumbs/gabby-12-gato-disfraz.png",
+      "theme": "gabby",
+      "difficulty": "por-revisar",
+      "keywords": [
+        "gabby",
+        "gato",
+        "disfraz"
+      ]
+    },
+    {
+      "slug": "gabby-cumpleanos",
+      "label": "Gabby cumpleaños",
+      "category": "gabby",
+      "pack": "gabby",
+      "featured": false,
+      "file": "gabby-13-cumpleanos.png",
+      "platforms": [
+        "web"
+      ],
+      "webSrc": "assets/gabby/gabby-13-cumpleanos.png",
+      "thumbnailSrc": "assets/thumbs/gabby-13-cumpleanos.png",
+      "theme": "gabby",
+      "difficulty": "por-revisar",
+      "keywords": [
+        "gabby",
+        "cumpleanos",
+        "fiesta"
+      ]
+    },
+    {
+      "slug": "gabby-catrat",
+      "label": "Gabby Catrat",
+      "category": "gabby",
+      "pack": "gabby",
+      "featured": false,
+      "file": "gabby-14-catrat.png",
+      "platforms": [
+        "web"
+      ],
+      "webSrc": "assets/gabby/gabby-14-catrat.png",
+      "thumbnailSrc": "assets/thumbs/gabby-14-catrat.png",
+      "theme": "gabby",
+      "difficulty": "por-revisar",
+      "keywords": [
+        "gabby",
+        "catrat",
+        "gato"
+      ]
+    },
+    {
+      "slug": "gabby-gato-espacial-2",
+      "label": "Gabby gato espacial dos",
+      "category": "gabby",
+      "pack": "gabby",
+      "featured": false,
+      "file": "gabby-15-gato-espacial-2.png",
+      "platforms": [
+        "web"
+      ],
+      "webSrc": "assets/gabby/gabby-15-gato-espacial-2.png",
+      "thumbnailSrc": "assets/thumbs/gabby-15-gato-espacial-2.png",
+      "theme": "gabby",
+      "difficulty": "por-revisar",
+      "keywords": [
+        "gabby",
+        "gato",
+        "espacio"
+      ]
+    },
+    {
+      "slug": "gabby-gato-caja",
+      "label": "Gabby gato caja",
+      "category": "gabby",
+      "pack": "gabby",
+      "featured": false,
+      "file": "gabby-16-gato-caja.png",
+      "platforms": [
+        "web"
+      ],
+      "webSrc": "assets/gabby/gabby-16-gato-caja.png",
+      "thumbnailSrc": "assets/thumbs/gabby-16-gato-caja.png",
+      "theme": "gabby",
+      "difficulty": "por-revisar",
+      "keywords": [
+        "gabby",
+        "gato",
+        "caja"
+      ]
+    },
+    {
+      "slug": "gabby-poster-amigos",
+      "label": "Gabby póster de amigos",
+      "category": "gabby",
+      "pack": "gabby",
+      "featured": false,
+      "file": "gabby-17-poster-amigos.png",
+      "platforms": [
+        "web"
+      ],
+      "webSrc": "assets/gabby/gabby-17-poster-amigos.png",
+      "thumbnailSrc": "assets/thumbs/gabby-17-poster-amigos.png",
+      "theme": "gabby",
+      "difficulty": "por-revisar",
+      "keywords": [
+        "gabby",
+        "poster",
+        "amigos"
+      ]
+    },
+    {
+      "slug": "gabby-casa-magica",
+      "label": "Gabby casa mágica",
+      "category": "gabby",
+      "pack": "gabby",
+      "featured": false,
+      "file": "gabby-18-casa-magica.png",
+      "platforms": [
+        "web"
+      ],
+      "webSrc": "assets/gabby/gabby-18-casa-magica.png",
+      "thumbnailSrc": "assets/thumbs/gabby-18-casa-magica.png",
+      "theme": "gabby",
+      "difficulty": "por-revisar",
+      "keywords": [
+        "gabby",
+        "casa",
+        "magica"
+      ]
+    },
+    {
+      "slug": "gabby-casa-frontal",
+      "label": "Gabby casa frontal",
+      "category": "gabby",
+      "pack": "gabby",
+      "featured": false,
+      "file": "gabby-19-casa-frontal.png",
+      "platforms": [
+        "web"
+      ],
+      "webSrc": "assets/gabby/gabby-19-casa-frontal.png",
+      "thumbnailSrc": "assets/thumbs/gabby-19-casa-frontal.png",
+      "theme": "gabby",
+      "difficulty": "por-revisar",
+      "keywords": [
+        "gabby",
+        "casa"
+      ]
     }
-  ]
+  ],
+  "categories": {
+    "animales": "Animales",
+    "vehiculos": "Vehículos",
+    "navidad": "Navidad",
+    "fantasia": "Fantasía",
+    "dinosaurios": "Dinosaurios",
+    "princesas": "Princesas",
+    "gabby": "Gabby",
+    "casas": "Casas",
+    "paisajes": "Paisajes"
+  },
+  "platformDifferences": {
+    "webOnly": "Los 19 dibujos Gabby ya estaban en la web; se conserva su exclusión actual del catálogo Flutter. No se amplía su distribución.",
+    "difficulty": "Nivel gráfico orientativo: simple/medio/detallado/por-revisar; no evaluación pedagógica."
+  }
 }

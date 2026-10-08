@@ -1,0 +1,12 @@
+Browser engine: webkit 26.5 (headless, Windows)
+✔ paint: English pilot preserves language, local work, gallery and PNG export (4429.378ms)
+✔ brush: English pilot preserves language, local work, gallery and PNG export (3600.6066ms)
+✔ English resource and Spanish activity have reciprocal language navigation and privacy controls (1134.3828ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 9955.704

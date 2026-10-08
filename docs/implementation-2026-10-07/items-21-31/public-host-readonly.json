@@ -1,0 +1,51 @@
+[
+  {
+    "requested": "https://paintme.club/",
+    "final_url": "https://www.paintme.club/",
+    "status": 200,
+    "headers": {
+      "Content-Type": "text/html; charset=utf-8"
+    },
+    "text": null
+  },
+  {
+    "requested": "https://www.paintme.club/",
+    "final_url": "https://www.paintme.club/",
+    "status": 200,
+    "headers": {
+      "Content-Type": "text/html; charset=utf-8"
+    },
+    "text": null
+  },
+  {
+    "requested": "https://www.paintme.club/robots.txt",
+    "final_url": "https://www.paintme.club/robots.txt",
+    "status": 200,
+    "headers": {
+      "Content-Type": "text/plain; charset=utf-8"
+    },
+    "text": "User-agent: *\nAllow: /\n\nSitemap: https://paintme.club/sitemap.xml\n"
+  },
+  {
+    "requested": "https://www.paintme.club/sitemap.xml",
+    "final_url": "https://www.paintme.club/sitemap.xml",
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/xml"
+    },
+    "text": null
+  },
+  {
+    "requested": "https://www.paintme.club/ads.txt",
+    "final_url": "https://www.paintme.club/ads.txt",
+    "status": 200,
+    "headers": {
+      "Content-Type": "text/plain; charset=utf-8"
+    },
+    "text": "google.com, pub-2193465688766661, DIRECT, f08c47fec0942fa0"
+  },
+  {
+    "requested": "https://www.paintme.club/app-ads.txt",
+    "error": "HTTP Error 404: Not Found"
+  }
+]

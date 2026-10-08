@@ -472,3 +472,14 @@ button:disabled {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
+
+/* Persistent save/export feedback stays separate from tool messages. */
+.save-state, .export-state { margin: 10px 0 6px; font-size: 0.95rem; }
+.save-state[data-state="error"], .export-state[data-state="error"] { color: #922b21; }
+.save-state[data-state="saved"], .save-state[data-state="restored"] { color: #176343; }
+.editor-dialog { max-width: min(440px, calc(100vw - 32px)); max-height: calc(100vh - 32px); padding: 24px; border: 0; border-radius: 18px; color: #1e293b; background: white; box-shadow: 0 16px 60px #0004; }
+.editor-dialog::backdrop { background: #0008; }
+.dialog-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 12px; margin-top: 20px; }
+.dialog-actions button { min-height: 44px; padding: 10px 18px; border: 1px solid #64748b; border-radius: 10px; cursor: pointer; background: #f8fafc; color: #1e293b; }
+.editor-dialog :focus-visible { outline: 3px solid #2563eb; outline-offset: 3px; }
+.png-dialog img { display: block; max-width: 100%; max-height: 60vh; margin: auto; object-fit: contain; }

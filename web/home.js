@@ -14,8 +14,7 @@ const sectionMap = navLinks
   .filter(Boolean);
 
 function trackEvent(name, params = {}) {
-  if (typeof window.gtag !== "function") return;
-  window.gtag("event", name, params);
+  return window.PaintMeAnalytics?.track(name, params) || false;
 }
 
 function toggleMenu(forceOpen) {
@@ -70,7 +69,6 @@ faqItems.forEach((item, index) => {
     if (!item.open) return;
     trackEvent("faq_open", {
       item_id: `faq_${index + 1}`,
-      question: item.querySelector("summary")?.textContent || "",
     });
   });
 });

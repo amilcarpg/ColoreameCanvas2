@@ -1,0 +1,12 @@
+Browser engine: chromium 154.0.8037.98 (headless, Windows)
+✔ paint: English pilot preserves language, local work, gallery and PNG export (4709.5038ms)
+✔ brush: English pilot preserves language, local work, gallery and PNG export (2788.7936ms)
+✔ English resource and Spanish activity have reciprocal language navigation and privacy controls (1283.3221ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 10326.5892

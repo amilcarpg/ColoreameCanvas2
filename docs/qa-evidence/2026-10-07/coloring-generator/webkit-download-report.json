@@ -1,0 +1,119 @@
+{
+  "schemaVersion": 1,
+  "source_sha256": "6a2503a18805c311d9ee4f5eb5c3ecebd2494848091701c1532204bdf92c33b7",
+  "source_format": "PNG",
+  "source_size": [
+    1254,
+    1254
+  ],
+  "options": {
+    "mode": "color",
+    "size": 1200,
+    "threshold": 165,
+    "noise": 24,
+    "close": 1,
+    "thickness": 4,
+    "colors": 6,
+    "detail": "simple"
+  },
+  "mode_used": "color",
+  "web_size": [
+    1200,
+    1200
+  ],
+  "master_size": [
+    1200,
+    1200
+  ],
+  "thumbnail_size": [
+    360,
+    360
+  ],
+  "regions": [
+    {
+      "id": 1,
+      "pixels": 901036,
+      "touches_edge": true,
+      "seed": [
+        154,
+        1044
+      ],
+      "bbox": [
+        0,
+        0,
+        1200,
+        1200
+      ]
+    },
+    {
+      "id": 2,
+      "pixels": 306411,
+      "touches_edge": false,
+      "seed": [
+        601,
+        167
+      ],
+      "bbox": [
+        237,
+        46,
+        728,
+        718
+      ]
+    },
+    {
+      "id": 3,
+      "pixels": 42833,
+      "touches_edge": false,
+      "seed": [
+        598,
+        428
+      ],
+      "bbox": [
+        481,
+        313,
+        236,
+        231
+      ]
+    },
+    {
+      "id": 4,
+      "pixels": 157928,
+      "touches_edge": false,
+      "seed": [
+        388,
+        896
+      ],
+      "bbox": [
+        208,
+        757,
+        786,
+        401
+      ]
+    }
+  ],
+  "region_count": 4,
+  "enclosed_regions_over_16px": 3,
+  "tiny_regions_under_16px": 0,
+  "line_pixel_ratio": 0.02207777777777778,
+  "removed_line_components": 0,
+  "regions_before_repair": 6,
+  "filled_small_interiors": 8,
+  "changed_line_pixels": 24031,
+  "warnings": [
+    "La reparación/grosor/redimensión cambió la conectividad; comprobar uniones y separaciones."
+  ],
+  "review_required": true,
+  "technical_status": "needs_review",
+  "elapsed_ms": 989,
+  "versions": {
+    "pillow": "12.3.0",
+    "numpy": "2.3.5",
+    "opencv": "5.0.0"
+  },
+  "output_sha256": {
+    "master": "5beead6d6ce6a72c3e95993bc15f7a492ceb5b9bd83673054808cdb330a8d38b",
+    "drawing": "5beead6d6ce6a72c3e95993bc15f7a492ceb5b9bd83673054808cdb330a8d38b",
+    "thumbnail": "76791501434fd06b41d64b05ec43d6922926d4ce4f9256cf61dc79ec5629ac99",
+    "regions": "7dc865ecba25bde773a03303e2a89f97db2834cf52dacb6afe5cdc224f397edd"
+  }
+}

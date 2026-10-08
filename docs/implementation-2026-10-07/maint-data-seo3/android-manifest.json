@@ -1,0 +1,24 @@
+{
+  "manifest": "flutter\\build\\app\\intermediates\\merged_manifests\\debug\\processDebugManifest\\AndroidManifest.xml",
+  "analytics_metadata": {
+    "firebase_analytics_collection_enabled": "false",
+    "firebase_analytics_collection_deactivated": "true",
+    "google_analytics_automatic_screen_reporting_enabled": "false",
+    "google_analytics_adid_collection_enabled": "false",
+    "google_analytics_default_allow_ad_personalization_signals": "false",
+    "google_analytics_default_allow_analytics_storage": "false",
+    "google_analytics_default_allow_ad_storage": "false",
+    "google_analytics_default_allow_ad_user_data": "false"
+  },
+  "providers": [
+    "dev.fluttercommunity.plus.share.ShareFileProvider",
+    "com.google.android.gms.ads.MobileAdsInitProvider",
+    "androidx.startup.InitializationProvider"
+  ],
+  "physical_network_test": false,
+  "apk": {
+    "path": "flutter\\build\\app\\outputs\\flutter-apk\\app-debug.apk",
+    "bytes": 216702852,
+    "sha256": "8c960dd99e1d54d1671388b285a552ee2a3131f5b8c5f2730257a7eb7a4bc68c"
+  }
+}

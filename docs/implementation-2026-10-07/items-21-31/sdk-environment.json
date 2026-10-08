@@ -1,0 +1,9 @@
+{
+  "available_dart": "3.7.2",
+  "project_constraint": "^3.11.5",
+  "core_tests": "Actual pure Dart storage, autosave and event schema run directly with available SDK; not Flutter tests or a release build",
+  "official_manifest_request": "https://storage.googleapis.com/flutter_infra_release/flutter/releases/releases_windows.json",
+  "manifest_result": "HTTP 404 during this turn; no SDK was installed or existing SDK updated",
+  "official_archive": "https://docs.flutter.dev/install/archive",
+  "remaining": "A compatible Flutter SDK, dependencies, analyzer/widgets/lifecycle and physical QA"
+}

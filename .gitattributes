@@ -1,0 +1,8 @@
+# Deterministic generated catalogs must retain LF on Windows checkouts.
+web/assets-list.js text eol=lf
+web/catalog-meta.js text eol=lf
+flutter/assets/catalog.json text eol=lf
+flutter/lib/catalog_categories.dart text eol=lf
+web/dibujos/*.html text eol=lf
+web/categorias/*.html text eol=lf
+web/packs/*.html text eol=lf

@@ -1,0 +1,36 @@
+{
+  "scope": "Local YAML structure and synthetic iOS shell guard; no Xcode build, SDK request or real account validation.",
+  "workflow_yaml": "passed",
+  "ios_guard_cases": [
+    {
+      "case": "disabled_release",
+      "exit_code": 0,
+      "expected": 0
+    },
+    {
+      "case": "test_debug",
+      "exit_code": 0,
+      "expected": 0
+    },
+    {
+      "case": "test_release",
+      "exit_code": 1,
+      "expected": 1
+    },
+    {
+      "case": "missing_production",
+      "exit_code": 1,
+      "expected": 1
+    },
+    {
+      "case": "sample_production",
+      "exit_code": 1,
+      "expected": 1
+    },
+    {
+      "case": "synthetic_complete",
+      "exit_code": 0,
+      "expected": 0
+    }
+  ]
+}

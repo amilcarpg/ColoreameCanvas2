@@ -1,0 +1,492 @@
+{
+  "timestamp": "2026-10-07T14:40:56.780Z",
+  "engine": "chromium",
+  "scope": "Real local images; desktop automation; geometry is not intended-region approval.",
+  "catalog_sha256": "f9e1e6a48f760a133b5086c8b1df382734bb91f1f4e39fbaa20d21c938999e51",
+  "editor_sha256": {
+    "paint.js": "e85de21aecb223d065572a8cb4741661819874481ba5c5057a2bf50a3866e183",
+    "brush.js": "82b048772e8708f08825a37d04b449667dc2bbe0a15615998d22574e799cd33c",
+    "flood-fill.js": "4b0354a6318a31ecf1ecb12632f33ea6288f3ff4d44a56c02aea014b3fc9b08c",
+    "app-utils.js": "24974671dfac6e7990a2615eda2073e990152e8cd967b7d1b0a669ed70eeee8c"
+  },
+  "items": [
+    {
+      "slug": "triceratops",
+      "label": "Triceratops",
+      "category": "dinosaurios",
+      "difficulty": "medio",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "source_sha256": "aa27ab1be4d299145f9cc92477887e617bd5e5cc7eb3e073d12a615839176406",
+      "modes": {
+        "paint": {
+          "load_ms_desktop": 453,
+          "dimensions": [
+            1200,
+            1200
+          ],
+          "pointer_changes_canvas": true,
+          "undo_exact": true,
+          "worker_fallback_exact": true,
+          "save_exact": true,
+          "restore_diff": {
+            "changed_pixels": 0,
+            "max_channel_delta": 0
+          },
+          "restore_exact": true,
+          "downloads": [
+            {
+              "filename": "triceratops.png",
+              "bytes": 605099,
+              "sha256": "c81c717fdc34a83fc628e02b2c7cfb4779a2814dcdc046edcb7f183efd9f39fd",
+              "pixels_exact": true
+            },
+            {
+              "filename": "triceratops.png",
+              "bytes": 605099,
+              "sha256": "c81c717fdc34a83fc628e02b2c7cfb4779a2814dcdc046edcb7f183efd9f39fd",
+              "pixels_exact": true
+            },
+            {
+              "filename": "triceratops.png",
+              "bytes": 605099,
+              "sha256": "c81c717fdc34a83fc628e02b2c7cfb4779a2814dcdc046edcb7f183efd9f39fd",
+              "pixels_exact": true
+            }
+          ],
+          "elapsed_ms": 4060,
+          "passed": true
+        },
+        "brush": {
+          "load_ms_desktop": 155,
+          "dimensions": [
+            1200,
+            1200
+          ],
+          "pointer_changes_canvas": true,
+          "undo_exact": true,
+          "eraser": {
+            "changed": true
+          },
+          "save_exact": true,
+          "restore_diff": {
+            "changed_pixels": 34456,
+            "max_channel_delta": 38
+          },
+          "restore_exact": false,
+          "downloads": [
+            {
+              "filename": "triceratops-pincel.png",
+              "bytes": 203817,
+              "sha256": "d6cd34ab370778821c615b6d3655babf8e1b53553246dc83eff4a97083b143cd",
+              "pixels_exact": true
+            },
+            {
+              "filename": "triceratops-pincel.png",
+              "bytes": 203817,
+              "sha256": "d6cd34ab370778821c615b6d3655babf8e1b53553246dc83eff4a97083b143cd",
+              "pixels_exact": true
+            },
+            {
+              "filename": "triceratops-pincel.png",
+              "bytes": 203817,
+              "sha256": "d6cd34ab370778821c615b6d3655babf8e1b53553246dc83eff4a97083b143cd",
+              "pixels_exact": true
+            }
+          ],
+          "elapsed_ms": 1619,
+          "passed": false
+        }
+      },
+      "geometry": {
+        "regions": [
+          {
+            "id": 1,
+            "pixels": 1035615,
+            "x": 45,
+            "y": 45,
+            "touches_edge": true,
+            "clearance_px": 40
+          },
+          {
+            "id": 2,
+            "pixels": 1905,
+            "x": 397,
+            "y": 171,
+            "touches_edge": false,
+            "clearance_px": 17
+          },
+          {
+            "id": 3,
+            "pixels": 1988,
+            "x": 518,
+            "y": 184,
+            "touches_edge": false,
+            "clearance_px": 19
+          },
+          {
+            "id": 4,
+            "pixels": 1568,
+            "x": 297,
+            "y": 220,
+            "touches_edge": false,
+            "clearance_px": 19
+          },
+          {
+            "id": 5,
+            "pixels": 1,
+            "x": 561,
+            "y": 216,
+            "touches_edge": false,
+            "clearance_px": 1
+          },
+          {
+            "id": 6,
+            "pixels": 1,
+            "x": 547,
+            "y": 217,
+            "touches_edge": false,
+            "clearance_px": 1
+          },
+          {
+            "id": 7,
+            "pixels": 2029,
+            "x": 604,
+            "y": 246,
+            "touches_edge": false,
+            "clearance_px": 22
+          },
+          {
+            "id": 8,
+            "pixels": 9593,
+            "x": 288,
+            "y": 360,
+            "touches_edge": false,
+            "clearance_px": 40
+          },
+          {
+            "id": 9,
+            "pixels": 7428,
+            "x": 175,
+            "y": 396,
+            "touches_edge": false,
+            "clearance_px": 39
+          },
+          {
+            "id": 10,
+            "pixels": 2686,
+            "x": 662,
+            "y": 330,
+            "touches_edge": false,
+            "clearance_px": 23
+          },
+          {
+            "id": 11,
+            "pixels": 2,
+            "x": 354,
+            "y": 368,
+            "touches_edge": false,
+            "clearance_px": 1
+          },
+          {
+            "id": 12,
+            "pixels": 195211,
+            "x": 730,
+            "y": 494,
+            "touches_edge": false,
+            "clearance_px": 40
+          },
+          {
+            "id": 13,
+            "pixels": 2344,
+            "x": 679,
+            "y": 439,
+            "touches_edge": false,
+            "clearance_px": 20
+          },
+          {
+            "id": 14,
+            "pixels": 1904,
+            "x": 762,
+            "y": 447,
+            "touches_edge": false,
+            "clearance_px": 20
+          },
+          {
+            "id": 15,
+            "pixels": 1527,
+            "x": 866,
+            "y": 476,
+            "touches_edge": false,
+            "clearance_px": 19
+          },
+          {
+            "id": 16,
+            "pixels": 4861,
+            "x": 122,
+            "y": 544,
+            "touches_edge": false,
+            "clearance_px": 35
+          },
+          {
+            "id": 17,
+            "pixels": 1243,
+            "x": 322,
+            "y": 498,
+            "touches_edge": false,
+            "clearance_px": 8
+          },
+          {
+            "id": 18,
+            "pixels": 995,
+            "x": 808,
+            "y": 513,
+            "touches_edge": false,
+            "clearance_px": 15
+          },
+          {
+            "id": 19,
+            "pixels": 2178,
+            "x": 654,
+            "y": 549,
+            "touches_edge": false,
+            "clearance_px": 22
+          },
+          {
+            "id": 20,
+            "pixels": 290,
+            "x": 346,
+            "y": 520,
+            "touches_edge": false,
+            "clearance_px": 10
+          },
+          {
+            "id": 21,
+            "pixels": 372,
+            "x": 942,
+            "y": 524,
+            "touches_edge": false,
+            "clearance_px": 10
+          },
+          {
+            "id": 22,
+            "pixels": 2,
+            "x": 339,
+            "y": 528,
+            "touches_edge": false,
+            "clearance_px": 1
+          },
+          {
+            "id": 23,
+            "pixels": 635,
+            "x": 888,
+            "y": 544,
+            "touches_edge": false,
+            "clearance_px": 13
+          },
+          {
+            "id": 24,
+            "pixels": 1531,
+            "x": 599,
+            "y": 621,
+            "touches_edge": false,
+            "clearance_px": 19
+          },
+          {
+            "id": 25,
+            "pixels": 2290,
+            "x": 244,
+            "y": 702,
+            "touches_edge": false,
+            "clearance_px": 21
+          },
+          {
+            "id": 26,
+            "pixels": 18565,
+            "x": 393,
+            "y": 817,
+            "touches_edge": false,
+            "clearance_px": 40
+          },
+          {
+            "id": 27,
+            "pixels": 1679,
+            "x": 977,
+            "y": 772,
+            "touches_edge": false,
+            "clearance_px": 15
+          },
+          {
+            "id": 28,
+            "pixels": 1,
+            "x": 799,
+            "y": 788,
+            "touches_edge": false,
+            "clearance_px": 1
+          },
+          {
+            "id": 29,
+            "pixels": 1994,
+            "x": 792,
+            "y": 801,
+            "touches_edge": false,
+            "clearance_px": 11
+          },
+          {
+            "id": 30,
+            "pixels": 8,
+            "x": 1064,
+            "y": 791,
+            "touches_edge": false,
+            "clearance_px": 1
+          },
+          {
+            "id": 31,
+            "pixels": 7903,
+            "x": 745,
+            "y": 878,
+            "touches_edge": false,
+            "clearance_px": 40
+          },
+          {
+            "id": 32,
+            "pixels": 2,
+            "x": 296,
+            "y": 907,
+            "touches_edge": false,
+            "clearance_px": 1
+          },
+          {
+            "id": 33,
+            "pixels": 320,
+            "x": 685,
+            "y": 919,
+            "touches_edge": false,
+            "clearance_px": 7
+          },
+          {
+            "id": 34,
+            "pixels": 601,
+            "x": 717,
+            "y": 928,
+            "touches_edge": false,
+            "clearance_px": 13
+          },
+          {
+            "id": 35,
+            "pixels": 3,
+            "x": 700,
+            "y": 917,
+            "touches_edge": false,
+            "clearance_px": 1
+          },
+          {
+            "id": 36,
+            "pixels": 297,
+            "x": 295,
+            "y": 931,
+            "touches_edge": false,
+            "clearance_px": 8
+          },
+          {
+            "id": 37,
+            "pixels": 693,
+            "x": 323,
+            "y": 945,
+            "touches_edge": false,
+            "clearance_px": 14
+          },
+          {
+            "id": 38,
+            "pixels": 516,
+            "x": 829,
+            "y": 947,
+            "touches_edge": false,
+            "clearance_px": 11
+          },
+          {
+            "id": 39,
+            "pixels": 888,
+            "x": 866,
+            "y": 951,
+            "touches_edge": false,
+            "clearance_px": 16
+          },
+          {
+            "id": 40,
+            "pixels": 2,
+            "x": 847,
+            "y": 937,
+            "touches_edge": false,
+            "clearance_px": 1
+          },
+          {
+            "id": 41,
+            "pixels": 595,
+            "x": 360,
+            "y": 950,
+            "touches_edge": false,
+            "clearance_px": 13
+          },
+          {
+            "id": 42,
+            "pixels": 751,
+            "x": 909,
+            "y": 953,
+            "touches_edge": false,
+            "clearance_px": 14
+          },
+          {
+            "id": 43,
+            "pixels": 164,
+            "x": 508,
+            "y": 962,
+            "touches_edge": false,
+            "clearance_px": 5
+          },
+          {
+            "id": 44,
+            "pixels": 743,
+            "x": 534,
+            "y": 975,
+            "touches_edge": false,
+            "clearance_px": 14
+          },
+          {
+            "id": 45,
+            "pixels": 895,
+            "x": 574,
+            "y": 977,
+            "touches_edge": false,
+            "clearance_px": 16
+          },
+          {
+            "id": 46,
+            "pixels": 2,
+            "x": 555,
+            "y": 964,
+            "touches_edge": false,
+            "clearance_px": 1
+          }
+        ],
+        "total_paintable_pixels": 1314821,
+        "regions_under_16px": 10,
+        "all_regions_algorithm_ms": 164.10000000149012,
+        "mismatched_pixels": 0,
+        "damaged_line_pixels": 0,
+        "selected": {
+          "id": 1,
+          "pixels": 1035615,
+          "x": 500,
+          "y": 300,
+          "touches_edge": true,
+          "clearance_px": 40
+        }
+      },
+      "page_errors": []
+    }
+  ],
+  "browserVersion": "154.0.8037.98"
+}

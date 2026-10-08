@@ -1,0 +1,17 @@
+test_alpha_is_composited_on_white_without_hidden_rgb_artifacts (test_coloring_generator.ColoringGeneratorTests.test_alpha_is_composited_on_white_without_hidden_rgb_artifacts) ... ok
+test_concave_region_seed_has_clearance_from_its_outline (test_coloring_generator.ColoringGeneratorTests.test_concave_region_seed_has_clearance_from_its_outline) ... ok
+test_existing_results_and_original_are_not_overwritten_implicitly (test_coloring_generator.ColoringGeneratorTests.test_existing_results_and_original_are_not_overwritten_implicitly) ... ok
+test_flat_color_shapes_produce_white_interiors_and_closed_outlines (test_coloring_generator.ColoringGeneratorTests.test_flat_color_shapes_produce_white_interiors_and_closed_outlines) ... ok
+test_generated_originals_are_repeatable_and_have_exact_binary_web_masks (test_coloring_generator.ColoringGeneratorTests.test_generated_originals_are_repeatable_and_have_exact_binary_web_masks) ... ok
+test_invalid_image_and_out_of_range_options_are_rejected (test_coloring_generator.ColoringGeneratorTests.test_invalid_image_and_out_of_range_options_are_rejected) ... ok
+test_noise_removal_preserves_large_outline_and_its_inside (test_coloring_generator.ColoringGeneratorTests.test_noise_removal_preserves_large_outline_and_its_inside) ... ok
+test_oversized_decode_is_rejected_before_loading_pixels (test_coloring_generator.ColoringGeneratorTests.test_oversized_decode_is_rejected_before_loading_pixels) ... ok
+test_photo_never_claims_semantic_or_publication_approval (test_coloring_generator.ColoringGeneratorTests.test_photo_never_claims_semantic_or_publication_approval) ... ok
+test_png_jpeg_and_webp_inputs_produce_binary_png_with_regions (test_coloring_generator.ColoringGeneratorTests.test_png_jpeg_and_webp_inputs_produce_binary_png_with_regions) ... ok
+test_small_gap_repair_disconnects_inside_from_outside (test_coloring_generator.ColoringGeneratorTests.test_small_gap_repair_disconnects_inside_from_outside) ... ok
+test_small_interior_cleanup_keeps_small_regions_on_border (test_coloring_generator.ColoringGeneratorTests.test_small_interior_cleanup_keeps_small_regions_on_border) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 4.338s
+
+OK

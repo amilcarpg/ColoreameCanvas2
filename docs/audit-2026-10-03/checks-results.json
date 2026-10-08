@@ -1,0 +1,193 @@
+{
+  "syntax": [
+    {
+      "file": "analytics-init.js",
+      "exit": 0,
+      "error": ""
+    },
+    {
+      "file": "app-utils.js",
+      "exit": 0,
+      "error": ""
+    },
+    {
+      "file": "assets-list.js",
+      "exit": 0,
+      "error": ""
+    },
+    {
+      "file": "brush.js",
+      "exit": 0,
+      "error": ""
+    },
+    {
+      "file": "home.js",
+      "exit": 0,
+      "error": ""
+    },
+    {
+      "file": "paint-worker.js",
+      "exit": 0,
+      "error": ""
+    },
+    {
+      "file": "paint.js",
+      "exit": 0,
+      "error": ""
+    }
+  ],
+  "helperExposure": {
+    "lexical": "object",
+    "windowProperty": "undefined",
+    "editorHelpers": []
+  },
+  "catalog": {
+    "webCount": 62,
+    "mobileCount": 43,
+    "masterCount": 43,
+    "categories": {
+      "dinosaurios": 4,
+      "animales": 10,
+      "vehiculos": 7,
+      "navidad": 9,
+      "princesas": 5,
+      "fantasia": 8,
+      "gabby": 19
+    },
+    "missing": [],
+    "oversized": [],
+    "ratioMismatch": [],
+    "duplicateSlugs": [],
+    "mobileMissing": [],
+    "mastersMissing": [],
+    "webOnly": [
+      "gabby-gato-volador",
+      "gabby-gato-flores",
+      "gabby-auto",
+      "gabby-camping",
+      "gabby-casa-auto",
+      "gabby-pintando",
+      "gabby-gato-espacial",
+      "gabby-leyendo",
+      "gabby-gato-simple",
+      "gabby-amigos",
+      "gabby-sala",
+      "gabby-gato-disfraz",
+      "gabby-cumpleanos",
+      "gabby-catrat",
+      "gabby-gato-espacial-2",
+      "gabby-gato-caja",
+      "gabby-poster-amigos",
+      "gabby-casa-magica",
+      "gabby-casa-frontal"
+    ]
+  },
+  "pngBytes": {
+    "base_png": 35720150,
+    "web/assets": 26583892,
+    "flutter/assets": 30648853
+  },
+  "productionComparison": [
+    {
+      "file": "index.html",
+      "normalizedMatch": true
+    },
+    {
+      "file": "paint.html",
+      "normalizedMatch": true
+    },
+    {
+      "file": "app-utils.js",
+      "normalizedMatch": true
+    },
+    {
+      "file": "paint.js",
+      "normalizedMatch": true
+    },
+    {
+      "file": "analytics-init.js",
+      "normalizedMatch": true
+    },
+    {
+      "file": "assets-list.js",
+      "normalizedMatch": true
+    },
+    {
+      "file": "robots.txt",
+      "normalizedMatch": true
+    },
+    {
+      "file": "sitemap.xml",
+      "normalizedMatch": true
+    },
+    {
+      "file": "ads.txt",
+      "normalizedMatch": true
+    },
+    {
+      "file": "privacy.html",
+      "normalizedMatch": true
+    },
+    {
+      "file": "paint-worker.js",
+      "normalizedMatch": true
+    },
+    {
+      "file": "brush.js",
+      "normalizedMatch": true
+    },
+    {
+      "file": "paint.css",
+      "normalizedMatch": true
+    },
+    {
+      "file": "brush.css",
+      "normalizedMatch": true
+    },
+    {
+      "file": "brush.html",
+      "normalizedMatch": true
+    },
+    {
+      "file": "categorias/dinosaurios.html",
+      "normalizedMatch": true
+    },
+    {
+      "file": "packs/dinosaurios.html",
+      "normalizedMatch": true
+    },
+    {
+      "file": "dibujos/dinosaurio.html",
+      "normalizedMatch": true
+    }
+  ],
+  "worker": [
+    {
+      "dimensions": [
+        10,
+        10
+      ],
+      "expected": 100,
+      "painted": 36,
+      "complete": false
+    },
+    {
+      "dimensions": [
+        100,
+        100
+      ],
+      "expected": 10000,
+      "painted": 2607,
+      "complete": false
+    },
+    {
+      "dimensions": [
+        1200,
+        1200
+      ],
+      "expected": 1440000,
+      "painted": 361274,
+      "complete": false
+    }
+  ]
+}

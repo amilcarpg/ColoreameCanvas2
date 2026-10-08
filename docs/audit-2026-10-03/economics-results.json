@@ -1,0 +1,313 @@
+{
+  "note": "USD monthly; assumptions, not forecast or benchmarks; labor and taxes excluded from operating.",
+  "web": [
+    {
+      "scenario": "conservador",
+      "users": 2000,
+      "sessionsPerUser": 1.5,
+      "pagesPerSession": 1.6,
+      "eligibleShare": 0.5,
+      "pageRPM": 0.5,
+      "cost": 5,
+      "sessions": 3000,
+      "pages": 4800,
+      "eligiblePages": 2400,
+      "gross": 1.2,
+      "operating": -3.8
+    },
+    {
+      "scenario": "base",
+      "users": 10000,
+      "sessionsPerUser": 2,
+      "pagesPerSession": 2,
+      "eligibleShare": 0.65,
+      "pageRPM": 1.5,
+      "cost": 5,
+      "sessions": 20000,
+      "pages": 40000,
+      "eligiblePages": 26000,
+      "gross": 39,
+      "operating": 34
+    },
+    {
+      "scenario": "optimista",
+      "users": 50000,
+      "sessionsPerUser": 3,
+      "pagesPerSession": 2.5,
+      "eligibleShare": 0.8,
+      "pageRPM": 4,
+      "cost": 5,
+      "sessions": 150000,
+      "pages": 375000,
+      "eligiblePages": 300000,
+      "gross": 1200,
+      "operating": 1195
+    }
+  ],
+  "mobile": [
+    {
+      "scenario": "conservador",
+      "mau": 500,
+      "sessionsPerMau": 3,
+      "opportunitiesPerSession": 1,
+      "fill": 0.4,
+      "show": 0.8,
+      "bannerECPM": 0.2,
+      "cost": 7,
+      "sessions": 1500,
+      "opportunities": 1500,
+      "impressions": 480,
+      "gross": 0.096,
+      "operating": -6.904
+    },
+    {
+      "scenario": "base",
+      "mau": 5000,
+      "sessionsPerMau": 6,
+      "opportunitiesPerSession": 1.5,
+      "fill": 0.65,
+      "show": 0.85,
+      "bannerECPM": 0.6,
+      "cost": 7,
+      "sessions": 30000,
+      "opportunities": 45000,
+      "impressions": 24862.5,
+      "gross": 14.9175,
+      "operating": 7.9175
+    },
+    {
+      "scenario": "optimista",
+      "mau": 25000,
+      "sessionsPerMau": 10,
+      "opportunitiesPerSession": 2,
+      "fill": 0.85,
+      "show": 0.9,
+      "bannerECPM": 1.5,
+      "cost": 7,
+      "sessions": 250000,
+      "opportunities": 500000,
+      "impressions": 382500,
+      "gross": 573.75,
+      "operating": 566.75
+    }
+  ],
+  "webTargets": [
+    {
+      "scenario": "conservador",
+      "targets": [
+        {
+          "goal": 100,
+          "eligiblePages": 200000,
+          "totalPages": 400000,
+          "users": 166667,
+          "eligiblePagesForOperating": 210000
+        },
+        {
+          "goal": 300,
+          "eligiblePages": 600000,
+          "totalPages": 1200000,
+          "users": 500000,
+          "eligiblePagesForOperating": 610000
+        },
+        {
+          "goal": 500,
+          "eligiblePages": 1000000,
+          "totalPages": 2000000,
+          "users": 833334,
+          "eligiblePagesForOperating": 1010000
+        },
+        {
+          "goal": 1400,
+          "eligiblePages": 2800000,
+          "totalPages": 5600000,
+          "users": 2333334,
+          "eligiblePagesForOperating": 2810000
+        }
+      ]
+    },
+    {
+      "scenario": "base",
+      "targets": [
+        {
+          "goal": 100,
+          "eligiblePages": 66667,
+          "totalPages": 102565,
+          "users": 25642,
+          "eligiblePagesForOperating": 70000
+        },
+        {
+          "goal": 300,
+          "eligiblePages": 200000,
+          "totalPages": 307693,
+          "users": 76924,
+          "eligiblePagesForOperating": 203334
+        },
+        {
+          "goal": 500,
+          "eligiblePages": 333334,
+          "totalPages": 512821,
+          "users": 128206,
+          "eligiblePagesForOperating": 336667
+        },
+        {
+          "goal": 1400,
+          "eligiblePages": 933334,
+          "totalPages": 1435898,
+          "users": 358975,
+          "eligiblePagesForOperating": 936667
+        }
+      ]
+    },
+    {
+      "scenario": "optimista",
+      "targets": [
+        {
+          "goal": 100,
+          "eligiblePages": 25000,
+          "totalPages": 31250,
+          "users": 4167,
+          "eligiblePagesForOperating": 26250
+        },
+        {
+          "goal": 300,
+          "eligiblePages": 75000,
+          "totalPages": 93750,
+          "users": 12500,
+          "eligiblePagesForOperating": 76250
+        },
+        {
+          "goal": 500,
+          "eligiblePages": 125000,
+          "totalPages": 156250,
+          "users": 20834,
+          "eligiblePagesForOperating": 126250
+        },
+        {
+          "goal": 1400,
+          "eligiblePages": 350000,
+          "totalPages": 437500,
+          "users": 58334,
+          "eligiblePagesForOperating": 351250
+        }
+      ]
+    }
+  ],
+  "mobileTargets": [
+    {
+      "scenario": "conservador",
+      "targets": [
+        {
+          "goal": 100,
+          "impressions": 500000,
+          "opportunities": 1562500,
+          "mau": 520834,
+          "mauForOperating": 557292
+        },
+        {
+          "goal": 300,
+          "impressions": 1500000,
+          "opportunities": 4687500,
+          "mau": 1562500,
+          "mauForOperating": 1598959
+        },
+        {
+          "goal": 500,
+          "impressions": 2500000,
+          "opportunities": 7812500,
+          "mau": 2604167,
+          "mauForOperating": 2640625
+        },
+        {
+          "goal": 1400,
+          "impressions": 7000000,
+          "opportunities": 21875000,
+          "mau": 7291667,
+          "mauForOperating": 7328125
+        }
+      ]
+    },
+    {
+      "scenario": "base",
+      "targets": [
+        {
+          "goal": 100,
+          "impressions": 166667,
+          "opportunities": 301660,
+          "mau": 33518,
+          "mauForOperating": 35864
+        },
+        {
+          "goal": 300,
+          "impressions": 500000,
+          "opportunities": 904978,
+          "mau": 100554,
+          "mauForOperating": 102900
+        },
+        {
+          "goal": 500,
+          "impressions": 833334,
+          "opportunities": 1508296,
+          "mau": 167589,
+          "mauForOperating": 169935
+        },
+        {
+          "goal": 1400,
+          "impressions": 2333334,
+          "opportunities": 4223228,
+          "mau": 469248,
+          "mauForOperating": 471594
+        }
+      ]
+    },
+    {
+      "scenario": "optimista",
+      "targets": [
+        {
+          "goal": 100,
+          "impressions": 66667,
+          "opportunities": 87146,
+          "mau": 4358,
+          "mauForOperating": 4663
+        },
+        {
+          "goal": 300,
+          "impressions": 200000,
+          "opportunities": 261438,
+          "mau": 13072,
+          "mauForOperating": 13377
+        },
+        {
+          "goal": 500,
+          "impressions": 333334,
+          "opportunities": 435730,
+          "mau": 21787,
+          "mauForOperating": 22092
+        },
+        {
+          "goal": 1400,
+          "impressions": 933334,
+          "opportunities": 1220044,
+          "mau": 61003,
+          "mauForOperating": 61308
+        }
+      ]
+    }
+  ],
+  "mix": {
+    "eligibleWebPages": 133333.33333333334,
+    "pageRPM": 1.5,
+    "adultQualifiedVisits": 10000,
+    "conversion": 0.01,
+    "price": 12,
+    "orders": 100,
+    "paymentVariableRate": 0.1,
+    "refundRate": 0.05,
+    "fixedCost": 25,
+    "ads": 200,
+    "sales": 1200,
+    "gross": 1400,
+    "paymentCost": 120,
+    "refunds": 60,
+    "operating": 1195
+  }
+}

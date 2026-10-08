@@ -1,0 +1,149 @@
+{
+  "schemaVersion": 1,
+  "source_sha256": "c77e528ea2b7686945ed39cc70767fa60c8a4afe35fca825006687ba56c6428e",
+  "source_format": "PNG",
+  "source_size": [
+    1254,
+    1254
+  ],
+  "options": {
+    "mode": "outline",
+    "size": 1200,
+    "threshold": 190,
+    "noise": 64,
+    "close": 3,
+    "thickness": 4,
+    "colors": 6,
+    "detail": "simple"
+  },
+  "mode_used": "outline",
+  "web_size": [
+    1200,
+    1200
+  ],
+  "master_size": [
+    1200,
+    1200
+  ],
+  "thumbnail_size": [
+    360,
+    360
+  ],
+  "regions": [
+    {
+      "id": 1,
+      "pixels": 1260495,
+      "touches_edge": true,
+      "seed": [
+        590,
+        587
+      ],
+      "bbox": [
+        0,
+        0,
+        1200,
+        1200
+      ]
+    },
+    {
+      "id": 2,
+      "pixels": 39696,
+      "touches_edge": false,
+      "seed": [
+        861,
+        412
+      ],
+      "bbox": [
+        717,
+        107,
+        224,
+        647
+      ]
+    },
+    {
+      "id": 3,
+      "pixels": 5203,
+      "touches_edge": false,
+      "seed": [
+        602,
+        793
+      ],
+      "bbox": [
+        501,
+        779,
+        205,
+        30
+      ]
+    },
+    {
+      "id": 4,
+      "pixels": 24211,
+      "touches_edge": false,
+      "seed": [
+        603,
+        883
+      ],
+      "bbox": [
+        499,
+        815,
+        208,
+        132
+      ]
+    },
+    {
+      "id": 5,
+      "pixels": 4557,
+      "touches_edge": false,
+      "seed": [
+        599,
+        963
+      ],
+      "bbox": [
+        471,
+        953,
+        259,
+        22
+      ]
+    },
+    {
+      "id": 6,
+      "pixels": 28842,
+      "touches_edge": false,
+      "seed": [
+        600,
+        1045
+      ],
+      "bbox": [
+        481,
+        981,
+        245,
+        136
+      ]
+    }
+  ],
+  "region_count": 6,
+  "enclosed_regions_over_16px": 5,
+  "tiny_regions_under_16px": 0,
+  "line_pixel_ratio": 0.053469444444444444,
+  "removed_line_components": 46,
+  "regions_before_repair": 10,
+  "filled_small_interiors": 1,
+  "changed_line_pixels": 27653,
+  "warnings": [
+    "La reparación/grosor/redimensión cambió la conectividad; comprobar uniones y separaciones."
+  ],
+  "review_required": true,
+  "technical_status": "needs_review",
+  "elapsed_ms": 645,
+  "versions": {
+    "pillow": "12.3.0",
+    "numpy": "2.3.5",
+    "opencv": "5.0.0"
+  },
+  "output_sha256": {
+    "master": "3f608248f2c00d562eb4aec7bdb1f249556ea919bde3c902b0209ed5d9d59422",
+    "drawing": "3f608248f2c00d562eb4aec7bdb1f249556ea919bde3c902b0209ed5d9d59422",
+    "thumbnail": "578ee4502f91002703b5a936fb28c67c8ca04a647c1c720076ba7de28dcc22d2",
+    "regions": "e4b74263e0eb579ce085d6021610e6a5393ea41ac8cacf14cda2c856b3b2ed59"
+  }
+}

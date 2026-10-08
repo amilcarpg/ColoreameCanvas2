@@ -27,7 +27,7 @@ void main() {
     expect(result.single.slug, 'gato');
     expect(result.single.status, DrawingStatus.inProgress);
     expect(result.single.isFavorite, isFalse);
-    expect(File('${sessions.path}/index.json').existsSync(), isTrue);
+    expect(File('${sessions.path}/index.json').existsSync(), isFalse);
   });
 
   test(

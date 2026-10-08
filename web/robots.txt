@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://paintme.club/sitemap.xml
+Sitemap: https://www.paintme.club/sitemap.xml

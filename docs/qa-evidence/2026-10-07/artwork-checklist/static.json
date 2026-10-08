@@ -1,0 +1,3850 @@
+{
+  "scope": "Independent Pillow decoding; no physical device or rights approval",
+  "items": [
+    {
+      "slug": "dinosaurio",
+      "label": "Dinosaurio feliz",
+      "category": "dinosaurios",
+      "pack": "dinosaurios",
+      "difficulty": "medio",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "files": {
+        "master": {
+          "path": "base_png/dinosaur-v2.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 879602,
+          "sha256": "5d9be632b43b8ed85bbd745dc3f14d99a4dd5029cfffe52613972c9861195e08",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.08830833333333334,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "web": {
+          "path": "web/assets/dinosaur-v2.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 659495,
+          "sha256": "300d687cec369ccdde39ae6ad3148a2e19376c566396ce4e78cf14f4c8c68c08",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.08830833333333334,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "thumbnail": {
+          "path": "web/assets/thumbs/dinosaur-v2.png",
+          "format": "PNG",
+          "width": 360,
+          "height": 360,
+          "bytes": 107210,
+          "sha256": "e6c5ae8089be5ea1e04017fa4bdcc2b791c285c01459d9ba1113971203968cfe",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.09578703703703703,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "flutter": {
+          "path": "flutter/assets/drawings_mobile/dinosaur-v2.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 659495,
+          "sha256": "300d687cec369ccdde39ae6ad3148a2e19376c566396ce4e78cf14f4c8c68c08",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.08830833333333334,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        }
+      },
+      "dimensions_pass": true,
+      "aspect_delta": 0.0,
+      "master_aspect_delta": 0.0,
+      "flutter_same_as_web": true,
+      "rights_evidence": {}
+    },
+    {
+      "slug": "gato",
+      "label": "Gato curioso",
+      "category": "animales",
+      "pack": "animales",
+      "difficulty": "medio",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "files": {
+        "master": {
+          "path": "base_png/cat-v2.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 901551,
+          "sha256": "3a141aa40ef82600af8826f6b7b9df5022e20fb0575935b2f0f8bf034e3ea826",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.13776041666666666,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "web": {
+          "path": "web/assets/cat-v2.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 684890,
+          "sha256": "579cc189a3f3e0e04c90f19ae84f6c4c088baec52168f79c5757f9c656a544b0",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.13776041666666666,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "thumbnail": {
+          "path": "web/assets/thumbs/cat-v2.png",
+          "format": "PNG",
+          "width": 360,
+          "height": 360,
+          "bytes": 119919,
+          "sha256": "e768bcf69ab88761cfe4307b5cf8204082d49323421eb55cbe454be0a42772ff",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.14634259259259258,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "flutter": {
+          "path": "flutter/assets/drawings_mobile/cat-v2.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 684890,
+          "sha256": "579cc189a3f3e0e04c90f19ae84f6c4c088baec52168f79c5757f9c656a544b0",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.13776041666666666,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        }
+      },
+      "dimensions_pass": true,
+      "aspect_delta": 0.0,
+      "master_aspect_delta": 0.0,
+      "flutter_same_as_web": true,
+      "rights_evidence": {}
+    },
+    {
+      "slug": "perro",
+      "label": "Perro juguetón",
+      "category": "animales",
+      "pack": "animales",
+      "difficulty": "medio",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "files": {
+        "master": {
+          "path": "base_png/dog-v2.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 840551,
+          "sha256": "d6f2835a3752f4a4df786aba0abe6a2f1a7bd9a47bf576f661128a8bea425f1b",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.1294,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "web": {
+          "path": "web/assets/dog-v2.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 622432,
+          "sha256": "742da3287bb216e29cbc602915120f5a7da69749f88f0d0b150ee8afbb34e3a2",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.1294,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "thumbnail": {
+          "path": "web/assets/thumbs/dog-v2.png",
+          "format": "PNG",
+          "width": 360,
+          "height": 360,
+          "bytes": 108915,
+          "sha256": "cf084566dc0013675d510d42bfb9b489cba75d8e3d4a5b76f25f9f2b771e9835",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.13641975308641976,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "flutter": {
+          "path": "flutter/assets/drawings_mobile/dog-v2.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 622432,
+          "sha256": "742da3287bb216e29cbc602915120f5a7da69749f88f0d0b150ee8afbb34e3a2",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.1294,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        }
+      },
+      "dimensions_pass": true,
+      "aspect_delta": 0.0,
+      "master_aspect_delta": 0.0,
+      "flutter_same_as_web": true,
+      "rights_evidence": {}
+    },
+    {
+      "slug": "auto",
+      "label": "Auto rojo",
+      "category": "vehiculos",
+      "pack": "vehiculos",
+      "difficulty": "medio",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "files": {
+        "master": {
+          "path": "base_png/car-v2.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 779367,
+          "sha256": "7eb0eb089e9e02ff22ad068e25b78c33bc35070a284fc498dcfd94ef14822602",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.1113125,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "web": {
+          "path": "web/assets/car-v2.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 564802,
+          "sha256": "7c2cabba7ada10c62927ea553ecf44b46c6ebecf861729e673c9451b5f8040d7",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.1113125,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "thumbnail": {
+          "path": "web/assets/thumbs/car-v2.png",
+          "format": "PNG",
+          "width": 360,
+          "height": 360,
+          "bytes": 96720,
+          "sha256": "24b5ee59118b9c9f6be889dc8ad0a8c455e7f0e2cf4e7f84bbc30917be974437",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.1186574074074074,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "flutter": {
+          "path": "flutter/assets/drawings_mobile/car-v2.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 564802,
+          "sha256": "7c2cabba7ada10c62927ea553ecf44b46c6ebecf861729e673c9451b5f8040d7",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.1113125,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        }
+      },
+      "dimensions_pass": true,
+      "aspect_delta": 0.0,
+      "master_aspect_delta": 0.0,
+      "flutter_same_as_web": true,
+      "rights_evidence": {}
+    },
+    {
+      "slug": "arbol-navidad",
+      "label": "Árbol de navidad",
+      "category": "navidad",
+      "pack": "navidad",
+      "difficulty": "medio",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "files": {
+        "master": {
+          "path": "base_png/christmas-tree-v2.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 861940,
+          "sha256": "d2bcb351eae3d05e7fe1dbd267693fcc1118c0afd8ce64c5bc8e7058253a493c",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.11935277777777778,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "web": {
+          "path": "web/assets/christmas-tree-v2.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 653623,
+          "sha256": "191fd73b5d9ba9cca5a7d58236f42997f7907316df79b1408242b6e75bb44404",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.11935277777777778,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "thumbnail": {
+          "path": "web/assets/thumbs/christmas-tree-v2.png",
+          "format": "PNG",
+          "width": 360,
+          "height": 360,
+          "bytes": 112220,
+          "sha256": "3ee1e0d15542725f3af9547e973e285594c1fab06256b1175017adb43799c8b3",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.13074074074074074,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "flutter": {
+          "path": "flutter/assets/drawings_mobile/christmas-tree-v2.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 653623,
+          "sha256": "191fd73b5d9ba9cca5a7d58236f42997f7907316df79b1408242b6e75bb44404",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.11935277777777778,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        }
+      },
+      "dimensions_pass": true,
+      "aspect_delta": 0.0,
+      "master_aspect_delta": 0.0,
+      "flutter_same_as_web": true,
+      "rights_evidence": {}
+    },
+    {
+      "slug": "mariposa",
+      "label": "Mariposa",
+      "category": "animales",
+      "pack": "animales",
+      "difficulty": "medio",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "files": {
+        "master": {
+          "path": "base_png/butterfly-v2.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 1047926,
+          "sha256": "b40f42fa685b8f945be5e447400b8ef5bf4b797b2d77f221cd2d9ebe9f230aff",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.16482222222222223,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "web": {
+          "path": "web/assets/butterfly-v2.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 845696,
+          "sha256": "57d4535a86fd5ef987a9cb97c6e2195f5e6703a458cb05cf93d6f917572910ef",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.16482222222222223,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "thumbnail": {
+          "path": "web/assets/thumbs/butterfly-v2.png",
+          "format": "PNG",
+          "width": 360,
+          "height": 360,
+          "bytes": 119787,
+          "sha256": "dd4f8e1c19c2a69750fe142b7869e41e8e50ce1663a7a92e25a0df0e7c5ea6bb",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.17801697530864197,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "flutter": {
+          "path": "flutter/assets/drawings_mobile/butterfly-v2.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 845696,
+          "sha256": "57d4535a86fd5ef987a9cb97c6e2195f5e6703a458cb05cf93d6f917572910ef",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.16482222222222223,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        }
+      },
+      "dimensions_pass": true,
+      "aspect_delta": 0.0,
+      "master_aspect_delta": 0.0,
+      "flutter_same_as_web": true,
+      "rights_evidence": {}
+    },
+    {
+      "slug": "cohete",
+      "label": "Cohete",
+      "category": "vehiculos",
+      "pack": "vehiculos",
+      "difficulty": "medio",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "files": {
+        "master": {
+          "path": "base_png/rocket-v2.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 880760,
+          "sha256": "567b9ac41edc7a14a0226985f9278210d1c8ff159c7a51811443f9d6ba352eb3",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.10007291666666666,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "web": {
+          "path": "web/assets/rocket-v2.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 657164,
+          "sha256": "618e62754a7f3eed8ff6a362ca78ae2771df00fc71c4ceb89cbe6ffc9427426c",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.10007291666666666,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "thumbnail": {
+          "path": "web/assets/thumbs/rocket-v2.png",
+          "format": "PNG",
+          "width": 360,
+          "height": 360,
+          "bytes": 110578,
+          "sha256": "c8362e22edbce065708521cd0216d54832b550d9c1d885191791b66afc287a1d",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.1076929012345679,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "flutter": {
+          "path": "flutter/assets/drawings_mobile/rocket-v2.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 657164,
+          "sha256": "618e62754a7f3eed8ff6a362ca78ae2771df00fc71c4ceb89cbe6ffc9427426c",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.10007291666666666,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        }
+      },
+      "dimensions_pass": true,
+      "aspect_delta": 0.0,
+      "master_aspect_delta": 0.0,
+      "flutter_same_as_web": true,
+      "rights_evidence": {}
+    },
+    {
+      "slug": "princesa",
+      "label": "Princesa",
+      "category": "princesas",
+      "pack": "princesas",
+      "difficulty": "medio",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "files": {
+        "master": {
+          "path": "base_png/princess-v2.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 917327,
+          "sha256": "ba9462a15807804bfbec27464643a4df39cdff1123636edded7529ec0260ea31",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.10452708333333334,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "web": {
+          "path": "web/assets/princess-v2.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 696643,
+          "sha256": "6dd2a9fb0f6f1ecbc94307a86c740a3244c1779de681968ab879d30a2484d141",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.10452708333333334,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "thumbnail": {
+          "path": "web/assets/thumbs/princess-v2.png",
+          "format": "PNG",
+          "width": 360,
+          "height": 360,
+          "bytes": 109511,
+          "sha256": "eefc85d71a6a50cfddf9ab5856c3b6d6fe34c2b551375f5795758cb873b6d722",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.1129320987654321,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "flutter": {
+          "path": "flutter/assets/drawings_mobile/princess-v2.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 696643,
+          "sha256": "6dd2a9fb0f6f1ecbc94307a86c740a3244c1779de681968ab879d30a2484d141",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.10452708333333334,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        }
+      },
+      "dimensions_pass": true,
+      "aspect_delta": 0.0,
+      "master_aspect_delta": 0.0,
+      "flutter_same_as_web": true,
+      "rights_evidence": {}
+    },
+    {
+      "slug": "unicornio",
+      "label": "Unicornio",
+      "category": "fantasia",
+      "pack": "fantasia",
+      "difficulty": "medio",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "files": {
+        "master": {
+          "path": "base_png/unicorn-v2.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 918094,
+          "sha256": "fd1574449627112f9a0d4937ade3f04ddece57cc6368ecab17ea958c17389c00",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.10181319444444445,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "web": {
+          "path": "web/assets/unicorn-v2.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 696572,
+          "sha256": "1d52b411234bb9c1c5f14efa65231812d2c27ec4ff3b5ae02ea53d79fae86a0c",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.10181319444444445,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "thumbnail": {
+          "path": "web/assets/thumbs/unicorn-v2.png",
+          "format": "PNG",
+          "width": 360,
+          "height": 360,
+          "bytes": 110589,
+          "sha256": "253c5148c91012cd7ade1a00de007d73d0f6eedecd2d20dd5fcb836e7f0d7a4d",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.1114891975308642,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "flutter": {
+          "path": "flutter/assets/drawings_mobile/unicorn-v2.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 696572,
+          "sha256": "1d52b411234bb9c1c5f14efa65231812d2c27ec4ff3b5ae02ea53d79fae86a0c",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.10181319444444445,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        }
+      },
+      "dimensions_pass": true,
+      "aspect_delta": 0.0,
+      "master_aspect_delta": 0.0,
+      "flutter_same_as_web": true,
+      "rights_evidence": {}
+    },
+    {
+      "slug": "castillo",
+      "label": "Castillo",
+      "category": "fantasia",
+      "pack": "fantasia",
+      "difficulty": "medio",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "files": {
+        "master": {
+          "path": "base_png/castle-v2.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 888343,
+          "sha256": "190af7bba7da5c6c928d4d9def07aeeaf4a6c71faa38846d7023eba38902e044",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.14554166666666668,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "web": {
+          "path": "web/assets/castle-v2.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 662941,
+          "sha256": "7160a25e906834d2b43ea5d0cf099a5ae440cc12a9385554010dc1eb6135b610",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.14554166666666668,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "thumbnail": {
+          "path": "web/assets/thumbs/castle-v2.png",
+          "format": "PNG",
+          "width": 360,
+          "height": 360,
+          "bytes": 114574,
+          "sha256": "eac274ed993ab06afaaac4cee9b2afba704d4b621809ef746e32222d17e967a0",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.16077932098765432,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "flutter": {
+          "path": "flutter/assets/drawings_mobile/castle-v2.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 662941,
+          "sha256": "7160a25e906834d2b43ea5d0cf099a5ae440cc12a9385554010dc1eb6135b610",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.14554166666666668,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        }
+      },
+      "dimensions_pass": true,
+      "aspect_delta": 0.0,
+      "master_aspect_delta": 0.0,
+      "flutter_same_as_web": true,
+      "rights_evidence": {}
+    },
+    {
+      "slug": "elefante",
+      "label": "Elefante alegre",
+      "category": "animales",
+      "pack": "animales",
+      "difficulty": "medio",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "files": {
+        "master": {
+          "path": "base_png/elefante.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 927472,
+          "sha256": "9dd52e1ca06ed1143d3d632703fdf7743faa643ec61d91525af16489531e5aa7",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.09074583333333333,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "web": {
+          "path": "web/assets/elefante.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 712049,
+          "sha256": "82f3d207dc245f92cc94e638be918b6bfd50835de64ab760a59d4eaf91dcee06",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.09074583333333333,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "thumbnail": {
+          "path": "web/assets/thumbs/elefante.png",
+          "format": "PNG",
+          "width": 360,
+          "height": 360,
+          "bytes": 113112,
+          "sha256": "85f28e5af2fa6feab4f97af8c8cba10ec81828dcf987f8c600533ba4b048f1d9",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.10154320987654321,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "flutter": {
+          "path": "flutter/assets/drawings_mobile/elefante.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 712049,
+          "sha256": "82f3d207dc245f92cc94e638be918b6bfd50835de64ab760a59d4eaf91dcee06",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.09074583333333333,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        }
+      },
+      "dimensions_pass": true,
+      "aspect_delta": 0.0,
+      "master_aspect_delta": 0.0,
+      "flutter_same_as_web": true,
+      "rights_evidence": {}
+    },
+    {
+      "slug": "conejo",
+      "label": "Conejo saltarín",
+      "category": "animales",
+      "pack": "animales",
+      "difficulty": "medio",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "files": {
+        "master": {
+          "path": "base_png/conejo.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 894167,
+          "sha256": "5c8809b69c378379d243ad9598ca0b0df7bd2aa4cb563b6c70eae3abced00ca2",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.09339930555555556,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "web": {
+          "path": "web/assets/conejo.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 672534,
+          "sha256": "b5bdd3b5b5a8870413afc8789919e7cf6690cc16784dedf9c371cb543941f262",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.09339930555555556,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "thumbnail": {
+          "path": "web/assets/thumbs/conejo.png",
+          "format": "PNG",
+          "width": 360,
+          "height": 360,
+          "bytes": 108060,
+          "sha256": "0f93430632ee85924a18035c0df21d8f103d00d4ac185618a0cad71345080a2b",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.10118055555555555,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "flutter": {
+          "path": "flutter/assets/drawings_mobile/conejo.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 672534,
+          "sha256": "b5bdd3b5b5a8870413afc8789919e7cf6690cc16784dedf9c371cb543941f262",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.09339930555555556,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        }
+      },
+      "dimensions_pass": true,
+      "aspect_delta": 0.0,
+      "master_aspect_delta": 0.0,
+      "flutter_same_as_web": true,
+      "rights_evidence": {}
+    },
+    {
+      "slug": "pez",
+      "label": "Pez sonriente",
+      "category": "animales",
+      "pack": "animales",
+      "difficulty": "medio",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "files": {
+        "master": {
+          "path": "base_png/pez.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 934778,
+          "sha256": "1a83543650c6b87d1d180a3c45fde1d3a843262e5211de14880ddf35a8bc1239",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.11950902777777778,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "web": {
+          "path": "web/assets/pez.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 718377,
+          "sha256": "d33deb442ab2f587b33550c3d45b8708f8c146be8a6f30ae39eae0e012d4dec5",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.11950902777777778,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "thumbnail": {
+          "path": "web/assets/thumbs/pez.png",
+          "format": "PNG",
+          "width": 360,
+          "height": 360,
+          "bytes": 105256,
+          "sha256": "18d075481b983a1f5d992e3237b4ebdb24df28824fd9ffa448110e9ec91e38eb",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.12838734567901233,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "flutter": {
+          "path": "flutter/assets/drawings_mobile/pez.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 718377,
+          "sha256": "d33deb442ab2f587b33550c3d45b8708f8c146be8a6f30ae39eae0e012d4dec5",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.11950902777777778,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        }
+      },
+      "dimensions_pass": true,
+      "aspect_delta": 0.0,
+      "master_aspect_delta": 0.0,
+      "flutter_same_as_web": true,
+      "rights_evidence": {}
+    },
+    {
+      "slug": "buho",
+      "label": "Búho amable",
+      "category": "animales",
+      "pack": "animales",
+      "difficulty": "medio",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "files": {
+        "master": {
+          "path": "base_png/buho.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 958362,
+          "sha256": "8dce07389806e0399b6c0d8d1e693b101ef8ce0c942d526b4d787ad67d6432af",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.1337451388888889,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "web": {
+          "path": "web/assets/buho.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 742708,
+          "sha256": "4ea26ff0cec148b59f72b11993dc3dd6e87035aef5355ba95c9e97f5c40f1879",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.1337451388888889,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "thumbnail": {
+          "path": "web/assets/thumbs/buho.png",
+          "format": "PNG",
+          "width": 360,
+          "height": 360,
+          "bytes": 111260,
+          "sha256": "e96c602d06084e969ff1c60f0c3725cbd6fe3b664f18ccbd614822ef80baa36c",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.14358024691358023,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "flutter": {
+          "path": "flutter/assets/drawings_mobile/buho.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 742708,
+          "sha256": "4ea26ff0cec148b59f72b11993dc3dd6e87035aef5355ba95c9e97f5c40f1879",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.1337451388888889,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        }
+      },
+      "dimensions_pass": true,
+      "aspect_delta": 0.0,
+      "master_aspect_delta": 0.0,
+      "flutter_same_as_web": true,
+      "rights_evidence": {}
+    },
+    {
+      "slug": "camion",
+      "label": "Camión feliz",
+      "category": "vehiculos",
+      "pack": "vehiculos",
+      "difficulty": "medio",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "files": {
+        "master": {
+          "path": "base_png/camion.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 747104,
+          "sha256": "9736d1ec1fac866dacf7b19ce0dc2590a8438b621acf0cce1742a7b2469ec108",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.10409444444444445,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "web": {
+          "path": "web/assets/camion.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 537004,
+          "sha256": "9d754b070f5a90dfc6b9d6d77e1a830c595d17c46679438f64173b3a91b45346",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.10409444444444445,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "thumbnail": {
+          "path": "web/assets/thumbs/camion.png",
+          "format": "PNG",
+          "width": 360,
+          "height": 360,
+          "bytes": 95777,
+          "sha256": "fdc1b4eae56e676437b43679f0ee6b9846499a424c8f48eadf3391b1fef305e8",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.11117283950617284,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "flutter": {
+          "path": "flutter/assets/drawings_mobile/camion.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 537004,
+          "sha256": "9d754b070f5a90dfc6b9d6d77e1a830c595d17c46679438f64173b3a91b45346",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.10409444444444445,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        }
+      },
+      "dimensions_pass": true,
+      "aspect_delta": 0.0,
+      "master_aspect_delta": 0.0,
+      "flutter_same_as_web": true,
+      "rights_evidence": {}
+    },
+    {
+      "slug": "avion",
+      "label": "Avión divertido",
+      "category": "vehiculos",
+      "pack": "vehiculos",
+      "difficulty": "medio",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "files": {
+        "master": {
+          "path": "base_png/avion.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 792138,
+          "sha256": "7e808bf013b4d10ebc1f4679c98f9789f1de69de666939cbb3e060fe10d81088",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.07745277777777777,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "web": {
+          "path": "web/assets/avion.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 568011,
+          "sha256": "b5f4f11571c81530d8acb0cd0836da0c213fbdce6e725aa43945a68583d6394b",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.07745277777777777,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "thumbnail": {
+          "path": "web/assets/thumbs/avion.png",
+          "format": "PNG",
+          "width": 360,
+          "height": 360,
+          "bytes": 95950,
+          "sha256": "cae266253ef6c244f761395eb00d78ec991efebe9ece4b474de23dca1c36c065",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.08339506172839506,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "flutter": {
+          "path": "flutter/assets/drawings_mobile/avion.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 568011,
+          "sha256": "b5f4f11571c81530d8acb0cd0836da0c213fbdce6e725aa43945a68583d6394b",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.07745277777777777,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        }
+      },
+      "dimensions_pass": true,
+      "aspect_delta": 0.0,
+      "master_aspect_delta": 0.0,
+      "flutter_same_as_web": true,
+      "rights_evidence": {}
+    },
+    {
+      "slug": "barco",
+      "label": "Barco de vela",
+      "category": "vehiculos",
+      "pack": "vehiculos",
+      "difficulty": "medio",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "files": {
+        "master": {
+          "path": "base_png/barco.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 827454,
+          "sha256": "ac003db4fbbf8a1f5f473ee3611242d1dbb669421040ea288b5215eb8d94993e",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.11821041666666667,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "web": {
+          "path": "web/assets/barco.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 599681,
+          "sha256": "04b0a3817c844ed47c87d3aec9a19de276bcdcb35a316b9c7589fb81b4e49a79",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.11821041666666667,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "thumbnail": {
+          "path": "web/assets/thumbs/barco.png",
+          "format": "PNG",
+          "width": 360,
+          "height": 360,
+          "bytes": 101504,
+          "sha256": "4c1320b88e7cec5bc236477fd151adb39bbed8874c418ab8eca537ccaf3634be",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.1262577160493827,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "flutter": {
+          "path": "flutter/assets/drawings_mobile/barco.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 599681,
+          "sha256": "04b0a3817c844ed47c87d3aec9a19de276bcdcb35a316b9c7589fb81b4e49a79",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.11821041666666667,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        }
+      },
+      "dimensions_pass": true,
+      "aspect_delta": 0.0,
+      "master_aspect_delta": 0.0,
+      "flutter_same_as_web": true,
+      "rights_evidence": {}
+    },
+    {
+      "slug": "tren",
+      "label": "Tren juguete",
+      "category": "vehiculos",
+      "pack": "vehiculos",
+      "difficulty": "medio",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "files": {
+        "master": {
+          "path": "base_png/tren.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 881969,
+          "sha256": "6fe2f1e2f187d3bc45c73aea51c2c9c5c02573ed1b2852a59d165028afee8beb",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.13825,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "web": {
+          "path": "web/assets/tren.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 666053,
+          "sha256": "18d40875aec6b27612ac8c4165fd86412ba9aa7a0e825fd66755dc52dc941752",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.13825,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "thumbnail": {
+          "path": "web/assets/thumbs/tren.png",
+          "format": "PNG",
+          "width": 360,
+          "height": 360,
+          "bytes": 109040,
+          "sha256": "ff94f2220f775bc0d6b0af96779afb8e5358a9af833859e9609cbbb3d5af154d",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.14770833333333333,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "flutter": {
+          "path": "flutter/assets/drawings_mobile/tren.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 666053,
+          "sha256": "18d40875aec6b27612ac8c4165fd86412ba9aa7a0e825fd66755dc52dc941752",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.13825,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        }
+      },
+      "dimensions_pass": true,
+      "aspect_delta": 0.0,
+      "master_aspect_delta": 0.0,
+      "flutter_same_as_web": true,
+      "rights_evidence": {}
+    },
+    {
+      "slug": "muneco-nieve",
+      "label": "Muñeco de nieve",
+      "category": "navidad",
+      "pack": "navidad",
+      "difficulty": "medio",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "files": {
+        "master": {
+          "path": "base_png/muneco-nieve.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 911780,
+          "sha256": "5737fad034dae0d8d2cb99481fa97284b44db1ffd26dcb0da60041e631c7490f",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.10658819444444445,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "web": {
+          "path": "web/assets/muneco-nieve.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 686726,
+          "sha256": "9a8b7d5578e2d21fb76a2bba1b4ded8911f29eba80408d6430e94c54ff8be2cc",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.10658819444444445,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "thumbnail": {
+          "path": "web/assets/thumbs/muneco-nieve.png",
+          "format": "PNG",
+          "width": 360,
+          "height": 360,
+          "bytes": 109120,
+          "sha256": "50ce12d7cf4c21e10ca6ff27ab68ec1c2e69c0e4b19b08e1536c8c3701678c48",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.11499228395061728,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "flutter": {
+          "path": "flutter/assets/drawings_mobile/muneco-nieve.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 686726,
+          "sha256": "9a8b7d5578e2d21fb76a2bba1b4ded8911f29eba80408d6430e94c54ff8be2cc",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.10658819444444445,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        }
+      },
+      "dimensions_pass": true,
+      "aspect_delta": 0.0,
+      "master_aspect_delta": 0.0,
+      "flutter_same_as_web": true,
+      "rights_evidence": {}
+    },
+    {
+      "slug": "regalo-navidad",
+      "label": "Regalo navideño",
+      "category": "navidad",
+      "pack": "navidad",
+      "difficulty": "medio",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "files": {
+        "master": {
+          "path": "base_png/regalo-navidad.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 916567,
+          "sha256": "bbcd39eecfadaaa69aecbda80afee49ecb2dd4d43524a95bfad7bbf238bb026b",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.1608777777777778,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "web": {
+          "path": "web/assets/regalo-navidad.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 694804,
+          "sha256": "c163caf19d7a4fc06e00423cbe7e71b884f3d9319ece886ee66f28bf87aaabba",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.1608777777777778,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "thumbnail": {
+          "path": "web/assets/thumbs/regalo-navidad.png",
+          "format": "PNG",
+          "width": 360,
+          "height": 360,
+          "bytes": 118167,
+          "sha256": "86448c55a2a08c670139c6fd636872caa16b41481efb64e4bbede81a77835355",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.17287808641975308,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "flutter": {
+          "path": "flutter/assets/drawings_mobile/regalo-navidad.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 694804,
+          "sha256": "c163caf19d7a4fc06e00423cbe7e71b884f3d9319ece886ee66f28bf87aaabba",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.1608777777777778,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        }
+      },
+      "dimensions_pass": true,
+      "aspect_delta": 0.0,
+      "master_aspect_delta": 0.0,
+      "flutter_same_as_web": true,
+      "rights_evidence": {}
+    },
+    {
+      "slug": "campana-navidad",
+      "label": "Campana navideña",
+      "category": "navidad",
+      "pack": "navidad",
+      "difficulty": "medio",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "files": {
+        "master": {
+          "path": "base_png/campana-navidad.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 896173,
+          "sha256": "0290f109e742db30e5deed4e33a22eb6618f111264ec11ea90d79cce3326b54e",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.11177569444444445,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "web": {
+          "path": "web/assets/campana-navidad.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 678390,
+          "sha256": "acd140b07f54737a1a22f1551ed432f64d83aa6a1f24d18691531fe777848709",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.11177569444444445,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "thumbnail": {
+          "path": "web/assets/thumbs/campana-navidad.png",
+          "format": "PNG",
+          "width": 360,
+          "height": 360,
+          "bytes": 109336,
+          "sha256": "325caa280a46a383c0be8093e191ceeea53e5accdecf36a1b9c6d031ee9efaff",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.1203395061728395,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "flutter": {
+          "path": "flutter/assets/drawings_mobile/campana-navidad.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 678390,
+          "sha256": "acd140b07f54737a1a22f1551ed432f64d83aa6a1f24d18691531fe777848709",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.11177569444444445,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        }
+      },
+      "dimensions_pass": true,
+      "aspect_delta": 0.0,
+      "master_aspect_delta": 0.0,
+      "flutter_same_as_web": true,
+      "rights_evidence": {}
+    },
+    {
+      "slug": "dragon",
+      "label": "Dragón bebé",
+      "category": "fantasia",
+      "pack": "fantasia",
+      "difficulty": "medio",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "files": {
+        "master": {
+          "path": "base_png/dragon.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 1006533,
+          "sha256": "3d767640d19c4d9c2feef759afb3743bf26b417ad3fe1d4a157d0de21ec84071",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.12438541666666666,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "web": {
+          "path": "web/assets/dragon.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 798887,
+          "sha256": "725fdb08224af3ae70b6f4c76f105cf2e390f082fae907bc5df6bc6ca60ff6b0",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.12438541666666666,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "thumbnail": {
+          "path": "web/assets/thumbs/dragon.png",
+          "format": "PNG",
+          "width": 360,
+          "height": 360,
+          "bytes": 117468,
+          "sha256": "88653fdb87baf7e5097d61e1ebd793cb3f64ed76756f50036e6428fe75c94f7d",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.13560185185185186,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "flutter": {
+          "path": "flutter/assets/drawings_mobile/dragon.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 798887,
+          "sha256": "725fdb08224af3ae70b6f4c76f105cf2e390f082fae907bc5df6bc6ca60ff6b0",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.12438541666666666,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        }
+      },
+      "dimensions_pass": true,
+      "aspect_delta": 0.0,
+      "master_aspect_delta": 0.0,
+      "flutter_same_as_web": true,
+      "rights_evidence": {}
+    },
+    {
+      "slug": "hada",
+      "label": "Hada mágica",
+      "category": "fantasia",
+      "pack": "fantasia",
+      "difficulty": "medio",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "files": {
+        "master": {
+          "path": "base_png/hada.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 966870,
+          "sha256": "592ece27d23841593ee186fefd0bd096e505ba48c7bf36490325ec8a283ef1d1",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.10089930555555555,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "web": {
+          "path": "web/assets/hada.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 761438,
+          "sha256": "88006b6e96b86d37ff5a10994ae05eabaf786b38b4eb0caef99c275120627447",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.10089930555555555,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "thumbnail": {
+          "path": "web/assets/thumbs/hada.png",
+          "format": "PNG",
+          "width": 360,
+          "height": 360,
+          "bytes": 110354,
+          "sha256": "7a0d3e6cd7597a158be7fdb420922b9c67ca9d3ee5e18bb34940ba1a53706fb6",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.11158950617283951,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "flutter": {
+          "path": "flutter/assets/drawings_mobile/hada.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 761438,
+          "sha256": "88006b6e96b86d37ff5a10994ae05eabaf786b38b4eb0caef99c275120627447",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.10089930555555555,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        }
+      },
+      "dimensions_pass": true,
+      "aspect_delta": 0.0,
+      "master_aspect_delta": 0.0,
+      "flutter_same_as_web": true,
+      "rights_evidence": {}
+    },
+    {
+      "slug": "sirena",
+      "label": "Sirena feliz",
+      "category": "fantasia",
+      "pack": "fantasia",
+      "difficulty": "medio",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "files": {
+        "master": {
+          "path": "base_png/sirena.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 1034970,
+          "sha256": "b4ab3016e9bb4fe90d0cd8393c7f0ed4c3e19c3a503fe4c07215e593276aa2c2",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.1199625,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "web": {
+          "path": "web/assets/sirena.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 830433,
+          "sha256": "c9a78ebafeea81fb0565ce168eda04cd1668b8c761d50e41981372d75e8b3624",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.1199625,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "thumbnail": {
+          "path": "web/assets/thumbs/sirena.png",
+          "format": "PNG",
+          "width": 360,
+          "height": 360,
+          "bytes": 115579,
+          "sha256": "484ef443691521431fcc5e80327728f2c29130e767348eb0d9f659d1e614eaeb",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.13300925925925927,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "flutter": {
+          "path": "flutter/assets/drawings_mobile/sirena.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 830433,
+          "sha256": "c9a78ebafeea81fb0565ce168eda04cd1668b8c761d50e41981372d75e8b3624",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.1199625,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        }
+      },
+      "dimensions_pass": true,
+      "aspect_delta": 0.0,
+      "master_aspect_delta": 0.0,
+      "flutter_same_as_web": true,
+      "rights_evidence": {}
+    },
+    {
+      "slug": "triceratops",
+      "label": "Triceratops",
+      "category": "dinosaurios",
+      "pack": "dinosaurios",
+      "difficulty": "medio",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "files": {
+        "master": {
+          "path": "base_png/triceratops.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 893168,
+          "sha256": "cecc8c4110a3e9a570b631482186b4de936a731da85fcde4b804af9fcb0e2172",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.08692986111111112,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "web": {
+          "path": "web/assets/triceratops.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 678002,
+          "sha256": "aa27ab1be4d299145f9cc92477887e617bd5e5cc7eb3e073d12a615839176406",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.08692986111111112,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "thumbnail": {
+          "path": "web/assets/thumbs/triceratops.png",
+          "format": "PNG",
+          "width": 360,
+          "height": 360,
+          "bytes": 103701,
+          "sha256": "1063e56813f7cc45d8056742715fcb6e87bfb3f302a5980fb5c97fb82b27d020",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.09572530864197532,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "flutter": {
+          "path": "flutter/assets/drawings_mobile/triceratops.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 678002,
+          "sha256": "aa27ab1be4d299145f9cc92477887e617bd5e5cc7eb3e073d12a615839176406",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.08692986111111112,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        }
+      },
+      "dimensions_pass": true,
+      "aspect_delta": 0.0,
+      "master_aspect_delta": 0.0,
+      "flutter_same_as_web": true,
+      "rights_evidence": {}
+    },
+    {
+      "slug": "brontosaurio",
+      "label": "Brontosaurio",
+      "category": "dinosaurios",
+      "pack": "dinosaurios",
+      "difficulty": "medio",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "files": {
+        "master": {
+          "path": "base_png/brontosaurio.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 723265,
+          "sha256": "ac794b2a4b46d2b31fe7ea004373aa27db27e0488dc5ee0d3f7947dff7319af1",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.06467847222222223,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "web": {
+          "path": "web/assets/brontosaurio.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 524611,
+          "sha256": "d572fe6d15949958d405144e7b17d9e35c9cb5e9a52c2eba7f0de749db6fd45f",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.06467847222222223,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "thumbnail": {
+          "path": "web/assets/thumbs/brontosaurio.png",
+          "format": "PNG",
+          "width": 360,
+          "height": 360,
+          "bytes": 91617,
+          "sha256": "788824c9c6b17316ba7b5b5e6282a38235b36ce5a38d85c7c396bcbecc4cf373",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.0708179012345679,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "flutter": {
+          "path": "flutter/assets/drawings_mobile/brontosaurio.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 524611,
+          "sha256": "d572fe6d15949958d405144e7b17d9e35c9cb5e9a52c2eba7f0de749db6fd45f",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.06467847222222223,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        }
+      },
+      "dimensions_pass": true,
+      "aspect_delta": 0.0,
+      "master_aspect_delta": 0.0,
+      "flutter_same_as_web": true,
+      "rights_evidence": {}
+    },
+    {
+      "slug": "pterodactilo",
+      "label": "Pterodáctilo",
+      "category": "dinosaurios",
+      "pack": "dinosaurios",
+      "difficulty": "medio",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "files": {
+        "master": {
+          "path": "base_png/pterodactilo.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 829989,
+          "sha256": "0445f80a473c3922c2d40d580bc1db5ba04b3c48f4bcfac64b3f05ed8660e908",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.07287916666666666,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "web": {
+          "path": "web/assets/pterodactilo.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 614746,
+          "sha256": "cfce4c0fa2cd659586d1b5b5a1351ba621a3231d75324f12a82d63a375728209",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.07287916666666666,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "thumbnail": {
+          "path": "web/assets/thumbs/pterodactilo.png",
+          "format": "PNG",
+          "width": 360,
+          "height": 360,
+          "bytes": 93409,
+          "sha256": "4f4aa3d9e7c80f0112461978f642d450768462434204c4b08e915b3c8b9f5b38",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.07984567901234568,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "flutter": {
+          "path": "flutter/assets/drawings_mobile/pterodactilo.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 614746,
+          "sha256": "cfce4c0fa2cd659586d1b5b5a1351ba621a3231d75324f12a82d63a375728209",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.07287916666666666,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        }
+      },
+      "dimensions_pass": true,
+      "aspect_delta": 0.0,
+      "master_aspect_delta": 0.0,
+      "flutter_same_as_web": true,
+      "rights_evidence": {}
+    },
+    {
+      "slug": "corona-real",
+      "label": "Corona real",
+      "category": "princesas",
+      "pack": "princesas",
+      "difficulty": "medio",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "files": {
+        "master": {
+          "path": "base_png/corona-real.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 1029320,
+          "sha256": "20b6dd1bc9c77f7c88a35c0922c97ca4e376b907258fd07b03d5062dd16625ca",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.1409527777777778,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "web": {
+          "path": "web/assets/corona-real.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 827528,
+          "sha256": "c79224c783ba6db91b6dacad862bc2ced3b84628b99e00e9ba90362053d01dc6",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.1409527777777778,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "thumbnail": {
+          "path": "web/assets/thumbs/corona-real.png",
+          "format": "PNG",
+          "width": 360,
+          "height": 360,
+          "bytes": 124500,
+          "sha256": "199fef6aa224f9df2f144ab6fec1a61de65791e64f0978ae01909a21d76f118d",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.15522376543209876,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "flutter": {
+          "path": "flutter/assets/drawings_mobile/corona-real.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 827528,
+          "sha256": "c79224c783ba6db91b6dacad862bc2ced3b84628b99e00e9ba90362053d01dc6",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.1409527777777778,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        }
+      },
+      "dimensions_pass": true,
+      "aspect_delta": 0.0,
+      "master_aspect_delta": 0.0,
+      "flutter_same_as_web": true,
+      "rights_evidence": {}
+    },
+    {
+      "slug": "carruaje-real",
+      "label": "Carruaje real",
+      "category": "princesas",
+      "pack": "princesas",
+      "difficulty": "medio",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "files": {
+        "master": {
+          "path": "base_png/carruaje-real.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 1149004,
+          "sha256": "da3de1a38a003c83b3567865e7ade2239959ebccdfa6123dddbcdc55038d55de",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.15624027777777777,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "web": {
+          "path": "web/assets/carruaje-real.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 963751,
+          "sha256": "db0f9c9335650aea38ea650b98ca3d0dc2d678cfbb9a7705acf8e6ebf854f8ca",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.15624027777777777,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "thumbnail": {
+          "path": "web/assets/thumbs/carruaje-real.png",
+          "format": "PNG",
+          "width": 360,
+          "height": 360,
+          "bytes": 138059,
+          "sha256": "6b0a6181dd1284bbb17774c4c6fab4b1d2f8ff0ac772773290ec69f97a51724e",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.17479166666666668,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "flutter": {
+          "path": "flutter/assets/drawings_mobile/carruaje-real.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 963751,
+          "sha256": "db0f9c9335650aea38ea650b98ca3d0dc2d678cfbb9a7705acf8e6ebf854f8ca",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.15624027777777777,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        }
+      },
+      "dimensions_pass": true,
+      "aspect_delta": 0.0,
+      "master_aspect_delta": 0.0,
+      "flutter_same_as_web": true,
+      "rights_evidence": {}
+    },
+    {
+      "slug": "vestido-princesa",
+      "label": "Vestido de princesa",
+      "category": "princesas",
+      "pack": "princesas",
+      "difficulty": "medio",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "files": {
+        "master": {
+          "path": "base_png/vestido-princesa.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 918759,
+          "sha256": "e999e6d7e4b099d66b2578346ec08b12b4f717e95533d310d3acbaf392a9bbcc",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.08945,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "web": {
+          "path": "web/assets/vestido-princesa.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 701186,
+          "sha256": "c563704bf82b42fec7e08dbebabfc8b8c5b9b39b5d63691e43d1ae4b7d5e6b05",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.08945,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "thumbnail": {
+          "path": "web/assets/thumbs/vestido-princesa.png",
+          "format": "PNG",
+          "width": 360,
+          "height": 360,
+          "bytes": 108856,
+          "sha256": "a1742f5debbae01435cb53a9c28c9e877cb0abf67ee175b2e68223e628656386",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.09831018518518518,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "flutter": {
+          "path": "flutter/assets/drawings_mobile/vestido-princesa.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 701186,
+          "sha256": "c563704bf82b42fec7e08dbebabfc8b8c5b9b39b5d63691e43d1ae4b7d5e6b05",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.08945,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        }
+      },
+      "dimensions_pass": true,
+      "aspect_delta": 0.0,
+      "master_aspect_delta": 0.0,
+      "flutter_same_as_web": true,
+      "rights_evidence": {}
+    },
+    {
+      "slug": "pony-magico",
+      "label": "Pony mágico",
+      "category": "fantasia",
+      "pack": "fantasia",
+      "difficulty": "medio",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "files": {
+        "master": {
+          "path": "base_png/pony1.png",
+          "format": "PNG",
+          "width": 1254,
+          "height": 1254,
+          "bytes": 1154556,
+          "sha256": "2c033e9cfee3786602ae96bb9db4604c48e2a33cc068d03a11d706bdb1005b99",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.08772120601634578,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "web": {
+          "path": "web/assets/pony1.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 1020138,
+          "sha256": "98333a6ab5e172d29fbe71142863c3a659485f1a88857d7ff187d3f078528b68",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.0909625,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "thumbnail": {
+          "path": "web/assets/thumbs/pony1.png",
+          "format": "PNG",
+          "width": 360,
+          "height": 360,
+          "bytes": 119852,
+          "sha256": "7c8e4a0f34c9ef3ff1c56e04298b13d48795b1c1cc8e49ae8eab7b1e2970f80a",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.11006944444444444,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "flutter": {
+          "path": "flutter/assets/drawings_mobile/pony1.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 1020138,
+          "sha256": "98333a6ab5e172d29fbe71142863c3a659485f1a88857d7ff187d3f078528b68",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.0909625,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        }
+      },
+      "dimensions_pass": true,
+      "aspect_delta": 0.0,
+      "master_aspect_delta": 0.0,
+      "flutter_same_as_web": true,
+      "rights_evidence": {}
+    },
+    {
+      "slug": "pony-princesa",
+      "label": "Pony princesa",
+      "category": "princesas",
+      "pack": "princesas",
+      "difficulty": "medio",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "files": {
+        "master": {
+          "path": "base_png/pony2.png",
+          "format": "PNG",
+          "width": 1254,
+          "height": 1254,
+          "bytes": 1208222,
+          "sha256": "ce88080e6143a313f2998b7a1b6bd8d56fbcc878c6aade5449a00ff22adf8859",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.08036293430400708,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "web": {
+          "path": "web/assets/pony2.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 1076897,
+          "sha256": "283f4bdcb8271ffbe7fa7c31f1fdb3d9143810d9da0690146dc17c8593caa281",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.08500555555555556,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "thumbnail": {
+          "path": "web/assets/thumbs/pony2.png",
+          "format": "PNG",
+          "width": 360,
+          "height": 360,
+          "bytes": 134705,
+          "sha256": "c1fb77bb74dc5f40130e113210aec9f6b24da05672f71bebbbb90a253145d921",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.1150462962962963,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "flutter": {
+          "path": "flutter/assets/drawings_mobile/pony2.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 1076897,
+          "sha256": "283f4bdcb8271ffbe7fa7c31f1fdb3d9143810d9da0690146dc17c8593caa281",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.08500555555555556,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        }
+      },
+      "dimensions_pass": true,
+      "aspect_delta": 0.0,
+      "master_aspect_delta": 0.0,
+      "flutter_same_as_web": true,
+      "rights_evidence": {}
+    },
+    {
+      "slug": "pony-3",
+      "label": "Pony 3",
+      "category": "fantasia",
+      "pack": "fantasia",
+      "difficulty": "medio",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "files": {
+        "master": {
+          "path": "base_png/pony3.png",
+          "format": "PNG",
+          "width": 1024,
+          "height": 1536,
+          "bytes": 464944,
+          "sha256": "4001f81af25b20fc0a94930d3bed7481cbc7b24cb4b1519e4e5c0420cda40ee3",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.06769053141276042,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "web": {
+          "path": "web/assets/pony3.png",
+          "format": "PNG",
+          "width": 800,
+          "height": 1200,
+          "bytes": 288713,
+          "sha256": "c51b425620809990ba91d26bf429c3cf530bee8bfb8a07b6b774e5582d582246",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.072446875,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "thumbnail": {
+          "path": "web/assets/thumbs/pony3.png",
+          "format": "PNG",
+          "width": 240,
+          "height": 360,
+          "bytes": 45328,
+          "sha256": "572a2952f06034b3790c0bb605a07860c47a2441e9360b017d8cc0f0b906c256",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.1097337962962963,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "flutter": {
+          "path": "flutter/assets/drawings_mobile/pony3.png",
+          "format": "PNG",
+          "width": 800,
+          "height": 1200,
+          "bytes": 288713,
+          "sha256": "c51b425620809990ba91d26bf429c3cf530bee8bfb8a07b6b774e5582d582246",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.072446875,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        }
+      },
+      "dimensions_pass": true,
+      "aspect_delta": 0.0,
+      "master_aspect_delta": 0.0,
+      "flutter_same_as_web": true,
+      "rights_evidence": {}
+    },
+    {
+      "slug": "pony-4",
+      "label": "Pony 4",
+      "category": "fantasia",
+      "pack": "fantasia",
+      "difficulty": "medio",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "files": {
+        "master": {
+          "path": "base_png/pony4.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 520861,
+          "sha256": "9600b1288e075af4d591aa8e1aa78a5bafff83401b00a812cf3af0da16acac17",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.11295347222222223,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "web": {
+          "path": "web/assets/pony4.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 470717,
+          "sha256": "3517cda465c983fb317cdb112c3f5fefa510c87f340354d5581b6bde08a20688",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.11295347222222223,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "thumbnail": {
+          "path": "web/assets/thumbs/pony4.png",
+          "format": "PNG",
+          "width": 360,
+          "height": 360,
+          "bytes": 67317,
+          "sha256": "bb3fec8af5d7fb57ac7c619c53c6804883f6e4d189d2c6e631b09c2215fb95ed",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.13270833333333334,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "flutter": {
+          "path": "flutter/assets/drawings_mobile/pony4.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 1200,
+          "bytes": 470717,
+          "sha256": "3517cda465c983fb317cdb112c3f5fefa510c87f340354d5581b6bde08a20688",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.11295347222222223,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        }
+      },
+      "dimensions_pass": true,
+      "aspect_delta": 0.0,
+      "master_aspect_delta": 0.0,
+      "flutter_same_as_web": true,
+      "rights_evidence": {}
+    },
+    {
+      "slug": "casa-1",
+      "label": "Casa 1",
+      "category": "casas",
+      "pack": "casas",
+      "difficulty": "simple",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "files": {
+        "master": {
+          "path": "base_png/house1.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 900,
+          "bytes": 21592,
+          "sha256": "8c3f79602ebe6070d797d79bd61d5b344afe4f021cfc567ca411ae3a59ce535a",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.03084814814814815,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "web": {
+          "path": "web/assets/house1.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 900,
+          "bytes": 6574,
+          "sha256": "dc1e9fd23080718ee6722ed69f28427632954fdaa3973ea6dc6d71babaf38130",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.03084814814814815,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "thumbnail": {
+          "path": "web/assets/thumbs/house1.png",
+          "format": "PNG",
+          "width": 360,
+          "height": 270,
+          "bytes": 3648,
+          "sha256": "5bc895efaa6eb75ec0a4a3b2c016b2a548edb49683798a795f5b8926a12b1990",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.037160493827160496,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "flutter": {
+          "path": "flutter/assets/drawings_mobile/house1.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 900,
+          "bytes": 6574,
+          "sha256": "dc1e9fd23080718ee6722ed69f28427632954fdaa3973ea6dc6d71babaf38130",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.03084814814814815,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        }
+      },
+      "dimensions_pass": true,
+      "aspect_delta": 0.0,
+      "master_aspect_delta": 0.0,
+      "flutter_same_as_web": true,
+      "rights_evidence": {}
+    },
+    {
+      "slug": "casa-2",
+      "label": "Casa 2",
+      "category": "casas",
+      "pack": "casas",
+      "difficulty": "simple",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "files": {
+        "master": {
+          "path": "base_png/house2.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 900,
+          "bytes": 19908,
+          "sha256": "d9178d1a6b81dd333f6005e4c200600ea162ff7e62fcc4bad5b3751197db3dc4",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.036422222222222224,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "web": {
+          "path": "web/assets/house2.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 900,
+          "bytes": 6211,
+          "sha256": "efaaba694e8e699f7c7f92ca7f585b5385577e2b6d144e4c4a306e1bf4ee822d",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.036422222222222224,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "thumbnail": {
+          "path": "web/assets/thumbs/house2.png",
+          "format": "PNG",
+          "width": 360,
+          "height": 270,
+          "bytes": 3277,
+          "sha256": "b252a983b41742b8c03e22dbb329b17d9cba01c546bd7258f2151dfe5731b6df",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.04478395061728395,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "flutter": {
+          "path": "flutter/assets/drawings_mobile/house2.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 900,
+          "bytes": 6211,
+          "sha256": "efaaba694e8e699f7c7f92ca7f585b5385577e2b6d144e4c4a306e1bf4ee822d",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.036422222222222224,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        }
+      },
+      "dimensions_pass": true,
+      "aspect_delta": 0.0,
+      "master_aspect_delta": 0.0,
+      "flutter_same_as_web": true,
+      "rights_evidence": {}
+    },
+    {
+      "slug": "casa-3",
+      "label": "Casa 3",
+      "category": "casas",
+      "pack": "casas",
+      "difficulty": "simple",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "files": {
+        "master": {
+          "path": "base_png/house3.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 900,
+          "bytes": 24604,
+          "sha256": "f15c53d069ab39404baa2186fd4266c9f821eff43e08d31194149eb4b89d36a7",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.02809537037037037,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "web": {
+          "path": "web/assets/house3.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 900,
+          "bytes": 8971,
+          "sha256": "88285ff4def9d6eaecbc3b70745a5b9fb80aa8dd9452f6a90343f0c3a3552d6a",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.02809537037037037,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "thumbnail": {
+          "path": "web/assets/thumbs/house3.png",
+          "format": "PNG",
+          "width": 360,
+          "height": 270,
+          "bytes": 4229,
+          "sha256": "078d501f2c1dce1bd944f9702b800c5286d8be7364c87eafe1c812b5f8ce5217",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.034506172839506175,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "flutter": {
+          "path": "flutter/assets/drawings_mobile/house3.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 900,
+          "bytes": 8971,
+          "sha256": "88285ff4def9d6eaecbc3b70745a5b9fb80aa8dd9452f6a90343f0c3a3552d6a",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.02809537037037037,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        }
+      },
+      "dimensions_pass": true,
+      "aspect_delta": 0.0,
+      "master_aspect_delta": 0.0,
+      "flutter_same_as_web": true,
+      "rights_evidence": {}
+    },
+    {
+      "slug": "casa-4",
+      "label": "Cohete sencillo",
+      "category": "vehiculos",
+      "pack": "vehiculos",
+      "difficulty": "simple",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "files": {
+        "master": {
+          "path": "base_png/house4.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 900,
+          "bytes": 21422,
+          "sha256": "416242d7a4a5dd2110b5319d5d0ef27d3495a04c175f8e03f008e0cfabbace5d",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.016950925925925925,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "web": {
+          "path": "web/assets/house4.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 900,
+          "bytes": 7033,
+          "sha256": "79deb9c75e513fa5383dbe1cc3cdb92fe303e147b112b3e9e5b45e62d01df5b3",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.016950925925925925,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "thumbnail": {
+          "path": "web/assets/thumbs/house4.png",
+          "format": "PNG",
+          "width": 360,
+          "height": 270,
+          "bytes": 3134,
+          "sha256": "869cfba0a95a6d1222ee51b25cad38208b2e77f56bbebc072dca37b805880f31",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.02065843621399177,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "flutter": {
+          "path": "flutter/assets/drawings_mobile/house4.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 900,
+          "bytes": 7033,
+          "sha256": "79deb9c75e513fa5383dbe1cc3cdb92fe303e147b112b3e9e5b45e62d01df5b3",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.016950925925925925,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        }
+      },
+      "dimensions_pass": true,
+      "aspect_delta": 0.0,
+      "master_aspect_delta": 0.0,
+      "flutter_same_as_web": true,
+      "rights_evidence": {}
+    },
+    {
+      "slug": "casa-5",
+      "label": "Casa 5",
+      "category": "casas",
+      "pack": "casas",
+      "difficulty": "simple",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "files": {
+        "master": {
+          "path": "base_png/house5.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 900,
+          "bytes": 24460,
+          "sha256": "3fccd786bf285e9c672f68c24558ed173231be4fd98df12de49c8a3f1d75dbb7",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.030769444444444443,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "web": {
+          "path": "web/assets/house5.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 900,
+          "bytes": 9048,
+          "sha256": "a46582ec42baa4ab39da98f3164b255df8282b3ef921079e9182648a9148b25f",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.030769444444444443,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "thumbnail": {
+          "path": "web/assets/thumbs/house5.png",
+          "format": "PNG",
+          "width": 360,
+          "height": 270,
+          "bytes": 4885,
+          "sha256": "b29133c0322084285628a1a252181bc1d0a59fe5eb8cfdee550f40edcab0abe8",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.03746913580246913,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "flutter": {
+          "path": "flutter/assets/drawings_mobile/house5.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 900,
+          "bytes": 9048,
+          "sha256": "a46582ec42baa4ab39da98f3164b255df8282b3ef921079e9182648a9148b25f",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.030769444444444443,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        }
+      },
+      "dimensions_pass": true,
+      "aspect_delta": 0.0,
+      "master_aspect_delta": 0.0,
+      "flutter_same_as_web": true,
+      "rights_evidence": {}
+    },
+    {
+      "slug": "paisaje-3",
+      "label": "Paisaje 3",
+      "category": "paisajes",
+      "pack": "paisajes",
+      "difficulty": "simple",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "files": {
+        "master": {
+          "path": "base_png/landscape3.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 900,
+          "bytes": 29623,
+          "sha256": "cb75f4df5f50ea7d2039b8aaa3f1b06bb82776a06b947c9424ffd55d9612d181",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.04249074074074074,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "web": {
+          "path": "web/assets/landscape3.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 900,
+          "bytes": 10800,
+          "sha256": "c0de863f64721de51f85d3d5fdeb512447a6cb068f18dd832abe87ecec8139d9",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.04249074074074074,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "thumbnail": {
+          "path": "web/assets/thumbs/landscape3.png",
+          "format": "PNG",
+          "width": 360,
+          "height": 270,
+          "bytes": 7106,
+          "sha256": "5cc92310eb806b84acb25cd618125adcd80e6793dc26b1bd1bedb623badb7a33",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.05122427983539095,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "flutter": {
+          "path": "flutter/assets/drawings_mobile/landscape3.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 900,
+          "bytes": 10800,
+          "sha256": "c0de863f64721de51f85d3d5fdeb512447a6cb068f18dd832abe87ecec8139d9",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.04249074074074074,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        }
+      },
+      "dimensions_pass": true,
+      "aspect_delta": 0.0,
+      "master_aspect_delta": 0.0,
+      "flutter_same_as_web": true,
+      "rights_evidence": {}
+    },
+    {
+      "slug": "paisaje-4",
+      "label": "Paisaje 4",
+      "category": "paisajes",
+      "pack": "paisajes",
+      "difficulty": "simple",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "files": {
+        "master": {
+          "path": "base_png/landscape4.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 900,
+          "bytes": 21582,
+          "sha256": "148059c15f7d848cea419d20d2a9a52e2ce61a9fb24bab7197b05f3642d7d7b6",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.02962314814814815,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "web": {
+          "path": "web/assets/landscape4.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 900,
+          "bytes": 7050,
+          "sha256": "6c664f5f773be889ff21761461846793eeac8e1032a461d65935fab94157122e",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.02962314814814815,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "thumbnail": {
+          "path": "web/assets/thumbs/landscape4.png",
+          "format": "PNG",
+          "width": 360,
+          "height": 270,
+          "bytes": 3809,
+          "sha256": "c04b79fd6e7df3b9b83a4b0fe279a0a2577cb41c05b20568346c457cb506a914",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.034372427983539094,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "flutter": {
+          "path": "flutter/assets/drawings_mobile/landscape4.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 900,
+          "bytes": 7050,
+          "sha256": "6c664f5f773be889ff21761461846793eeac8e1032a461d65935fab94157122e",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.02962314814814815,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        }
+      },
+      "dimensions_pass": true,
+      "aspect_delta": 0.0,
+      "master_aspect_delta": 0.0,
+      "flutter_same_as_web": true,
+      "rights_evidence": {}
+    },
+    {
+      "slug": "paisaje-5",
+      "label": "Paisaje 5",
+      "category": "paisajes",
+      "pack": "paisajes",
+      "difficulty": "simple",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "files": {
+        "master": {
+          "path": "base_png/landscape5.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 900,
+          "bytes": 22131,
+          "sha256": "0ae43ac93574be75a3bb2d0d7799a3839364d4753f0172056d3a2466b99d30c3",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.03816944444444444,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "web": {
+          "path": "web/assets/landscape5.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 900,
+          "bytes": 7186,
+          "sha256": "c83bc0308a8b2d47f458ec7be28adb8e7ca304a0aa26a175144435068a141215",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.03816944444444444,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "thumbnail": {
+          "path": "web/assets/thumbs/landscape5.png",
+          "format": "PNG",
+          "width": 360,
+          "height": 270,
+          "bytes": 4419,
+          "sha256": "807b0aa403a6cd836a0a5abb9bff7821122e507adfd2614adc6edf9f868d6c39",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.04958847736625514,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "flutter": {
+          "path": "flutter/assets/drawings_mobile/landscape5.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 900,
+          "bytes": 7186,
+          "sha256": "c83bc0308a8b2d47f458ec7be28adb8e7ca304a0aa26a175144435068a141215",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.03816944444444444,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        }
+      },
+      "dimensions_pass": true,
+      "aspect_delta": 0.0,
+      "master_aspect_delta": 0.0,
+      "flutter_same_as_web": true,
+      "rights_evidence": {}
+    },
+    {
+      "slug": "casa-simple",
+      "label": "Casa simple",
+      "category": "casas",
+      "pack": "casas",
+      "difficulty": "simple",
+      "platforms": [
+        "web",
+        "flutter"
+      ],
+      "files": {
+        "master": {
+          "path": "base_png/outline_house.png",
+          "format": "PNG",
+          "width": 1376,
+          "height": 957,
+          "bytes": 66747,
+          "sha256": "1a791b1e6d8e756fb156684740b570783cb751020519a6d4dd4abe87e2dacfa9",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.07170086996670798,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "web": {
+          "path": "web/assets/outline_house.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 835,
+          "bytes": 121084,
+          "sha256": "d74e3224c52bf68a6950623e277c0070265edfda956039288b63e48f326e160c",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.07643912175648702,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "thumbnail": {
+          "path": "web/assets/thumbs/outline_house.png",
+          "format": "PNG",
+          "width": 360,
+          "height": 250,
+          "bytes": 25167,
+          "sha256": "51d7509a99ccc1393182157bdabef5134be29cf40e6a296ef2abed05e8095964",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.09343333333333333,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "flutter": {
+          "path": "flutter/assets/drawings_mobile/outline_house.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 835,
+          "bytes": 121084,
+          "sha256": "d74e3224c52bf68a6950623e277c0070265edfda956039288b63e48f326e160c",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.07643912175648702,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        }
+      },
+      "dimensions_pass": true,
+      "aspect_delta": 0.0028742514970059307,
+      "master_aspect_delta": 0.0007007927718232221,
+      "flutter_same_as_web": true,
+      "rights_evidence": {}
+    },
+    {
+      "slug": "gabby-gato-volador",
+      "label": "Gabby gato volador",
+      "category": "gabby",
+      "pack": "gabby",
+      "difficulty": "por-revisar",
+      "platforms": [
+        "web"
+      ],
+      "files": {
+        "master": {
+          "path": "base_png/gabby-01-gato-volador.png",
+          "format": "PNG",
+          "width": 1024,
+          "height": 1024,
+          "bytes": 120114,
+          "sha256": "0586ce94dc5f558fccfbe90f5f0b0d8b812143305a1a949ca10ef79e09bd395c",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.10718917846679688,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "web": {
+          "path": "web/assets/gabby/gabby-01-gato-volador.png",
+          "format": "PNG",
+          "width": 1024,
+          "height": 1024,
+          "bytes": 266947,
+          "sha256": "e87f1dbd2b6c60dfd652eeb23cb1bbb752569a3498321a68bacebe3d720d7f91",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.10718917846679688,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "thumbnail": {
+          "path": "web/assets/thumbs/gabby-01-gato-volador.png",
+          "format": "PNG",
+          "width": 360,
+          "height": 360,
+          "bytes": 54598,
+          "sha256": "ecc13111762891b3cc2bb148fced48b45894e8973920bc20dfa84380106a08a7",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.12832561728395062,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        }
+      },
+      "dimensions_pass": true,
+      "aspect_delta": 0.0,
+      "master_aspect_delta": 0.0,
+      "flutter_same_as_web": null,
+      "rights_evidence": {}
+    },
+    {
+      "slug": "gabby-gato-flores",
+      "label": "Gabby gato con flores",
+      "category": "gabby",
+      "pack": "gabby",
+      "difficulty": "por-revisar",
+      "platforms": [
+        "web"
+      ],
+      "files": {
+        "master": {
+          "path": "base_png/gabby-02-gato-flores.png",
+          "format": "PNG",
+          "width": 1024,
+          "height": 1024,
+          "bytes": 103360,
+          "sha256": "41027198e6b8e029d4cdffbe9a784c432c8b30e9c80917c5c951067dfb7c6a81",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.0851287841796875,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "web": {
+          "path": "web/assets/gabby/gabby-02-gato-flores.png",
+          "format": "PNG",
+          "width": 1024,
+          "height": 1024,
+          "bytes": 238543,
+          "sha256": "b127384a1ca24bcb55bb5c0a17fbf8c8c071ba3050309a07bb77b93e74a86395",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.0851287841796875,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "thumbnail": {
+          "path": "web/assets/thumbs/gabby-02-gato-flores.png",
+          "format": "PNG",
+          "width": 360,
+          "height": 360,
+          "bytes": 49538,
+          "sha256": "663d7dd0ddbb96368562087bcc39c75621c10a76c35e42b2c4a38ead31f813ca",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.10706018518518519,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        }
+      },
+      "dimensions_pass": true,
+      "aspect_delta": 0.0,
+      "master_aspect_delta": 0.0,
+      "flutter_same_as_web": null,
+      "rights_evidence": {}
+    },
+    {
+      "slug": "gabby-auto",
+      "label": "Gabby auto",
+      "category": "gabby",
+      "pack": "gabby",
+      "difficulty": "por-revisar",
+      "platforms": [
+        "web"
+      ],
+      "files": {
+        "master": {
+          "path": "base_png/gabby-03-auto.png",
+          "format": "PNG",
+          "width": 600,
+          "height": 423,
+          "bytes": 42931,
+          "sha256": "e0a97b680018dfb5ecabfa39f67f91694c94a3c84c938909578396f39e9c9727",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.09172970843183609,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "web": {
+          "path": "web/assets/gabby/gabby-03-auto.png",
+          "format": "PNG",
+          "width": 600,
+          "height": 423,
+          "bytes": 85738,
+          "sha256": "7d9bb2fdb85c35e3bcd3f6774862d478164d2df05bc130d51479d72335448de0",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.09172970843183609,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "thumbnail": {
+          "path": "web/assets/thumbs/gabby-03-auto.png",
+          "format": "PNG",
+          "width": 360,
+          "height": 254,
+          "bytes": 43574,
+          "sha256": "5953c272dec7ac9e1322d642e444736ba06cbb8d416985ec4c4b6a7df142b2ef",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.10341207349081365,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        }
+      },
+      "dimensions_pass": true,
+      "aspect_delta": 0.0011168816663875702,
+      "master_aspect_delta": 0.0,
+      "flutter_same_as_web": null,
+      "rights_evidence": {}
+    },
+    {
+      "slug": "gabby-camping",
+      "label": "Gabby camping",
+      "category": "gabby",
+      "pack": "gabby",
+      "difficulty": "por-revisar",
+      "platforms": [
+        "web"
+      ],
+      "files": {
+        "master": {
+          "path": "base_png/gabby-04-camping.png",
+          "format": "PNG",
+          "width": 365,
+          "height": 547,
+          "bytes": 76446,
+          "sha256": "b4dcdf63191dfee0dc3ff901484985ec811ec84f2a47f4d70e4b9c656d5044d7",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.26855826300368135,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "web": {
+          "path": "web/assets/gabby/gabby-04-camping.png",
+          "format": "PNG",
+          "width": 365,
+          "height": 547,
+          "bytes": 188526,
+          "sha256": "14dceba181f2ce210b1ef89586b346d913a63f85edf1b5689beb29895574345e",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.26855826300368135,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "thumbnail": {
+          "path": "web/assets/thumbs/gabby-04-camping.png",
+          "format": "PNG",
+          "width": 240,
+          "height": 360,
+          "bytes": 121170,
+          "sha256": "c04451d48b3d94e6745abec021e95d3503e46ed8100937ca96400fa8a9a02180",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.2735185185185185,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        }
+      },
+      "dimensions_pass": true,
+      "aspect_delta": 0.0006093845216331717,
+      "master_aspect_delta": 0.0,
+      "flutter_same_as_web": null,
+      "rights_evidence": {}
+    },
+    {
+      "slug": "gabby-casa-auto",
+      "label": "Gabby casa y auto",
+      "category": "gabby",
+      "pack": "gabby",
+      "difficulty": "por-revisar",
+      "platforms": [
+        "web"
+      ],
+      "files": {
+        "master": {
+          "path": "base_png/gabby-05-casa-y-auto.png",
+          "format": "PNG",
+          "width": 742,
+          "height": 1050,
+          "bytes": 148934,
+          "sha256": "2b71578d3f85d2a7a5f6714f8ea993124993598700f4cd945307e8060579aa41",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.14429854960852265,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "web": {
+          "path": "web/assets/gabby/gabby-05-casa-y-auto.png",
+          "format": "PNG",
+          "width": 742,
+          "height": 1050,
+          "bytes": 313306,
+          "sha256": "485145e7fbda025e56c962bc4db82a31338375bc7ae9880c3a37b7df5459b1c2",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.14429854960852265,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "thumbnail": {
+          "path": "web/assets/thumbs/gabby-05-casa-y-auto.png",
+          "format": "PNG",
+          "width": 254,
+          "height": 360,
+          "bytes": 81207,
+          "sha256": "ca0f540a600fbcbd4bfa9b6284c018a31a9048a00536fef405fb78e6bf6a502f",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.23452537182852143,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        }
+      },
+      "dimensions_pass": true,
+      "aspect_delta": 0.0011111111111110628,
+      "master_aspect_delta": 0.0,
+      "flutter_same_as_web": null,
+      "rights_evidence": {}
+    },
+    {
+      "slug": "gabby-pintando",
+      "label": "Gabby pintando",
+      "category": "gabby",
+      "pack": "gabby",
+      "difficulty": "por-revisar",
+      "platforms": [
+        "web"
+      ],
+      "files": {
+        "master": {
+          "path": "base_png/gabby-06-pintando.png",
+          "format": "PNG",
+          "width": 1024,
+          "height": 1536,
+          "bytes": 1048509,
+          "sha256": "7dd97baa470034d307f59029aef622aa36b1c8c01c89e074a4720db2d21895a3",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.2503236134847005,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "web": {
+          "path": "web/assets/gabby/gabby-06-pintando.png",
+          "format": "PNG",
+          "width": 800,
+          "height": 1200,
+          "bytes": 1258238,
+          "sha256": "407bd29fc69a47a17eb1fc64f98144872045100f2c9198fe449befa935677d1d",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.24708333333333332,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "thumbnail": {
+          "path": "web/assets/thumbs/gabby-06-pintando.png",
+          "format": "PNG",
+          "width": 240,
+          "height": 360,
+          "bytes": 117188,
+          "sha256": "91daa9bc93b9e43e411afd228001d36f9a8060c922fd46bba7848f4dd066adec",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.30623842592592593,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        }
+      },
+      "dimensions_pass": true,
+      "aspect_delta": 0.0,
+      "master_aspect_delta": 0.0,
+      "flutter_same_as_web": null,
+      "rights_evidence": {}
+    },
+    {
+      "slug": "gabby-gato-espacial",
+      "label": "Gabby gato espacial",
+      "category": "gabby",
+      "pack": "gabby",
+      "difficulty": "por-revisar",
+      "platforms": [
+        "web"
+      ],
+      "files": {
+        "master": {
+          "path": "base_png/gabby-07-gato-espacial.png",
+          "format": "PNG",
+          "width": 1707,
+          "height": 2560,
+          "bytes": 335099,
+          "sha256": "767974e0595d012536945f00a174126b6cc4508606f35e93505f0a49243c042c",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.08152025666373755,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "web": {
+          "path": "web/assets/gabby/gabby-07-gato-espacial.png",
+          "format": "PNG",
+          "width": 800,
+          "height": 1200,
+          "bytes": 269552,
+          "sha256": "3a6f5c8bec25cc5b9a5b9e80750ac2debfa5e7c253d062b0eef1b87c8d165246",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.089940625,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "thumbnail": {
+          "path": "web/assets/thumbs/gabby-07-gato-espacial.png",
+          "format": "PNG",
+          "width": 240,
+          "height": 360,
+          "bytes": 52612,
+          "sha256": "d192096253ade701ac11890270edbd408c80b1b5b517e098e4f6d947feff1a64",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.13988425925925926,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        }
+      },
+      "dimensions_pass": true,
+      "aspect_delta": 0.0,
+      "master_aspect_delta": 0.00013020833333332593,
+      "flutter_same_as_web": null,
+      "rights_evidence": {}
+    },
+    {
+      "slug": "gabby-leyendo",
+      "label": "Gabby leyendo",
+      "category": "gabby",
+      "pack": "gabby",
+      "difficulty": "por-revisar",
+      "platforms": [
+        "web"
+      ],
+      "files": {
+        "master": {
+          "path": "base_png/gabby-08-leyendo.png",
+          "format": "PNG",
+          "width": 1275,
+          "height": 1650,
+          "bytes": 116600,
+          "sha256": "68c88d05dab9059a8adf9ac7043a8e1d58c14de2789fa1cf22d1d8d7d30b6362",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.09982650029708853,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "web": {
+          "path": "web/assets/gabby/gabby-08-leyendo.png",
+          "format": "PNG",
+          "width": 927,
+          "height": 1200,
+          "bytes": 381041,
+          "sha256": "821af273e1aad7af87b90765f367dc2e01c9d1dc03f4ad438c042c695a7def6b",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.1060598705501618,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "thumbnail": {
+          "path": "web/assets/thumbs/gabby-08-leyendo.png",
+          "format": "PNG",
+          "width": 278,
+          "height": 360,
+          "bytes": 61888,
+          "sha256": "ad0694fd9424265d1987ccfb76bcc3db5e380aca83280d4b9c5316f17e1bbd1a",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.1518784972022382,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        }
+      },
+      "dimensions_pass": true,
+      "aspect_delta": 0.0002777777777777102,
+      "master_aspect_delta": 0.00022727272727274261,
+      "flutter_same_as_web": null,
+      "rights_evidence": {}
+    },
+    {
+      "slug": "gabby-gato-simple",
+      "label": "Gabby gato simple",
+      "category": "gabby",
+      "pack": "gabby",
+      "difficulty": "por-revisar",
+      "platforms": [
+        "web"
+      ],
+      "files": {
+        "master": {
+          "path": "base_png/gabby-09-gato-simple.png",
+          "format": "PNG",
+          "width": 600,
+          "height": 600,
+          "bytes": 54215,
+          "sha256": "d92cde339fd6dcef6f9971259e0db680434c73d3ca895730ac442da0df488ad5",
+          "colored_ratio": 0.008855555555555556,
+          "dark_ratio": 0.11685555555555556,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "web": {
+          "path": "web/assets/gabby/gabby-09-gato-simple.png",
+          "format": "PNG",
+          "width": 600,
+          "height": 600,
+          "bytes": 129697,
+          "sha256": "b5c506dc144bcec23c291a01671977ccffb1c5d4790e8a9ad492c7919cfac2e1",
+          "colored_ratio": 0.008855555555555556,
+          "dark_ratio": 0.11685555555555556,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "thumbnail": {
+          "path": "web/assets/thumbs/gabby-09-gato-simple.png",
+          "format": "PNG",
+          "width": 360,
+          "height": 360,
+          "bytes": 69651,
+          "sha256": "538462d35b94e3466aa0cbf56ea8dcdbc189abf89d93f7bc7871f927018c0aa9",
+          "colored_ratio": 0.010015432098765433,
+          "dark_ratio": 0.11914351851851852,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        }
+      },
+      "dimensions_pass": true,
+      "aspect_delta": 0.0,
+      "master_aspect_delta": 0.0,
+      "flutter_same_as_web": null,
+      "rights_evidence": {}
+    },
+    {
+      "slug": "gabby-amigos",
+      "label": "Gabby amigos",
+      "category": "gabby",
+      "pack": "gabby",
+      "difficulty": "por-revisar",
+      "platforms": [
+        "web"
+      ],
+      "files": {
+        "master": {
+          "path": "base_png/gabby-10-amigos.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 900,
+          "bytes": 254270,
+          "sha256": "7c4b323b53af75284c899011236b28697f664d69d1f1c2667f355b5930c77e5d",
+          "colored_ratio": 0.005044444444444444,
+          "dark_ratio": 0.17224814814814815,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "web": {
+          "path": "web/assets/gabby/gabby-10-amigos.png",
+          "format": "PNG",
+          "width": 1200,
+          "height": 900,
+          "bytes": 689797,
+          "sha256": "38d06601737b2ac098523b578aea0b0424614cccfd5bda2380243e8383a626a1",
+          "colored_ratio": 0.005044444444444444,
+          "dark_ratio": 0.17224814814814815,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "thumbnail": {
+          "path": "web/assets/thumbs/gabby-10-amigos.png",
+          "format": "PNG",
+          "width": 360,
+          "height": 270,
+          "bytes": 103785,
+          "sha256": "fa1502fd7426cea8c925c1bef56e0cbdb0790dca8887e80021b09c963fad6de0",
+          "colored_ratio": 0.00038065843621399177,
+          "dark_ratio": 0.21898148148148147,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        }
+      },
+      "dimensions_pass": true,
+      "aspect_delta": 0.0,
+      "master_aspect_delta": 0.0,
+      "flutter_same_as_web": null,
+      "rights_evidence": {}
+    },
+    {
+      "slug": "gabby-sala",
+      "label": "Gabby sala",
+      "category": "gabby",
+      "pack": "gabby",
+      "difficulty": "por-revisar",
+      "platforms": [
+        "web"
+      ],
+      "files": {
+        "master": {
+          "path": "base_png/gabby-11-sala.png",
+          "format": "PNG",
+          "width": 1024,
+          "height": 1536,
+          "bytes": 278293,
+          "sha256": "d8423cecc1b90816d0c0423ec91dcfdb3e2c24cbd3efb9690f6c05075db0575e",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.15508588155110678,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "web": {
+          "path": "web/assets/gabby/gabby-11-sala.png",
+          "format": "PNG",
+          "width": 800,
+          "height": 1200,
+          "bytes": 480909,
+          "sha256": "026a1647200abcac485aefd4f3238b48316ed120e66f1431382f5255653b6889",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.17303958333333333,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "thumbnail": {
+          "path": "web/assets/thumbs/gabby-11-sala.png",
+          "format": "PNG",
+          "width": 240,
+          "height": 360,
+          "bytes": 82368,
+          "sha256": "0e1ab14ea3b13fa90d06458c3e686d93c92dd57b0d9b961a714b9f3c6b4afa9b",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.2523842592592593,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        }
+      },
+      "dimensions_pass": true,
+      "aspect_delta": 0.0,
+      "master_aspect_delta": 0.0,
+      "flutter_same_as_web": null,
+      "rights_evidence": {}
+    },
+    {
+      "slug": "gabby-gato-disfraz",
+      "label": "Gabby gato disfrazado",
+      "category": "gabby",
+      "pack": "gabby",
+      "difficulty": "por-revisar",
+      "platforms": [
+        "web"
+      ],
+      "files": {
+        "master": {
+          "path": "base_png/gabby-12-gato-disfraz.png",
+          "format": "PNG",
+          "width": 758,
+          "height": 978,
+          "bytes": 132004,
+          "sha256": "87a64e6695d5864ea6a3f7f646445abbcd88efa837dd50cd400be4c34f4351c9",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.1132419832623792,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "web": {
+          "path": "web/assets/gabby/gabby-12-gato-disfraz.png",
+          "format": "PNG",
+          "width": 758,
+          "height": 978,
+          "bytes": 324075,
+          "sha256": "87d3c414bed017f495b698382ceaa12229c0c21db4da5b3a47651a4793521a33",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.1132419832623792,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "thumbnail": {
+          "path": "web/assets/thumbs/gabby-12-gato-disfraz.png",
+          "format": "PNG",
+          "width": 279,
+          "height": 360,
+          "bytes": 65681,
+          "sha256": "fcbef874d9e85549f046551673d83c4bcdb6f12ed39d97b2db7480010bae6aa4",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.12686180804460373,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        }
+      },
+      "dimensions_pass": true,
+      "aspect_delta": 5.112474437629633e-05,
+      "master_aspect_delta": 0.0,
+      "flutter_same_as_web": null,
+      "rights_evidence": {}
+    },
+    {
+      "slug": "gabby-cumpleanos",
+      "label": "Gabby cumpleaños",
+      "category": "gabby",
+      "pack": "gabby",
+      "difficulty": "por-revisar",
+      "platforms": [
+        "web"
+      ],
+      "files": {
+        "master": {
+          "path": "base_png/gabby-13-cumpleanos.png",
+          "format": "PNG",
+          "width": 1024,
+          "height": 1024,
+          "bytes": 257106,
+          "sha256": "b0076728090190026d296b250a89b732a3e3d17527d3c91ea715f7e921b47177",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.15209102630615234,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "web": {
+          "path": "web/assets/gabby/gabby-13-cumpleanos.png",
+          "format": "PNG",
+          "width": 1024,
+          "height": 1024,
+          "bytes": 646239,
+          "sha256": "a4915b2eac129e60c87602502563913c81d63898c6593d942cafa1f39a5cb81a",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.15209102630615234,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "thumbnail": {
+          "path": "web/assets/thumbs/gabby-13-cumpleanos.png",
+          "format": "PNG",
+          "width": 360,
+          "height": 360,
+          "bytes": 124231,
+          "sha256": "7b0217b68b8543e47a0b3e16a6b50d2dce1171ca078e2898068b8d3bc14bbf39",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.18814043209876544,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        }
+      },
+      "dimensions_pass": true,
+      "aspect_delta": 0.0,
+      "master_aspect_delta": 0.0,
+      "flutter_same_as_web": null,
+      "rights_evidence": {}
+    },
+    {
+      "slug": "gabby-catrat",
+      "label": "Gabby Catrat",
+      "category": "gabby",
+      "pack": "gabby",
+      "difficulty": "por-revisar",
+      "platforms": [
+        "web"
+      ],
+      "files": {
+        "master": {
+          "path": "base_png/gabby-14-catrat.png",
+          "format": "PNG",
+          "width": 338,
+          "height": 400,
+          "bytes": 18047,
+          "sha256": "b944cdb0a58197f303f919de444aa06732b81cbf8e40b0cb2a05234a21c81f75",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.08531065088757396,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "web": {
+          "path": "web/assets/gabby/gabby-14-catrat.png",
+          "format": "PNG",
+          "width": 338,
+          "height": 400,
+          "bytes": 41583,
+          "sha256": "d039c165f48726bc6456f8039d4836ae3639d65bb000cd4cc52cf1665d269761",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.08531065088757396,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "thumbnail": {
+          "path": "web/assets/thumbs/gabby-14-catrat.png",
+          "format": "PNG",
+          "width": 304,
+          "height": 360,
+          "bytes": 42366,
+          "sha256": "1d2c82d5e91611c68f0924a9caa533d1f9772328e48e61810dc23998cac136f2",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.09305555555555556,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        }
+      },
+      "dimensions_pass": true,
+      "aspect_delta": 0.0005555555555555314,
+      "master_aspect_delta": 0.0,
+      "flutter_same_as_web": null,
+      "rights_evidence": {}
+    },
+    {
+      "slug": "gabby-gato-espacial-2",
+      "label": "Gabby gato espacial dos",
+      "category": "gabby",
+      "pack": "gabby",
+      "difficulty": "por-revisar",
+      "platforms": [
+        "web"
+      ],
+      "files": {
+        "master": {
+          "path": "base_png/gabby-15-gato-espacial-2.png",
+          "format": "PNG",
+          "width": 1707,
+          "height": 2560,
+          "bytes": 297264,
+          "sha256": "874b5b529c933b00cf78c0f70597313c91549ff854ef8709d2065398c45a4103",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.06268329855008788,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "web": {
+          "path": "web/assets/gabby/gabby-15-gato-espacial-2.png",
+          "format": "PNG",
+          "width": 800,
+          "height": 1200,
+          "bytes": 226005,
+          "sha256": "458168bcc18a42106b9f5e3acdd930806b03e4ce6990347de4e5d596755fb899",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.06896979166666667,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "thumbnail": {
+          "path": "web/assets/thumbs/gabby-15-gato-espacial-2.png",
+          "format": "PNG",
+          "width": 240,
+          "height": 360,
+          "bytes": 43534,
+          "sha256": "c27f877a72be3f9f4d2c538d39c413a36eb1dee242dd588bb217bb56e5cfe1a9",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.10984953703703704,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        }
+      },
+      "dimensions_pass": true,
+      "aspect_delta": 0.0,
+      "master_aspect_delta": 0.00013020833333332593,
+      "flutter_same_as_web": null,
+      "rights_evidence": {}
+    },
+    {
+      "slug": "gabby-gato-caja",
+      "label": "Gabby gato caja",
+      "category": "gabby",
+      "pack": "gabby",
+      "difficulty": "por-revisar",
+      "platforms": [
+        "web"
+      ],
+      "files": {
+        "master": {
+          "path": "base_png/gabby-16-gato-caja.png",
+          "format": "PNG",
+          "width": 1707,
+          "height": 2560,
+          "bytes": 288801,
+          "sha256": "4d090bc680bc7554223846cc0179a6c37b0bea2118815abedf400b06a0a2f0fa",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.06143659380492091,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "web": {
+          "path": "web/assets/gabby/gabby-16-gato-caja.png",
+          "format": "PNG",
+          "width": 800,
+          "height": 1200,
+          "bytes": 232886,
+          "sha256": "a347055bdafb4dd5e18fb085afbc7d7014cc7a11bd39579251d065316ff6ea71",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.067971875,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "thumbnail": {
+          "path": "web/assets/thumbs/gabby-16-gato-caja.png",
+          "format": "PNG",
+          "width": 240,
+          "height": 360,
+          "bytes": 46060,
+          "sha256": "37b2d735c35f8265eef38cd019a06e123c36ceead5e776e0a98919d03beb8b74",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.11046296296296296,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        }
+      },
+      "dimensions_pass": true,
+      "aspect_delta": 0.0,
+      "master_aspect_delta": 0.00013020833333332593,
+      "flutter_same_as_web": null,
+      "rights_evidence": {}
+    },
+    {
+      "slug": "gabby-poster-amigos",
+      "label": "Gabby póster de amigos",
+      "category": "gabby",
+      "pack": "gabby",
+      "difficulty": "por-revisar",
+      "platforms": [
+        "web"
+      ],
+      "files": {
+        "master": {
+          "path": "base_png/gabby-17-poster-amigos.png",
+          "format": "PNG",
+          "width": 2500,
+          "height": 3333,
+          "bytes": 604035,
+          "sha256": "5a2e00d448668c127432064cba250f8f8896317587ed98f4f5265d9dbbd48221",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.14703042304230424,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "web": {
+          "path": "web/assets/gabby/gabby-17-poster-amigos.png",
+          "format": "PNG",
+          "width": 900,
+          "height": 1200,
+          "bytes": 336442,
+          "sha256": "b4acc99a068b4c9c2a6c61a1643ba5cb31a7d115cb1e945c18120c2aa1c16b6a",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.16318148148148148,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "thumbnail": {
+          "path": "web/assets/thumbs/gabby-17-poster-amigos.png",
+          "format": "PNG",
+          "width": 270,
+          "height": 360,
+          "bytes": 62573,
+          "sha256": "f927415f53f66ace1acb16c5546ab9cb6cfa8e84c5c4cde55389410653f5d17d",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.2172119341563786,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        }
+      },
+      "dimensions_pass": true,
+      "aspect_delta": 0.0,
+      "master_aspect_delta": 7.500750075006835e-05,
+      "flutter_same_as_web": null,
+      "rights_evidence": {}
+    },
+    {
+      "slug": "gabby-casa-magica",
+      "label": "Gabby casa mágica",
+      "category": "gabby",
+      "pack": "gabby",
+      "difficulty": "por-revisar",
+      "platforms": [
+        "web"
+      ],
+      "files": {
+        "master": {
+          "path": "base_png/gabby-18-casa-magica.png",
+          "format": "PNG",
+          "width": 1024,
+          "height": 1024,
+          "bytes": 246987,
+          "sha256": "2ceff4c1dd691b66b7218df2b36bc5b22fedc4e4c790ed92194b04fb3d3a46f0",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.15686988830566406,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "web": {
+          "path": "web/assets/gabby/gabby-18-casa-magica.png",
+          "format": "PNG",
+          "width": 1024,
+          "height": 1024,
+          "bytes": 583269,
+          "sha256": "9e6bc7d147b7e321e79bc45c01a114228075ea6a71b69ad67c74026409e17dca",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.15686988830566406,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "thumbnail": {
+          "path": "web/assets/thumbs/gabby-18-casa-magica.png",
+          "format": "PNG",
+          "width": 360,
+          "height": 360,
+          "bytes": 109766,
+          "sha256": "97c4889d57c7165d265904f311a6d013e67408da02d571f5ce1e28df03e4ed04",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.18998456790123458,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        }
+      },
+      "dimensions_pass": true,
+      "aspect_delta": 0.0,
+      "master_aspect_delta": 0.0,
+      "flutter_same_as_web": null,
+      "rights_evidence": {}
+    },
+    {
+      "slug": "gabby-casa-frontal",
+      "label": "Gabby casa frontal",
+      "category": "gabby",
+      "pack": "gabby",
+      "difficulty": "por-revisar",
+      "platforms": [
+        "web"
+      ],
+      "files": {
+        "master": {
+          "path": "base_png/gabby-19-casa-frontal.png",
+          "format": "PNG",
+          "width": 2500,
+          "height": 3333,
+          "bytes": 541180,
+          "sha256": "ca775033d4d092aa571c0996ba1f3da801a76e68f91b473958dfa89724ee6192",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.13673303330333034,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "web": {
+          "path": "web/assets/gabby/gabby-19-casa-frontal.png",
+          "format": "PNG",
+          "width": 900,
+          "height": 1200,
+          "bytes": 298473,
+          "sha256": "195817970ccbeaae7bf08fd37595ef5e9a4d0be1c4d15d73aa5e6ab1f253f07f",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.15385185185185185,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        },
+        "thumbnail": {
+          "path": "web/assets/thumbs/gabby-19-casa-frontal.png",
+          "format": "PNG",
+          "width": 270,
+          "height": 360,
+          "bytes": 58835,
+          "sha256": "61445ae24735a0d40c86e8dab34fe97ec1fbf2e4f9b8922dc79374a232f0c16a",
+          "colored_ratio": 0.0,
+          "dark_ratio": 0.21416666666666667,
+          "transparent_ratio": 0.0,
+          "valid_png": true
+        }
+      },
+      "dimensions_pass": true,
+      "aspect_delta": 0.0,
+      "master_aspect_delta": 7.500750075006835e-05,
+      "flutter_same_as_web": null,
+      "rights_evidence": {}
+    }
+  ]
+}

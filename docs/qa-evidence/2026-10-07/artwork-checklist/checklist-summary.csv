@@ -1,0 +1,63 @@
+﻿slug,label,regions,regions_under_16px,approved,failed,pending,blocked,technical_decision,notes
+dinosaurio,Dinosaurio feliz,52,22,15,1,15,5,Requiere corrección,Fallo compartido del editor: recuperación de pincel altera bordes suavizados.
+gato,Gato curioso,28,11,15,1,15,5,Requiere corrección,Fallo compartido del editor: recuperación de pincel altera bordes suavizados.
+perro,Perro juguetón,25,11,15,1,15,5,Requiere corrección,Fallo compartido del editor: recuperación de pincel altera bordes suavizados.
+auto,Auto rojo,18,0,15,1,15,5,Requiere corrección,Fallo compartido del editor: recuperación de pincel altera bordes suavizados.
+arbol-navidad,Árbol de navidad,73,5,15,1,15,5,Requiere corrección,Fallo compartido del editor: recuperación de pincel altera bordes suavizados.
+mariposa,Mariposa,48,20,15,1,15,5,Requiere corrección,Fallo compartido del editor: recuperación de pincel altera bordes suavizados.
+cohete,Cohete,28,9,15,1,15,5,Requiere corrección,Fallo compartido del editor: recuperación de pincel altera bordes suavizados.
+princesa,Princesa,46,11,15,1,15,5,Requiere corrección,Fallo compartido del editor: recuperación de pincel altera bordes suavizados.
+unicornio,Unicornio,54,27,15,1,15,5,Requiere corrección,Fallo compartido del editor: recuperación de pincel altera bordes suavizados.
+castillo,Castillo,91,19,15,1,15,5,Requiere corrección,Fallo compartido del editor: recuperación de pincel altera bordes suavizados.
+elefante,Elefante alegre,51,29,15,1,15,5,Requiere corrección,Fallo compartido del editor: recuperación de pincel altera bordes suavizados.
+conejo,Conejo saltarín,28,11,15,1,15,5,Requiere corrección,Fallo compartido del editor: recuperación de pincel altera bordes suavizados.
+pez,Pez sonriente,37,8,15,1,15,5,Requiere corrección,Fallo compartido del editor: recuperación de pincel altera bordes suavizados.
+buho,Búho amable,32,11,15,1,15,5,Requiere corrección,Fallo compartido del editor: recuperación de pincel altera bordes suavizados.
+camion,Camión feliz,27,7,15,1,15,5,Requiere corrección,Fallo compartido del editor: recuperación de pincel altera bordes suavizados.
+avion,Avión divertido,21,6,15,1,15,5,Requiere corrección,Fallo compartido del editor: recuperación de pincel altera bordes suavizados.
+barco,Barco de vela,33,12,15,1,15,5,Requiere corrección,Fallo compartido del editor: recuperación de pincel altera bordes suavizados.
+tren,Tren juguete,41,4,15,1,15,5,Requiere corrección,Fallo compartido del editor: recuperación de pincel altera bordes suavizados.
+muneco-nieve,Muñeco de nieve,40,12,15,1,15,5,Requiere corrección,Fallo compartido del editor: recuperación de pincel altera bordes suavizados.
+regalo-navidad,Regalo navideño,44,10,15,1,15,5,Requiere corrección,Fallo compartido del editor: recuperación de pincel altera bordes suavizados.
+campana-navidad,Campana navideña,61,33,15,1,15,5,Requiere corrección,Fallo compartido del editor: recuperación de pincel altera bordes suavizados.
+dragon,Dragón bebé,102,42,15,1,15,5,Requiere corrección,Fallo compartido del editor: recuperación de pincel altera bordes suavizados.
+hada,Hada mágica,91,36,15,1,15,5,Requiere corrección,Fallo compartido del editor: recuperación de pincel altera bordes suavizados.
+sirena,Sirena feliz,62,30,15,1,15,5,Requiere corrección,Fallo compartido del editor: recuperación de pincel altera bordes suavizados.
+triceratops,Triceratops,46,10,15,4,12,5,Requiere corrección,Fallo compartido del editor: recuperación de pincel altera bordes suavizados. / Fuga confirmada de cabeza al fondo: cerrar contorno antes de usar balde.
+brontosaurio,Brontosaurio,25,4,15,1,15,5,Requiere corrección,Fallo compartido del editor: recuperación de pincel altera bordes suavizados.
+pterodactilo,Pterodáctilo,46,26,15,1,15,5,Requiere corrección,Fallo compartido del editor: recuperación de pincel altera bordes suavizados.
+corona-real,Corona real,43,10,15,1,15,5,Requiere corrección,Fallo compartido del editor: recuperación de pincel altera bordes suavizados.
+carruaje-real,Carruaje real,108,26,15,1,15,5,Requiere corrección,Fallo compartido del editor: recuperación de pincel altera bordes suavizados.
+vestido-princesa,Vestido de princesa,40,11,15,1,15,5,Requiere corrección,Fallo compartido del editor: recuperación de pincel altera bordes suavizados.
+pony-magico,Pony mágico,2087,2022,14,2,14,6,Requiere corrección,Fallo compartido del editor: recuperación de pincel altera bordes suavizados. / Limpiar fragmentación y regenerar variantes; volver a comprobar regiones.
+pony-princesa,Pony princesa,2928,2822,14,2,14,6,Requiere corrección,Fallo compartido del editor: recuperación de pincel altera bordes suavizados. / Limpiar fragmentación y regenerar variantes; volver a comprobar regiones.
+pony-3,Pony 3,154,77,15,1,14,6,Requiere corrección,Fallo compartido del editor: recuperación de pincel altera bordes suavizados.
+pony-4,Pony 4,113,51,15,1,14,6,Requiere corrección,Fallo compartido del editor: recuperación de pincel altera bordes suavizados.
+casa-1,Casa 1,6,0,15,1,15,5,Requiere corrección,Fallo compartido del editor: recuperación de pincel altera bordes suavizados.
+casa-2,Casa 2,12,0,15,1,15,5,Requiere corrección,Fallo compartido del editor: recuperación de pincel altera bordes suavizados.
+casa-3,Casa 3,7,0,15,1,15,5,Requiere corrección,Fallo compartido del editor: recuperación de pincel altera bordes suavizados.
+casa-4,Cohete sencillo,6,0,13,1,17,5,Requiere corrección,Fallo compartido del editor: recuperación de pincel altera bordes suavizados. / Revisar nombre/taxonomía.
+casa-5,Casa 5,16,0,15,1,15,5,Requiere corrección,Fallo compartido del editor: recuperación de pincel altera bordes suavizados.
+paisaje-3,Paisaje 3,19,0,15,1,15,5,Requiere corrección,Fallo compartido del editor: recuperación de pincel altera bordes suavizados.
+paisaje-4,Paisaje 4,7,0,15,1,15,5,Requiere corrección,Fallo compartido del editor: recuperación de pincel altera bordes suavizados.
+paisaje-5,Paisaje 5,7,0,15,1,15,5,Requiere corrección,Fallo compartido del editor: recuperación de pincel altera bordes suavizados.
+casa-simple,Casa simple,24,2,15,1,15,5,Requiere corrección,Fallo compartido del editor: recuperación de pincel altera bordes suavizados.
+gabby-gato-volador,Gabby gato volador,259,197,17,1,12,6,Requiere corrección,Fallo compartido del editor: recuperación de pincel altera bordes suavizados.
+gabby-gato-flores,Gabby gato con flores,271,202,17,1,12,6,Requiere corrección,Fallo compartido del editor: recuperación de pincel altera bordes suavizados.
+gabby-auto,Gabby auto,230,172,17,1,12,6,Requiere corrección,Fallo compartido del editor: recuperación de pincel altera bordes suavizados.
+gabby-camping,Gabby camping,2002,1821,16,2,12,6,Requiere corrección,Fallo compartido del editor: recuperación de pincel altera bordes suavizados. / Limpiar fragmentación y regenerar variantes; volver a comprobar regiones.
+gabby-casa-auto,Gabby casa y auto,394,143,17,1,12,6,Requiere corrección,Fallo compartido del editor: recuperación de pincel altera bordes suavizados.
+gabby-pintando,Gabby pintando,8362,8145,16,3,11,6,Requiere corrección,Fallo compartido del editor: recuperación de pincel altera bordes suavizados. / Limpiar fragmentación y regenerar variantes; volver a comprobar regiones. / Crédito pequeño en el pie. No eliminar créditos sin resolver condiciones de uso; preferir original autorizado.
+gabby-gato-espacial,Gabby gato espacial,256,86,16,2,12,6,Requiere corrección,Fallo compartido del editor: recuperación de pincel altera bordes suavizados. / Título de marca y sitio impreso en el pie. No eliminar créditos sin resolver condiciones de uso; preferir original autorizado.
+gabby-leyendo,Gabby leyendo,363,219,16,2,12,6,Requiere corrección,Fallo compartido del editor: recuperación de pincel altera bordes suavizados. / Coloriage.com impreso en el pie. No eliminar créditos sin resolver condiciones de uso; preferir original autorizado.
+gabby-gato-simple,Gabby gato simple,268,230,16,2,12,6,Requiere corrección,Fallo compartido del editor: recuperación de pincel altera bordes suavizados. / GABBY CHAT en la cabecera. No eliminar créditos sin resolver condiciones de uso; preferir original autorizado.
+gabby-amigos,Gabby amigos,4001,3622,16,3,11,6,Requiere corrección,Fallo compartido del editor: recuperación de pincel altera bordes suavizados. / Limpiar fragmentación y regenerar variantes; volver a comprobar regiones. / GABBY CHAT en la cabecera. No eliminar créditos sin resolver condiciones de uso; preferir original autorizado.
+gabby-sala,Gabby sala,417,203,16,2,12,6,Requiere corrección,"Fallo compartido del editor: recuperación de pincel altera bordes suavizados. / FREE PRINTABLE, título de marca y GenColor.ai. No eliminar créditos sin resolver condiciones de uso; preferir original autorizado."
+gabby-gato-disfraz,Gabby gato disfrazado,269,200,17,1,12,6,Requiere corrección,Fallo compartido del editor: recuperación de pincel altera bordes suavizados.
+gabby-cumpleanos,Gabby cumpleaños,1868,1575,16,2,12,6,Requiere corrección,Fallo compartido del editor: recuperación de pincel altera bordes suavizados. / Limpiar fragmentación y regenerar variantes; volver a comprobar regiones.
+gabby-catrat,Gabby Catrat,66,25,17,1,12,6,Requiere corrección,Fallo compartido del editor: recuperación de pincel altera bordes suavizados.
+gabby-gato-espacial-2,Gabby gato espacial dos,129,24,16,2,12,6,Requiere corrección,Fallo compartido del editor: recuperación de pincel altera bordes suavizados. / Título de marca y sitio en el pie. No eliminar créditos sin resolver condiciones de uso; preferir original autorizado.
+gabby-gato-caja,Gabby gato caja,136,29,16,2,12,6,Requiere corrección,Fallo compartido del editor: recuperación de pincel altera bordes suavizados. / Título de marca y sitio en el pie. No eliminar créditos sin resolver condiciones de uso; preferir original autorizado.
+gabby-poster-amigos,Gabby póster de amigos,288,126,16,2,12,6,Requiere corrección,Fallo compartido del editor: recuperación de pincel altera bordes suavizados. / Título de marca y Sketchok.com en el pie. No eliminar créditos sin resolver condiciones de uso; preferir original autorizado.
+gabby-casa-magica,Gabby casa mágica,1067,829,16,2,12,6,Requiere corrección,Fallo compartido del editor: recuperación de pincel altera bordes suavizados. / Limpiar fragmentación y regenerar variantes; volver a comprobar regiones.
+gabby-casa-frontal,Gabby casa frontal,138,29,16,2,12,6,Requiere corrección,Fallo compartido del editor: recuperación de pincel altera bordes suavizados. / Sketchok.com en el pie. No eliminar créditos sin resolver condiciones de uso; preferir original autorizado.
