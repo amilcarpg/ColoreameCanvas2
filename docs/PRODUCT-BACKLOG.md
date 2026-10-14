@@ -2,7 +2,69 @@
 
 Creado: 07/10/2026. Fuente: [diagnóstico del 03/10/2026](audit-2026-10-03/INFORME-PAINTME.md) y revisión local del 07/10/2026.
 
+Última actualización: **14/10/2026**.
+
+**Cambio de ruta 14/10/2026:** Por solicitud del usuario, «Para familias y docentes» pasa a `familias.html`; auxiliares renombrados a `familias.css` y `familias.js`. Actualizados enlaces de home/editores/categorías/guías/privacidad, canonical/sitemap, configuración de analítica, selección del banner y pruebas/documentación vigente. `adults.html` conserva una redirección cliente compatible (parámetros y anclas preservados con JavaScript, fallback sin JavaScript), canonical a la nueva página y `noindex`; no es un 301 del servidor. Cincuenta pruebas locales, quince seleccionadas de navegador y check de 64 rutas HTML/61 URLs sitemap aprobados. El sitemap solo incluye la ruta nueva. Informes archivados preservados; cambios locales sin publicar, por lo que la nueva URL pública debe comprobarse tras desplegar.
+
 Este archivo reúne las recomendaciones que se pueden implementar o verificar mediante código: web, Flutter, herramientas de contenido, configuración, pruebas y CI. Registra el plan y el estado de ejecución; sus entradas no autorizan publicar, activar anuncios, procesar pagos o enviar comunicaciones.
+
+## Resumen de las últimas tareas atendidas — 14/10/2026
+
+Este resumen refleja las tareas trabajadas el 13 y 14 de octubre; no sustituye el estado del resto del backlog. Los registros del 07/10 se conservan como evidencia histórica.
+
+| ID | Estado actual | Resultado y siguiente paso |
+|---|---|---|
+| UX-03 | Hecho | Contacto confirmado y configurado: `contancto.focuzlab@gmail.com`. |
+| UX-05 | Hecho | Interfaz «Para familias y docentes», edad orientativa 4+ y acompañamiento recomendado; decisiones en [documento de producto](DECISIONES-PRODUCTO.md). |
+| PRIV-02 | Hecho en el alcance local actual | Política ES/EN, contacto, fecha y enlaces coherentes. Publicación y revisión legal no se acreditan con este cierre. |
+| SEO-01 | Hecho en el alcance técnico | Revisión editorial del piloto y ajustes locales ES/EN; derechos e indexación separados. |
+| SEO-02 | Hecho en el alcance técnico | 61 URLs públicas y sus canonical verificados, robots/sitemap coherentes y host WWW confirmado. |
+| PRIV-03 | Parcial | Evidencia local previa; faltan tráfico de app física y nueva producción con las integraciones finales. |
+| DATA-02 | Parcial: datos recibidos, sin incorporar | GA4 `G-XJBQD3ZZ8Q` y Firebase `paintme1` confirmados; falta configurar, verificar permisos/revocación y recepción real. |
+| ADS-01 | Parcial: integración local desactivada | Tres bloques configurados; faltan publicación, CSP compatible, permisos/audiencia, aprobación y prueba real. |
+| ADS-02 | Parcial: archivos publicados | `ads.txt` y `app-ads.txt` publicados con `pub-9994592587162260`; falta reconocimiento en AdSense/AdMob y comprobar dominio de ficha móvil. |
+| MOB-11 | Parcial | Identidad Android corregida a `com.focuzlab.paintme`; compilación pendiente por fallo TLS al descargar Gradle y posterior inspección/pruebas de artefacto. |
+
+Solo se publicaron `ads.txt` y `app-ads.txt` (commit `80687be24375673860dd4acbe4ec6eeaa5164be8`); los demás cambios de estas tareas siguen locales. No se activaron anuncios ni analítica. CAT-02 continúa excluida y COM-01/02/03 pospuestos. [Evidencia de SEO](SEO-REVISION-2026-10-13.md) y [evidencia de ADS-02/Android](ADS-02-2026-10-14.md).
+
+## Registro vigente para completar PRIV-03, DATA-02 y ADS-01/02 — 14/10/2026
+
+Este registro sustituye los pendientes antiguos que dicen que faltan IDs o publicar los archivos de vendedores. Las notas de ejecución anteriores conservan su fecha y describen etapas históricas. Registrar valores no activa servicios ni acredita una verificación externa. No hay fecha de cierre comprometida: se completan al cumplir los hitos siguientes.
+
+### Valores confirmados y dónde aplicarlos
+
+| Uso | Valor confirmado | Aplicación pendiente o estado |
+|---|---|---|
+| Sitio / dominio | `https://www.paintme.club/` | Producción web; verificar también redirecciones desde `https://paintme.club/`. |
+| GA4 web | `G-XJBQD3ZZ8Q` | Incorporar en `web/site-config.json` → `analytics.measurementId`, que actualmente está vacío. Confirmar en consola que corresponde al flujo web de PaintMe. |
+| Firebase Android: proyecto | `paintme1` | `FIREBASE_PROJECT_ID` de la configuración real Flutter. |
+| Firebase Android: número / sender ID | `278253770765` | `FIREBASE_MESSAGING_SENDER_ID`. |
+| Firebase Android: app ID | `1:278253770765:android:86885d699ee2c4175cdd44` | `FIREBASE_APP_ID`; no confundir con el paquete Android ni con el ID de GA4 web. |
+| Paquete Android / ficha | `com.focuzlab.paintme` | Confirmado por el usuario y el JSON Firebase; corrección local Android pendiente de verificar en artefacto compilado (MOB-11). |
+| Archivo Firebase recibido | `C:\Users\aparedes\Downloads\google-services(3).json` | Fuente local consultada; aún no incorporada. Obtener `FIREBASE_API_KEY` de ese archivo al configurar, sin duplicar la clave en este backlog. La ruta es referencia de la máquina actual, no configuración portable. |
+| AdSense: cliente | `ca-pub-9994592587162260` | Ya configurado localmente en `ads.client`. |
+| Banner inferior de balde/pincel | `7446331398` | `ads.slots.editorBottom`; ambos editores comparten bloque. |
+| Banner inferior de familias | `9685481928` | `ads.slots.familiesBottom`, ruta `/familias.html`. |
+| Banner inferior de inicio | `7340274204` | `ads.slots.homeBottom`, rutas `/` y `/index.html`. |
+| Registro de vendedores web y móvil | `google.com, pub-9994592587162260, DIRECT, f08c47fec0942fa0` | Publicado en ambos archivos; no falta volver a crearlos. |
+| URLs de archivos publicados | `https://www.paintme.club/ads.txt` y `https://www.paintme.club/app-ads.txt` | HTTP 200 y contenido exacto comprobados en el despliegue del 14/10; conservar evidencia de reconocimiento de consola. |
+| Ficha Google Play (prueba cerrada) | `https://play.google.com/store/apps/details?id=com.focuzlab.paintme` | Confirmar dominio web efectivo de desarrollador y asociación de esta app en AdMob. El acceso puede depender de la prueba cerrada. |
+| Contacto para avisos / privacidad | `contancto.focuzlab@gmail.com` | Confirmado y configurado; conservar esta escritura exacta. |
+
+La audiencia registrada es familiar, con edad orientativa 4+ y acompañamiento recomendado; idiomas español e inglés. Véase [decisiones de producto](DECISIONES-PRODUCTO.md). La página de familias no acredita por sí sola audiencia adulta para publicidad o analítica.
+
+**Estado operativo actual:** `analytics.enabled=false`, `analytics.treatmentReviewed=false`; `ads.enabled=false`, `ads.siteApproved=false`, `ads.treatmentReviewed=false`. Firebase sigue desactivado y el ejemplo Flutter no contiene valores reales. Los permisos actuales no habilitan publicidad; cambiar flags no basta. La CSP actual también bloquea la carga del adaptador AdSense (`csp_not_ready`).
+
+### Cuándo ejecutar y cuándo cerrar
+
+| Ítem | Próximo trabajo concreto | Momento de ejecución | Evidencia necesaria para cerrar |
+|---|---|---|---|
+| DATA-02 | Incorporar los valores recibidos; confirmar flujo web/proyecto Android en consola; completar avisos y controles del tratamiento permitido; probar eventos mínimos y revocación. | Configurar primero, con servicios apagados. Hacer la verificación real cuando los controles estén implementados y el entorno de prueba autorizado esté disponible. No depende de aprobar AdSense. | Recepción identificable en GA4/Firebase (por ejemplo DebugView), versión/configuración probadas y red antes de decidir, rechazar, aceptar y revocar según el tratamiento implementado. No basta un collector simulado; no deben salir eventos cuando no esté permitido. |
+| ADS-01 | Publicar la integración local de los tres bloques; resolver CSP/alojamiento compatible y señales de permisos/audiencia; confirmar estado aprobado de `paintme.club` en AdSense. | Resolver primero las condiciones técnicas y de tratamiento. Verificar integración real cuando la cuenta/sitio lo permita, sin clics comerciales; habilitar servicio solo tras comprobar esas condiciones. | Estado de aprobación registrado, prueba del proveedor real y de carga/vacío/error/revocación, disposición móvil/escritorio y captura de red. Mantener Auto Ads desactivado y ubicaciones inferiores acordadas. |
+| ADS-02 | Consultar estado de `ads.txt` en AdSense; comprobar dominio efectivo de la ficha y reconocimiento de `app-ads.txt` para `com.focuzlab.paintme` en AdMob. | Ya puede verificarse en las consolas: ambos archivos están publicados. Si sigue pendiente el rastreo, volver a comprobar cuando cambie el estado, sin recrear archivos ni exigir un nuevo APK. | Estado de reconocimiento de ambos archivos y asociación dominio/ficha/app registrados con fecha. La aprobación para servir anuncios web se cierra en ADS-01, no en este ítem. |
+| PRIV-03 | Capturar tráfico, cookies/storage y cabeceras de producción nueva y app física; inventariar destinos, parámetros y terceros; comparar con permisos efectivos. | Mantener una captura base con servicios apagados; repetir al probar GA4/Firebase y AdSense reales y tras el despliegue final. No cerrar antes de observar las integraciones que se van a entregar. | Evidencia depurada con fecha, URL, versión web/build móvil, dispositivo y estados de permiso/revocación. Documentar diferencias entre código y tráfico observado, cabeceras y ausencia de solicitudes no permitidas; enlazar resultados de DATA-02/ADS-01. |
+
+**Orden práctico:** verificar ADS-02 en consola en paralelo a la configuración de DATA-02; resolver condiciones de ADS-01; completar PRIV-03 con la producción y app finales. La compilación/identidad del APK se sigue en MOB-11. La actualización de este documento no realiza esas integraciones ni cambia su estado a Hecho.
 
 ## Prioridades, estado y alcance
 
@@ -169,7 +231,8 @@ Continuación de la lista restante: WEB-07, MOB-09, MOB-10, QA-03 y DOC-01 compl
 **Dependencias:** WEB-05 y CAT-01 para clasificación definitiva.
 
 ### UX-03 — Corregir controles ficticios y enlaces de home
-**P1 · Parcial · 2–4 h · Origen UX home**  
+**P1 · Hecho · 2–4 h · Origen UX home**
+**Cierre 13/10/2026:** El usuario confirmó `contancto.focuzlab@gmail.com`. Configurado en `web/site-config.json` y enlazado desde privacidad; home conserva el destino `familias.html#contacto`. Verificado con Node y el cargador real `familias.js`: configuración JSON, un único enlace `mailto:` con dirección y texto exactos, mensaje de contacto disponible, destino desde home y enlace en privacidad; `git diff --check` aprobado. Esta verificación adicional no utilizó navegador ni dispositivo físico. Cierre local; publicación y recepción de correo no verificadas. PRIV-02 sigue parcial por identidad/país del operador, mercados y texto definitivo.
 **Ejecución 07/10/2026:** Home sin controles ficticios, enlaces y promesas corregidos; falta correo/URL confirmado del operador. Ver [cambios, pruebas y límites](implementation-2026-10-07/web-eleven-twenty.md).
 **Archivos:** [index.html](../web/index.html), [home.js](../web/home.js).  
 **Trabajo:** hacer funcionales los botones de maqueta o convertirlos en elementos decorativos sin foco; CTA principal al balde y pincel secundario; enlaces descriptivos a categorías, privacidad y contacto real; precisar promesas de funciones/gratuidad.  
@@ -183,12 +246,16 @@ Continuación de la lista restante: WEB-07, MOB-09, MOB-10, QA-03 y DOC-01 compl
 **Aceptación:** controles usables por teclado y estados anunciados por lector; contraste y foco verificados; Escape/cierre devuelven foco; no declarar accesibilidad completa del canvas sin auditarla.
 
 ### UX-05 — Separar controles adultos de la actividad
-**P1 · Parcial · 3–5 h · Origen UX adultos**  
+**P1 · Hecho · 3–5 h · Origen UX adultos**
+**Cierre 13/10/2026:** Por autorización expresa del usuario, se cierra el alcance de interfaz implementado y verificado abajo. PRIV-02 se conserva como revisión documental independiente; no bloquea este cierre ni se declara completada. País de operación confirmado: Perú; alcance internacional, inicialmente en español e inglés. Las decisiones reutilizables, servicios apagados y preferencia de no publicar datos personales sin autorización se registran en [DECISIONES-PRODUCTO.md](DECISIONES-PRODUCTO.md).
+**Alcance confirmado 13/10/2026:** Actividad para niños desde los 4 años como edad orientativa, familias y docentes; acompañamiento recomendado, sin participación adulta continua obligatoria. La página informativa y los enlaces de home/editores se identifican como «Para familias y docentes», con preguntas frecuentes, ayuda, impresión, privacidad y contacto. Pintar sigue accesible sin registro ni paso obligatorio por esa página; preferencias y enlaces externos se identifican para adultos. No se añade un gate de edad ni se presenta la sección como consentimiento parental. Analítica y publicidad se mantienen preparadas y desactivadas hasta completar sus requisitos; ventas siguen pospuestas. LATAM, Estados Unidos y Europa son mercados de interés, no una autorización de tratamiento ni una comprobación de requisitos por país.
+**Implementación 13/10/2026:** Textos y navegación unificados en home, balde, pincel y página informativa; cuatro preguntas frecuentes explican edad orientativa, acompañamiento, inicio directo y controles adultos. Localización del nuevo rótulo al inglés conservada. El alcance de interfaz está atendido; se mantiene **Parcial** por PRIV-02 (identidad/país del operador, mercados específicos y texto definitivo), sin activar servicios externos ni publicar.
+**Verificación 13/10/2026:** `node scripts/check-web.cjs` aprobado: 50 pruebas de lógica/privacidad/analítica, 63 rutas HTML/canonical y 61 URLs de sitemap. Veinte pruebas existentes seleccionadas de navegador aprobadas en Chromium 155 headless/Windows: piloto inglés, rechazo/revocación sin pérdida, impresión, contacto, ausencia de solicitudes de terceros, publicidad apagada y diez combinaciones modo/viewport (360/390/768 px, paisaje y escritorio). `git diff --check` aprobado. No se realizaron pruebas físicas ni publicación.
 **Ejecución 07/10/2026:** Zona adulta, impresión y recorrido sin aceptar implementados; PRIV-01/02 y decisiones de audiencia pendientes. Ver [cambios, pruebas y límites](implementation-2026-10-07/web-eleven-twenty.md).
 **Archivos:** home/editores/página adulta; equivalente Flutter en MOB-08.  
 **Trabajo:** ubicar privacidad, impresión, compras futuras y enlaces externos en un recorrido adulto claro; mantener pintar accesible al rechazar.  
 **Aceptación:** el niño no necesita aceptar publicidad ni resolver compras para usar herramientas; zona adulta identificable; gate de interfaz no se presenta como consentimiento parental verificable.  
-**Dependencias:** PRIV-01/02; decisiones de audiencia.
+**Dependencias:** PRIV-01 y decisiones de audiencia, atendidas para la interfaz actual. PRIV-02 permanece independiente por separación de alcance autorizada el 13/10/2026. Activar servicios externos requiere sus tareas PRIV/DATA/ADS; MOB-08 conserva el alcance móvil.
 
 ## Épica 3 — Contenidos, pipeline y SEO
 
@@ -224,20 +291,22 @@ Continuación de la lista restante: WEB-07, MOB-09, MOB-10, QA-03 y DOC-01 compl
 **Dependencias:** WEB-02/06, CAT-02.
 
 ### SEO-01 — Mejorar plantillas y enlaces de páginas temáticas
-**P1 · Parcial · 4–8 h · Origen S1/I**  
+**P1 · Hecho (alcance técnico) · 4–8 h · Origen S1/I**
+**Cierre 13/10/2026:** Por autorización expresa, revisadas seis páginas existentes y el piloto inglés. Guías gratuitas sin promesa de pack vendible, impresión bajo «Para familias y docentes», acompañamiento recomendado y corrección de «vehículos» conservando slugs. Cincuenta pruebas locales y cuatro pruebas seleccionadas de navegador aprobadas; rutas y enlaces verificados. [Revisión, evidencia pública y límites](SEO-REVISION-2026-10-13.md). Derechos e indexación quedan separados de este cierre técnico; CAT-02 sigue excluida. Ajustes locales sin publicar.
 **Ejecución 07/10/2026:** Seis páginas existentes de animales/dinosaurios/vehículos distinguen colección y guía adulta; faltan derechos y revisión del piloto. Ver [cambios, evidencia y límites](implementation-2026-10-07/items-21-31.md).
 **Archivos:** [dibujos](../web/dibujos), [categorías](../web/categorias), [packs](../web/packs), home.  
 **Trabajo:** aplicar a 4–6 páginas contenido adulto aprobado: preview, facilidad, uso, impresión y relacionados; enlaces al editor con asset correcto; separar intención de categoría y pack o consolidar duplicados reales.  
 **Aceptación:** páginas estáticas rastreables y útiles; canonical correcto; todos los enlaces funcionan; no generar páginas masivas sustituyendo una palabra.  
-**Dependencias:** CAT-01/02/04, UX-03. Textos y utilidad requieren criterio editorial; indexación/demanda se evalúan fuera del código.
+**Dependencias vigentes:** Catálogo existente y UX-03 para los enlaces revisados. Por separación de alcance autorizada el 13/10/2026, derechos/CAT-02, QA gráfica/física de CAT-04 e indexación/demanda no se declaran resueltos por este cierre técnico.
 
 ### SEO-02 — Unificar host, robots, sitemap y rutas
-**P1 · Parcial · 2–4 h · Origen SEO**  
+**P1 · Hecho (alcance técnico) · 2–4 h · Origen SEO**
+**Cierre 13/10/2026:** Las 61 URLs del sitemap público responden 200 y tienen canonical coincidente; sitemap público/local iguales y robots alineado. HTTP y host sin WWW llegan a `https://www.paintme.club/`; tres recorridos de editor con queries conservan canonical sin parámetros. Check local aprobado: 63 rutas HTML/canonical y 61 URLs sitemap. No se requieren cambios de host/rutas/sitemap. [Evidencia y límites](SEO-REVISION-2026-10-13.md). Cierre técnico autorizado, sin acreditar derechos ni indexación y sin publicar los ajustes nuevos de SEO-01.
 **Ejecución 07/10/2026:** WWW verificado, robots/sitemap alineados y 61 rutas locales comprobadas; quedan cierre comercial y verificación pública de cambios. Ver [cambios, evidencia y límites](implementation-2026-10-07/items-21-31.md).
 **Archivos:** [robots.txt](../web/robots.txt), [sitemap.xml](../web/sitemap.xml), canonical y configuración de hosting.  
 **Trabajo:** escoger host canónico conforme a despliegue real, alinear referencias y comprobar redirecciones si el hosting las permite; actualizar sitemap desde páginas publicables.  
 **Aceptación:** URLs del sitemap responden y usan el mismo host; sin entradas excluidas/rotas; editor con queries conserva canonical; no prometer indexación por pasar estos checks.  
-**Dependencias:** CAT-02 y host confirmado.
+**Dependencias vigentes:** Host confirmado por consulta pública. CAT-02 sigue excluida; derechos y cierre comercial quedan fuera del cierre técnico autorizado el 13/10/2026.
 
 ### SEO-03 — Piloto breve en inglés
 **P2 · Hecho (piloto gratuito local) · 4–8 h · Origen O**  
@@ -260,15 +329,20 @@ Continuación de la lista restante: WEB-07, MOB-09, MOB-10, QA-03 y DOC-01 compl
 **Dependencia externa:** definir tratamientos, audiencia, mercados y necesidad de CMP/proveedor; conservar terceros apagados cuando no exista una configuración autorizada.
 
 ### PRIV-02 — Publicar política y contacto coherentes
-**P0 monetización · Parcial · 2–4 h · Origen P2/documentación**  
+**P0 documentación · Hecho (alcance local actual) · 2–4 h · Origen P2/documentación**
+**Cambio de alcance y cierre 13/10/2026:** Por autorización del usuario, PRIV-02 se limita a documentación del funcionamiento actual, enlaces coherentes, contacto y fecha visibles. Política del producto en `web/privacy.html`, con versión inglesa en `web/en/privacy.html`; home/editores/controles y URL predeterminada Flutter conservan esos destinos. La página Google Sites aportada se considera copia externa, no destino canónico del producto; no se editó. Se añaden título, fecha, cambios y contacto confirmado en ambos idiomas; se elimina la afirmación inglesa obsoleta de contacto sin confirmar. El cierre local no acredita publicación ni cumplimiento legal completo. Revisión nativa se atiende al publicar app; tratamiento de publicidad/analítica y revisión legal se separan de esta tarea, sin activar servicios.
+**Verificación de cierre 13/10/2026:** 50 pruebas aprobadas con `node scripts/check-web.cjs`, 63 rutas HTML/canonical y 61 URLs del sitemap. Comprobación adicional Node aprobada: fecha y `mailto:` en español/inglés, enlaces de home/adultos/ambos editores, sección `#web`, destino del módulo de preferencias y URL predeterminada Flutter; analítica apagada. `git diff --check` aprobado. Verificación de código local, sin repetir QA de navegador ni publicar.
 **Ejecución 07/10/2026:** Información técnica web/app unificada y noindex mientras faltan operador/contacto, mercados y texto definitivo. Ver [cambios, evidencia y límites](implementation-2026-10-07/items-21-31.md).
+**Actualización 13/10/2026:** Contacto confirmado e incorporado: `contancto.focuzlab@gmail.com`. País de operación confirmado: Perú; alcance internacional, inicialmente en español e inglés. Preparado [borrador específico para PaintMe](PRIVACIDAD-BORRADOR.md), con decisiones enlazadas y pendientes verificables sobre alojamiento efectivo, mensajes de contacto, información del responsable que corresponda, app distribuida, revisión del texto y concordancia pública. No se incorporan datos personales del operador sin autorización. Página local alineada con los datos confirmados; se mantiene **Parcial**, `noindex` y servicios externos apagados. UX-05 se cierra por separado.
+**Verificación del borrador 13/10/2026:** `node scripts/check-web.cjs` aprobado (50 pruebas, 63 rutas HTML/canonical y 61 URLs del sitemap); `git diff --check` aprobado. Se conservan enlaces y controles de privacidad existentes. Sin revisión legal, publicación ni comprobación de app física.
 **Archivos:** [privacy.html](../web/privacy.html), footer/home/editores, política enlazada desde Flutter.  
-**Trabajo:** integrar texto aprobado para web/app, operador/contacto, dibujo local, exportación, backups posibles, terceros, conservación y controles; sustituir anclas contradictorias por destino único con secciones.  
-**Aceptación:** todos los enlaces abren la política correcta; versión visible; enlaces de preferencias operativos; la descripción coincide con flujos observados.  
-**Dependencias:** PRIV-01/03; datos y texto jurídico confirmados. El desarrollo no debe inventar operador ni derechos legales.
+**Trabajo vigente:** mantener documentación de guardado local, exportación, contacto y servicios actualmente apagados; enlaces al destino del producto y traducción inglesa coherente.
+**Aceptación vigente:** política local describe la configuración actual; home, editores y controles enlazan al destino previsto; contacto y fecha visibles. No requiere activar servicios, publicar datos personales del operador ni verificar una futura app distribuida.
+**Dependencias vigentes:** PRIV-01 para controles actuales. PRIV-03, DATA-02, ADS-01/02 y tareas móviles conservan las verificaciones de sus respectivas integraciones o publicaciones. Los registros anteriores son históricos y no mantienen el bloqueo sustituido por este cambio de alcance.
 
 ### PRIV-03 — Documentar solicitudes reales y configuración de seguridad
 **P0 monetización · Parcial · 3–6 h · Origen inventario HAR/CSP**  
+**Pendiente vigente 14/10/2026:** App física y nueva producción con integraciones finales aún sin verificar. Aplicar los hitos y la evidencia del registro vigente al inicio de este documento; las capturas locales anteriores no cierran esta tarea.
 **Ejecución 07/10/2026:** HAR local de 56 estados y cabeceras públicas registrados; quedan app física, producción nueva y proveedores futuros. Ver [cambios, evidencia y límites](implementation-2026-10-07/items-21-31.md).
 **Archivos:** configuración HTML/CSP y evidencias fuera de `web/`.  
 **Trabajo:** capturar red/cookies/storage en sesión limpia, sin decidir, al rechazar, aceptar y revocar; inventariar scripts y parámetros. Ajustar CSP mínima para servicios aprobados; comprobar cabeceras del host y no abrir comodines/unsafe-eval para ads.  
@@ -285,6 +359,7 @@ Continuación de la lista restante: WEB-07, MOB-09, MOB-10, QA-03 y DOC-01 compl
 
 ### DATA-02 — Instrumentar calidad y continuidad con resultados reales
 **P1 · Parcial · 3–6 h · Origen embudo/H**  
+**Actualización 14/10/2026:** Recibidos GA4 `G-XJBQD3ZZ8Q` y JSON Firebase Android del proyecto `paintme1`, paquete `com.focuzlab.paintme`. Valores y mapeo registrados arriba; todavía no incorporados a la configuración real. Ya no falta solicitarlos al usuario. Siguen pendientes controles/avisos, recepción en cuentas y revocación/red real; servicios apagados.
 **Continuación adicional 07/10/2026:** Se prepararon GA4 web y Firebase Analytics Flutter, seleccionados por el usuario, con configuración/permiso explícitos, esquema, estados de fallo y revocación; publicidad/personalización denegadas. Firebase apagado desde el manifiesto final Android; iOS sigue desactivado. Apertura fallida/restauración/time bands y errores del collector probados en Flutter. Faltan ID/proyecto reales, tratamiento/avisos y recepción/red en SDK/cuentas; no se inventaron ni activaron. [Código, configuración y evidencia](implementation-2026-10-07/maint-data-seo3.md).
 **Continuación 07/10/2026:** Hooks de guardado/restauración/compartir y estado de UI se prueban con collector apagado/fake y outcomes reales de test; recepción/cohorte/collector autorizado siguen pendientes. [Evidencia](implementation-2026-10-07/remaining-code.md).
 **Ejecución 07/10/2026:** Resultados reales de apertura/save/restore/export y first_paint probados en web; UI móvil e integración de collector autorizada pendientes. Ver [cambios, evidencia y límites](implementation-2026-10-07/items-21-31.md).
@@ -293,21 +368,29 @@ Continuación de la lista restante: WEB-07, MOB-09, MOB-10, QA-03 y DOC-01 compl
 **Aceptación:** fallo de escritura no genera éxito; apertura fallida no cuenta como activación; restauración obsoleta no cuenta; exportación no afirma archivo abierto; eventos no salen cuando no está permitido.  
 **Dependencias:** WEB-05/06, PRIV-01, DATA-01. No crear fingerprint ni cuentas para medir regreso.
 
-### ADS-01 — Implementar una ubicación web admisible para adultos
+### ADS-01 — Preparar publicidad web con ubicaciones explícitas
 **P0 monetización · Parcial · 3–6 h · Origen L/diseño publicitario**  
+**Banner de inicio 14/10/2026:** Usuario aporta slot `7340274204` («PaintMe — Banner home») y autoriza su ubicación inferior. Configurado `ads.slots.homeBottom`, contenedor bajo todo el contenido/FAQ antes del pie y soporte de rutas `/` y `/index.html`. Conservados bloque editor `7446331398` y bloque familias `9685481928`. Cincuenta pruebas locales y doce seleccionadas de navegador aprobadas, con SDK simulado; inicio móvil/escritorio sin solapamientos ni desplazamiento de la acción principal y permisos denegados sin solicitudes. Flags de publicidad siguen false; sin publicación. Las referencias anteriores a inicio sin bloque describen la etapa sustituida por esta solicitud.
+**Bloques diferenciados 14/10/2026:** Usuario aporta «PaintMe — Banner adulto», slot `9685481928`. Configurado en `ads.slots.familiesBottom` para preguntas/familias; `ads.slots.editorBottom` conserva `7446331398` para balde/pincel. Mismo editor confirmado `ca-pub-9994592587162260`, sin bloque en inicio. Se mantiene desactivado y sin publicar; los registros anteriores describen la etapa previa de bloque compartido.
+**Integración local 14/10/2026:** Usuario aporta bloque AdSense `7446331398` y autoriza integrarlo, manteniendo anuncios apagados. Adaptador y controlador conectados a los banners inferiores de ambos editores y al final de preguntas/información para familias, sin añadir anuncios al inicio. Se prueban lleno/vacío/fallo/timeout/revocación con SDK simulado; 50 pruebas locales y 20 seleccionadas de navegador aprobadas. Permisos actuales no habilitan ads y los tres flags de configuración permanecen false. Se identifica además CSP estática incompatible con el soporte estricto de AdSense; el adaptador rechaza la carga (`csp_not_ready`) hasta resolverla. Pendientes aprobación, privacidad/audiencia y CSP/red real. No se publica ni se muestran anuncios reales. [Detalle actualizado](ADS-01-BANNER-INFERIOR.md).
+**Cambio de alcance 14/10/2026:** El usuario confirma un banner inferior en cada editor web, sustituyendo la exclusión de diseño anterior. Preparados contenedor oculto y estilos compartidos fuera de la actividad, con etiqueta ES/EN, separación superior de 150 px, sin anclaje fijo, superposición ni impresión. No se conecta proveedor ni se elimina el bloqueo operativo del controlador hasta implementar integración/condiciones de habilitación. Cincuenta pruebas locales, catorce regresiones seleccionadas de navegador y dos pruebas de disposición aprobadas. Falta código de bloque `data-ad-slot`, integración/privacidad y aprobación AdSense; usuario aportó captura de propiedad verificada y revisión solicitada. No se activa publicidad ni Auto Ads. [Diseño, decisiones y límites](ADS-01-BANNER-INFERIOR.md).
 **Ejecución 07/10/2026:** Componente adulto inactivo con estados, limpieza de resultados tardíos y prohibición en editor; falta integración/proveedor y aprobación/derechos. Ver [cambios, evidencia y límites](implementation-2026-10-07/items-21-31.md).
 **Archivos:** página adulta elegida, módulo ads y configuración.  
-**Trabajo:** unidad explícita y marcada, separada de herramientas/tarjetas; modo sin ads, estados de carga/error, espacio colapsable sin saltos peligrosos; excluir ads del editor y revisar Auto Ads. Aplicar señales de audiencia soportadas por el producto/SDK confirmado.  
-**Aceptación:** creatividades de prueba verificadas sin clics comerciales; ninguna unidad encima/junto al lienzo, colores o guardar; error/rechazo sigue permitiendo actividad; sin refresh propio, interstitial ni rewarded.  
+**Trabajo vigente:** unidades explícitas y marcadas en ubicaciones aprobadas, incluida parte inferior de ambos editores; modo sin ads, estados de carga/error y espacio colapsable sin saltos peligrosos. Mantener Auto Ads desactivado. Aplicar señales de audiencia soportadas por el producto/SDK confirmado.
+**Aceptación vigente:** integración de prueba verificada sin clics comerciales; banner inferior separado de toda la actividad, sin tapar lienzo/colores/guardar y sin overflow; error/rechazo permite seguir pintando; estados y revocación comprobados; sin refresh propio, interstitial ni rewarded. La preparación de contenedores no completa esta aceptación de integración.
 **Dependencias externas:** PRIV-01/02/03, derechos, revisión de ámbito, configuración infantil aplicable y aprobación de cuenta. Una página etiquetada “adultos” no acredita audiencia adulta.
 
 ### ADS-02 — Validar ads.txt y añadir app-ads.txt cuando corresponda
 **P0 monetización móvil · Parcial · 1–2 h · Origen AdMob verificación**  
+**Publicación 14/10/2026:** Enviados únicamente `web/ads.txt` y `web/app-ads.txt` por API a `main`, commit `80687be24375673860dd4acbe4ec6eeaa5164be8`; [despliegue Pages exitoso](https://github.com/amilcarpg/ColoreameCanvas2/actions/runs/38598468617). Ambos archivos públicos respondieron 200 con `pub-9994592587162260`. Captura del usuario confirma propiedad AdSense verificada y revisión solicitada. Falta comprobar estado del registro web en consola y verificación AdMob/ficha; ADS-02 sigue parcial. Los otros cambios locales, incluido el espacio inferior nuevo, no se publicaron en ese commit.
+**Actualización adicional 14/10/2026:** La captura de verificación AdSense y la confirmación expresa del usuario identifican también el vendedor web como `pub-9994592587162260`. Actualizado `web/ads.txt`, sustituyendo el ID anterior; coincide con el registro móvil confirmado. Ambos archivos preparados localmente; falta publicar, verificar propiedad en AdSense, solicitar revisión del sitio y comprobar AdMob por separado. No se añade script publicitario ni se activan anuncios. El registro siguiente documenta la etapa anterior.
+**Actualización 14/10/2026:** Usuario confirma registro AdMob `pub-9994592587162260`, app en prueba cerrada `com.focuzlab.paintme` y dominio `https://www.paintme.club/`. Creado `web/app-ads.txt`; vendedor web de `ads.txt` conservado. Identificador/namespace y paquete/ruta Android de MainActivity corregidos. Cincuenta pruebas web y comprobaciones de coherencia aprobadas; build Android no llegó a compilar por certificado TLS al descargar Gradle. Pendientes publicación, web efectiva de ficha y verificación en AdMob; no se activan anuncios. [Cambios, verificaciones y límites](ADS-02-2026-10-14.md).
 **Ejecución 07/10/2026:** ads.txt válido y HTTP 200; app-ads.txt HTTP 404, sin vendedor/ficha móvil confirmados: no se inventó el archivo. Ver [cambios, evidencia y límites](implementation-2026-10-07/items-21-31.md).
-**Archivos:** [ads.txt](../web/ads.txt), `web/app-ads.txt` a crear, configuración de dominio.  
+**Archivos:** [ads.txt](../web/ads.txt), [app-ads.txt](../web/app-ads.txt), configuración de dominio.
 **Trabajo:** usar vendedor autorizado confirmado y servir registros en el dominio enlazado por la ficha; distinguir archivo web y móvil.  
 **Aceptación:** respuestas públicas correctas, registro sin placeholders; verificación de consola registrada por responsable.  
-**Dependencia externa:** proveedor/cuenta/ficha/dominio confirmados; código no garantiza app readiness.
+**Pendientes de cierre vigentes 14/10/2026:** Los archivos ya están publicados y sus respuestas correctas comprobadas; la propiedad AdSense figura verificada en la captura aportada. Falta registrar el reconocimiento del registro web en AdSense y comprobar la web efectiva de desarrollador de la ficha de prueba cerrada, la asociación de la app y el reconocimiento de `app-ads.txt` en AdMob. La revisión/aprobación de anuncios web se sigue en ADS-01. La compilación Android se sigue en MOB-11 y no es requisito para servir estos archivos.
+**Dependencia externa:** registro, identificador de app y dominio confirmados por el usuario; ficha y consola aún no verificadas de forma independiente. Código y archivo no garantizan app readiness.
 
 ## Épica 5 — Flutter: fiabilidad y publicación condicional
 
@@ -390,7 +473,8 @@ Continuación de la lista restante: WEB-07, MOB-09, MOB-10, QA-03 y DOC-01 compl
 **Dependencias:** MOB-07.
 
 ### MOB-11 — Resolver matriz de build y comprobar release Android
-**P0 publicación Android · Parcial · 4–8 h + entorno · Origen build móvil**  
+**P0 publicación Android · Parcial · 4–8 h + entorno · Origen build móvil**
+**Actualización 14/10/2026:** Corregidos applicationId/namespace/MainActivity a `com.focuzlab.paintme`, confirmado por el usuario para la ficha de prueba cerrada. La evidencia anterior de APK corresponde al identificador previo. Nuevo intento de build detenido antes de compilar por validación del certificado de descarga de Gradle; verificar el identificador del artefacto cuando el entorno permita compilar. [Detalle](ADS-02-2026-10-14.md).
 **Continuación 07/10/2026:** SDK Flutter 3.47.6/Dart 3.13.5 aislado; analyzer sin incidencias y 24 tests aprobados. Matriz AGP 8.12.1/Gradle 9.1.0/Kotlin 2.3.20; APK debug final aprobado e inspeccionado: compile/target SDK 36, minSdk 24; tres guardas nativas rechazan configuraciones inválidas. Release firmado/instalación/offline físicos pendientes. Ver [implementación y verificaciones](implementation-2026-10-07/remaining-code.md).
 **Archivos:** pubspec/lock, Gradle/settings, configuración release.  
 **Trabajo:** confirmar requisitos efectivos Flutter/AGP/Kotlin/share_plus y ajustar lo necesario; verificar target SDK vigente y artefacto firmado con configuración correcta. Resolver entorno/dependencias antes de repetir checks.  
