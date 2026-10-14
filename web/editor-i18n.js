@@ -2,13 +2,13 @@
 window.PaintMeI18n = (() => {
   const english = new URL(window.location.href).searchParams.get('lang') === 'en';
   const words = {
-    'Para adultos':'For adults', 'Dibujo listo':'Drawing ready',
+    'Para adultos':'For adults', 'Para familias y docentes':'For families and teachers', 'Dibujo listo':'Drawing ready',
     'Área de coloreo':'Coloring area', 'Dibujo para pintar con pincel':'Drawing to paint with a brush',
     'Dibujo para pintar con balde':'Drawing to paint with a bucket', 'Colores y estado':'Colors and status',
     'Elige un color':'Choose a color', 'Acciones de coloreado':'Coloring actions',
     'Descarga con ayuda de un adulto':'Download with an adult', 'Copias guardadas':'Saved copies',
     'Temas':'Themes', 'Buscar por nombre':'Search by name', 'Enlaces para adultos':'Links for adults',
-    'Preferencias para adultos':'Preferences for adults',
+    'Preferencias para adultos':'Preferences for adults', 'Publicidad':'Advertisement',
     'Colorea con balde':'Color with the bucket', 'Colorea con pincel':'Color with the brush',
     'Elige colores y pinta a tu manera.':'Choose colors and paint your way.',
     'Ajustar':'Fit', 'Toca una zona para pintarla. Dos dedos para ampliar.':'Tap an area to fill it. Use two fingers to zoom.',
@@ -146,7 +146,7 @@ window.PaintMeI18n = (() => {
     for (const link of document.querySelectorAll('a[href]')) {
       const url = new URL(link.href);
       if (url.origin !== window.location.origin) continue;
-      if (['/','/index.html','/adults.html'].includes(url.pathname)) link.href = 'en/dinosaur-coloring.html';
+      if (['/','/index.html','/familias.html'].includes(url.pathname)) link.href = 'en/dinosaur-coloring.html';
       else if (url.pathname === '/privacy.html') link.href = 'en/privacy.html';
     }
   }

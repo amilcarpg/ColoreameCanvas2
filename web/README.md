@@ -36,7 +36,9 @@ En la web, la galería se muestra bajo demanda al abrir **Elegir otro dibujo**. 
 
 ## Zona adulta y publicidad
 
-Los editores muestran primero lienzo, colores y acciones esenciales. «Más opciones» contiene controles avanzados; «Más acciones», reiniciar y sorpresa. «Zona para adultos» contiene impresión, preferencias y enlaces. La ayuda de `adults.html` lee el contacto confirmado desde `site-config.json`; el contacto vacío permanece explícitamente pendiente.
+Los editores muestran primero lienzo, colores y acciones esenciales. «Más opciones» contiene controles avanzados; «Más acciones», reiniciar y sorpresa. «Para familias y docentes» contiene impresión, preferencias y enlaces. La ayuda de `familias.html` lee el contacto confirmado desde `site-config.json`.
+
+La página informativa usa `familias.html`, `familias.css` y `familias.js`. La ruta anterior `adults.html` se conserva únicamente como redirección cliente, con canonical a la nueva página y `noindex`; JavaScript preserva parámetros y anclas como `#contacto`. Sin JavaScript se utiliza un meta refresh y un enlace de respaldo. No es una redirección HTTP 301 del servidor. Sitemap, anuncios, analítica y navegación usan la ruta nueva. Los informes de auditoría archivados conservan sus referencias históricas.
 
 El editor no contiene slots publicitarios ni carga AdSense. La web de esta revisión mantiene también GA y fuentes externas apagados: `privacy.js` centraliza preferencias v2 y no hereda permisos de v1; `product-events.js` admite solo datos del esquema. No existe un collector de red habilitado. PRIV-02/03 y ADS-01 siguen pendientes de sus cierres externos; la separación adulta no constituye consentimiento parental.
 
@@ -65,13 +67,21 @@ La suite de navegador también admite WebKit con `PAINTME_BROWSER_ENGINE=webkit`
 
 Los editores distinguen el guardado automático local de **Descargar PNG**. Se puede reintentar un fallo, abrir una alternativa PNG y cancelar un reinicio. Deshacer recupera el reinicio y Rehacer lo reaplica; nueva edición invalida la rama futura. El historial comparte límites de pasos/bytes y no sobrevive a cambiar dibujo o recargar.
 
+El guardado del pincel conserva el PNG compuesto y, desde la revisión CAT-04 del 14/10/2026, la capa editable de pintura. Recuperar y descargar no vuelven a oscurecer los bordes semitransparentes. Las copias anteriores se recuperan desde su PNG; una capa editable ilegible también usa esa copia independiente. El historial incluye en su límite de memoria el compuesto exacto de una obra recuperada cuando lo necesita para Deshacer.
+
+Al versionar un dibujo, `legacyWebSrc` en el maestro conserva el recurso anterior; el generador expone `legacySrc` en el catálogo web. Las obras guardadas registran `assetSrc` y mantienen la máscara de su versión original. Conservar dimensiones, archivos anteriores y slug permite continuar esas obras sin aplicarles silenciosamente los contornos de otra versión.
+
+La auditoría por imagen acepta `PAINTME_ARTWORK_OUTPUT` para guardar evidencia nueva dentro del proyecto y conservar revisiones históricas. `audit-artwork-browser.cjs` prueba tres descargas con ediciones intermedias, restauración RGBA, worker/fallback y genera mapas; `--extended` añade selección, recoloreado y separación A/B. La QA física y la aprobación de contornos previstos se registran por separado.
+
 [Ítems 11–20 salvo CAT-02: implementación y evidencia](../docs/implementation-2026-10-07/web-eleven-twenty.md) y [pruebas que faltan](../docs/PRUEBAS-PENDIENTES.md). La revisión automatizada de todos los PNG no sustituye contornos revisados a mano, descarga física o pruebas con personas.
 
 ## SEO, privacidad y componente publicitario inactivo
 
 `node scripts/check-site.cjs` verifica rutas/canonical, enlaces locales, robots/sitemap y sintaxis de ads.txt. Se ejecuta también en el gate web. `--write` regenera sitemap desde canonical de páginas existentes sin noindex; no aplica aprobación de derechos o de cuentas. La política pendiente queda fuera del sitemap.
 
-Las seis páginas de categorías/guías de animales, dinosaurios y vehículos incluyen contenido adulto útil. `ad-slot.js` prepara un componente inactivo en `adults.html`, con mocks para estados y revocación; no incorpora SDK ni configura anuncios comerciales. app-ads.txt requiere vendedor y ficha confirmados.
+Las seis páginas de categorías/guías de animales, dinosaurios y vehículos incluyen contenido adulto útil. `adsense-provider.js` y `ad-slot.js` preparan bloques distintos: `7446331398` en la parte inferior de balde/pincel (`ads.slots.editorBottom`), `9685481928` al final de la página de preguntas para familias (`ads.slots.familiesBottom`) y `7340274204` bajo el contenido de inicio y antes del pie (`ads.slots.homeBottom`). El inicio se reconoce tanto en `/` como en `/index.html`. `ad-banner.css` comparte disposición, etiqueta y ocultación en impresión. `ads.txt` y `app-ads.txt` usan el vendedor confirmado `pub-9994592587162260`.
+
+`site-config.json.ads` conserva `enabled`, `siteApproved` y `treatmentReviewed` en false. Incluso si esos tres campos fueran true, el adaptador requiere `PaintMePrivacy.allowed('ads')`; el módulo actual no concede permisos publicitarios y no se sustituye una CMP por un checkbox. Para cargar el SDK, el adaptador exige una CSP estricta con nonce coincidente en la política comprobada, según el soporte oficial de AdSense. La CSP estática actual no está preparada para ello: las pruebas registran `csp_not_ready` y no cargan Google. No basta con cambiar un flag para activar publicidad. Ver [integración y pendientes](../docs/ADS-01-BANNER-INFERIOR.md).
 
 [Ejecución 21–31, evidencia y límites](../docs/implementation-2026-10-07/items-21-31.md). Para QA de red, el caso específico de la suite no bloquea outbound desde el runner; registra HAR de tráfico artificial local. Las otras pruebas de editor conservan su bloqueo anterior. Configurar `PAINTME_EVIDENCE_DIR` para guardar capturas/HAR fuera de web.
 

@@ -95,6 +95,7 @@ let hasPaintedCurrentAsset = false;
 let drawingOpenedAt = performance.now();
 let switchingAsset = false;
 let restoreRequestId = 0;
+let activeDrawingSrc = null;
 let drawingRevision = 0;
 let restoringDrawing = false;
 let exportInProgress = false;
@@ -286,7 +287,7 @@ function scheduleAutosave() {
   if (!currentAsset || !isImageLoaded) return false;
   drawingRevision += 1;
   try {
-    const scheduled = autosave.schedule(currentAsset.slug, canvas.toDataURL("image/png"), drawingRevision);
+    const scheduled = autosave.schedule(currentAsset.slug, canvas.toDataURL("image/png"), drawingRevision, undefined, activeDrawingSrc || currentAsset.src);
     if (!scheduled) throw new Error("Invalid drawing snapshot");
     setSaveState("pending");
     return true;
@@ -353,6 +354,7 @@ async function restoreSavedDrawing() {
   updateNavigationState();
   setStatus("Recuperando dibujo…");
   let saved;
+  let decoded;
   try {
     await autosave.flush();
     saved = await PM.loadLocalDrawing("bucket", slug);
@@ -363,8 +365,21 @@ async function restoreSavedDrawing() {
       return;
     }
     const image = await PM.decodeSavedPng(saved.dataUrl);
+    decoded = image;
     if (!current()) return;
     if (image.width !== canvas.width || image.height !== canvas.height) throw new Error("saved_dimensions");
+    const savedSource = PM.savedDrawingSource(saved, currentAsset);
+    const sourceImage = savedSource !== activeDrawingSrc ? await PM.decodeAssetPng(savedSource) : null;
+    if (!current()) return;
+    if (sourceImage) {
+      const sourceCanvas = document.createElement("canvas");
+      sourceCanvas.width = canvas.width; sourceCanvas.height = canvas.height;
+      const sourceCtx = sourceCanvas.getContext("2d");
+      sourceCtx.drawImage(sourceImage, 0, 0, canvas.width, canvas.height);
+      originalImageData = sourceCtx.getImageData(0, 0, canvas.width, canvas.height);
+      lineMask = buildLineMask(originalImageData);
+    }
+    activeDrawingSrc = savedSource;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.drawImage(image, 0, 0);
     drawingRevision += 1;
@@ -383,6 +398,7 @@ async function restoreSavedDrawing() {
     trackProductEvent("restore_failure", getTrackingPayload({result: "failure", reason: "restore"}));
     restoreBtn.hidden = true;
   } finally {
+    decoded?.close?.();
     if (request === restoreRequestId) {
       restoringDrawing = false;
       updateNavigationState();
@@ -910,6 +926,7 @@ function floodFillFallback(startX, startY, fillColor, tolerance, imageData) {
 }
 
 function drawLoadedSource(sourceWidth, sourceHeight, draw) {
+  activeDrawingSrc = currentAsset.src;
   let scale = 1;
   if (sourceWidth > MAX_CANVAS_SIZE || sourceHeight > MAX_CANVAS_SIZE) {
     scale = Math.min(MAX_CANVAS_SIZE / sourceWidth, MAX_CANVAS_SIZE / sourceHeight);

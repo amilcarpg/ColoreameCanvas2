@@ -103,6 +103,8 @@ let hasPaintedCurrentAsset = false;
 let drawingOpenedAt = performance.now();
 let switchingAsset = false;
 let restoreRequestId = 0;
+let activeDrawingSrc = null;
+let preserveRestoredComposite = false;
 let drawingRevision = 0;
 let restoringDrawing = false;
 let exportInProgress = false;
@@ -293,7 +295,9 @@ function scheduleAutosave() {
   if (!currentAsset || !isImageLoaded) return false;
   drawingRevision += 1;
   try {
-    const scheduled = autosave.schedule(currentAsset.slug, canvas.toDataURL("image/png"), drawingRevision);
+    // The composed PNG remains the preview/export and legacy fallback. Persist
+    // the editable layer too: removing lines from a flattened PNG is lossy.
+    const scheduled = autosave.schedule(currentAsset.slug, canvas.toDataURL("image/png"), drawingRevision, paintLayer.toDataURL("image/png"), activeDrawingSrc || currentAsset.src);
     if (!scheduled) throw new Error("Invalid drawing snapshot");
     setSaveState("pending");
     return true;
@@ -365,6 +369,7 @@ async function restoreSavedDrawing() {
   updateNavigationState();
   setStatus("Recuperando dibujo…");
   let saved;
+  const decoded = [];
   try {
     await autosave.flush();
     saved = await PM.loadLocalDrawing("brush", slug);
@@ -375,15 +380,53 @@ async function restoreSavedDrawing() {
       return;
     }
     const image = await PM.decodeSavedPng(saved.dataUrl);
+    decoded.push(image);
     if (!current()) return;
     if (image.width !== canvas.width || image.height !== canvas.height) throw new Error("saved_dimensions");
+    const savedSource = PM.savedDrawingSource(saved, currentAsset);
+    const sourceImage = savedSource !== activeDrawingSrc ? await PM.decodeAssetPng(savedSource) : null;
+    if (!current()) return;
+    let layerImage = null;
+    if (saved.brushLayerVersion === 1 && saved.paintDataUrl) {
+      try {
+        layerImage = await PM.decodeSavedPng(saved.paintDataUrl);
+        decoded.push(layerImage);
+        if (layerImage.width !== canvas.width || layerImage.height !== canvas.height) layerImage = null;
+      } catch { /* Keep the independent composed PNG as a recovery path. */ }
+    }
+    if (!current()) return;
+    if (sourceImage) {
+      const sourceCanvas = document.createElement("canvas");
+      sourceCanvas.width = canvas.width; sourceCanvas.height = canvas.height;
+      sourceCanvas.getContext("2d").drawImage(sourceImage, 0, 0, canvas.width, canvas.height);
+      buildLineLayer(sourceCanvas);
+    }
+    activeDrawingSrc = savedSource;
+    preserveRestoredComposite = false;
     paintCtx.clearRect(0, 0, paintLayer.width, paintLayer.height);
-    paintCtx.drawImage(image, 0, 0);
-    paintCtx.save();
-    paintCtx.globalCompositeOperation = "destination-out";
-    paintCtx.drawImage(lineLayer, 0, 0);
-    paintCtx.restore();
+    paintCtx.drawImage(layerImage || image, 0, 0);
+    if (!layerImage) {
+      // Legacy snapshots have black lines already composited over white.
+      // Invert that blend instead of erasing and darkening those edges again.
+      // Fully opaque contours cannot reveal the paint formerly behind them.
+      const pixels = paintCtx.getImageData(0, 0, paintLayer.width, paintLayer.height);
+      const lines = lineCtx.getImageData(0, 0, lineLayer.width, lineLayer.height).data;
+      for (let i = 0; i < pixels.data.length; i += 4) {
+        const remaining = 255 - lines[i + 3];
+        for (let channel = 0; channel < 3; channel++) {
+          pixels.data[i + channel] = remaining ? Math.min(255, Math.round(pixels.data[i + channel] * 255 / remaining)) : 255;
+        }
+        pixels.data[i + 3] = remaining ? 255 : 0;
+      }
+      paintCtx.putImageData(pixels, 0, 0);
+    }
     renderComposite();
+    // Show the independently stored opaque composite exactly. Some engines
+    // quantize semitransparent PNG layers by one channel value on decoding;
+    // that must not change the recovered/exported image before another edit.
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(image, 0, 0);
+    preserveRestoredComposite = true;
     drawingRevision += 1;
     history.clear();
     resetUndoSnapshot = null;
@@ -400,6 +443,7 @@ async function restoreSavedDrawing() {
     trackProductEvent("restore_failure", getTrackingPayload({result: "failure", reason: "restore"}));
     restoreBtn.hidden = true;
   } finally {
+    decoded.forEach(image => image.close?.());
     if (request === restoreRequestId) {
       restoringDrawing = false;
       updateNavigationState();
@@ -562,6 +606,7 @@ function updateBrushSize() {
 }
 
 function resizeLayers(width, height) {
+  preserveRestoredComposite = false;
   canvas.width = width;
   canvas.height = height;
   paintLayer.width = width;
@@ -641,8 +686,7 @@ function cancelStrokeForPinch(pointerId) {
 
   const previous = history.cancelEdit();
   if (previous) {
-    paintCtx.putImageData(previous, 0, 0);
-    renderComposite();
+    applyBrushSnapshot(previous);
     setUnsavedChanges(!isPaintLayerBlank());
   }
 
@@ -749,6 +793,7 @@ function buildLineLayer(sourceCanvas) {
 }
 
 function renderComposite() {
+  if (preserveRestoredComposite) return;
   ctx.save();
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.fillStyle = "#ffffff";
@@ -760,15 +805,28 @@ function renderComposite() {
 
 function pushUndo() {
   if (!isImageLoaded) return;
-  const snapshot = paintCtx.getImageData(0, 0, paintLayer.width, paintLayer.height);
+  const snapshot = captureBrushSnapshot();
   history.push(snapshot);
   updateUndoButton();
 }
 
+function captureBrushSnapshot() {
+  const snapshot = paintCtx.getImageData(0, 0, paintLayer.width, paintLayer.height);
+  if (preserveRestoredComposite) snapshot.composite = ctx.getImageData(0, 0, canvas.width, canvas.height);
+  return snapshot;
+}
+
+function applyBrushSnapshot(snapshot) {
+  paintCtx.putImageData(snapshot, 0, 0);
+  preserveRestoredComposite = Boolean(snapshot.composite);
+  if (snapshot.composite) ctx.putImageData(snapshot.composite, 0, 0);
+  else renderComposite();
+}
+
 function undo() {
   if (undoStack.length === 0 || !isImageLoaded || editorIsBusy()) return;
-  const prev = history.undo(paintCtx.getImageData(0, 0, paintLayer.width, paintLayer.height));
-  paintCtx.putImageData(prev, 0, 0);
+  const prev = history.undo(captureBrushSnapshot());
+  applyBrushSnapshot(prev);
   setUnsavedChanges(!isPaintLayerBlank());
   renderComposite();
   scheduleAutosave();
@@ -777,8 +835,8 @@ function undo() {
 
 function redo() {
   if (!history.future.length || !isImageLoaded || editorIsBusy()) return;
-  const next = history.redo(paintCtx.getImageData(0, 0, paintLayer.width, paintLayer.height));
-  paintCtx.putImageData(next, 0, 0);
+  const next = history.redo(captureBrushSnapshot());
+  applyBrushSnapshot(next);
   renderComposite();
   setUnsavedChanges(!isPaintLayerBlank());
   scheduleAutosave();
@@ -799,6 +857,7 @@ async function reset() {
     await autosave.cancel();
     pushUndo();
     resetUndoSnapshot = undoStack[undoStack.length - 1];
+    preserveRestoredComposite = false;
     paintCtx.clearRect(0, 0, paintLayer.width, paintLayer.height);
     renderComposite();
     const cleared = await PM.clearLocalDrawing("brush", slug);
@@ -891,6 +950,7 @@ function getCanvasPoint(event) {
 }
 
 function drawBrushSegment(from, to) {
+  preserveRestoredComposite = false;
   if (!from || !to) return;
 
   paintCtx.save();
@@ -996,6 +1056,7 @@ function endStroke(event) {
 }
 
 function drawLoadedSource(sourceWidth, sourceHeight, draw) {
+  activeDrawingSrc = currentAsset.src;
   let scale = 1;
   if (sourceWidth > MAX_CANVAS_SIZE || sourceHeight > MAX_CANVAS_SIZE) {
     scale = Math.min(MAX_CANVAS_SIZE / sourceWidth, MAX_CANVAS_SIZE / sourceHeight);

@@ -1,0 +1,18 @@
+/* Manual, in-flow banners. Disabled and unfilled placements collapse completely. */
+.editor-ad-banner[hidden] { display: none !important; }
+.editor-ad-banner {
+  position: static;
+  box-sizing: border-box;
+  width: calc(100% - 24px);
+  max-width: 752px;
+  margin: 150px auto 16px;
+  padding: 12px;
+  border-top: 1px solid #d6c4a7;
+  background: #ffffff;
+  color: #475569;
+}
+.editor-ad-label { margin: 0 0 8px; text-align: center; font-size: .75rem; line-height: 1.5; }
+.editor-ad-content { width: 100%; min-height: 90px; }
+.editor-ad-content > .adsbygoogle { width: 100%; min-height: inherit; }
+@media (max-width: 600px) { .editor-ad-content { min-height: 50px; } }
+@media print { .editor-ad-banner { display: none !important; } }

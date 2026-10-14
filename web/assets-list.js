@@ -417,8 +417,9 @@ window.ASSETS = [
       "dinosaurios"
     ],
     "featured": false,
-    "src": "assets/triceratops.png",
-    "thumbnailSrc": "assets/thumbs/triceratops.png",
+    "src": "assets/triceratops-cat04-20261014.png",
+    "thumbnailSrc": "assets/thumbs/triceratops-cat04-20261014.png",
+    "legacySrc": "assets/triceratops.png",
     "description": "Triceratops: dibujo para colorear en Dinosaurios."
   },
   {
@@ -518,8 +519,9 @@ window.ASSETS = [
       "fantasia"
     ],
     "featured": false,
-    "src": "assets/pony1.png",
-    "thumbnailSrc": "assets/thumbs/pony1.png",
+    "src": "assets/pony1-cat04-20261014.png",
+    "thumbnailSrc": "assets/thumbs/pony1-cat04-20261014.png",
+    "legacySrc": "assets/pony1.png",
     "description": "Pony mágico: dibujo para colorear en Fantasía."
   },
   {
@@ -535,8 +537,9 @@ window.ASSETS = [
       "princesas"
     ],
     "featured": false,
-    "src": "assets/pony2.png",
-    "thumbnailSrc": "assets/thumbs/pony2.png",
+    "src": "assets/pony2-cat04-20261014.png",
+    "thumbnailSrc": "assets/thumbs/pony2-cat04-20261014.png",
+    "legacySrc": "assets/pony2.png",
     "description": "Pony princesa: dibujo para colorear en Princesas."
   },
   {
@@ -764,8 +767,9 @@ window.ASSETS = [
       "flores"
     ],
     "featured": false,
-    "src": "assets/gabby/gabby-02-gato-flores.png",
-    "thumbnailSrc": "assets/thumbs/gabby-02-gato-flores.png",
+    "src": "assets/gabby-02-gato-flores-cat04-20261014.png",
+    "thumbnailSrc": "assets/thumbs/gabby-02-gato-flores-cat04-20261014.png",
+    "legacySrc": "assets/gabby/gabby-02-gato-flores.png",
     "description": "Gabby gato con flores: dibujo para colorear en Gabby."
   },
   {
@@ -796,8 +800,9 @@ window.ASSETS = [
       "camping"
     ],
     "featured": false,
-    "src": "assets/gabby/gabby-04-camping.png",
-    "thumbnailSrc": "assets/thumbs/gabby-04-camping.png",
+    "src": "assets/gabby-04-camping-cat04-20261014.png",
+    "thumbnailSrc": "assets/thumbs/gabby-04-camping-cat04-20261014.png",
+    "legacySrc": "assets/gabby/gabby-04-camping.png",
     "description": "Gabby camping: dibujo para colorear en Gabby."
   },
   {
@@ -830,8 +835,9 @@ window.ASSETS = [
       "arte"
     ],
     "featured": false,
-    "src": "assets/gabby/gabby-06-pintando.png",
-    "thumbnailSrc": "assets/thumbs/gabby-06-pintando.png",
+    "src": "assets/gabby-06-pintando-cat04-20261014.png",
+    "thumbnailSrc": "assets/thumbs/gabby-06-pintando-cat04-20261014.png",
+    "legacySrc": "assets/gabby/gabby-06-pintando.png",
     "description": "Gabby pintando: dibujo para colorear en Gabby."
   },
   {
@@ -896,8 +902,9 @@ window.ASSETS = [
       "amigos"
     ],
     "featured": false,
-    "src": "assets/gabby/gabby-10-amigos.png",
-    "thumbnailSrc": "assets/thumbs/gabby-10-amigos.png",
+    "src": "assets/gabby-10-amigos-cat04-20261014.png",
+    "thumbnailSrc": "assets/thumbs/gabby-10-amigos-cat04-20261014.png",
+    "legacySrc": "assets/gabby/gabby-10-amigos.png",
     "description": "Gabby amigos: dibujo para colorear en Gabby."
   },
   {
@@ -947,8 +954,9 @@ window.ASSETS = [
       "fiesta"
     ],
     "featured": false,
-    "src": "assets/gabby/gabby-13-cumpleanos.png",
-    "thumbnailSrc": "assets/thumbs/gabby-13-cumpleanos.png",
+    "src": "assets/gabby-13-cumpleanos-cat04-20261014.png",
+    "thumbnailSrc": "assets/thumbs/gabby-13-cumpleanos-cat04-20261014.png",
+    "legacySrc": "assets/gabby/gabby-13-cumpleanos.png",
     "description": "Gabby cumpleaños: dibujo para colorear en Gabby."
   },
   {
@@ -1032,8 +1040,9 @@ window.ASSETS = [
       "magica"
     ],
     "featured": false,
-    "src": "assets/gabby/gabby-18-casa-magica.png",
-    "thumbnailSrc": "assets/thumbs/gabby-18-casa-magica.png",
+    "src": "assets/gabby-18-casa-magica-cat04-20261014.png",
+    "thumbnailSrc": "assets/thumbs/gabby-18-casa-magica-cat04-20261014.png",
+    "legacySrc": "assets/gabby/gabby-18-casa-magica.png",
     "description": "Gabby casa mágica: dibujo para colorear en Gabby."
   },
   {

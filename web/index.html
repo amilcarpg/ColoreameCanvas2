@@ -34,6 +34,7 @@
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob:; connect-src 'self'; worker-src 'self'; frame-src 'none'; upgrade-insecure-requests" />
     <link rel="stylesheet" href="home.css?v=20261007-3" />
+    <link rel="stylesheet" href="ad-banner.css?v=20261014-1" />
   <link rel="stylesheet" href="privacy-controls.css?v=20261007-4" />
 </head>
   <body>
@@ -394,7 +395,7 @@
                 <div class="learn-figure">😊</div>
                 <div>
                   <h3>Diversión sin complicaciones</h3>
-                  <p>Una actividad sin registro para colorear con acompañamiento adulto.</p>
+                  <p>Para colorear desde los 4 años, sin registro. Recomendamos el acompañamiento adulto, especialmente para los más pequeños.</p>
                 </div>
               </article>
             </div>
@@ -429,6 +430,11 @@
         </section>
       </main>
 
+      <aside id="homeAdSlot" class="editor-ad-banner" data-ad-state="off" data-placement="bottom" aria-labelledby="homeAdLabel" hidden>
+        <p id="homeAdLabel" class="editor-ad-label">Publicidad</p>
+        <div class="editor-ad-content" data-ad-content></div>
+      </aside>
+
       <footer class="site-footer" id="contacto">
         <div class="container footer-grid">
           <div class="footer-brand">
@@ -440,8 +446,8 @@
           <nav class="footer-nav" aria-label="Secundaria">
             <a href="#inicio">Inicio</a>
             <a href="#categorias">Categorías</a>
-            <a href="privacy.html">Privacidad web y aplicación</a><a href="adults.html">Para adultos</a>
-            <a href="adults.html#contacto">Contacto</a>
+            <a href="privacy.html">Privacidad web y aplicación</a><a href="familias.html">Para familias y docentes</a>
+            <a href="familias.html#contacto">Contacto</a>
           </nav>
         </div>
       </footer>
@@ -450,5 +456,7 @@
 <script src="privacy.js?v=20261007-4"></script>
 <script src="analytics-init.js?v=20261007-4"></script>
 <script src="home.js?v=20261007-4"></script>
+    <script src="adsense-provider.js?v=20261014-1"></script>
+    <script src="ad-slot.js?v=20261014-2"></script>
   </body>
 </html>

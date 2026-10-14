@@ -2,11 +2,22 @@
   "analytics": {
     "enabled": false,
     "treatmentReviewed": false,
-    "measurementId": "",
-    "paths": ["/adults.html", "/packs/dinosaurios.html", "/en/dinosaur-coloring.html"]
+    "measurementId": "G-XJBQD3ZZ8Q",
+    "paths": ["/familias.html", "/packs/dinosaurios.html", "/en/dinosaur-coloring.html"]
+  },
+  "ads": {
+    "enabled": false,
+    "siteApproved": false,
+    "treatmentReviewed": false,
+    "client": "ca-pub-9994592587162260",
+    "slots": {
+      "editorBottom": "7446331398",
+      "familiesBottom": "9685481928",
+      "homeBottom": "7340274204"
+    }
   },
   "contact": {
-    "email": "",
+    "email": "contancto.focuzlab@gmail.com",
     "url": ""
   }
 }

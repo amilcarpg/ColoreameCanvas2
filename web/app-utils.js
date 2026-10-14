@@ -191,7 +191,7 @@ const PaintMe = window.PaintMe = (() => {
 
   function createHistory(maxSteps, maxBytes) {
     const past = [], future = [];
-    const bytes = () => [...past, ...future].reduce((total, image) => total + image.data.byteLength, 0);
+    const bytes = () => [...past, ...future].reduce((total, image) => total + image.data.byteLength + (image.composite?.data.byteLength || 0), 0);
     const trim = () => {
       while (past.length + future.length > maxSteps || bytes() > maxBytes) {
         if (past.length) past.shift(); else future.shift();
@@ -269,9 +269,13 @@ const PaintMe = window.PaintMe = (() => {
     catch { return null; }
   }
 
-  function makeRecord(key, dataUrl, deleted = false) {
+  function makeRecord(key, dataUrl, deleted = false, paintDataUrl, assetSrc) {
     lastTimestamp = Math.max(Date.now(), lastTimestamp + 1, (readBackup(key)?.updatedAt || 0) + 1);
-    return deleted ? { deleted: true, updatedAt: lastTimestamp } : { dataUrl, updatedAt: lastTimestamp };
+    return deleted ? { deleted: true, updatedAt: lastTimestamp } : {
+      dataUrl, updatedAt: lastTimestamp,
+      ...(paintDataUrl ? { brushLayerVersion: 1, paintDataUrl } : {}),
+      ...(assetSrc ? { assetSrc } : {}),
+    };
   }
 
   function writeBackup(key, record) {
@@ -433,10 +437,12 @@ const PaintMe = window.PaintMe = (() => {
       return writes;
     };
     return {
-      schedule(slug, dataUrl, revision) {
+      schedule(slug, dataUrl, revision, paintDataUrl, assetSrc) {
         if (!validKey(mode, slug) || typeof dataUrl !== "string" || !dataUrl) return false;
+        if (paintDataUrl !== undefined && (mode !== "brush" || typeof paintDataUrl !== "string" || !paintDataUrl.startsWith("data:image/png;base64,"))) return false;
+        if (assetSrc !== undefined && (typeof assetSrc !== "string" || !/^assets\/(?:[a-zA-Z0-9_-]+\/)*[a-zA-Z0-9_-]+\.png$/.test(assetSrc))) return false;
         if (pending && pending.slug !== slug) flush();
-        latest = pending = { slug, revision, record: makeRecord(getAutosaveKey(mode, slug), dataUrl) };
+        latest = pending = { slug, revision, record: makeRecord(getAutosaveKey(mode, slug), dataUrl, false, paintDataUrl, assetSrc) };
         clearTimeout(timer);
         timer = setTimeout(flush, 450);
         return true;
@@ -462,7 +468,11 @@ const PaintMe = window.PaintMe = (() => {
     snapshot.height = source.height;
     const context = snapshot.getContext("2d");
     if (!context || !source.width || !source.height) throw new Error("invalid_canvas");
-    context.drawImage(source, 0, 0);
+    // Copy actual RGBA pixels. drawImage can apply an additional color-space
+    // conversion to a restored PNG in WebKit, changing an otherwise exact export.
+    const sourceContext = source.getContext("2d");
+    if (!sourceContext) throw new Error("invalid_canvas");
+    context.putImageData(sourceContext.getImageData(0, 0, source.width, source.height), 0, 0);
     return snapshot;
   }
 
@@ -498,6 +508,55 @@ const PaintMe = window.PaintMe = (() => {
 
   function decodeSavedPng(dataUrl) {
     if (typeof dataUrl !== "string" || !dataUrl.startsWith("data:image/png;base64,")) return Promise.reject(new Error("invalid_png"));
+    if (typeof createImageBitmap === "function") {
+      return new Promise((resolve, reject) => {
+        let settled = false;
+        const finish = (error, bitmap) => {
+          if (settled) { bitmap?.close?.(); return; }
+          settled = true;
+          clearTimeout(timer);
+          if (error) reject(error); else resolve(bitmap);
+        };
+        const timer = setTimeout(() => finish(new Error("restore_timeout")), 8000);
+        try {
+          const bytes = Uint8Array.from(atob(dataUrl.slice(dataUrl.indexOf(",") + 1)), c => c.charCodeAt(0));
+          // These PNGs encode canvas pixels already in sRGB. Applying their
+          // embedded ICC profile again can round RGB channels in WebKit.
+          // WebKit may still honor ICC metadata despite colorSpaceConversion.
+          // Strip only color-description chunks, leaving PNG pixels and CRCs intact.
+          if (bytes.length < 33 || bytes[0] !== 137 || bytes[1] !== 80 || bytes[2] !== 78 || bytes[3] !== 71) throw new Error("invalid_png");
+          const chunks = [bytes.subarray(0, 8)];
+          let offset = 8, ended = false;
+          while (offset + 12 <= bytes.length) {
+            const size = new DataView(bytes.buffer, bytes.byteOffset + offset, 4).getUint32(0);
+            const end = offset + size + 12;
+            if (end > bytes.length) throw new Error("invalid_png");
+            const type = String.fromCharCode(...bytes.subarray(offset + 4, offset + 8));
+            if (!["iCCP", "gAMA", "cHRM", "sRGB"].includes(type)) chunks.push(bytes.subarray(offset, end));
+            offset = end;
+            if (type === "IEND") { ended = true; break; }
+          }
+          if (!ended) throw new Error("invalid_png");
+          createImageBitmap(new Blob(chunks, { type: "image/png" }), { colorSpaceConversion: "none", premultiplyAlpha: "none" })
+            .then(bitmap => finish(null, bitmap), () => finish(new Error("invalid_png")));
+        } catch { finish(new Error("invalid_png")); }
+      });
+    }
+    return decodePngImage(dataUrl);
+  }
+
+  function savedDrawingSource(record, asset) {
+    const source = record.assetSrc || asset.legacySrc || asset.src;
+    if (![asset.src, asset.legacySrc].includes(source)) throw new Error("saved_source");
+    return source;
+  }
+
+  function decodeAssetPng(source) {
+    if (typeof source !== "string" || !/^assets\/(?:[a-zA-Z0-9_-]+\/)*[a-zA-Z0-9_-]+\.png$/.test(source)) return Promise.reject(new Error("invalid_source"));
+    return decodePngImage(source);
+  }
+
+  function decodePngImage(dataUrl) {
     return new Promise((resolve, reject) => {
       const image = new Image();
       let settled = false;
@@ -589,6 +648,8 @@ const PaintMe = window.PaintMe = (() => {
     canvasToPngBlob,
     downloadPngBlob,
     decodeSavedPng,
+    savedDrawingSource,
+    decodeAssetPng,
     confirmReset,
     modeDestination,
     bindEditorNavigation,

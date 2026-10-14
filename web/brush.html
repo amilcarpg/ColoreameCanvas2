@@ -28,11 +28,12 @@
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob:; connect-src 'self'; worker-src 'self'; frame-src 'none'; upgrade-insecure-requests" />
     <link rel="stylesheet" href="brush.css?v=20261007-3" />
-    <link rel="stylesheet" href="editor-layout.css?v=20261007-3" />
+    <link rel="stylesheet" href="editor-layout.css?v=20261014-1" />
+    <link rel="stylesheet" href="ad-banner.css?v=20261014-1" />
   <link rel="stylesheet" href="privacy-controls.css?v=20261007-5" />
 </head>
   <body>
-    <header class="site-header"><div class="topbar"><a class="home-link" href="adults.html">Para adultos</a><div class="topbar-copy"><strong id="contextTitle">PaintMe</strong><span id="contextMeta">Dibujo listo</span></div></div></header>
+    <header class="site-header"><div class="topbar"><a class="home-link" href="familias.html">Para familias y docentes</a><div class="topbar-copy"><strong id="contextTitle">PaintMe</strong><span id="contextMeta">Dibujo listo</span></div></div></header>
 
     <main class="app" id="actividad">
       <header class="app-header"><h1>Colorea con pincel</h1><p id="appLead">Elige colores y pinta a tu manera.</p></header>
@@ -67,13 +68,17 @@
           <label for="assetSelect">Lista de dibujos</label><select id="assetSelect"></select>
         </div></details><button id="allBtn" type="button">Ver todos</button>
       </details>
-      <details id="adultArea" class="adult-area"><summary>Zona para adultos</summary>
+      <details id="adultArea" class="adult-area"><summary>Para familias y docentes</summary>
         <p>Descarga, impresión y preferencias. Pintar no requiere aceptar analítica.</p>
         <button id="printDrawingBtn" type="button">Imprimir dibujo</button><button id="privacySettingsBtn" type="button">Preferencias de privacidad</button>
-        <nav aria-label="Enlaces para adultos"><a class="mode-link" href="paint.html">Usar balde de pintura</a><a href="adults.html">Información para familias y docentes</a><a href="privacy.html">Privacidad web y aplicación</a><a href="index.html">Volver al inicio</a></nav>
+        <nav aria-label="Enlaces para adultos"><a class="mode-link" href="paint.html">Usar balde de pintura</a><a href="familias.html">Información para familias y docentes</a><a href="privacy.html">Privacidad web y aplicación</a><a href="index.html">Volver al inicio</a></nav>
         <p>Los dibujos quedan en este dispositivo y en este modo. Cambiar de modo no transfiere las capas.</p><div class="consent-banner" id="consentBanner" data-privacy aria-label="Preferencias para adultos"><p id="privacyStatus" role="status" aria-live="polite"></p><label><input id="analyticsChoice" type="checkbox" disabled /> Analítica opcional (desactivada)</label><div class="consent-actions"><button id="consentReject" type="button">Rechazar</button><button id="consentAccept" type="button">Guardar preferencias</button><button id="consentRevoke" type="button">Revocar permisos opcionales</button></div><a href="privacy.html#web">Información de privacidad web</a></div>
       </details>
     </main>
+    <aside id="editorAdSlot" class="editor-ad-banner" data-ad-state="off" data-placement="bottom" aria-labelledby="editorAdLabel" hidden>
+      <p id="editorAdLabel" class="editor-ad-label">Publicidad</p>
+      <div id="editorAdContent" class="editor-ad-content" data-ad-content></div>
+    </aside>
     <img id="printPreviewImage" alt="Dibujo preparado para imprimir" hidden />
     <footer class="site-footer"><p>PaintMe · una actividad para compartir en familia.</p></footer>
 
@@ -99,8 +104,10 @@
     <script src="editor-i18n.js?v=20261007-6"></script>
 <script src="flood-fill.js?v=20261007-3"></script>
     <script src="catalog-meta.js?v=20261007-3"></script>
-    <script src="app-utils.js?v=20261007-5"></script>
+    <script src="app-utils.js?v=20261014-cat04"></script>
 <script src="editor-ui.js?v=20261007-6"></script>
-<script src="brush.js?v=20261007-5"></script>
+<script src="brush.js?v=20261014-cat04"></script>
+    <script src="adsense-provider.js?v=20261014-1"></script>
+    <script src="ad-slot.js?v=20261014-2"></script>
   </body>
 </html>
