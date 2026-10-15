@@ -36,3 +36,5 @@ __pycache__/
 .tools/
 
 flutter/ios/Flutter/AdMob.local.xcconfig
+flutter/firebase-config.local.json
+flutter/admob-config.local.json

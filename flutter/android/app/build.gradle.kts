@@ -40,7 +40,7 @@ val analyticsConfigured = dartDefines["PAINTME_ANALYTICS"] == "true" &&
     Regex("^[0-9]+$").matches(dartDefines["FIREBASE_MESSAGING_SENDER_ID"] ?: "")
 
 android {
-    namespace = "club.paintme.paintme_app"
+    namespace = "com.focuzlab.paintme"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
@@ -51,7 +51,7 @@ android {
 
 
     defaultConfig {
-        applicationId = "club.paintme.paintme_app"
+        applicationId = "com.focuzlab.paintme"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = flutter.minSdkVersion

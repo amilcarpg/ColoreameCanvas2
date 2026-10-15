@@ -52,10 +52,13 @@ test('HTML restricts external scripts to the three prepared GA resource pages; n
   function files(directory){return fs.readdirSync(directory,{withFileTypes:true}).flatMap(item=>item.isDirectory()?files(path.join(directory,item.name)):[path.join(directory,item.name)]);}
   for(const file of files(root).filter(file=>file.endsWith('.html'))) {
     const text=fs.readFileSync(file,'utf8');
-    assert(text.includes('privacy.js?v='),file);
+    if(path.basename(file)==='adults.html') {
+      assert(text.includes('familias-redirect.js?v='),file);
+      assert(text.includes('content="noindex,follow"'),file);
+    } else assert(text.includes('privacy.js?v='),file);
     assert(!text.includes('fonts.googleapis.com'),file);
     assert(!/<script[^>]+src="https?:/.test(text),file);
-    const prepared = ['adults.html','packs/dinosaurios.html','en/dinosaur-coloring.html'].includes(path.relative(root,file).split(path.sep).join('/'));
+    const prepared = ['familias.html','packs/dinosaurios.html','en/dinosaur-coloring.html'].includes(path.relative(root,file).split(path.sep).join('/'));
     assert(text.includes(prepared ? "script-src 'self' https://www.googletagmanager.com;" : "script-src 'self';"),file);
     assert(text.includes("frame-src 'none';"),file);
     assert(!text.includes('*.google') && !text.includes("script-src *"),file);

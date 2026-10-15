@@ -1,0 +1,70 @@
+{
+  "timestamp": "2026-10-14T19:55:43.477Z",
+  "scope": "Read-only current public baseline before any new publication; HTTP availability is not console recognition.",
+  "items": [
+    {
+      "requestedURL": "https://www.paintme.club/ads.txt",
+      "effectiveURL": "https://www.paintme.club/ads.txt",
+      "status": 200,
+      "contentType": "text/plain; charset=utf-8",
+      "sha256": "ae79d8db56d4970b9703734742cf102498ca2c04740ac3889e6b9f2bf08ab856",
+      "publisherRecord": "google.com, pub-9994592587162260, DIRECT, f08c47fec0942fa0"
+    },
+    {
+      "requestedURL": "https://www.paintme.club/app-ads.txt",
+      "effectiveURL": "https://www.paintme.club/app-ads.txt",
+      "status": 200,
+      "contentType": "text/plain; charset=utf-8",
+      "sha256": "ae79d8db56d4970b9703734742cf102498ca2c04740ac3889e6b9f2bf08ab856",
+      "publisherRecord": "google.com, pub-9994592587162260, DIRECT, f08c47fec0942fa0"
+    },
+    {
+      "requestedURL": "https://paintme.club/ads.txt",
+      "effectiveURL": "https://www.paintme.club/ads.txt",
+      "status": 200,
+      "contentType": "text/plain; charset=utf-8",
+      "sha256": "ae79d8db56d4970b9703734742cf102498ca2c04740ac3889e6b9f2bf08ab856",
+      "publisherRecord": "google.com, pub-9994592587162260, DIRECT, f08c47fec0942fa0"
+    },
+    {
+      "requestedURL": "https://paintme.club/app-ads.txt",
+      "effectiveURL": "https://www.paintme.club/app-ads.txt",
+      "status": 200,
+      "contentType": "text/plain; charset=utf-8",
+      "sha256": "ae79d8db56d4970b9703734742cf102498ca2c04740ac3889e6b9f2bf08ab856",
+      "publisherRecord": "google.com, pub-9994592587162260, DIRECT, f08c47fec0942fa0"
+    },
+    {
+      "requestedURL": "https://www.paintme.club/familias.html",
+      "effectiveURL": "https://www.paintme.club/familias.html",
+      "status": 404,
+      "contentType": "text/html; charset=utf-8",
+      "sha256": "b620507312c5e97566a3c6cfaf99144fefc18a0da7d941401dfa0f5f58fb0368",
+      "expectedHeading": false
+    },
+    {
+      "requestedURL": "https://www.paintme.club/site-config.json",
+      "effectiveURL": "https://www.paintme.club/site-config.json",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "sha256": "7fda584956d952fe1f11486c4e5756b32b361c6d223f9af13b479b63d252ebcc",
+      "analytics": {
+        "enabled": false,
+        "treatmentReviewed": false,
+        "measurementId": "",
+        "paths": [
+          "/adults.html",
+          "/packs/dinosaurios.html",
+          "/en/dinosaur-coloring.html"
+        ]
+      }
+    },
+    {
+      "requestedURL": "https://play.google.com/store/apps/details?id=com.focuzlab.paintme",
+      "effectiveURL": "https://play.google.com/store/apps/details?id=com.focuzlab.paintme",
+      "status": 404,
+      "contentType": "text/html; charset=utf-8",
+      "sha256": "1ac186c4b409063b548c5099e79016a78e98395a1e29aa20300efbea9207b595"
+    }
+  ]
+}

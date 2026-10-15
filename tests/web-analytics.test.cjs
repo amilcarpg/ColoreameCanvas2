@@ -1,8 +1,8 @@
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm'),path=require('node:path');
 function setup(overrides={}) {
   const records=new Map(),listeners={},scripts=[],timers=new Map();let next=0;
-  const config={enabled:true,treatmentReviewed:true,measurementId:'G-TEST123456',paths:['/adults.html'],...overrides};
-  const window={ASSETS:[{slug:'dinosaurio'}],location:new URL('https://www.paintme.test/adults.html?name=private#secret'),
+  const config={enabled:true,treatmentReviewed:true,measurementId:'G-TEST123456',paths:['/familias.html'],...overrides};
+  const window={ASSETS:[{slug:'dinosaurio'}],location:new URL('https://www.paintme.test/familias.html?name=private#secret'),
     addEventListener(name,cb){listeners[name]=cb;},
     fetch:async()=>({ok:true,json:async()=>({analytics:config})}),
     setTimeout(cb){timers.set(++next,cb);return next;},clearTimeout(id){timers.delete(id);}};
@@ -22,6 +22,19 @@ test('GA validates ID, treatment, scope and CSP before making analytics availabl
   const env=setup();env.document.querySelector=()=>({content:"script-src 'self';"});
   assert.equal(await env.window.PaintMeAnalytics.ready,false);
 });
+test('received GA4 configuration stays disabled and cannot grant analytics or load its SDK',async()=>{
+  const configured=JSON.parse(fs.readFileSync(path.join(__dirname,'../web/site-config.json'),'utf8')).analytics;
+  assert.equal(configured.measurementId,'G-XJBQD3ZZ8Q');
+  assert.equal(configured.enabled,false);assert.equal(configured.treatmentReviewed,false);
+  const {window,scripts}=setup(configured);
+  assert.equal(await window.PaintMeAnalytics.ready,false);
+  window.PaintMePrivacy.decide({analytics:true});
+  assert.equal(window.PaintMePrivacy.allowed('analytics'),false);
+  assert.equal(window.gtag('event','resource_open',{}),false);
+  assert.equal(await window.ensureAnalyticsLoaded(),null);
+  assert.equal(scripts.length,0);assert.equal(window.dataLayer.length,0);
+});
+
 test('basic consent sends nothing before permission or after rejection; events are not replayed',async()=>{
   const {window,scripts}=setup();await window.PaintMeAnalytics.ready;
   assert.equal(window.gtag('event','first_paint',{asset_slug:'dinosaurio'}),false);
@@ -41,7 +54,7 @@ test('GA sends only schema events, query-free location and no advertising grants
   for(const entry of entries.filter(entry=>entry[0]==='consent')) {
     assert.equal(entry[2].ad_storage,'denied');assert.equal(entry[2].ad_user_data,'denied');assert.equal(entry[2].ad_personalization,'denied');
   }
-  const params=entries.at(-1)[2];assert.equal(params.page_location,'https://www.paintme.test/adults.html');assert.equal(params.page_referrer,'');assert.equal(params.ui_language,'en');
+  const params=entries.at(-1)[2];assert.equal(params.page_location,'https://www.paintme.test/familias.html');assert.equal(params.page_referrer,'');assert.equal(params.ui_language,'en');
   assert(!JSON.stringify(entries).includes('private'));assert(!('search' in params));assert(!('drawing' in params));
 });
 test('revocation resolves pending loads and prevents late initialization, also across tabs',async()=>{

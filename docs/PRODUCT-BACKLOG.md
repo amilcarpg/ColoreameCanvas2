@@ -4,6 +4,8 @@ Creado: 07/10/2026. Fuente: [diagnóstico del 03/10/2026](audit-2026-10-03/INFOR
 
 Última actualización: **14/10/2026**.
 
+**Publicación verificada 14/10/2026:** versión web autorizada publicada en Pages, commit `fbe3610`, [run exitoso](https://github.com/amilcarpg/ColoreameCanvas2/actions/runs/38629204487). 247 archivos públicos coinciden con el manifiesto; `/familias.html` responde 200 y smoke de guardar/recuperar/descargar en ambos editores aprobado, sin terceros ni cookies. Servicios apagados. Rollback ensayado localmente con árbol exacto; rollback público no ejecutado. [Resultado y evidencia](PUBLICACION-WEB-2026-10-14.md).
+
 **Cambio de ruta 14/10/2026:** Por solicitud del usuario, «Para familias y docentes» pasa a `familias.html`; auxiliares renombrados a `familias.css` y `familias.js`. Actualizados enlaces de home/editores/categorías/guías/privacidad, canonical/sitemap, configuración de analítica, selección del banner y pruebas/documentación vigente. `adults.html` conserva una redirección cliente compatible (parámetros y anclas preservados con JavaScript, fallback sin JavaScript), canonical a la nueva página y `noindex`; no es un 301 del servidor. Cincuenta pruebas locales, quince seleccionadas de navegador y check de 64 rutas HTML/61 URLs sitemap aprobados. El sitemap solo incluye la ruta nueva. Informes archivados preservados; cambios locales sin publicar, por lo que la nueva URL pública debe comprobarse tras desplegar.
 
 Este archivo reúne las recomendaciones que se pueden implementar o verificar mediante código: web, Flutter, herramientas de contenido, configuración, pruebas y CI. Registra el plan y el estado de ejecución; sus entradas no autorizan publicar, activar anuncios, procesar pagos o enviar comunicaciones.
@@ -20,10 +22,10 @@ Este resumen refleja las tareas trabajadas el 13 y 14 de octubre; no sustituye e
 | SEO-01 | Hecho en el alcance técnico | Revisión editorial del piloto y ajustes locales ES/EN; derechos e indexación separados. |
 | SEO-02 | Hecho en el alcance técnico | 61 URLs públicas y sus canonical verificados, robots/sitemap coherentes y host WWW confirmado. |
 | PRIV-03 | Parcial | Evidencia local previa; faltan tráfico de app física y nueva producción con las integraciones finales. |
-| DATA-02 | Parcial: datos recibidos, sin incorporar | GA4 `G-XJBQD3ZZ8Q` y Firebase `paintme1` confirmados; falta configurar, verificar permisos/revocación y recepción real. |
-| ADS-01 | Parcial: integración local desactivada | Tres bloques configurados; faltan publicación, CSP compatible, permisos/audiencia, aprobación y prueba real. |
-| ADS-02 | Parcial: archivos publicados | `ads.txt` y `app-ads.txt` publicados con `pub-9994592587162260`; falta reconocimiento en AdSense/AdMob y comprobar dominio de ficha móvil. |
-| MOB-11 | Parcial | Identidad Android corregida a `com.focuzlab.paintme`; compilación pendiente por fallo TLS al descargar Gradle y posterior inspección/pruebas de artefacto. |
+| DATA-02 | Parcial: datos incorporados, apagados | GA4 y Firebase Android configurados; 55 checks web, tres de importación y seis Flutter aprobados. Recepción y revocación reales pendientes. |
+| ADS-01 | Parcial: integración local desactivada | Tres bloques verificados localmente; decisión de mantener Pages. CSP con nonce, audiencia/aprobación y proveedor real pendientes. |
+| ADS-02 | Parcial: web autorizado y app AdMob creada | ads.txt Autorizado. PaintMe Android y banner registrados en AdMob; app Debe revisarse, sin tienda vinculada. Falta dominio de ficha y reconocimiento de app-ads.txt. |
+| MOB-11 | Parcial | AAB y APK release actualizados con firma PaintMe, validados; APK instalado, pintar/guardar/recuperar tras cierre sin red activa aprobados en Android 15 emulado. Falta compartir, matriz física y tienda. [Evidencia](ANDROID-RELEASE-2026-10-15.md). |
 
 Solo se publicaron `ads.txt` y `app-ads.txt` (commit `80687be24375673860dd4acbe4ec6eeaa5164be8`); los demás cambios de estas tareas siguen locales. No se activaron anuncios ni analítica. CAT-02 continúa excluida y COM-01/02/03 pospuestos. [Evidencia de SEO](SEO-REVISION-2026-10-13.md) y [evidencia de ADS-02/Android](ADS-02-2026-10-14.md).
 
@@ -36,12 +38,12 @@ Este registro sustituye los pendientes antiguos que dicen que faltan IDs o publi
 | Uso | Valor confirmado | Aplicación pendiente o estado |
 |---|---|---|
 | Sitio / dominio | `https://www.paintme.club/` | Producción web; verificar también redirecciones desde `https://paintme.club/`. |
-| GA4 web | `G-XJBQD3ZZ8Q` | Incorporar en `web/site-config.json` → `analytics.measurementId`, que actualmente está vacío. Confirmar en consola que corresponde al flujo web de PaintMe. |
+| GA4 web | `G-XJBQD3ZZ8Q` | Incorporado en `web/site-config.json` → `analytics.measurementId`, con servicios apagados. Confirmar flujo web en consola. |
 | Firebase Android: proyecto | `paintme1` | `FIREBASE_PROJECT_ID` de la configuración real Flutter. |
 | Firebase Android: número / sender ID | `278253770765` | `FIREBASE_MESSAGING_SENDER_ID`. |
 | Firebase Android: app ID | `1:278253770765:android:86885d699ee2c4175cdd44` | `FIREBASE_APP_ID`; no confundir con el paquete Android ni con el ID de GA4 web. |
-| Paquete Android / ficha | `com.focuzlab.paintme` | Confirmado por el usuario y el JSON Firebase; corrección local Android pendiente de verificar en artefacto compilado (MOB-11). |
-| Archivo Firebase recibido | `C:\Users\aparedes\Downloads\google-services(3).json` | Fuente local consultada; aún no incorporada. Obtener `FIREBASE_API_KEY` de ese archivo al configurar, sin duplicar la clave en este backlog. La ruta es referencia de la máquina actual, no configuración portable. |
+| Paquete Android / ficha | `com.focuzlab.paintme` | AAB vigente firmado y verificado: 1.0.1 (2), 15/10. APK anterior 1.0.0 (1). Ficha/publicación pendientes; disponibilidad del código 2 por contrastar con Play. [Artefacto](ANDROID-RELEASE-2026-10-15.md). |
+| Archivo Firebase recibido | `C:\Users\aparedes\Downloads\google-services(3).json` | Cliente Android importado a `flutter/firebase-config.local.json`, ignorado por Git, ambos flags false. Clave no reproducida en este backlog ni en la web. |
 | AdSense: cliente | `ca-pub-9994592587162260` | Ya configurado localmente en `ads.client`. |
 | Banner inferior de balde/pincel | `7446331398` | `ads.slots.editorBottom`; ambos editores comparten bloque. |
 | Banner inferior de familias | `9685481928` | `ads.slots.familiesBottom`, ruta `/familias.html`. |
@@ -53,7 +55,7 @@ Este registro sustituye los pendientes antiguos que dicen que faltan IDs o publi
 
 La audiencia registrada es familiar, con edad orientativa 4+ y acompañamiento recomendado; idiomas español e inglés. Véase [decisiones de producto](DECISIONES-PRODUCTO.md). La página de familias no acredita por sí sola audiencia adulta para publicidad o analítica.
 
-**Estado operativo actual:** `analytics.enabled=false`, `analytics.treatmentReviewed=false`; `ads.enabled=false`, `ads.siteApproved=false`, `ads.treatmentReviewed=false`. Firebase sigue desactivado y el ejemplo Flutter no contiene valores reales. Los permisos actuales no habilitan publicidad; cambiar flags no basta. La CSP actual también bloquea la carga del adaptador AdSense (`csp_not_ready`).
+**Estado operativo actual:** valores GA4 y Firebase Android incorporados; `analytics.enabled=false`, `analytics.treatmentReviewed=false`; `ads.enabled=false`, `ads.siteApproved=false`, `ads.treatmentReviewed=false`. Configuración Firebase local con ambos flags false; el ejemplo continúa vacío intencionalmente. Permisos publicitarios denegados. El usuario decide mantener GitHub Pages; la CSP con nonce por respuesta sigue pendiente y el adaptador bloquea `csp_not_ready`.
 
 ### Cuándo ejecutar y cuándo cerrar
 
@@ -284,6 +286,11 @@ Continuación de la lista restante: WEB-07, MOB-09, MOB-10, QA-03 y DOC-01 compl
 
 ### CAT-04 — Comprobar calidad técnica de cada dibujo publicado
 **P1 · Parcial · 3–6 h iniciales · Origen calidad gráfica**  
+**Publicación 14/10/2026:** correcciones web publicadas y verificadas; recuperación/exportación de producción aprobadas. Se conserva Parcial por QA física/nativa. [Despliegue y evidencia](PUBLICACION-WEB-2026-10-14.md).
+**Actualización 14/10/2026:** revisión local de los 62 dibujos, nueve fuentes corregidas y recuperación exacta del pincel; 2 232 controles, 744 PNG, Chromium/WebKit y compatibilidad con obras antiguas verificados. Originales/créditos preservados, sin publicar. Quedan dispositivos físicos, Flutter instalado, impresión y adecuación de dificultad; CAT-02 sigue excluida. [Resultados y evidencia actual](RESULTADO-CHECKLIST-IMAGENES.md).
+**Completado en local:** revisión visual de áreas principales de los 62 dibujos; corrección de Triceratops, dos ponies y seis dibujos Gabby mediante el pipeline Python; regeneración de variantes y recuperación compatible con obras anteriores. En los siete dibujos con fragmentación masiva, las microregiones menores de 16 px bajaron de 20 836 a 109 (99,5%). Regresión: 51 pruebas Node, 10 Python y 97 por motor de navegador aprobadas; compatibilidad de las nueve fuentes repetida después de la última corrección.
+**Pendiente para cerrar:** pruebas táctiles, zoom/rotación y rendimiento en Android/iPhone/iPad; ejecución instalada Flutter para sus 43 dibujos; apertura en visor del sistema, impresión física y validación de dificultad con el público previsto. Se mantiene **Parcial** hasta completar esta evidencia.
+**Límite:** cambios locales sin publicar; revisión técnica independiente de derechos. CAT-02 continúa excluida.
 **Ejecución 07/10/2026:** 62 controles técnicos y 248 recorridos automatizados pintar/exportar; faltan revisión manual de contornos y dispositivos. Ver [cambios, pruebas y límites](implementation-2026-10-07/web-eleven-twenty.md).
 **Archivos:** fixtures/herramientas locales y assets seleccionados.  
 **Trabajo:** controles automáticos de dimensiones/proporciones y casos representativos de contornos; recorrido manual pintar/exportar por dibujo; registrar aprobación técnica independiente de derechos.  
@@ -359,7 +366,7 @@ Continuación de la lista restante: WEB-07, MOB-09, MOB-10, QA-03 y DOC-01 compl
 
 ### DATA-02 — Instrumentar calidad y continuidad con resultados reales
 **P1 · Parcial · 3–6 h · Origen embudo/H**  
-**Actualización 14/10/2026:** Recibidos GA4 `G-XJBQD3ZZ8Q` y JSON Firebase Android del proyecto `paintme1`, paquete `com.focuzlab.paintme`. Valores y mapeo registrados arriba; todavía no incorporados a la configuración real. Ya no falta solicitarlos al usuario. Siguen pendientes controles/avisos, recepción en cuentas y revocación/red real; servicios apagados.
+**Actualización 14/10/2026:** GA4 `G-XJBQD3ZZ8Q` incorporado a la configuración web y Firebase `paintme1` para `com.focuzlab.paintme` importado a configuración local ignorada por Git; ambos servicios apagados. 55 checks Node, tres de importación Python, seis Flutter y 12 seleccionados por motor de navegador aprobados. Siguen pendientes confirmación en cuentas, tratamiento/avisos y recepción/revocación/red reales. [Resultados actuales](SERVICIOS-Y-PUBLICACION-2026-10-14.md).
 **Continuación adicional 07/10/2026:** Se prepararon GA4 web y Firebase Analytics Flutter, seleccionados por el usuario, con configuración/permiso explícitos, esquema, estados de fallo y revocación; publicidad/personalización denegadas. Firebase apagado desde el manifiesto final Android; iOS sigue desactivado. Apertura fallida/restauración/time bands y errores del collector probados en Flutter. Faltan ID/proyecto reales, tratamiento/avisos y recepción/red en SDK/cuentas; no se inventaron ni activaron. [Código, configuración y evidencia](implementation-2026-10-07/maint-data-seo3.md).
 **Continuación 07/10/2026:** Hooks de guardado/restauración/compartir y estado de UI se prueban con collector apagado/fake y outcomes reales de test; recepción/cohorte/collector autorizado siguen pendientes. [Evidencia](implementation-2026-10-07/remaining-code.md).
 **Ejecución 07/10/2026:** Resultados reales de apertura/save/restore/export y first_paint probados en web; UI móvil e integración de collector autorizada pendientes. Ver [cambios, evidencia y límites](implementation-2026-10-07/items-21-31.md).
@@ -370,6 +377,7 @@ Continuación de la lista restante: WEB-07, MOB-09, MOB-10, QA-03 y DOC-01 compl
 
 ### ADS-01 — Preparar publicidad web con ubicaciones explícitas
 **P0 monetización · Parcial · 3–6 h · Origen L/diseño publicitario**  
+**Estado vigente 14/10/2026:** se mantiene GitHub Pages por decisión del usuario. Integración apagada y guardas de permisos verificadas en Chromium/WebKit; CSP con nonce por respuesta pendiente de infraestructura compatible. Audiencia, aprobación y proveedor real sin verificar; no se activan servicios. [Resultado y fuentes](SERVICIOS-Y-PUBLICACION-2026-10-14.md).
 **Banner de inicio 14/10/2026:** Usuario aporta slot `7340274204` («PaintMe — Banner home») y autoriza su ubicación inferior. Configurado `ads.slots.homeBottom`, contenedor bajo todo el contenido/FAQ antes del pie y soporte de rutas `/` y `/index.html`. Conservados bloque editor `7446331398` y bloque familias `9685481928`. Cincuenta pruebas locales y doce seleccionadas de navegador aprobadas, con SDK simulado; inicio móvil/escritorio sin solapamientos ni desplazamiento de la acción principal y permisos denegados sin solicitudes. Flags de publicidad siguen false; sin publicación. Las referencias anteriores a inicio sin bloque describen la etapa sustituida por esta solicitud.
 **Bloques diferenciados 14/10/2026:** Usuario aporta «PaintMe — Banner adulto», slot `9685481928`. Configurado en `ads.slots.familiesBottom` para preguntas/familias; `ads.slots.editorBottom` conserva `7446331398` para balde/pincel. Mismo editor confirmado `ca-pub-9994592587162260`, sin bloque en inicio. Se mantiene desactivado y sin publicar; los registros anteriores describen la etapa previa de bloque compartido.
 **Integración local 14/10/2026:** Usuario aporta bloque AdSense `7446331398` y autoriza integrarlo, manteniendo anuncios apagados. Adaptador y controlador conectados a los banners inferiores de ambos editores y al final de preguntas/información para familias, sin añadir anuncios al inicio. Se prueban lleno/vacío/fallo/timeout/revocación con SDK simulado; 50 pruebas locales y 20 seleccionadas de navegador aprobadas. Permisos actuales no habilitan ads y los tres flags de configuración permanecen false. Se identifica además CSP estática incompatible con el soporte estricto de AdSense; el adaptador rechaza la carga (`csp_not_ready`) hasta resolverla. Pendientes aprobación, privacidad/audiencia y CSP/red real. No se publica ni se muestran anuncios reales. [Detalle actualizado](ADS-01-BANNER-INFERIOR.md).
@@ -382,6 +390,9 @@ Continuación de la lista restante: WEB-07, MOB-09, MOB-10, QA-03 y DOC-01 compl
 
 ### ADS-02 — Validar ads.txt y añadir app-ads.txt cuando corresponda
 **P0 monetización móvil · Parcial · 1–2 h · Origen AdMob verificación**  
+**Configuración AdMob posterior 14/10/2026:** por instrucción expresa del usuario, creada PaintMe Android sin tienda vinculada (búsqueda de paquete/URL sin resultados), App ID `ca-app-pub-9994592587162260~5200451162`. Creado banner inferior `ca-app-pub-9994592587162260/2933380472`, sin vídeo ni refresh automático. IDs guardados en configuración local apagada; estado Debe revisarse. No se activó ni publicó la app. [Resultado](ADMOB-CONFIGURACION-2026-10-14.md).
+**Verificación posterior en consola 14/10/2026:** ads.txt de paintme.club figura **Autorizado**. Sitio **Preparando**, revisión solicitada a las 12:02. Se retira el reconocimiento web de los pendientes; AdMob se mantiene pendiente de comprobar, sin repetir el registro confirmado por el usuario. [Evidencia](qa-evidence/2026-10-14/release-services/adsense-console.json).
+**Consulta adicional 14/10/2026:** ads.txt y app-ads.txt responden 200 con registro exacto desde WWW y tras redirigir el dominio sin WWW. Las consolas AdSense/AdMob requieren iniciar sesión; no se afirma reconocimiento. La ficha pública de prueba cerrada devolvió 404 sin acceso de tester: falta verificar su dominio efectivo. [Evidencia actual](SERVICIOS-Y-PUBLICACION-2026-10-14.md).
 **Publicación 14/10/2026:** Enviados únicamente `web/ads.txt` y `web/app-ads.txt` por API a `main`, commit `80687be24375673860dd4acbe4ec6eeaa5164be8`; [despliegue Pages exitoso](https://github.com/amilcarpg/ColoreameCanvas2/actions/runs/38598468617). Ambos archivos públicos respondieron 200 con `pub-9994592587162260`. Captura del usuario confirma propiedad AdSense verificada y revisión solicitada. Falta comprobar estado del registro web en consola y verificación AdMob/ficha; ADS-02 sigue parcial. Los otros cambios locales, incluido el espacio inferior nuevo, no se publicaron en ese commit.
 **Actualización adicional 14/10/2026:** La captura de verificación AdSense y la confirmación expresa del usuario identifican también el vendedor web como `pub-9994592587162260`. Actualizado `web/ads.txt`, sustituyendo el ID anterior; coincide con el registro móvil confirmado. Ambos archivos preparados localmente; falta publicar, verificar propiedad en AdSense, solicitar revisión del sitio y comprobar AdMob por separado. No se añade script publicitario ni se activan anuncios. El registro siguiente documenta la etapa anterior.
 **Actualización 14/10/2026:** Usuario confirma registro AdMob `pub-9994592587162260`, app en prueba cerrada `com.focuzlab.paintme` y dominio `https://www.paintme.club/`. Creado `web/app-ads.txt`; vendedor web de `ads.txt` conservado. Identificador/namespace y paquete/ruta Android de MainActivity corregidos. Cincuenta pruebas web y comprobaciones de coherencia aprobadas; build Android no llegó a compilar por certificado TLS al descargar Gradle. Pendientes publicación, web efectiva de ficha y verificación en AdMob; no se activan anuncios. [Cambios, verificaciones y límites](ADS-02-2026-10-14.md).
@@ -389,12 +400,13 @@ Continuación de la lista restante: WEB-07, MOB-09, MOB-10, QA-03 y DOC-01 compl
 **Archivos:** [ads.txt](../web/ads.txt), [app-ads.txt](../web/app-ads.txt), configuración de dominio.
 **Trabajo:** usar vendedor autorizado confirmado y servir registros en el dominio enlazado por la ficha; distinguir archivo web y móvil.  
 **Aceptación:** respuestas públicas correctas, registro sin placeholders; verificación de consola registrada por responsable.  
-**Pendientes de cierre vigentes 14/10/2026:** Los archivos ya están publicados y sus respuestas correctas comprobadas; la propiedad AdSense figura verificada en la captura aportada. Falta registrar el reconocimiento del registro web en AdSense y comprobar la web efectiva de desarrollador de la ficha de prueba cerrada, la asociación de la app y el reconocimiento de `app-ads.txt` en AdMob. La revisión/aprobación de anuncios web se sigue en ADS-01. La compilación Android se sigue en MOB-11 y no es requisito para servir estos archivos.
+**Pendientes de cierre vigentes 14/10/2026:** ads.txt Autorizado. PaintMe Android y su banner ya creados en AdMob; falta vincular la ficha pública de com.focuzlab.paintme, confirmar su dominio y verificar app-ads.txt. La app está en Debe revisarse. No crear duplicados. La aprobación web continúa en ADS-01. [Alta y evidencia](ADMOB-CONFIGURACION-2026-10-14.md).
 **Dependencia externa:** registro, identificador de app y dominio confirmados por el usuario; ficha y consola aún no verificadas de forma independiente. Código y archivo no garantizan app readiness.
 
 ## Épica 5 — Flutter: fiabilidad y publicación condicional
 
 ### MOB-01 — Recuperar autosave tras fallos y guardar en lifecycle
+**Actualización 15/10/2026:** Autosave real y recuperación RGBA exacta tras cierre forzado y reapertura offline aprobados en Android 15 emulado. El cierre fue posterior al guardado confirmado; suspensión/cierre durante escritura y QA física siguen pendientes. [Evidencia](ANDROID-EMULADOR-2026-10-15.md).
 **P0 publicación · Parcial · 4–7 h · Origen autosave móvil**  
 **Continuación 07/10/2026:** Ahora analyzer y widgets Flutter concluyeron: fallo/reintento, reset/undo/redo y lifecycle simulado aprobados. Persistencia durante cierre/suspensión del SO físico sigue pendiente. [Evidencia](implementation-2026-10-07/remaining-code.md).
 **Ejecución 07/10/2026:** Autosave recuperable, snapshot, dispose idempotente, estado/reintento y lifecycle implementados; core probado, Flutter/QA física pendientes. Ver [cambios, evidencia y límites](implementation-2026-10-07/items-21-31.md).
@@ -404,6 +416,7 @@ Continuación de la lista restante: WEB-07, MOB-09, MOB-10, QA-03 y DOC-01 compl
 **Dependencias:** MOB-02; QA física para cierre.
 
 ### MOB-02 — Escrituras atómicas y lecturas sin mutación
+**Actualización 15/10/2026:** Save/load/list en filesystem Android instalado y recuperación tras cierre sin conexión aprobados en emulador. Interrupción durante escritura y matriz iOS/física pendientes. [Evidencia](ANDROID-EMULADOR-2026-10-15.md).
 **P0 publicación · Parcial · 4–7 h · Origen storage móvil**  
 **Continuación 07/10/2026:** Pruebas Flutter de storage, 12 casos filesystem/autosave Windows y composición de PNG aprobados. Falta validar interrupción/recuperación en filesystem Android/iOS instalado. [Evidencia](implementation-2026-10-07/remaining-code.md).
 **Ejecución 07/10/2026:** Reemplazo temporal/rename con backups, lecturas sin mutación y cola serializada comprobados en núcleo real; falta Flutter/QA móvil. Ver [cambios, evidencia y límites](implementation-2026-10-07/items-21-31.md).
@@ -419,6 +432,7 @@ Continuación de la lista restante: WEB-07, MOB-09, MOB-10, QA-03 y DOC-01 compl
 **Aceptación:** fallo/desmontaje/reintento no monta anuncio dispuesto ni duplica recursos; sin hueco inútil ni bucle de solicitudes; app continúa sin ads.
 
 ### MOB-04 — Validar configuración publicitaria por ambiente
+**Continuación release 15/10/2026:** AAB y APK firmados con ambiente disabled; manifiesto Firebase desactivado y sin plugin de pruebas, APK no depurable instalado. SDKs y App ID nativo de muestra siguen presentes; no se prueba producción monetizada ni iOS. [Evidencia](ANDROID-RELEASE-2026-10-15.md).
 **P0 publicación con ads · Parcial · 2–4 h · Origen ambientes**  
 **Continuación 07/10/2026:** Anuncios desactivados por defecto; contrato Dart/Gradle/iOS y guardas release sin fallback a test. Seis casos shell iOS, tres rechazos Gradle y tests Dart aprobados; profile también impide unidades test. Falta inspección de release firmado y build iOS; plugin nativo sigue incluido. Ver [implementación y verificaciones](implementation-2026-10-07/remaining-code.md).
 **Archivos:** banner/ad service, Gradle, Info.plist/xcconfig y documentación.  
@@ -442,6 +456,7 @@ Continuación de la lista restante: WEB-07, MOB-09, MOB-10, QA-03 y DOC-01 compl
 **Aceptación:** share sheet real abre en iPad en ambas orientaciones; Android/iPhone siguen funcionando; cancelar/fallo vuelve a actividad sin afirmar entrega.
 
 ### MOB-07 — Serializar acciones y medir rendimiento del motor
+**Actualización 15/10/2026:** Corregido recorte inicial del lienzo y botón Ajustar; toque mapeado una sola vez a coordenadas fuente. Dos pruebas de ajuste/orientación y recorrido nativo pintar/deshacer/rehacer aprobados. Perfil físico y multitáctil real pendientes. [Evidencia](ANDROID-EMULADOR-2026-10-15.md).
 **P1 · Parcial · 4–8 h · Origen rendimiento/carreras**  
 **Continuación 07/10/2026:** Bloqueo de fill/acciones incompatibles, descarte tras dispose, generación de imagen protegida e historial acotado; carreras y 20 ediciones probadas. Perfil CPU/RAM, zoom/multitáctil y persistencia física pendientes. Ver [implementación y verificaciones](implementation-2026-10-07/remaining-code.md).
 **Archivos:** [drawing_engine.dart](../flutter/lib/drawing_engine.dart), [layered_canvas.dart](../flutter/lib/layered_canvas.dart), main.  
@@ -449,6 +464,7 @@ Continuación de la lista restante: WEB-07, MOB-09, MOB-10, QA-03 y DOC-01 compl
 **Aceptación:** acciones rápidas no sobrescriben obra nueva; 20 gestos/rellenos en Android modesto sin cierre; zoom/coordenadas y multitáctil verificados; registrar CPU/RAM y objetivos de respuesta de WEB-10.
 
 ### MOB-08 — Mejorar controles adultos, reset y accesibilidad
+**Actualización 15/10/2026:** Corregido fondo de catálogo/editor/ajustes para hacer legibles los encabezados; captura Android vertical revisada. Lectores, texto grande y matriz física pendientes. [Evidencia](ANDROID-EMULADOR-2026-10-15.md).
 **P1 · Parcial · 3–6 h · Origen UX infantil Flutter**  
 **Continuación 07/10/2026:** Desafío adulto variable, reinicio confirmable y recuperable, foco/errores y acciones serializadas; widgets aprobados. Lectores, texto grande, estrecho/paisaje y adecuación final a audiencia/plataforma pendientes; no verifica consentimiento legal. Ver [implementación y verificaciones](implementation-2026-10-07/remaining-code.md).
 **Archivos:** main, componentes UI/tema.  
@@ -473,6 +489,9 @@ Continuación de la lista restante: WEB-07, MOB-09, MOB-10, QA-03 y DOC-01 compl
 **Dependencias:** MOB-07.
 
 ### MOB-11 — Resolver matriz de build y comprobar release Android
+**Incremento autorizado 15/10/2026:** Versión del proyecto 1.0.1+2; AAB regenerado y verificado con la firma existente, sin servicios ni publicación. [Ruta y evidencia vigentes](ANDROID-RELEASE-2026-10-15.md).
+**Continuación release 15/10/2026:** La firma ya existía y se reutilizó. AAB/APK actuales compilados; bundletool, firmas, certificado y alineación ZIP aprobados. APK release instalado en otro emulador, con recorrido pintar/guardar/cierre/reapertura sin red activa y captura del lienzo idéntica. Generación/firma local deja de estar pendiente. Se conserva Parcial por compartir, QA física y requisitos externos de tienda; versión 1.0.0 (1), sin publicación. [Informe y artefactos](ANDROID-RELEASE-2026-10-15.md).
+**Actualización 15/10/2026:** Resueltos TLS local y caché Kotlin entre unidades. Flutter 3.44.6/Dart 3.12.2, Java 21 y Gradle 9.1.0 bin con SHA fijado: build debug aprobado, paquete `com.focuzlab.paintme`, minSdk 24/target 36. Analyzer sin incidencias, 34 tests y dos fases de integración nativa en Android 15 emulado aprobados; ads/analytics apagados. Release firmado, tienda y matriz física/iOS siguen pendientes. [Informe](ANDROID-EMULADOR-2026-10-15.md).
 **P0 publicación Android · Parcial · 4–8 h + entorno · Origen build móvil**
 **Actualización 14/10/2026:** Corregidos applicationId/namespace/MainActivity a `com.focuzlab.paintme`, confirmado por el usuario para la ficha de prueba cerrada. La evidencia anterior de APK corresponde al identificador previo. Nuevo intento de build detenido antes de compilar por validación del certificado de descarga de Gradle; verificar el identificador del artefacto cuando el entorno permita compilar. [Detalle](ADS-02-2026-10-14.md).
 **Continuación 07/10/2026:** SDK Flutter 3.47.6/Dart 3.13.5 aislado; analyzer sin incidencias y 24 tests aprobados. Matriz AGP 8.12.1/Gradle 9.1.0/Kotlin 2.3.20; APK debug final aprobado e inspeccionado: compile/target SDK 36, minSdk 24; tres guardas nativas rechazan configuraciones inválidas. Release firmado/instalación/offline físicos pendientes. Ver [implementación y verificaciones](implementation-2026-10-07/remaining-code.md).
@@ -549,7 +568,10 @@ Continuación de la lista restante: WEB-07, MOB-09, MOB-10, QA-03 y DOC-01 compl
 **Dependencias:** MOB-01/02/03/05/06/07, entorno Flutter disponible.
 
 ### CI-01 — Validación local manual, publicación Pages y rollback documentado
-**P0 publicación web · Parcial · 2–4 h · Origen workflow**  
+**P0 publicación web · Hecho · 2–4 h · Origen workflow**
+**Cierre 14/10/2026:** cerrado por instrucción del usuario en el alcance vigente: checks locales aprobados, publicación Pages identificada y verificada, 247 archivos exactos, familias operativa y procedimiento de rollback documentado y ensayado en un índice temporal. No se requiere revertir una versión pública funcional para este cierre. Los registros de preparación anteriores son históricos. [Evidencia de cierre](PUBLICACION-WEB-2026-10-14.md).
+**Publicación verificada 14/10/2026:** versión web autorizada publicada en Pages, commit `fbe3610`, [run exitoso](https://github.com/amilcarpg/ColoreameCanvas2/actions/runs/38629204487). 247 archivos públicos coinciden con el manifiesto; `/familias.html` responde 200 y smoke de guardar/recuperar/descargar en ambos editores aprobado, sin terceros ni cookies. Servicios apagados. Rollback ensayado localmente con árbol exacto; rollback público no ejecutado. [Resultado y evidencia](PUBLICACION-WEB-2026-10-14.md).
+**Preparación local 14/10/2026:** web actual verificada, 55 checks Node y 12 seleccionados por motor aprobados; manifiesto de 247 archivos contrastado por HTTP local. Runbook ampliado para SHA/run, `/familias.html` y rollback verificable. Producción actual aún devuelve 404 en familias; publicación y rollback remotos no ejecutados. [Evidencia y resultado](SERVICIOS-Y-PUBLICACION-2026-10-14.md).
 **Cambio de alcance 08/10/2026:** por instrucción del usuario, se elimina toda validación/generación del workflow Pages. Python y checks web se ejecutan manualmente en local; Actions solo publica `web/` desde Git. Se conservan los scripts para uso local y el runbook de rollback. La comprobación del nuevo despliegue remoto sigue pendiente.
 **Continuación 07/10/2026:** Validación requerida antes de deploy, mismo gate en PR y publicación exclusiva de web; revisión registrada y runbook de rollback concreto. YAML/gates locales aprobados; ejecución y rollback remotos pendientes, sin publicar. Ver [implementación y verificaciones](implementation-2026-10-07/remaining-code.md).
 **Archivos:** [deploy-pages.yml](../.github/workflows/deploy-pages.yml), instrucciones de despliegue.  

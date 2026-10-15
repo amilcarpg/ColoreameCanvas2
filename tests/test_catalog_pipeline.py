@@ -14,6 +14,28 @@ from build_catalog import load_catalog, generated_files, existing_pages
 
 
 class CatalogPipelineTests(unittest.TestCase):
+    def test_unknown_downsample_filter_rejected(self):
+        self.catalog['drawings'][0]['downsampleFilter'] = 'nearest-custom'
+        self.write()
+        with self.assertRaisesRegex(ValueError, 'Unknown downsample filter'):
+            load_catalog(self.path)
+
+    def test_repaired_filter_changes_variants_without_changing_master(self):
+        from PIL import ImageDraw
+        image = Image.new('RGB', (1600, 800), 'white')
+        ImageDraw.Draw(image).line((0, 0, 1599, 799), fill='black', width=3)
+        image.save(self.root / 'drawing.png')
+        self.write()
+        original = (self.root / 'drawing.png').read_bytes()
+        baseline = generated_files(load_catalog(self.path), self.root)
+        self.catalog['drawings'][0]['downsampleFilter'] = 'bilinear'
+        self.write()
+        updated = generated_files(load_catalog(self.path), self.root)
+        self.assertNotEqual(baseline['web/assets/drawing.png'], updated['web/assets/drawing.png'])
+        self.assertEqual(updated, generated_files(load_catalog(self.path), self.root))
+        self.assertEqual(original, (self.root / 'drawing.png').read_bytes())
+        self.assertEqual(updated['web/assets/drawing.png'], updated['flutter/assets/drawings_mobile/drawing.png'])
+
     def setUp(self):
         self.temporary = TemporaryDirectory(prefix="paintme-catalog-")
         self.addCleanup(self.temporary.cleanup)

@@ -14,7 +14,7 @@ cd web
 python3 -m http.server 8000
 ```
 
-Para ejecutar la app móvil:
+Para ejecutar la app móvil (entorno Android, firma y compilación AAB/APK en la [guía móvil](docs/COMPILACION-MOVIL.md)):
 
 ```bash
 cd flutter

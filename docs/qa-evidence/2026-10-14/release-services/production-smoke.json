@@ -1,0 +1,39 @@
+{
+  "timestamp": "2026-10-14T20:07:28.650Z",
+  "scope": "Public production smoke with artificial drawing data in an isolated browser profile; no third-party interception.",
+  "items": [
+    {
+      "route": "/",
+      "status": 200,
+      "heading": "Dibujos para colorear gratis online"
+    },
+    {
+      "route": "/familias.html",
+      "status": 200,
+      "heading": "Para familias y docentes"
+    },
+    {
+      "route": "/adults.html",
+      "redirect": "/familias.html",
+      "anchorPreserved": true
+    },
+    {
+      "route": "/paint.html",
+      "paintChanged": true,
+      "restoreExact": true,
+      "download": "triceratops.png",
+      "permissionsDenied": true
+    },
+    {
+      "route": "/brush.html",
+      "paintChanged": true,
+      "restoreExact": true,
+      "download": "triceratops-pincel.png",
+      "permissionsDenied": true
+    }
+  ],
+  "passed": true,
+  "pageErrors": [],
+  "externalRequests": [],
+  "cookies": 0
+}

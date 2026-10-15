@@ -1,0 +1,18 @@
+{
+  "date": "2026-10-14",
+  "source": "Authenticated AdSense browser UI, Sites table and site details",
+  "publisher": "pub-9994592587162260",
+  "site": "paintme.club",
+  "adsTxtStatus": "Autorizado",
+  "siteApprovalStatus": "Preparando",
+  "review": "Revisión solicitada",
+  "reviewRequestedAtAsDisplayed": "14 oct 2026 12:02",
+  "consoleChangesMade": false,
+  "advertisingEnabled": false,
+  "limitations": [
+    "ads.txt authorization does not approve the site to serve ads",
+    "Existing static CSP blocks AdSense; GitHub Pages retained by user decision",
+    "No consent message published or audience settings changed",
+    "User says PaintMe is already registered in AdMob; app association and app-ads.txt recognition remain unverified in the available session. Do not recreate the app on this evidence."
+  ]
+}

@@ -2,6 +2,14 @@
 
 Creado: 07/10/2026. Responsable de ejecución: por asignar. Este documento registra pruebas para ejecutar después; ninguna casilla vacía implica aprobación. Fuentes: [product backlog](PRODUCT-BACKLOG.md), [tareas 1–5](implementation-2026-10-07/web-first-five.md) y [tareas 6–10](implementation-2026-10-07/web-six-ten.md).
 
+## Actualización CAT-04 — 14/10/2026
+
+**Release 15/10/2026:** AAB y APK actualizados firmados con el certificado existente; estructura/firma/identidad verificadas. APK release instalado y recorrido pintar/guardar/recuperar tras cierre aprobado en Android 15 emulado sin red activa. Generar y firmar localmente ya no está pendiente. Permanecen compartir, QA física/iOS y condiciones de tienda. [Evidencia](ANDROID-RELEASE-2026-10-15.md).
+
+**Continuación Android 15/10/2026:** APK debug instalado en emulador Android 15; pintar/guardar/deshacer/rehacer, exportación del motor y recuperación RGBA exacta tras cierre forzado y reapertura offline aprobados. Analyzer y 34 tests Flutter aprobados. Se corrigió el recorte inicial del dibujo y la legibilidad del fondo. Esto sustituye «Flutter instalado pendiente» únicamente para este recorrido Android emulado; no acredita todo el catálogo ni dispositivos físicos, share sheet, iOS o release firmado. [Evidencia y límites](ANDROID-EMULADOR-2026-10-15.md).
+
+La revisión visual de las áreas principales de los 62 dibujos y las verificaciones web locales ya concluyeron. Nueve fuentes corregidas, recuperación de pincel exacta y obras antiguas compatibles. Ver [informe vigente](RESULTADO-CHECKLIST-IMAGENES.md). Los fallos de pincel/Triceratops y fragmentación masiva descritos en registros del 07/10 son históricos. Siguen pendientes la matriz física Android/iOS, Flutter instalado, visor del sistema/impresión y adecuación al público; no se infieren aprobados de la automatización.
+
 ## Alcance y punto de partida
 
 Los cambios web de las primeras diez tareas tienen **34 pruebas de lógica, 47 en Chrome y 47 en WebKit aprobadas**. No se deben registrar como pendientes esas ejecuciones del 07/10; habrá que repetirlas cuando cambie el código o se prepare otra versión. Los tests automatizados no prueban un teléfono físico ni peticiones reales a terceros: el runner bloquea esos terceros.

@@ -1,0 +1,12 @@
+{
+  "phase": "restore",
+  "platform": "android",
+  "source": "dinosaurio",
+  "width": 1200,
+  "height": 1200,
+  "ads": "disabled",
+  "analytics": "disabled",
+  "restoredExact": true,
+  "saveUndoRedo": false,
+  "passed": true
+}

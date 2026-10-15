@@ -47,6 +47,10 @@ def load_catalog(path):
             if entry[name] in outputs:
                 raise ValueError(f"Duplicate output path: {entry[name]}")
             outputs.add(entry[name])
+        if entry.get('legacyWebSrc'):
+            checked_path(entry['legacyWebSrc'], 'assets/')
+        if entry.get('downsampleFilter', 'lanczos') not in ['lanczos', 'bilinear']:
+            raise ValueError(f"Unknown downsample filter: {slug}")
         with Image.open(source) as image:
             image.verify()
         with Image.open(source) as image:
@@ -55,7 +59,7 @@ def load_catalog(path):
     return data
 
 
-def png_variant(source, maximum):
+def png_variant(source, maximum, resampling='lanczos'):
     with Image.open(source) as raw:
         image = raw.convert("RGBA")
         # Keep transparency on top of white consistent with both editors.
@@ -63,7 +67,8 @@ def png_variant(source, maximum):
         image = Image.alpha_composite(paper, image).convert("RGB")
         if max(image.size) > maximum:
             ratio = maximum / max(image.size)
-            image = image.resize(tuple(max(1, round(side * ratio)) for side in image.size), Image.Resampling.LANCZOS)
+            filters = {'lanczos': Image.Resampling.LANCZOS, 'bilinear': Image.Resampling.BILINEAR}
+            image = image.resize(tuple(max(1, round(side * ratio)) for side in image.size), filters[resampling])
         buffer = BytesIO()
         image.save(buffer, format="PNG", optimize=False, compress_level=9)
         return buffer.getvalue(), image.size
@@ -85,6 +90,8 @@ def existing_pages(catalog, pages_root):
                 item = entries.get(page.stem)
                 if not item:
                     continue
+                if item.get('legacyWebSrc'):
+                    text = text.replace(item['legacyWebSrc'], item['webSrc'])
                 category = item['category']
                 label = escape(item['label'])
                 description = f'{label} para colorear online gratis en la categoría de {escape(catalog["categories"][category]).lower()}.'
@@ -115,12 +122,12 @@ def generated_files(catalog, source_root, pages_root=None):
     for entry in catalog["drawings"]:
         common = {key: entry[key] for key in ["label", "slug", "category", "pack", "theme", "difficulty", "keywords"]}
         common["featured"] = entry.get("featured", False)
-        painting, paint_size = png_variant(source_root / entry["file"], 1200)
-        thumbnail, thumb_size = png_variant(source_root / entry["file"], 360)
+        painting, paint_size = png_variant(source_root / entry["file"], 1200, entry.get('downsampleFilter', 'lanczos'))
+        thumbnail, thumb_size = png_variant(source_root / entry["file"], 360, entry.get('downsampleFilter', 'lanczos'))
         if abs(paint_size[0] / paint_size[1] - thumb_size[0] / thumb_size[1]) > .01:
             raise ValueError(f"Aspect ratio mismatch: {entry['slug']}")
         if "web" in entry["platforms"]:
-            web.append({**common, "src": entry["webSrc"], "thumbnailSrc": entry["thumbnailSrc"], "description": f"{entry['label']}: dibujo para colorear en {catalog['categories'][entry['category']]}."})
+            web.append({**common, "src": entry["webSrc"], "thumbnailSrc": entry["thumbnailSrc"], **({'legacySrc': entry['legacyWebSrc']} if entry.get('legacyWebSrc') else {}), "description": f"{entry['label']}: dibujo para colorear en {catalog['categories'][entry['category']]}."})
             files["web/" + entry["webSrc"]] = painting
             files["web/" + entry["thumbnailSrc"]] = thumbnail
         if "flutter" in entry["platforms"]:

@@ -1,0 +1,36 @@
+{
+  "date": "2026-10-14",
+  "authorization": "User explicitly requested configuring AdMob in the attached logged-in browser and clarified that the app was not registered.",
+  "source": "Authenticated AdMob browser UI; creation confirmation, settings, banner list and app overview",
+  "publisher": "pub-9994592587162260",
+  "app": {
+    "name": "PaintMe",
+    "platform": "Android",
+    "appId": "ca-app-pub-9994592587162260~5200451162",
+    "consoleAppId": "5200451162",
+    "status": "Debe revisarse",
+    "storeLinked": false,
+    "intendedPackage": "com.focuzlab.paintme",
+    "packageVerifiedInAdMob": false,
+    "storeSearch": "No results for the exact package and confirmed public Google Play URL",
+    "registrationMode": "Unpublished, no store linked"
+  },
+  "banner": {
+    "name": "PaintMe Android - Banner inferior",
+    "adUnitId": "ca-app-pub-9994592587162260/2933380472",
+    "format": "Banner",
+    "video": false,
+    "textImageRichMedia": true,
+    "automaticRefresh": false,
+    "partnerBidding": false,
+    "ecpm": "Google optimized, all prices",
+    "verifiedInUnitList": true
+  },
+  "appAdsTxtRecognized": null,
+  "appAdsTxtStatusMeaning": "Not yet verified: store is not linked; this is not a finding that the published file is invalid.",
+  "mobileConfig": "flutter/admob-config.local.json",
+  "mobileAdvertisingEnvironment": "disabled",
+  "mobileProductionApproved": false,
+  "newAppBuiltOrPublished": false,
+  "screenshot": "admob-created.png"
+}

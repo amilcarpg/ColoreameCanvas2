@@ -451,6 +451,16 @@ test('generated catalogs have the same taxonomy and explicit platform membership
   assert.equal(master.drawings.find(item=>item.slug==='paisaje-3').category,'paisajes');
 });
 
+test('history includes the recovered composite in its byte budget',()=>{
+  const {pm}=helper(), history=pm.createHistory(10,20);
+  const recovered={data:new Uint8Array(8),composite:{data:new Uint8Array(8)}};
+  const ordinary={data:new Uint8Array(8)};
+  history.push(recovered);assert.equal(history.bytes(),16);
+  history.push(ordinary);assert.equal(history.past.length,1);assert.equal(history.bytes(),8);
+  assert.equal(history.undo(recovered),ordinary);assert.equal(history.bytes(),16);
+  assert.equal(history.redo(ordinary),recovered);assert(history.bytes()<=20);
+});
+
 test('existing drawing pages keep category query links and related cards aligned with the catalog',()=>{
   const master=JSON.parse(fs.readFileSync(path.join(ROOT,'base_png/catalog.json')));
   const entries=new Map(master.drawings.map(item=>[item.slug,item]));

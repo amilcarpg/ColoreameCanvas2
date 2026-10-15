@@ -36,6 +36,54 @@ function fixturePNG(lineX=12, size=24) {
   return Buffer.concat([Buffer.from([137,80,78,71,13,10,26,10]),chunk('IHDR',header),chunk('IDAT',zlib.deflateSync(data)),chunk('IEND',Buffer.alloc(0))]);
 }
 const png=fixturePNG();
+// Real antialiased art exposes the flattened-PNG restoration defect that the
+// opaque synthetic fixture cannot detect.
+for (const kind of ['layered', 'legacy', 'corrupt-layer']) test('brush: antialiased restoration '+kind, async () => {
+  const {page,context,errors}=await editor('brush',{fixture:false});
+  try {
+    await page.evaluate(async () => {
+      brushSize=45; activeColor='#137ac5';
+      drawBrushSegment({x:0,y:canvas.height/2},{x:canvas.width-1,y:canvas.height/2});
+      activeColor='#e74632';
+      drawBrushSegment({x:canvas.width/2,y:0},{x:canvas.width/2,y:canvas.height-1});
+      scheduleAutosave(); await autosave.flush();
+    });
+    const before=await page.evaluate(()=>({composite:canvas.toDataURL('image/png'),layer:paintLayer.toDataURL('image/png')}));
+    const record=await page.evaluate(()=>PaintMe.loadLocalDrawing('brush',currentAsset.slug));
+    assert.equal(record.paintDataUrl,before.layer);
+    assert.equal(record.dataUrl,before.composite);
+    if (kind!=='layered') await page.evaluate(async ({kind,composite})=>{
+      await PaintMe.saveLocalDrawing('brush',currentAsset.slug,composite);
+      if(kind==='corrupt-layer') {
+        const saved=await PaintMe.loadLocalDrawing('brush',currentAsset.slug);
+        saved.updatedAt+=10000; saved.brushLayerVersion=1; saved.paintDataUrl='data:image/png;base64,broken';
+        localStorage.setItem('paintme_autosave_v1:brush:'+currentAsset.slug,JSON.stringify(saved));
+      }
+    },{kind,composite:before.composite});
+    await page.reload(); await ready(page); await restore(page);
+    const delta=await page.evaluate(async url=>{
+      const image=await PaintMe.decodeSavedPng(url);
+      const surface=document.createElement('canvas'); surface.width=canvas.width; surface.height=canvas.height;
+      const c=surface.getContext('2d'); c.drawImage(image,0,0);
+      const before=c.getImageData(0,0,canvas.width,canvas.height).data;
+      const after=ctx.getImageData(0,0,canvas.width,canvas.height).data;
+      let changed=0,max=0;
+      for(let i=0;i<before.length;i+=4) {let different=false;for(let j=0;j<4;j++){const d=Math.abs(before[i+j]-after[i+j]);max=Math.max(max,d);different ||= d>0;}if(different)changed++;}
+      return {changed,max};
+    },before.composite);
+    if(kind==='layered') {
+      assert.deepEqual(delta,{changed:0,max:0});
+      if(engineName==='chromium') assert.equal(await page.evaluate(()=>paintLayer.toDataURL('image/png')),before.layer);
+    } else assert(delta.max<=1,'Legacy recovery must not double-darken edges: '+JSON.stringify(delta));
+    const recovered=await page.evaluate(()=>canvas.toDataURL('image/png'));
+    // Recovered work remains editable, undo returns its exact composite, and
+    // the next save retains the editable layer in the new format.
+    await page.evaluate(async()=>{pushUndo();eraseMode=true;brushSize=40;drawBrushSegment({x:canvas.width/2,y:canvas.height/2},{x:canvas.width/2,y:canvas.height/2});eraseMode=false;undo();scheduleAutosave();await autosave.flush();});
+    assert.equal(await page.evaluate(()=>canvas.toDataURL('image/png')),recovered);
+    assert.equal(await page.evaluate(async()=>Boolean((await PaintMe.loadLocalDrawing('brush',currentAsset.slug)).paintDataUrl)),true);
+    assert.deepEqual(errors,[]);
+  } finally {await context.close();}
+});
 const fixtures=[
   {slug:'gato',label:'Gato',category:'animales',featured:true},
   {slug:'perro',label:'Perro',category:'animales'},
@@ -869,7 +917,7 @@ test('home preview has no fictitious buttons and adult contact only uses configu
     assert.equal(await page.locator('.hero-copy a').first().getAttribute('href'),'paint.html?asset=dinosaurio&category=dinosaurios&source=home');
     assert.equal(await page.locator('.category-card').first().getAttribute('href'),'categorias/animales.html');
     await context.route('**/site-config.json',route=>route.fulfill({contentType:'application/json',body:JSON.stringify({contact:{email:'operator@example.test',url:'javascript:alert(1)'}})}));
-    await page.goto(origin+'/adults.html');await page.waitForFunction(()=>document.querySelectorAll('#contactLinks a').length===1);
+    await page.goto(origin+'/familias.html');await page.waitForFunction(()=>document.querySelectorAll('#contactLinks a').length===1);
     assert.equal(await page.locator('#contactLinks a').getAttribute('href'),'mailto:operator@example.test');
     assert.deepEqual(errors,[]);
   } finally {await context.close();}
@@ -947,7 +995,7 @@ for(const mode of ['paint','brush']) {
 
 test('default build makes no third-party requests in undecided/save/reject/revoke states across all page types', {timeout:120000},async()=>{
   const report=[];
-  for(const target of ['index.html','paint.html?asset=dinosaurio&category=dinosaurios','brush.html?asset=dinosaurio&category=dinosaurios','adults.html','privacy.html','categorias/animales.html','packs/animales.html']) {
+  for(const target of ['index.html','paint.html?asset=dinosaurio&category=dinosaurios','brush.html?asset=dinosaurio&category=dinosaurios','familias.html','privacy.html','categorias/animales.html','packs/animales.html']) {
     const har=process.env.PAINTME_EVIDENCE_DIR ? path.join(process.env.PAINTME_EVIDENCE_DIR,engineName+'-privacy-'+target.split('?')[0].replaceAll('/','-')+'.har') : undefined;
     const context=await browser.newContext({ignoreHTTPSErrors:true,...(har ? {recordHar:{path:har,content:'omit',mode:'minimal'}} : {})});
     const page=await context.newPage(),requests=[],errors=[];
@@ -1009,10 +1057,159 @@ for(const mode of ['paint','brush']) {
   });
 }
 
-test('adult ad controller stays off by default, cleans revoked/late/failed mocks and never runs in editors',async()=>{
-  const {page,context}=await editor('paint');
+for (const mode of ['paint','brush']) test(mode+': prepared bottom banner does not move the canvas or overlap controls',async()=>{
+  for (const viewport of [{width:360,height:844},{width:844,height:390},{width:1280,height:800}]) {
+    const {page,context,errors}=await editor(mode,{viewport});
+    try {
+      assert.equal(await page.locator('#editorAdSlot').isVisible(),false);
+      // The editor helper visits privacy controls; return to the painting position.
+      await page.evaluate(()=>{document.activeElement?.blur();window.scrollTo(0,0);});
+      const result=await page.evaluate(()=>{
+        const slot=document.getElementById('editorAdSlot');
+        const activity=document.getElementById('actividad');
+        const canvas=document.getElementById('canvas');
+        const before=canvas.getBoundingClientRect().toJSON();
+        // Layout preview only: no SDK, network request or real advertisement.
+        slot.hidden=false;
+        const after=canvas.getBoundingClientRect().toJSON();
+        const position=getComputedStyle(slot).position;
+        const gap=slot.getBoundingClientRect().top-activity.getBoundingClientRect().bottom;
+        return {before,after,position,gap,overflow:document.documentElement.scrollWidth>innerWidth};
+      });
+      assert.deepEqual(result.after,result.before,JSON.stringify(viewport));
+      assert.equal(result.position,'static');
+      assert(result.gap>=150,JSON.stringify(result));
+      assert.equal(result.overflow,false);
+      await page.emulateMedia({media:'print'});
+      assert.equal(await page.locator('#editorAdSlot').isVisible(),false);
+      assert.deepEqual(errors,[]);
+    } finally {await context.close();}
+  }
+});
+
+for (const target of ['paint.html','brush.html','familias.html','index.html','']) test((target||'/')+': AdSense adapter handles fill, empty, error and revocation without real ads',async()=>{
+  const {page,context,errors}=await editor('paint');
+  try {
+    if (!target) await context.route(origin+'/',route=>route.fulfill({contentType:'text/html',body:fs.readFileSync(path.join(web,'index.html'),'utf8')}));
+    await page.goto(origin+'/'+target);
+    await page.waitForFunction(()=>window.PaintMeAds&&window.PaintMeAdSense);
+    const result=await page.evaluate(async()=>{
+      await PaintMeAds.ready;
+      const root=document.getElementById('editorAdSlot')||document.getElementById('adultAdSlot')||document.getElementById('homeAdSlot');
+      const content=root.querySelector('[data-ad-content]');
+      const ads=(await (await fetch('site-config.json')).json()).ads;
+      const configuredSlot=ads.slots[root.id==='editorAdSlot'?'editorBottom':root.id==='homeAdSlot'?'homeBottom':'familiesBottom'];
+      const label=root.querySelector('.editor-ad-label').textContent;
+      const outputs=[];
+      let permitted=true,changed=()=>{},calls=0;
+      for(const outcome of ['filled','unfilled','error','timeout','revoke']) {
+        permitted=true;let resolveLoad;
+        window.adsbygoogle={push(){calls++;content.querySelector('ins').dataset.adStatus=outcome==='filled'?'filled':'unfilled';}};
+        const load=outcome==='error'?async()=>{throw new Error('sdk_failed');}:
+          outcome==='timeout'||outcome==='revoke'?()=>new Promise(resolve=>{resolveLoad=resolve;}):async()=>{};
+        const request=PaintMeAdSense.createRequest({client:ads.client,slot:configuredSlot,allowed:()=>permitted,load});
+        const controller=PaintMeAds.createController(root,{allowed:()=>permitted,request,timeout:30,subscribe:callback=>{changed=callback;return()=>{};}});
+        const showing=controller.show();
+        if(outcome==='revoke') {
+          await Promise.resolve();permitted=false;changed();resolveLoad();
+        }
+        await showing;
+        const ins=content.querySelector('ins');
+        outputs.push({outcome,state:root.dataset.adState,hidden:root.hidden,
+          client:ins?.dataset.adClient,slot:ins?.dataset.adSlot,format:ins?.dataset.adFormat,
+          width:ins?.getBoundingClientRect().width,labelPreserved:root.querySelector('.editor-ad-label')?.textContent===label});
+        if(outcome==='filled') {permitted=false;changed();if(!root.hidden||content.children.length) throw Error('revocation left creative');}
+        controller.dispose();
+      }
+      // With current production CSP, even explicit test permission cannot load Google.
+      permitted=true;
+      const blocked=PaintMeAds.createController(root,{allowed:()=>permitted,
+        request:PaintMeAdSense.createRequest({client:ads.client,slot:configuredSlot,allowed:()=>permitted})});
+      await blocked.show();
+      const cspBlocked=root.dataset.adError==='csp_not_ready'&&root.hidden;
+      blocked.dispose();delete window.adsbygoogle;
+      return {outputs,calls,cspBlocked,scripts:document.querySelectorAll('script[src*="pagead2.googlesyndication.com"]').length};
+    });
+    assert.deepEqual(result.outputs.map(item=>item.state),['ready','empty','failed','failed','off']);
+    const filled=result.outputs[0];assert.equal(filled.client,'ca-pub-9994592587162260');
+    assert.equal(filled.slot,target==='familias.html'?'9685481928':target==='index.html'||!target?'7340274204':'7446331398');
+    assert.equal(filled.format,'horizontal');assert(filled.width>0);
+    assert(result.outputs.every(item=>item.labelPreserved));
+    assert.equal(result.calls,2);assert.equal(result.cspBlocked,true);assert.equal(result.scripts,0);
+    assert.deepEqual(errors,[]);
+  } finally {await context.close();}
+});
+
+test('legacy adults route redirects to familias with query and contact anchor preserved',async()=>{
+  const {page,context,errors}=await editor('paint');
+  try {
+    await page.goto(origin+'/adults.html?source=home#contacto');
+    await page.waitForURL(url=>url.pathname==='/familias.html');
+    const url=new URL(page.url());
+    assert.equal(url.searchParams.get('source'),'home');assert.equal(url.hash,'#contacto');
+    assert.equal(await page.locator('h1').textContent(),'Para familias y docentes');
+    assert.equal(await page.locator('link[rel="canonical"]').getAttribute('href'),'https://www.paintme.club/familias.html');
+    await page.waitForFunction(()=>document.querySelector('#contactLinks a'));
+    assert.equal(await page.locator('#contactLinks a').getAttribute('href'),'mailto:contancto.focuzlab@gmail.com');
+    assert.deepEqual(errors,[]);
+  } finally {await context.close();}
+});
+
+test('legacy adults route has a working redirect without JavaScript',async()=>{
+  const context=await browser.newContext({ignoreHTTPSErrors:true,javaScriptEnabled:false});
+  const page=await context.newPage();
   try {
     await page.goto(origin+'/adults.html');
+    await page.waitForURL(url=>url.pathname==='/familias.html');
+    assert.equal(await page.locator('h1').textContent(),'Para familias y docentes');
+  } finally {await context.close();}
+});
+
+test('home bottom banner leaves content and navigation in place at mobile and desktop widths',async()=>{
+  for (const viewport of [{width:360,height:844},{width:768,height:1024},{width:1280,height:800}]) {
+    const {page,context}=await editor('paint',{viewport});
+    try {
+      await page.goto(origin+'/index.html');
+      assert.equal(await page.locator('#homeAdSlot').isVisible(),false);
+      const result=await page.evaluate(()=>{
+        window.scrollTo(0,0);
+        const cta=document.querySelector('.hero-copy a');
+        const before=cta.getBoundingClientRect().toJSON();
+        const slot=document.getElementById('homeAdSlot');slot.hidden=false;
+        return {before,after:cta.getBoundingClientRect().toJSON(),
+          position:getComputedStyle(slot).position,
+          gap:slot.getBoundingClientRect().top-document.querySelector('main').getBoundingClientRect().bottom,
+          overflow:document.documentElement.scrollWidth>innerWidth};
+      });
+      assert.deepEqual(result.before,result.after);
+      assert.equal(result.position,'static');assert(result.gap>=150);assert.equal(result.overflow,false);
+      await page.emulateMedia({media:'print'});
+      assert.equal(await page.locator('#homeAdSlot').isVisible(),false);
+    } finally {await context.close();}
+  }
+});
+
+for (const target of ['paint.html','familias.html','index.html','']) test((target||'/')+': enabled ad configuration cannot bypass denied privacy permission',async()=>{
+  const {page,context}=await editor('paint');
+  try {
+    await context.route('**/site-config.json',route=>route.fulfill({contentType:'application/json',body:JSON.stringify({ads:{
+      enabled:true,siteApproved:true,treatmentReviewed:true,client:'ca-pub-9994592587162260',
+      slots:{editorBottom:'7446331398',familiesBottom:'9685481928',homeBottom:'7340274204'}
+    }})}));
+    if (!target) await context.route(origin+'/',route=>route.fulfill({contentType:'text/html',body:fs.readFileSync(path.join(web,'index.html'),'utf8')}));
+    await page.goto(origin+'/'+target);
+    await page.waitForFunction(()=>window.PaintMeAds);
+    assert.equal(await page.evaluate(()=>PaintMeAds.ready),true);
+    assert.equal(await page.evaluate(()=>PaintMeAds.status()),'waiting_permission');
+    assert.equal(await page.locator('#editorAdSlot, #adultAdSlot, #homeAdSlot').isVisible(),false);
+    assert.equal(await page.locator('script[src*="pagead2.googlesyndication.com"]').count(),0);
+  } finally {await context.close();}
+});
+
+test('ad controller stays off by default, cleans revoked/late/failed mocks and rejects arbitrary editor containers',async()=>{
+  const {page,context}=await editor('paint');
+  try {
+    await page.goto(origin+'/familias.html');
     const result=await page.evaluate(async()=>{
       const slot=document.getElementById('adultAdSlot');let permitted=false,calls=0,releases=0,changed=()=>{},resolve;
       const controller=PaintMeAds.createController(slot,{allowed:()=>permitted,subscribe:callback=>{changed=callback;return()=>{};},request:()=>{calls++;return new Promise(done=>{resolve=done;});},timeout:20});
@@ -1104,4 +1301,40 @@ for (const mode of ['paint','brush']) test(mode+': sustained 1200px edits and sa
       },null,2));
     }
   } finally { await context.close(); }
+});
+
+for (const mode of ['paint','brush']) test(mode+': repaired catalog preserves legacy artwork and its original contours',async()=>{
+  const {page,context,errors}=await editor(mode,{fixture:false});
+  try {
+    const slugs=await page.evaluate(()=>ASSETS.filter(a=>a.legacySrc).map(a=>a.slug));
+    assert(slugs.length>0,'The repaired catalog must identify historical sources');
+    for(const slug of slugs) {
+      await page.goto(origin+'/'+mode+'.html?asset='+slug); await ready(page);
+      const before=await page.evaluate(async mode=>{
+        const fresh=currentAsset.src,legacy=currentAsset.legacySrc;
+        currentAsset.src=legacy; await loadImage(legacy);
+        activeColor='#267fcd';
+        if(mode==='paint') {fillAtPoint({x:0,y:0});while(fillInProgress)await new Promise(done=>setTimeout(done,10));}
+        else {brushSize=40;drawBrushSegment({x:0,y:canvas.height/2},{x:canvas.width-1,y:canvas.height/2});}
+        await autosave.cancel();
+        const png=canvas.toDataURL('image/png');
+        await PaintMe.saveLocalDrawing(mode==='paint'?'bucket':'brush',currentAsset.slug,png);
+        currentAsset.src=fresh; await loadImage(fresh); await updateRestoreButton();
+        return {png,legacy};
+      },mode);
+      await page.evaluate(()=>restoreSavedDrawing());
+      assert.equal(await page.locator('#status').textContent(),'Dibujo restaurado',slug+' legacy restore: '+JSON.stringify(await page.evaluate(async mode=>{
+        const r=await PaintMe.loadLocalDrawing(mode==='paint'?'bucket':'brush',currentAsset.slug);
+        const i=await PaintMe.decodeSavedPng(r.dataUrl);
+        return {asset:currentAsset.slug,src:currentAsset.src,legacy:currentAsset.legacySrc,canvas:[canvas.width,canvas.height],saved:[i.width,i.height],savedSource:r.assetSrc};
+      },mode)));
+      assert.equal(await page.evaluate(()=>canvas.toDataURL('image/png')),before.png,slug+' legacy pixels');
+      assert.equal(await page.evaluate(()=>activeDrawingSrc),before.legacy,slug+' original mask');
+      await page.evaluate(async()=>{scheduleAutosave();await autosave.flush();});
+      assert.equal(await page.evaluate(async mode=>(await PaintMe.loadLocalDrawing(mode==='paint'?'bucket':'brush',currentAsset.slug)).assetSrc,mode),before.legacy);
+      await page.reload();await ready(page);await restore(page);
+      assert.equal(await page.evaluate(()=>canvas.toDataURL('image/png')),before.png,slug+' migrated pixels');
+    }
+    assert.deepEqual(errors,[]);
+  } finally {await context.close();}
 });

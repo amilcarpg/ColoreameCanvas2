@@ -1,12 +1,15 @@
 """Read-only inventory and contact sheets for the per-image checklist."""
 from pathlib import Path
+import os
 import hashlib
 import json
 import numpy as np
 from PIL import Image, ImageOps, ImageDraw, ImageFont
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / 'docs/qa-evidence/2026-10-07/artwork-checklist'
+OUT = (ROOT / os.environ.get('PAINTME_ARTWORK_OUTPUT', 'docs/qa-evidence/2026-10-07/artwork-checklist')).resolve()
+if not OUT.is_relative_to(ROOT):
+    raise ValueError('Evidence must stay inside the project')
 
 def main():
     OUT.mkdir(parents=True, exist_ok=True)

@@ -1,0 +1,25 @@
+#1 de Firmante:
+
+Certificate #1:
+Propietario: CN=PaintMe, OU=Mobile, O=PaintMe, L=Lima, ST=Lima, C=PE
+Emisor: CN=PaintMe, OU=Mobile, O=PaintMe, L=Lima, ST=Lima, C=PE
+Número de serie: 3488c991
+Válido desde: Tue Jul 21 10:59:30 PET 2026 hasta: Sat Dec 06 10:59:30 PET 2053
+Huellas digitales del certificado:
+	 SHA1: 0D:F1:37:B8:26:09:62:A0:00:67:C6:9D:D5:62:EE:A5:13:8E:77:4B
+	 SHA256: 13:BD:89:E4:EC:EC:30:BA:37:24:21:7F:A0:39:3E:04:C4:1A:82:B1:03:0A:CE:72:F1:19:5A:74:D6:A1:26:2E
+Nombre del algoritmo de firma: SHA256withRSA
+Algoritmo de clave pública de asunto: Clave RSA de 2048 bits
+Versión: 3
+
+Extensiones: 
+
+#1: ObjectId: 2.5.29.14 Criticality=false
+SubjectKeyIdentifier [
+KeyIdentifier [
+0000: E7 0F 14 A2 7C 36 7B 2F   F2 2B F6 13 42 B0 38 A1  .....6./.+..B.8.
+0010: C9 4B A4 19                                        .K..
+]
+]
+
+

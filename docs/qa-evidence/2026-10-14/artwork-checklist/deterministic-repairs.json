@@ -1,0 +1,268 @@
+{
+  "authorization": "User explicitly approved Python pipeline cleanup in this chat on 14/10/2026",
+  "tool": "Project Python pipeline, Pillow/OpenCV; no ImageGen candidate incorporated",
+  "opencv": "5.0.0",
+  "items": [
+    {
+      "slug": "triceratops",
+      "parameters": {
+        "method": "localized jaw closure",
+        "bbox": [
+          187,
+          731,
+          16,
+          18
+        ],
+        "changed_pixels": 121
+      },
+      "before_master": {
+        "regions": 46,
+        "tiny_under_16px": 10
+      },
+      "after_master": {
+        "regions": 47,
+        "tiny_under_16px": 10
+      },
+      "changed_pixels": 121,
+      "solid_black_preserved": true,
+      "sha256": "bb8ab3d5737afccc8aa0233595a48b1cc2d4fdc79185da3cb4e9a145d57e3563",
+      "dimensions": [
+        1200,
+        1200
+      ],
+      "head_reaches_exterior": false,
+      "after_web": {
+        "regions": 47,
+        "tiny_under_16px": 10
+      }
+    },
+    {
+      "slug": "pony-magico",
+      "parameters": {
+        "threshold": 220,
+        "closing": 3
+      },
+      "before_master": {
+        "regions": 1688,
+        "tiny_under_16px": 1622
+      },
+      "after_master": {
+        "regions": 52,
+        "tiny_under_16px": 1
+      },
+      "changed_pixels": 1305063,
+      "solid_black_preserved": true,
+      "sha256": "afc5766705698ee147df4eb4aef115d2a9b39e6019175afc7100c7405dd2bf8b",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "after_web": {
+        "regions": 53,
+        "tiny_under_16px": 1
+      }
+    },
+    {
+      "slug": "pony-princesa",
+      "parameters": {
+        "threshold": 200,
+        "closing": 3
+      },
+      "before_master": {
+        "regions": 2200,
+        "tiny_under_16px": 2100
+      },
+      "after_master": {
+        "regions": 82,
+        "tiny_under_16px": 0
+      },
+      "changed_pixels": 1271078,
+      "solid_black_preserved": true,
+      "sha256": "6ff7b1a68594bf1b1673e81ba2cbf40562f86e48520062ba45719259012f4b77",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "after_web": {
+        "regions": 86,
+        "tiny_under_16px": 4
+      }
+    },
+    {
+      "slug": "gabby-camping",
+      "parameters": {
+        "threshold": 220,
+        "closing": 3,
+        "preserve_bottom": 14
+      },
+      "before_master": {
+        "regions": 2002,
+        "tiny_under_16px": 1821
+      },
+      "after_master": {
+        "regions": 116,
+        "tiny_under_16px": 16
+      },
+      "changed_pixels": 188940,
+      "solid_black_preserved": true,
+      "sha256": "2e763e1510f21b0b885133e906846900f3254aadb3e0b591ed02d12fc578c246",
+      "dimensions": [
+        365,
+        547
+      ],
+      "after_web": {
+        "regions": 116,
+        "tiny_under_16px": 16
+      }
+    },
+    {
+      "slug": "gabby-pintando",
+      "parameters": {
+        "threshold": 200,
+        "closing": 3,
+        "preserve_bottom": 30
+      },
+      "before_master": {
+        "regions": 2531,
+        "tiny_under_16px": 2319
+      },
+      "after_master": {
+        "regions": 101,
+        "tiny_under_16px": 11
+      },
+      "changed_pixels": 1427203,
+      "solid_black_preserved": true,
+      "sha256": "dfcf63985062c59dc7bb9cc8f7ac4e6235337bb50b080fc69edcf8e374fbc302",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "after_web": {
+        "regions": 104,
+        "tiny_under_16px": 15
+      }
+    },
+    {
+      "slug": "gabby-amigos",
+      "parameters": {
+        "threshold": 200,
+        "closing": 3,
+        "preserve_top": 100
+      },
+      "before_master": {
+        "regions": 4001,
+        "tiny_under_16px": 3622
+      },
+      "after_master": {
+        "regions": 405,
+        "tiny_under_16px": 52
+      },
+      "changed_pixels": 376580,
+      "solid_black_preserved": true,
+      "sha256": "8f80f4907d853b8b2726081502977066dd5ab5d6af5383969c6eb199ca2bda99",
+      "dimensions": [
+        1200,
+        900
+      ],
+      "after_web": {
+        "regions": 405,
+        "tiny_under_16px": 52
+      }
+    },
+    {
+      "slug": "gabby-cumpleanos",
+      "parameters": {
+        "threshold": 200,
+        "closing": 3
+      },
+      "before_master": {
+        "regions": 1868,
+        "tiny_under_16px": 1575
+      },
+      "after_master": {
+        "regions": 285,
+        "tiny_under_16px": 9
+      },
+      "changed_pixels": 1020618,
+      "solid_black_preserved": true,
+      "sha256": "01c039d77e7f6f279e9a66dc975c9f834cbfb0189a544138fb26b83b8dd46dbd",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "after_web": {
+        "regions": 285,
+        "tiny_under_16px": 9
+      }
+    },
+    {
+      "slug": "gabby-casa-magica",
+      "parameters": {
+        "threshold": 200,
+        "closing": 0
+      },
+      "before_master": {
+        "regions": 1067,
+        "tiny_under_16px": 829
+      },
+      "after_master": {
+        "regions": 236,
+        "tiny_under_16px": 12
+      },
+      "changed_pixels": 883044,
+      "solid_black_preserved": true,
+      "sha256": "69afce861a9007aaff2407d1f571948404c3b1ac04bd09401382aa8f17b90db5",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "after_web": {
+        "regions": 236,
+        "tiny_under_16px": 12
+      }
+    },
+    {
+      "slug": "gabby-gato-flores",
+      "parameters": {
+        "method": "localized antenna-tip cleanup",
+        "boxes": [
+          [
+            535,
+            0,
+            110,
+            100
+          ],
+          [
+            645,
+            28,
+            110,
+            105
+          ]
+        ],
+        "threshold": 220,
+        "closing": 3
+      },
+      "before_master": {
+        "regions": 271,
+        "tiny_under_16px": 202
+      },
+      "after_master": {
+        "regions": 246,
+        "tiny_under_16px": 176
+      },
+      "changed_pixels": 7850,
+      "solid_black_preserved": true,
+      "sha256": "f1a77de2f921555a3eebda66f85546f41d951a3205493d72aeb52e8f33070c4d",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "left_antenna_reaches_exterior": false,
+      "right_antenna_reaches_exterior": false,
+      "after_web": {
+        "regions": 246,
+        "tiny_under_16px": 176
+      }
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "timestamp": "2026-10-14T20:03:25.136Z",
+  "scope": "Local reverse-patch rehearsal in a temporary Git index. No refs, checkout or public deployment changed.",
+  "commit": "7810db5bfb20cfd0a4d0572835f9b7a919ab2d5d",
+  "parent": "d685174e2b6888005694143032ea923ef7b905c5",
+  "restoredTree": "aab6438440c55aeea149db168e978772ef618bb8",
+  "expectedTree": "aab6438440c55aeea149db168e978772ef618bb8",
+  "exact": true,
+  "remoteRollbackExecuted": false,
+  "limitation": "Previous production has no familias route; restoring it would remove that route. Use rollback only for a diagnosed regression and an approved target.",
+  "publishedCommit": "fbe3610fe324bb536f5719602a5bc721ecfc6d27",
+  "publishedTree": "861d82e6be156970ce6ed40099ce5f921d461e70",
+  "sameTreeAsRehearsedCommit": true,
+  "knownGoodReferenceForFutureRollback": "fbe3610fe324bb536f5719602a5bc721ecfc6d27"
+}

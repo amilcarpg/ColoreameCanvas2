@@ -1,0 +1,18 @@
+{
+  "date": "2026-10-15",
+  "package": "com.focuzlab.paintme",
+  "versionName": "1.0.1",
+  "versionCode": 2,
+  "artifact": ".tools\\apks\\paintme-1.0.1-release-noads.aab",
+  "bytes": 83126430,
+  "sha256": "8f82047950f4f1e60adc67193bdf6e951e63e08d2bb5d986f62954ff171f3af6",
+  "bundletoolValidateExit": 0,
+  "allContentEntriesSignatureVerified": true,
+  "signatureVerification": "Verified signed content entries: 593; expected PaintMe certificate: 13bd89e4ecec30ba3724217fa0393e04c41a82b1030ace72f1195a74d6a1262e",
+  "debuggable": false,
+  "ads": "disabled",
+  "analytics": "disabled",
+  "published": false,
+  "playVersionCodeAvailabilityChecked": false,
+  "previousApkVersion": "1.0.0 (1)"
+}

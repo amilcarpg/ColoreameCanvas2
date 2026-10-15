@@ -1,0 +1,1737 @@
+{
+  "timestamp": "2026-10-14T19:57:44.756Z",
+  "baseURL": "http://127.0.0.1:50617/",
+  "treeSha256": "9efa38717a153f16c6e2ee308d35043fde46642ff39a4a90c13fc31606c4326c",
+  "passed": true,
+  "results": [
+    {
+      "file": "ad-banner.css",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "da4bb83a9dce0bab4ec6a5f9e85b2fc71b8a23d7fbcdd8791f70d4a2d9f6fa96",
+      "actualSha256": "da4bb83a9dce0bab4ec6a5f9e85b2fc71b8a23d7fbcdd8791f70d4a2d9f6fa96"
+    },
+    {
+      "file": "ad-slot.js",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "8dd2819e8efad99ffcfe486ebff53ccbcfbcf1c6832527a6fb2006dbd24f47a5",
+      "actualSha256": "8dd2819e8efad99ffcfe486ebff53ccbcfbcf1c6832527a6fb2006dbd24f47a5"
+    },
+    {
+      "file": "ads.txt",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "ae79d8db56d4970b9703734742cf102498ca2c04740ac3889e6b9f2bf08ab856",
+      "actualSha256": "ae79d8db56d4970b9703734742cf102498ca2c04740ac3889e6b9f2bf08ab856"
+    },
+    {
+      "file": "adsense-provider.js",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "ce4504a33f67773073ec69e7df5d6accb686cc324227ba24e099226abed1562c",
+      "actualSha256": "ce4504a33f67773073ec69e7df5d6accb686cc324227ba24e099226abed1562c"
+    },
+    {
+      "file": "adults.html",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "0176b6fc151a992ed20ecb6aba368b55bf06ecde189e79b3fce2b1bd3f1a8968",
+      "actualSha256": "0176b6fc151a992ed20ecb6aba368b55bf06ecde189e79b3fce2b1bd3f1a8968"
+    },
+    {
+      "file": "analytics-init.js",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "e89e988da53cf1ec169bd972b4aea7b86dbd36ddb43c4b2a38dcd0b011aa5cdf",
+      "actualSha256": "e89e988da53cf1ec169bd972b4aea7b86dbd36ddb43c4b2a38dcd0b011aa5cdf"
+    },
+    {
+      "file": "app-ads.txt",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "ae79d8db56d4970b9703734742cf102498ca2c04740ac3889e6b9f2bf08ab856",
+      "actualSha256": "ae79d8db56d4970b9703734742cf102498ca2c04740ac3889e6b9f2bf08ab856"
+    },
+    {
+      "file": "app-utils.js",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "eb2737b3dfe65b58e0c18dc2b2c0a507f41d4304cb94a49134e0a91cbe67a929",
+      "actualSha256": "eb2737b3dfe65b58e0c18dc2b2c0a507f41d4304cb94a49134e0a91cbe67a929"
+    },
+    {
+      "file": "assets/avion.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "b5f4f11571c81530d8acb0cd0836da0c213fbdce6e725aa43945a68583d6394b",
+      "actualSha256": "b5f4f11571c81530d8acb0cd0836da0c213fbdce6e725aa43945a68583d6394b"
+    },
+    {
+      "file": "assets/barco.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "04b0a3817c844ed47c87d3aec9a19de276bcdcb35a316b9c7589fb81b4e49a79",
+      "actualSha256": "04b0a3817c844ed47c87d3aec9a19de276bcdcb35a316b9c7589fb81b4e49a79"
+    },
+    {
+      "file": "assets/brontosaurio.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "d572fe6d15949958d405144e7b17d9e35c9cb5e9a52c2eba7f0de749db6fd45f",
+      "actualSha256": "d572fe6d15949958d405144e7b17d9e35c9cb5e9a52c2eba7f0de749db6fd45f"
+    },
+    {
+      "file": "assets/buho.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "4ea26ff0cec148b59f72b11993dc3dd6e87035aef5355ba95c9e97f5c40f1879",
+      "actualSha256": "4ea26ff0cec148b59f72b11993dc3dd6e87035aef5355ba95c9e97f5c40f1879"
+    },
+    {
+      "file": "assets/butterfly-v2.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "57d4535a86fd5ef987a9cb97c6e2195f5e6703a458cb05cf93d6f917572910ef",
+      "actualSha256": "57d4535a86fd5ef987a9cb97c6e2195f5e6703a458cb05cf93d6f917572910ef"
+    },
+    {
+      "file": "assets/camion.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "9d754b070f5a90dfc6b9d6d77e1a830c595d17c46679438f64173b3a91b45346",
+      "actualSha256": "9d754b070f5a90dfc6b9d6d77e1a830c595d17c46679438f64173b3a91b45346"
+    },
+    {
+      "file": "assets/campana-navidad.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "acd140b07f54737a1a22f1551ed432f64d83aa6a1f24d18691531fe777848709",
+      "actualSha256": "acd140b07f54737a1a22f1551ed432f64d83aa6a1f24d18691531fe777848709"
+    },
+    {
+      "file": "assets/car-v2.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "7c2cabba7ada10c62927ea553ecf44b46c6ebecf861729e673c9451b5f8040d7",
+      "actualSha256": "7c2cabba7ada10c62927ea553ecf44b46c6ebecf861729e673c9451b5f8040d7"
+    },
+    {
+      "file": "assets/carruaje-real.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "db0f9c9335650aea38ea650b98ca3d0dc2d678cfbb9a7705acf8e6ebf854f8ca",
+      "actualSha256": "db0f9c9335650aea38ea650b98ca3d0dc2d678cfbb9a7705acf8e6ebf854f8ca"
+    },
+    {
+      "file": "assets/castle-v2.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "7160a25e906834d2b43ea5d0cf099a5ae440cc12a9385554010dc1eb6135b610",
+      "actualSha256": "7160a25e906834d2b43ea5d0cf099a5ae440cc12a9385554010dc1eb6135b610"
+    },
+    {
+      "file": "assets/cat-v2.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "579cc189a3f3e0e04c90f19ae84f6c4c088baec52168f79c5757f9c656a544b0",
+      "actualSha256": "579cc189a3f3e0e04c90f19ae84f6c4c088baec52168f79c5757f9c656a544b0"
+    },
+    {
+      "file": "assets/christmas-tree-v2.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "191fd73b5d9ba9cca5a7d58236f42997f7907316df79b1408242b6e75bb44404",
+      "actualSha256": "191fd73b5d9ba9cca5a7d58236f42997f7907316df79b1408242b6e75bb44404"
+    },
+    {
+      "file": "assets/conejo.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "b5bdd3b5b5a8870413afc8789919e7cf6690cc16784dedf9c371cb543941f262",
+      "actualSha256": "b5bdd3b5b5a8870413afc8789919e7cf6690cc16784dedf9c371cb543941f262"
+    },
+    {
+      "file": "assets/corona-real.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "c79224c783ba6db91b6dacad862bc2ced3b84628b99e00e9ba90362053d01dc6",
+      "actualSha256": "c79224c783ba6db91b6dacad862bc2ced3b84628b99e00e9ba90362053d01dc6"
+    },
+    {
+      "file": "assets/dinosaur-v2.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "300d687cec369ccdde39ae6ad3148a2e19376c566396ce4e78cf14f4c8c68c08",
+      "actualSha256": "300d687cec369ccdde39ae6ad3148a2e19376c566396ce4e78cf14f4c8c68c08"
+    },
+    {
+      "file": "assets/dog-v2.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "742da3287bb216e29cbc602915120f5a7da69749f88f0d0b150ee8afbb34e3a2",
+      "actualSha256": "742da3287bb216e29cbc602915120f5a7da69749f88f0d0b150ee8afbb34e3a2"
+    },
+    {
+      "file": "assets/dragon.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "725fdb08224af3ae70b6f4c76f105cf2e390f082fae907bc5df6bc6ca60ff6b0",
+      "actualSha256": "725fdb08224af3ae70b6f4c76f105cf2e390f082fae907bc5df6bc6ca60ff6b0"
+    },
+    {
+      "file": "assets/elefante.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "82f3d207dc245f92cc94e638be918b6bfd50835de64ab760a59d4eaf91dcee06",
+      "actualSha256": "82f3d207dc245f92cc94e638be918b6bfd50835de64ab760a59d4eaf91dcee06"
+    },
+    {
+      "file": "assets/gabby/gabby-01-gato-volador.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "e87f1dbd2b6c60dfd652eeb23cb1bbb752569a3498321a68bacebe3d720d7f91",
+      "actualSha256": "e87f1dbd2b6c60dfd652eeb23cb1bbb752569a3498321a68bacebe3d720d7f91"
+    },
+    {
+      "file": "assets/gabby/gabby-02-gato-flores.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "b127384a1ca24bcb55bb5c0a17fbf8c8c071ba3050309a07bb77b93e74a86395",
+      "actualSha256": "b127384a1ca24bcb55bb5c0a17fbf8c8c071ba3050309a07bb77b93e74a86395"
+    },
+    {
+      "file": "assets/gabby/gabby-03-auto.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "7d9bb2fdb85c35e3bcd3f6774862d478164d2df05bc130d51479d72335448de0",
+      "actualSha256": "7d9bb2fdb85c35e3bcd3f6774862d478164d2df05bc130d51479d72335448de0"
+    },
+    {
+      "file": "assets/gabby/gabby-04-camping.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "14dceba181f2ce210b1ef89586b346d913a63f85edf1b5689beb29895574345e",
+      "actualSha256": "14dceba181f2ce210b1ef89586b346d913a63f85edf1b5689beb29895574345e"
+    },
+    {
+      "file": "assets/gabby/gabby-05-casa-y-auto.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "485145e7fbda025e56c962bc4db82a31338375bc7ae9880c3a37b7df5459b1c2",
+      "actualSha256": "485145e7fbda025e56c962bc4db82a31338375bc7ae9880c3a37b7df5459b1c2"
+    },
+    {
+      "file": "assets/gabby/gabby-06-pintando.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "407bd29fc69a47a17eb1fc64f98144872045100f2c9198fe449befa935677d1d",
+      "actualSha256": "407bd29fc69a47a17eb1fc64f98144872045100f2c9198fe449befa935677d1d"
+    },
+    {
+      "file": "assets/gabby/gabby-07-gato-espacial.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "3a6f5c8bec25cc5b9a5b9e80750ac2debfa5e7c253d062b0eef1b87c8d165246",
+      "actualSha256": "3a6f5c8bec25cc5b9a5b9e80750ac2debfa5e7c253d062b0eef1b87c8d165246"
+    },
+    {
+      "file": "assets/gabby/gabby-08-leyendo.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "821af273e1aad7af87b90765f367dc2e01c9d1dc03f4ad438c042c695a7def6b",
+      "actualSha256": "821af273e1aad7af87b90765f367dc2e01c9d1dc03f4ad438c042c695a7def6b"
+    },
+    {
+      "file": "assets/gabby/gabby-09-gato-simple.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "b5c506dc144bcec23c291a01671977ccffb1c5d4790e8a9ad492c7919cfac2e1",
+      "actualSha256": "b5c506dc144bcec23c291a01671977ccffb1c5d4790e8a9ad492c7919cfac2e1"
+    },
+    {
+      "file": "assets/gabby/gabby-10-amigos.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "38d06601737b2ac098523b578aea0b0424614cccfd5bda2380243e8383a626a1",
+      "actualSha256": "38d06601737b2ac098523b578aea0b0424614cccfd5bda2380243e8383a626a1"
+    },
+    {
+      "file": "assets/gabby/gabby-11-sala.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "026a1647200abcac485aefd4f3238b48316ed120e66f1431382f5255653b6889",
+      "actualSha256": "026a1647200abcac485aefd4f3238b48316ed120e66f1431382f5255653b6889"
+    },
+    {
+      "file": "assets/gabby/gabby-12-gato-disfraz.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "87d3c414bed017f495b698382ceaa12229c0c21db4da5b3a47651a4793521a33",
+      "actualSha256": "87d3c414bed017f495b698382ceaa12229c0c21db4da5b3a47651a4793521a33"
+    },
+    {
+      "file": "assets/gabby/gabby-13-cumpleanos.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "a4915b2eac129e60c87602502563913c81d63898c6593d942cafa1f39a5cb81a",
+      "actualSha256": "a4915b2eac129e60c87602502563913c81d63898c6593d942cafa1f39a5cb81a"
+    },
+    {
+      "file": "assets/gabby/gabby-14-catrat.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "d039c165f48726bc6456f8039d4836ae3639d65bb000cd4cc52cf1665d269761",
+      "actualSha256": "d039c165f48726bc6456f8039d4836ae3639d65bb000cd4cc52cf1665d269761"
+    },
+    {
+      "file": "assets/gabby/gabby-15-gato-espacial-2.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "458168bcc18a42106b9f5e3acdd930806b03e4ce6990347de4e5d596755fb899",
+      "actualSha256": "458168bcc18a42106b9f5e3acdd930806b03e4ce6990347de4e5d596755fb899"
+    },
+    {
+      "file": "assets/gabby/gabby-16-gato-caja.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "a347055bdafb4dd5e18fb085afbc7d7014cc7a11bd39579251d065316ff6ea71",
+      "actualSha256": "a347055bdafb4dd5e18fb085afbc7d7014cc7a11bd39579251d065316ff6ea71"
+    },
+    {
+      "file": "assets/gabby/gabby-17-poster-amigos.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "b4acc99a068b4c9c2a6c61a1643ba5cb31a7d115cb1e945c18120c2aa1c16b6a",
+      "actualSha256": "b4acc99a068b4c9c2a6c61a1643ba5cb31a7d115cb1e945c18120c2aa1c16b6a"
+    },
+    {
+      "file": "assets/gabby/gabby-18-casa-magica.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "9e6bc7d147b7e321e79bc45c01a114228075ea6a71b69ad67c74026409e17dca",
+      "actualSha256": "9e6bc7d147b7e321e79bc45c01a114228075ea6a71b69ad67c74026409e17dca"
+    },
+    {
+      "file": "assets/gabby/gabby-19-casa-frontal.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "195817970ccbeaae7bf08fd37595ef5e9a4d0be1c4d15d73aa5e6ab1f253f07f",
+      "actualSha256": "195817970ccbeaae7bf08fd37595ef5e9a4d0be1c4d15d73aa5e6ab1f253f07f"
+    },
+    {
+      "file": "assets/gabby-02-gato-flores-cat04-20261014.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "f1a77de2f921555a3eebda66f85546f41d951a3205493d72aeb52e8f33070c4d",
+      "actualSha256": "f1a77de2f921555a3eebda66f85546f41d951a3205493d72aeb52e8f33070c4d"
+    },
+    {
+      "file": "assets/gabby-04-camping-cat04-20261014.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "2e763e1510f21b0b885133e906846900f3254aadb3e0b591ed02d12fc578c246",
+      "actualSha256": "2e763e1510f21b0b885133e906846900f3254aadb3e0b591ed02d12fc578c246"
+    },
+    {
+      "file": "assets/gabby-06-pintando-cat04-20261014.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "d8d85eaca759a7a12a19bce77db5bd72bc471e7a0aea4fb8710fdd56bbe22e87",
+      "actualSha256": "d8d85eaca759a7a12a19bce77db5bd72bc471e7a0aea4fb8710fdd56bbe22e87"
+    },
+    {
+      "file": "assets/gabby-10-amigos-cat04-20261014.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "8f80f4907d853b8b2726081502977066dd5ab5d6af5383969c6eb199ca2bda99",
+      "actualSha256": "8f80f4907d853b8b2726081502977066dd5ab5d6af5383969c6eb199ca2bda99"
+    },
+    {
+      "file": "assets/gabby-13-cumpleanos-cat04-20261014.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "01c039d77e7f6f279e9a66dc975c9f834cbfb0189a544138fb26b83b8dd46dbd",
+      "actualSha256": "01c039d77e7f6f279e9a66dc975c9f834cbfb0189a544138fb26b83b8dd46dbd"
+    },
+    {
+      "file": "assets/gabby-18-casa-magica-cat04-20261014.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "69afce861a9007aaff2407d1f571948404c3b1ac04bd09401382aa8f17b90db5",
+      "actualSha256": "69afce861a9007aaff2407d1f571948404c3b1ac04bd09401382aa8f17b90db5"
+    },
+    {
+      "file": "assets/hada.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "88006b6e96b86d37ff5a10994ae05eabaf786b38b4eb0caef99c275120627447",
+      "actualSha256": "88006b6e96b86d37ff5a10994ae05eabaf786b38b4eb0caef99c275120627447"
+    },
+    {
+      "file": "assets/house1.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "dc1e9fd23080718ee6722ed69f28427632954fdaa3973ea6dc6d71babaf38130",
+      "actualSha256": "dc1e9fd23080718ee6722ed69f28427632954fdaa3973ea6dc6d71babaf38130"
+    },
+    {
+      "file": "assets/house2.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "efaaba694e8e699f7c7f92ca7f585b5385577e2b6d144e4c4a306e1bf4ee822d",
+      "actualSha256": "efaaba694e8e699f7c7f92ca7f585b5385577e2b6d144e4c4a306e1bf4ee822d"
+    },
+    {
+      "file": "assets/house3.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "88285ff4def9d6eaecbc3b70745a5b9fb80aa8dd9452f6a90343f0c3a3552d6a",
+      "actualSha256": "88285ff4def9d6eaecbc3b70745a5b9fb80aa8dd9452f6a90343f0c3a3552d6a"
+    },
+    {
+      "file": "assets/house4.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "79deb9c75e513fa5383dbe1cc3cdb92fe303e147b112b3e9e5b45e62d01df5b3",
+      "actualSha256": "79deb9c75e513fa5383dbe1cc3cdb92fe303e147b112b3e9e5b45e62d01df5b3"
+    },
+    {
+      "file": "assets/house5.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "a46582ec42baa4ab39da98f3164b255df8282b3ef921079e9182648a9148b25f",
+      "actualSha256": "a46582ec42baa4ab39da98f3164b255df8282b3ef921079e9182648a9148b25f"
+    },
+    {
+      "file": "assets/landscape3.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "c0de863f64721de51f85d3d5fdeb512447a6cb068f18dd832abe87ecec8139d9",
+      "actualSha256": "c0de863f64721de51f85d3d5fdeb512447a6cb068f18dd832abe87ecec8139d9"
+    },
+    {
+      "file": "assets/landscape4.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "6c664f5f773be889ff21761461846793eeac8e1032a461d65935fab94157122e",
+      "actualSha256": "6c664f5f773be889ff21761461846793eeac8e1032a461d65935fab94157122e"
+    },
+    {
+      "file": "assets/landscape5.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "c83bc0308a8b2d47f458ec7be28adb8e7ca304a0aa26a175144435068a141215",
+      "actualSha256": "c83bc0308a8b2d47f458ec7be28adb8e7ca304a0aa26a175144435068a141215"
+    },
+    {
+      "file": "assets/muneco-nieve.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "9a8b7d5578e2d21fb76a2bba1b4ded8911f29eba80408d6430e94c54ff8be2cc",
+      "actualSha256": "9a8b7d5578e2d21fb76a2bba1b4ded8911f29eba80408d6430e94c54ff8be2cc"
+    },
+    {
+      "file": "assets/outline_house.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "d74e3224c52bf68a6950623e277c0070265edfda956039288b63e48f326e160c",
+      "actualSha256": "d74e3224c52bf68a6950623e277c0070265edfda956039288b63e48f326e160c"
+    },
+    {
+      "file": "assets/pez.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "d33deb442ab2f587b33550c3d45b8708f8c146be8a6f30ae39eae0e012d4dec5",
+      "actualSha256": "d33deb442ab2f587b33550c3d45b8708f8c146be8a6f30ae39eae0e012d4dec5"
+    },
+    {
+      "file": "assets/pony1-cat04-20261014.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "5a222e3549b4bf20a355ccc3b6154d5fa6e412bcfc555264372df1e1ba3c0063",
+      "actualSha256": "5a222e3549b4bf20a355ccc3b6154d5fa6e412bcfc555264372df1e1ba3c0063"
+    },
+    {
+      "file": "assets/pony1.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "98333a6ab5e172d29fbe71142863c3a659485f1a88857d7ff187d3f078528b68",
+      "actualSha256": "98333a6ab5e172d29fbe71142863c3a659485f1a88857d7ff187d3f078528b68"
+    },
+    {
+      "file": "assets/pony2-cat04-20261014.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "39ce4444f260a3ddd931fb9554420a000898192bbb85274375b453fc8fcf0d2e",
+      "actualSha256": "39ce4444f260a3ddd931fb9554420a000898192bbb85274375b453fc8fcf0d2e"
+    },
+    {
+      "file": "assets/pony2.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "283f4bdcb8271ffbe7fa7c31f1fdb3d9143810d9da0690146dc17c8593caa281",
+      "actualSha256": "283f4bdcb8271ffbe7fa7c31f1fdb3d9143810d9da0690146dc17c8593caa281"
+    },
+    {
+      "file": "assets/pony3.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "c51b425620809990ba91d26bf429c3cf530bee8bfb8a07b6b774e5582d582246",
+      "actualSha256": "c51b425620809990ba91d26bf429c3cf530bee8bfb8a07b6b774e5582d582246"
+    },
+    {
+      "file": "assets/pony4.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "3517cda465c983fb317cdb112c3f5fefa510c87f340354d5581b6bde08a20688",
+      "actualSha256": "3517cda465c983fb317cdb112c3f5fefa510c87f340354d5581b6bde08a20688"
+    },
+    {
+      "file": "assets/princess-v2.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "6dd2a9fb0f6f1ecbc94307a86c740a3244c1779de681968ab879d30a2484d141",
+      "actualSha256": "6dd2a9fb0f6f1ecbc94307a86c740a3244c1779de681968ab879d30a2484d141"
+    },
+    {
+      "file": "assets/pterodactilo.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "cfce4c0fa2cd659586d1b5b5a1351ba621a3231d75324f12a82d63a375728209",
+      "actualSha256": "cfce4c0fa2cd659586d1b5b5a1351ba621a3231d75324f12a82d63a375728209"
+    },
+    {
+      "file": "assets/README.md",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "6f18a4bf2cfca57b5991142a0d01ef74d5a38a16f014dd39ab4b18e2cd230239",
+      "actualSha256": "6f18a4bf2cfca57b5991142a0d01ef74d5a38a16f014dd39ab4b18e2cd230239"
+    },
+    {
+      "file": "assets/regalo-navidad.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "c163caf19d7a4fc06e00423cbe7e71b884f3d9319ece886ee66f28bf87aaabba",
+      "actualSha256": "c163caf19d7a4fc06e00423cbe7e71b884f3d9319ece886ee66f28bf87aaabba"
+    },
+    {
+      "file": "assets/rocket-v2.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "618e62754a7f3eed8ff6a362ca78ae2771df00fc71c4ceb89cbe6ffc9427426c",
+      "actualSha256": "618e62754a7f3eed8ff6a362ca78ae2771df00fc71c4ceb89cbe6ffc9427426c"
+    },
+    {
+      "file": "assets/sirena.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "c9a78ebafeea81fb0565ce168eda04cd1668b8c761d50e41981372d75e8b3624",
+      "actualSha256": "c9a78ebafeea81fb0565ce168eda04cd1668b8c761d50e41981372d75e8b3624"
+    },
+    {
+      "file": "assets/thumbs/avion.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "cae266253ef6c244f761395eb00d78ec991efebe9ece4b474de23dca1c36c065",
+      "actualSha256": "cae266253ef6c244f761395eb00d78ec991efebe9ece4b474de23dca1c36c065"
+    },
+    {
+      "file": "assets/thumbs/barco.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "4c1320b88e7cec5bc236477fd151adb39bbed8874c418ab8eca537ccaf3634be",
+      "actualSha256": "4c1320b88e7cec5bc236477fd151adb39bbed8874c418ab8eca537ccaf3634be"
+    },
+    {
+      "file": "assets/thumbs/brontosaurio.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "788824c9c6b17316ba7b5b5e6282a38235b36ce5a38d85c7c396bcbecc4cf373",
+      "actualSha256": "788824c9c6b17316ba7b5b5e6282a38235b36ce5a38d85c7c396bcbecc4cf373"
+    },
+    {
+      "file": "assets/thumbs/buho.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "e96c602d06084e969ff1c60f0c3725cbd6fe3b664f18ccbd614822ef80baa36c",
+      "actualSha256": "e96c602d06084e969ff1c60f0c3725cbd6fe3b664f18ccbd614822ef80baa36c"
+    },
+    {
+      "file": "assets/thumbs/butterfly-v2.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "dd4f8e1c19c2a69750fe142b7869e41e8e50ce1663a7a92e25a0df0e7c5ea6bb",
+      "actualSha256": "dd4f8e1c19c2a69750fe142b7869e41e8e50ce1663a7a92e25a0df0e7c5ea6bb"
+    },
+    {
+      "file": "assets/thumbs/camion.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "fdc1b4eae56e676437b43679f0ee6b9846499a424c8f48eadf3391b1fef305e8",
+      "actualSha256": "fdc1b4eae56e676437b43679f0ee6b9846499a424c8f48eadf3391b1fef305e8"
+    },
+    {
+      "file": "assets/thumbs/campana-navidad.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "325caa280a46a383c0be8093e191ceeea53e5accdecf36a1b9c6d031ee9efaff",
+      "actualSha256": "325caa280a46a383c0be8093e191ceeea53e5accdecf36a1b9c6d031ee9efaff"
+    },
+    {
+      "file": "assets/thumbs/car-v2.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "24b5ee59118b9c9f6be889dc8ad0a8c455e7f0e2cf4e7f84bbc30917be974437",
+      "actualSha256": "24b5ee59118b9c9f6be889dc8ad0a8c455e7f0e2cf4e7f84bbc30917be974437"
+    },
+    {
+      "file": "assets/thumbs/carruaje-real.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "6b0a6181dd1284bbb17774c4c6fab4b1d2f8ff0ac772773290ec69f97a51724e",
+      "actualSha256": "6b0a6181dd1284bbb17774c4c6fab4b1d2f8ff0ac772773290ec69f97a51724e"
+    },
+    {
+      "file": "assets/thumbs/castle-v2.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "eac274ed993ab06afaaac4cee9b2afba704d4b621809ef746e32222d17e967a0",
+      "actualSha256": "eac274ed993ab06afaaac4cee9b2afba704d4b621809ef746e32222d17e967a0"
+    },
+    {
+      "file": "assets/thumbs/cat-v2.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "e768bcf69ab88761cfe4307b5cf8204082d49323421eb55cbe454be0a42772ff",
+      "actualSha256": "e768bcf69ab88761cfe4307b5cf8204082d49323421eb55cbe454be0a42772ff"
+    },
+    {
+      "file": "assets/thumbs/christmas-tree-v2.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "3ee1e0d15542725f3af9547e973e285594c1fab06256b1175017adb43799c8b3",
+      "actualSha256": "3ee1e0d15542725f3af9547e973e285594c1fab06256b1175017adb43799c8b3"
+    },
+    {
+      "file": "assets/thumbs/conejo.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "0f93430632ee85924a18035c0df21d8f103d00d4ac185618a0cad71345080a2b",
+      "actualSha256": "0f93430632ee85924a18035c0df21d8f103d00d4ac185618a0cad71345080a2b"
+    },
+    {
+      "file": "assets/thumbs/corona-real.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "199fef6aa224f9df2f144ab6fec1a61de65791e64f0978ae01909a21d76f118d",
+      "actualSha256": "199fef6aa224f9df2f144ab6fec1a61de65791e64f0978ae01909a21d76f118d"
+    },
+    {
+      "file": "assets/thumbs/dinosaur-v2.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "e6c5ae8089be5ea1e04017fa4bdcc2b791c285c01459d9ba1113971203968cfe",
+      "actualSha256": "e6c5ae8089be5ea1e04017fa4bdcc2b791c285c01459d9ba1113971203968cfe"
+    },
+    {
+      "file": "assets/thumbs/dog-v2.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "cf084566dc0013675d510d42bfb9b489cba75d8e3d4a5b76f25f9f2b771e9835",
+      "actualSha256": "cf084566dc0013675d510d42bfb9b489cba75d8e3d4a5b76f25f9f2b771e9835"
+    },
+    {
+      "file": "assets/thumbs/dragon.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "88653fdb87baf7e5097d61e1ebd793cb3f64ed76756f50036e6428fe75c94f7d",
+      "actualSha256": "88653fdb87baf7e5097d61e1ebd793cb3f64ed76756f50036e6428fe75c94f7d"
+    },
+    {
+      "file": "assets/thumbs/elefante.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "85f28e5af2fa6feab4f97af8c8cba10ec81828dcf987f8c600533ba4b048f1d9",
+      "actualSha256": "85f28e5af2fa6feab4f97af8c8cba10ec81828dcf987f8c600533ba4b048f1d9"
+    },
+    {
+      "file": "assets/thumbs/gabby-01-gato-volador.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "ecc13111762891b3cc2bb148fced48b45894e8973920bc20dfa84380106a08a7",
+      "actualSha256": "ecc13111762891b3cc2bb148fced48b45894e8973920bc20dfa84380106a08a7"
+    },
+    {
+      "file": "assets/thumbs/gabby-02-gato-flores-cat04-20261014.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "46331daf6de947937f6b7f87663ce7393fa8aa860956bf7b580b781829da9c98",
+      "actualSha256": "46331daf6de947937f6b7f87663ce7393fa8aa860956bf7b580b781829da9c98"
+    },
+    {
+      "file": "assets/thumbs/gabby-02-gato-flores.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "663d7dd0ddbb96368562087bcc39c75621c10a76c35e42b2c4a38ead31f813ca",
+      "actualSha256": "663d7dd0ddbb96368562087bcc39c75621c10a76c35e42b2c4a38ead31f813ca"
+    },
+    {
+      "file": "assets/thumbs/gabby-03-auto.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "5953c272dec7ac9e1322d642e444736ba06cbb8d416985ec4c4b6a7df142b2ef",
+      "actualSha256": "5953c272dec7ac9e1322d642e444736ba06cbb8d416985ec4c4b6a7df142b2ef"
+    },
+    {
+      "file": "assets/thumbs/gabby-04-camping-cat04-20261014.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "017b357105545b14f5d4b2ecbdc4d500be4f324b9b737947bcb8da8d466da630",
+      "actualSha256": "017b357105545b14f5d4b2ecbdc4d500be4f324b9b737947bcb8da8d466da630"
+    },
+    {
+      "file": "assets/thumbs/gabby-04-camping.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "c04451d48b3d94e6745abec021e95d3503e46ed8100937ca96400fa8a9a02180",
+      "actualSha256": "c04451d48b3d94e6745abec021e95d3503e46ed8100937ca96400fa8a9a02180"
+    },
+    {
+      "file": "assets/thumbs/gabby-05-casa-y-auto.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "ca0f540a600fbcbd4bfa9b6284c018a31a9048a00536fef405fb78e6bf6a502f",
+      "actualSha256": "ca0f540a600fbcbd4bfa9b6284c018a31a9048a00536fef405fb78e6bf6a502f"
+    },
+    {
+      "file": "assets/thumbs/gabby-06-pintando-cat04-20261014.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "f8cd5cd5d453dfec300d6226d3afcc15c2439577cc5fdf9af648b1f75233b560",
+      "actualSha256": "f8cd5cd5d453dfec300d6226d3afcc15c2439577cc5fdf9af648b1f75233b560"
+    },
+    {
+      "file": "assets/thumbs/gabby-06-pintando.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "91daa9bc93b9e43e411afd228001d36f9a8060c922fd46bba7848f4dd066adec",
+      "actualSha256": "91daa9bc93b9e43e411afd228001d36f9a8060c922fd46bba7848f4dd066adec"
+    },
+    {
+      "file": "assets/thumbs/gabby-07-gato-espacial.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "d192096253ade701ac11890270edbd408c80b1b5b517e098e4f6d947feff1a64",
+      "actualSha256": "d192096253ade701ac11890270edbd408c80b1b5b517e098e4f6d947feff1a64"
+    },
+    {
+      "file": "assets/thumbs/gabby-08-leyendo.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "ad0694fd9424265d1987ccfb76bcc3db5e380aca83280d4b9c5316f17e1bbd1a",
+      "actualSha256": "ad0694fd9424265d1987ccfb76bcc3db5e380aca83280d4b9c5316f17e1bbd1a"
+    },
+    {
+      "file": "assets/thumbs/gabby-09-gato-simple.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "538462d35b94e3466aa0cbf56ea8dcdbc189abf89d93f7bc7871f927018c0aa9",
+      "actualSha256": "538462d35b94e3466aa0cbf56ea8dcdbc189abf89d93f7bc7871f927018c0aa9"
+    },
+    {
+      "file": "assets/thumbs/gabby-10-amigos-cat04-20261014.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "87bde2b7fdbbd95b7409fa33ae886e0b32cfb24246ac48b695549c48af41c54b",
+      "actualSha256": "87bde2b7fdbbd95b7409fa33ae886e0b32cfb24246ac48b695549c48af41c54b"
+    },
+    {
+      "file": "assets/thumbs/gabby-10-amigos.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "fa1502fd7426cea8c925c1bef56e0cbdb0790dca8887e80021b09c963fad6de0",
+      "actualSha256": "fa1502fd7426cea8c925c1bef56e0cbdb0790dca8887e80021b09c963fad6de0"
+    },
+    {
+      "file": "assets/thumbs/gabby-11-sala.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "0e1ab14ea3b13fa90d06458c3e686d93c92dd57b0d9b961a714b9f3c6b4afa9b",
+      "actualSha256": "0e1ab14ea3b13fa90d06458c3e686d93c92dd57b0d9b961a714b9f3c6b4afa9b"
+    },
+    {
+      "file": "assets/thumbs/gabby-12-gato-disfraz.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "fcbef874d9e85549f046551673d83c4bcdb6f12ed39d97b2db7480010bae6aa4",
+      "actualSha256": "fcbef874d9e85549f046551673d83c4bcdb6f12ed39d97b2db7480010bae6aa4"
+    },
+    {
+      "file": "assets/thumbs/gabby-13-cumpleanos-cat04-20261014.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "fe1c6ce31e995c22d8b3d127b688edcdddd7a65a0624f02eca760f3667216152",
+      "actualSha256": "fe1c6ce31e995c22d8b3d127b688edcdddd7a65a0624f02eca760f3667216152"
+    },
+    {
+      "file": "assets/thumbs/gabby-13-cumpleanos.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "7b0217b68b8543e47a0b3e16a6b50d2dce1171ca078e2898068b8d3bc14bbf39",
+      "actualSha256": "7b0217b68b8543e47a0b3e16a6b50d2dce1171ca078e2898068b8d3bc14bbf39"
+    },
+    {
+      "file": "assets/thumbs/gabby-14-catrat.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "1d2c82d5e91611c68f0924a9caa533d1f9772328e48e61810dc23998cac136f2",
+      "actualSha256": "1d2c82d5e91611c68f0924a9caa533d1f9772328e48e61810dc23998cac136f2"
+    },
+    {
+      "file": "assets/thumbs/gabby-15-gato-espacial-2.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "c27f877a72be3f9f4d2c538d39c413a36eb1dee242dd588bb217bb56e5cfe1a9",
+      "actualSha256": "c27f877a72be3f9f4d2c538d39c413a36eb1dee242dd588bb217bb56e5cfe1a9"
+    },
+    {
+      "file": "assets/thumbs/gabby-16-gato-caja.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "37b2d735c35f8265eef38cd019a06e123c36ceead5e776e0a98919d03beb8b74",
+      "actualSha256": "37b2d735c35f8265eef38cd019a06e123c36ceead5e776e0a98919d03beb8b74"
+    },
+    {
+      "file": "assets/thumbs/gabby-17-poster-amigos.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "f927415f53f66ace1acb16c5546ab9cb6cfa8e84c5c4cde55389410653f5d17d",
+      "actualSha256": "f927415f53f66ace1acb16c5546ab9cb6cfa8e84c5c4cde55389410653f5d17d"
+    },
+    {
+      "file": "assets/thumbs/gabby-18-casa-magica-cat04-20261014.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "f878a0663cf4927dda5869a59081a7021c9b3d460fa3ee079dc60c33a03f93f6",
+      "actualSha256": "f878a0663cf4927dda5869a59081a7021c9b3d460fa3ee079dc60c33a03f93f6"
+    },
+    {
+      "file": "assets/thumbs/gabby-18-casa-magica.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "97c4889d57c7165d265904f311a6d013e67408da02d571f5ce1e28df03e4ed04",
+      "actualSha256": "97c4889d57c7165d265904f311a6d013e67408da02d571f5ce1e28df03e4ed04"
+    },
+    {
+      "file": "assets/thumbs/gabby-19-casa-frontal.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "61445ae24735a0d40c86e8dab34fe97ec1fbf2e4f9b8922dc79374a232f0c16a",
+      "actualSha256": "61445ae24735a0d40c86e8dab34fe97ec1fbf2e4f9b8922dc79374a232f0c16a"
+    },
+    {
+      "file": "assets/thumbs/hada.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "7a0d3e6cd7597a158be7fdb420922b9c67ca9d3ee5e18bb34940ba1a53706fb6",
+      "actualSha256": "7a0d3e6cd7597a158be7fdb420922b9c67ca9d3ee5e18bb34940ba1a53706fb6"
+    },
+    {
+      "file": "assets/thumbs/house1.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "5bc895efaa6eb75ec0a4a3b2c016b2a548edb49683798a795f5b8926a12b1990",
+      "actualSha256": "5bc895efaa6eb75ec0a4a3b2c016b2a548edb49683798a795f5b8926a12b1990"
+    },
+    {
+      "file": "assets/thumbs/house2.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "b252a983b41742b8c03e22dbb329b17d9cba01c546bd7258f2151dfe5731b6df",
+      "actualSha256": "b252a983b41742b8c03e22dbb329b17d9cba01c546bd7258f2151dfe5731b6df"
+    },
+    {
+      "file": "assets/thumbs/house3.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "078d501f2c1dce1bd944f9702b800c5286d8be7364c87eafe1c812b5f8ce5217",
+      "actualSha256": "078d501f2c1dce1bd944f9702b800c5286d8be7364c87eafe1c812b5f8ce5217"
+    },
+    {
+      "file": "assets/thumbs/house4.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "869cfba0a95a6d1222ee51b25cad38208b2e77f56bbebc072dca37b805880f31",
+      "actualSha256": "869cfba0a95a6d1222ee51b25cad38208b2e77f56bbebc072dca37b805880f31"
+    },
+    {
+      "file": "assets/thumbs/house5.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "b29133c0322084285628a1a252181bc1d0a59fe5eb8cfdee550f40edcab0abe8",
+      "actualSha256": "b29133c0322084285628a1a252181bc1d0a59fe5eb8cfdee550f40edcab0abe8"
+    },
+    {
+      "file": "assets/thumbs/landscape3.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "5cc92310eb806b84acb25cd618125adcd80e6793dc26b1bd1bedb623badb7a33",
+      "actualSha256": "5cc92310eb806b84acb25cd618125adcd80e6793dc26b1bd1bedb623badb7a33"
+    },
+    {
+      "file": "assets/thumbs/landscape4.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "c04b79fd6e7df3b9b83a4b0fe279a0a2577cb41c05b20568346c457cb506a914",
+      "actualSha256": "c04b79fd6e7df3b9b83a4b0fe279a0a2577cb41c05b20568346c457cb506a914"
+    },
+    {
+      "file": "assets/thumbs/landscape5.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "807b0aa403a6cd836a0a5abb9bff7821122e507adfd2614adc6edf9f868d6c39",
+      "actualSha256": "807b0aa403a6cd836a0a5abb9bff7821122e507adfd2614adc6edf9f868d6c39"
+    },
+    {
+      "file": "assets/thumbs/muneco-nieve.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "50ce12d7cf4c21e10ca6ff27ab68ec1c2e69c0e4b19b08e1536c8c3701678c48",
+      "actualSha256": "50ce12d7cf4c21e10ca6ff27ab68ec1c2e69c0e4b19b08e1536c8c3701678c48"
+    },
+    {
+      "file": "assets/thumbs/outline_house.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "51d7509a99ccc1393182157bdabef5134be29cf40e6a296ef2abed05e8095964",
+      "actualSha256": "51d7509a99ccc1393182157bdabef5134be29cf40e6a296ef2abed05e8095964"
+    },
+    {
+      "file": "assets/thumbs/pez.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "18d075481b983a1f5d992e3237b4ebdb24df28824fd9ffa448110e9ec91e38eb",
+      "actualSha256": "18d075481b983a1f5d992e3237b4ebdb24df28824fd9ffa448110e9ec91e38eb"
+    },
+    {
+      "file": "assets/thumbs/pony1-cat04-20261014.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "1569b62ca40a7e3e53bd90a4db2449f051255bcf5271ff98c998121128f4db95",
+      "actualSha256": "1569b62ca40a7e3e53bd90a4db2449f051255bcf5271ff98c998121128f4db95"
+    },
+    {
+      "file": "assets/thumbs/pony1.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "7c8e4a0f34c9ef3ff1c56e04298b13d48795b1c1cc8e49ae8eab7b1e2970f80a",
+      "actualSha256": "7c8e4a0f34c9ef3ff1c56e04298b13d48795b1c1cc8e49ae8eab7b1e2970f80a"
+    },
+    {
+      "file": "assets/thumbs/pony2-cat04-20261014.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "932c02c388b27ab3dd4e9f3bf0b5d7663a37856e932cac6a9ac2bcfc39836517",
+      "actualSha256": "932c02c388b27ab3dd4e9f3bf0b5d7663a37856e932cac6a9ac2bcfc39836517"
+    },
+    {
+      "file": "assets/thumbs/pony2.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "c1fb77bb74dc5f40130e113210aec9f6b24da05672f71bebbbb90a253145d921",
+      "actualSha256": "c1fb77bb74dc5f40130e113210aec9f6b24da05672f71bebbbb90a253145d921"
+    },
+    {
+      "file": "assets/thumbs/pony3.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "572a2952f06034b3790c0bb605a07860c47a2441e9360b017d8cc0f0b906c256",
+      "actualSha256": "572a2952f06034b3790c0bb605a07860c47a2441e9360b017d8cc0f0b906c256"
+    },
+    {
+      "file": "assets/thumbs/pony4.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "bb3fec8af5d7fb57ac7c619c53c6804883f6e4d189d2c6e631b09c2215fb95ed",
+      "actualSha256": "bb3fec8af5d7fb57ac7c619c53c6804883f6e4d189d2c6e631b09c2215fb95ed"
+    },
+    {
+      "file": "assets/thumbs/princess-v2.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "eefc85d71a6a50cfddf9ab5856c3b6d6fe34c2b551375f5795758cb873b6d722",
+      "actualSha256": "eefc85d71a6a50cfddf9ab5856c3b6d6fe34c2b551375f5795758cb873b6d722"
+    },
+    {
+      "file": "assets/thumbs/pterodactilo.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "4f4aa3d9e7c80f0112461978f642d450768462434204c4b08e915b3c8b9f5b38",
+      "actualSha256": "4f4aa3d9e7c80f0112461978f642d450768462434204c4b08e915b3c8b9f5b38"
+    },
+    {
+      "file": "assets/thumbs/regalo-navidad.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "86448c55a2a08c670139c6fd636872caa16b41481efb64e4bbede81a77835355",
+      "actualSha256": "86448c55a2a08c670139c6fd636872caa16b41481efb64e4bbede81a77835355"
+    },
+    {
+      "file": "assets/thumbs/rocket-v2.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "c8362e22edbce065708521cd0216d54832b550d9c1d885191791b66afc287a1d",
+      "actualSha256": "c8362e22edbce065708521cd0216d54832b550d9c1d885191791b66afc287a1d"
+    },
+    {
+      "file": "assets/thumbs/sirena.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "484ef443691521431fcc5e80327728f2c29130e767348eb0d9f659d1e614eaeb",
+      "actualSha256": "484ef443691521431fcc5e80327728f2c29130e767348eb0d9f659d1e614eaeb"
+    },
+    {
+      "file": "assets/thumbs/tren.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "ff94f2220f775bc0d6b0af96779afb8e5358a9af833859e9609cbbb3d5af154d",
+      "actualSha256": "ff94f2220f775bc0d6b0af96779afb8e5358a9af833859e9609cbbb3d5af154d"
+    },
+    {
+      "file": "assets/thumbs/triceratops-cat04-20261014.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "dbdc5655a0a2cde0564da2489a1d2bf34c11666282b07645625f0711a912a3d7",
+      "actualSha256": "dbdc5655a0a2cde0564da2489a1d2bf34c11666282b07645625f0711a912a3d7"
+    },
+    {
+      "file": "assets/thumbs/triceratops.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "1063e56813f7cc45d8056742715fcb6e87bfb3f302a5980fb5c97fb82b27d020",
+      "actualSha256": "1063e56813f7cc45d8056742715fcb6e87bfb3f302a5980fb5c97fb82b27d020"
+    },
+    {
+      "file": "assets/thumbs/unicorn-v2.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "253c5148c91012cd7ade1a00de007d73d0f6eedecd2d20dd5fcb836e7f0d7a4d",
+      "actualSha256": "253c5148c91012cd7ade1a00de007d73d0f6eedecd2d20dd5fcb836e7f0d7a4d"
+    },
+    {
+      "file": "assets/thumbs/vestido-princesa.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "a1742f5debbae01435cb53a9c28c9e877cb0abf67ee175b2e68223e628656386",
+      "actualSha256": "a1742f5debbae01435cb53a9c28c9e877cb0abf67ee175b2e68223e628656386"
+    },
+    {
+      "file": "assets/tren.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "18d40875aec6b27612ac8c4165fd86412ba9aa7a0e825fd66755dc52dc941752",
+      "actualSha256": "18d40875aec6b27612ac8c4165fd86412ba9aa7a0e825fd66755dc52dc941752"
+    },
+    {
+      "file": "assets/triceratops-cat04-20261014.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "bb8ab3d5737afccc8aa0233595a48b1cc2d4fdc79185da3cb4e9a145d57e3563",
+      "actualSha256": "bb8ab3d5737afccc8aa0233595a48b1cc2d4fdc79185da3cb4e9a145d57e3563"
+    },
+    {
+      "file": "assets/triceratops.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "aa27ab1be4d299145f9cc92477887e617bd5e5cc7eb3e073d12a615839176406",
+      "actualSha256": "aa27ab1be4d299145f9cc92477887e617bd5e5cc7eb3e073d12a615839176406"
+    },
+    {
+      "file": "assets/unicorn-v2.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "1d52b411234bb9c1c5f14efa65231812d2c27ec4ff3b5ae02ea53d79fae86a0c",
+      "actualSha256": "1d52b411234bb9c1c5f14efa65231812d2c27ec4ff3b5ae02ea53d79fae86a0c"
+    },
+    {
+      "file": "assets/vestido-princesa.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "c563704bf82b42fec7e08dbebabfc8b8c5b9b39b5d63691e43d1ae4b7d5e6b05",
+      "actualSha256": "c563704bf82b42fec7e08dbebabfc8b8c5b9b39b5d63691e43d1ae4b7d5e6b05"
+    },
+    {
+      "file": "assets-list.js",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "7b46d7b7db2b80357a37493488f2da669486e3300d5bdacaebf2ac28714ccd5e",
+      "actualSha256": "7b46d7b7db2b80357a37493488f2da669486e3300d5bdacaebf2ac28714ccd5e"
+    },
+    {
+      "file": "brush.css",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "f01d60fa70fbf14fee6e8bc108754808704b1db5422e9e613e2a691f7e468710",
+      "actualSha256": "f01d60fa70fbf14fee6e8bc108754808704b1db5422e9e613e2a691f7e468710"
+    },
+    {
+      "file": "brush.html",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "13b57baa9db1b258afa89b99694b891c93460ccd4f4be38acfcb995f4bf0b7fa",
+      "actualSha256": "13b57baa9db1b258afa89b99694b891c93460ccd4f4be38acfcb995f4bf0b7fa"
+    },
+    {
+      "file": "brush.js",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "d6862618479d532d64ae7041974c723c5b5f5200f266a06b313ca0a5a744b1e2",
+      "actualSha256": "d6862618479d532d64ae7041974c723c5b5f5200f266a06b313ca0a5a744b1e2"
+    },
+    {
+      "file": "catalog-meta.js",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "475d1fe196ceb1bdb01e49297f8759c80c5e6d5fd3c23e11dcc731dca303060f",
+      "actualSha256": "475d1fe196ceb1bdb01e49297f8759c80c5e6d5fd3c23e11dcc731dca303060f"
+    },
+    {
+      "file": "categorias/animales.html",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "b5671a2fb66eabefb7907c3d318b2b00afaa38fef165f646d39ea0d8072095ae",
+      "actualSha256": "b5671a2fb66eabefb7907c3d318b2b00afaa38fef165f646d39ea0d8072095ae"
+    },
+    {
+      "file": "categorias/dinosaurios.html",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "b232839ce9a1699b3352b070f66a4dfb79dad76139424dec419a910104595ffc",
+      "actualSha256": "b232839ce9a1699b3352b070f66a4dfb79dad76139424dec419a910104595ffc"
+    },
+    {
+      "file": "categorias/fantasia.html",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "96f88554366171c30d0b27a2acee2a61ea8f93e9459f32260f8471285bea066d",
+      "actualSha256": "96f88554366171c30d0b27a2acee2a61ea8f93e9459f32260f8471285bea066d"
+    },
+    {
+      "file": "categorias/navidad.html",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "cce6be8556da3fadbc3dc14c95669d92e1f6f72d5c9a64b2ee541a6ffe411fbe",
+      "actualSha256": "cce6be8556da3fadbc3dc14c95669d92e1f6f72d5c9a64b2ee541a6ffe411fbe"
+    },
+    {
+      "file": "categorias/princesas.html",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "7e4e0fc0e11714429a16a5fbffd7875479a0bcc99677ba6ee4473ef67a4cdced",
+      "actualSha256": "7e4e0fc0e11714429a16a5fbffd7875479a0bcc99677ba6ee4473ef67a4cdced"
+    },
+    {
+      "file": "categorias/vehiculos.html",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "fa0e92692a9ca00aa4f0beac62d43c0144a34eb119298c66f22b70841e437d94",
+      "actualSha256": "fa0e92692a9ca00aa4f0beac62d43c0144a34eb119298c66f22b70841e437d94"
+    },
+    {
+      "file": "CNAME",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "7b7c3a4d66bb47e852f7e6bba854372779f9e29f01e0db4566e487502bb2f185",
+      "actualSha256": "7b7c3a4d66bb47e852f7e6bba854372779f9e29f01e0db4566e487502bb2f185"
+    },
+    {
+      "file": "dibujos/arbol-navidad.html",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "1764130321b5ea47146c15d1992e1ea7ee2ee6e31c358ff01c45b834b9d65d46",
+      "actualSha256": "1764130321b5ea47146c15d1992e1ea7ee2ee6e31c358ff01c45b834b9d65d46"
+    },
+    {
+      "file": "dibujos/auto.html",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "223bffaa1111fde55a47d828ab8466d26840a550bc2596b488df250ab8186a7c",
+      "actualSha256": "223bffaa1111fde55a47d828ab8466d26840a550bc2596b488df250ab8186a7c"
+    },
+    {
+      "file": "dibujos/avion.html",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "4d7783c56f32aabe540f7d000b287c2e612e78d3dfe42659a9a3c332ed86034a",
+      "actualSha256": "4d7783c56f32aabe540f7d000b287c2e612e78d3dfe42659a9a3c332ed86034a"
+    },
+    {
+      "file": "dibujos/barco.html",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "88e0d7d6de711652307ebaf88025486f50a234da2b4683e892aef032e8191ddf",
+      "actualSha256": "88e0d7d6de711652307ebaf88025486f50a234da2b4683e892aef032e8191ddf"
+    },
+    {
+      "file": "dibujos/brontosaurio.html",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "b4aade485802216313daeded7567e95d6eceb1228a1bd56e36ba9be010e353f3",
+      "actualSha256": "b4aade485802216313daeded7567e95d6eceb1228a1bd56e36ba9be010e353f3"
+    },
+    {
+      "file": "dibujos/buho.html",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "d99b8116774d4a16af79c1c69a71d947f1e06db51754b0adb740d0cac733d6e1",
+      "actualSha256": "d99b8116774d4a16af79c1c69a71d947f1e06db51754b0adb740d0cac733d6e1"
+    },
+    {
+      "file": "dibujos/camion.html",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "bc5fa522cc06138d0a1138f9ec44534784f16f9ae832c3d45852018fb7df66f9",
+      "actualSha256": "bc5fa522cc06138d0a1138f9ec44534784f16f9ae832c3d45852018fb7df66f9"
+    },
+    {
+      "file": "dibujos/campana-navidad.html",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "cd550f7584058ba9d5ee2d49bba7baa69435ee0ac6ecbb89d3b5cc2b666cd6a0",
+      "actualSha256": "cd550f7584058ba9d5ee2d49bba7baa69435ee0ac6ecbb89d3b5cc2b666cd6a0"
+    },
+    {
+      "file": "dibujos/carruaje-real.html",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "414e827aaf8dea2e03c59b4d589b5d2315cbda6c9806c3e934b0e1e0d5342b4c",
+      "actualSha256": "414e827aaf8dea2e03c59b4d589b5d2315cbda6c9806c3e934b0e1e0d5342b4c"
+    },
+    {
+      "file": "dibujos/casa-1.html",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "b51d29720cafa6f269e4b3e478cf15442f21196ac2c656b5a376fa2c22aa1865",
+      "actualSha256": "b51d29720cafa6f269e4b3e478cf15442f21196ac2c656b5a376fa2c22aa1865"
+    },
+    {
+      "file": "dibujos/casa-2.html",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "a1309e81f8972dd4310193d344d2d98c6bb3463240d593f95d292f63cbbbf20e",
+      "actualSha256": "a1309e81f8972dd4310193d344d2d98c6bb3463240d593f95d292f63cbbbf20e"
+    },
+    {
+      "file": "dibujos/casa-3.html",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "b0d5e76c7e81798e4348f25fa4d12e45edd35e6fb6488eaf510a1dd82a94e855",
+      "actualSha256": "b0d5e76c7e81798e4348f25fa4d12e45edd35e6fb6488eaf510a1dd82a94e855"
+    },
+    {
+      "file": "dibujos/casa-4.html",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "336bae2ce15bf15c27f7823b87e40926bbe1e9b9b2b4f84f5d6fae804a447747",
+      "actualSha256": "336bae2ce15bf15c27f7823b87e40926bbe1e9b9b2b4f84f5d6fae804a447747"
+    },
+    {
+      "file": "dibujos/casa-5.html",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "a2783905cdee3f8f37e650f1692645f257b639a7e556a220d302c1829de57598",
+      "actualSha256": "a2783905cdee3f8f37e650f1692645f257b639a7e556a220d302c1829de57598"
+    },
+    {
+      "file": "dibujos/casa-simple.html",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "a5e8d618052eee4428f65ba400f4c13b3b19a147e7784b0b6ef964d767ac8b20",
+      "actualSha256": "a5e8d618052eee4428f65ba400f4c13b3b19a147e7784b0b6ef964d767ac8b20"
+    },
+    {
+      "file": "dibujos/castillo.html",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "c85e7d9ac5c5e3e15b22bece60a1f4cbd156057845fa62b4a25b861d9d60b649",
+      "actualSha256": "c85e7d9ac5c5e3e15b22bece60a1f4cbd156057845fa62b4a25b861d9d60b649"
+    },
+    {
+      "file": "dibujos/cohete.html",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "d16033db03680122ab18a3913da62d08ec2ce5e9c055bbdce06ba41c60fbb632",
+      "actualSha256": "d16033db03680122ab18a3913da62d08ec2ce5e9c055bbdce06ba41c60fbb632"
+    },
+    {
+      "file": "dibujos/conejo.html",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "da816fdb67e713c162f85bd69125254db914fe7cbda8aa5209d31e6aa343602f",
+      "actualSha256": "da816fdb67e713c162f85bd69125254db914fe7cbda8aa5209d31e6aa343602f"
+    },
+    {
+      "file": "dibujos/corona-real.html",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "3d0a2a495d0b595729e10ded57d97fc9ccf387a6aefdccecf46149aa1e3a71fe",
+      "actualSha256": "3d0a2a495d0b595729e10ded57d97fc9ccf387a6aefdccecf46149aa1e3a71fe"
+    },
+    {
+      "file": "dibujos/dinosaurio.html",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "33b0b745222fef8e4f9199b47b023d0617846f5335165354bc1ea551427c233c",
+      "actualSha256": "33b0b745222fef8e4f9199b47b023d0617846f5335165354bc1ea551427c233c"
+    },
+    {
+      "file": "dibujos/dragon.html",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "2f368279e47a73c3609c2f3f846f3b649595427d7886611004daa9707fd5dee8",
+      "actualSha256": "2f368279e47a73c3609c2f3f846f3b649595427d7886611004daa9707fd5dee8"
+    },
+    {
+      "file": "dibujos/elefante.html",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "6ee2c92c818aeb10ec2d922d003e5d7facbad192e2da3a5e2bdf203ccc9e4002",
+      "actualSha256": "6ee2c92c818aeb10ec2d922d003e5d7facbad192e2da3a5e2bdf203ccc9e4002"
+    },
+    {
+      "file": "dibujos/gato.html",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "82e20cd89f055446cd26835634b4dff8144b7d18d54022ef1e6996ff97b8c645",
+      "actualSha256": "82e20cd89f055446cd26835634b4dff8144b7d18d54022ef1e6996ff97b8c645"
+    },
+    {
+      "file": "dibujos/hada.html",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "f124304d515020f5c39e3187f07592a66ffe0846b7f605e8008ce17e3602986b",
+      "actualSha256": "f124304d515020f5c39e3187f07592a66ffe0846b7f605e8008ce17e3602986b"
+    },
+    {
+      "file": "dibujos/mariposa.html",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "f866e5a48511f5663b98cdef1a36d553cb5ebba88abca8217a3b295e479c9ade",
+      "actualSha256": "f866e5a48511f5663b98cdef1a36d553cb5ebba88abca8217a3b295e479c9ade"
+    },
+    {
+      "file": "dibujos/muneco-nieve.html",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "d21c6b2c95c97e2b34ba1e17e7da4b3b99681f64477b3f764404cdbecf76c2f6",
+      "actualSha256": "d21c6b2c95c97e2b34ba1e17e7da4b3b99681f64477b3f764404cdbecf76c2f6"
+    },
+    {
+      "file": "dibujos/paisaje-3.html",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "af36d314a090d8a08e3b765234973ec46c6f0965971088a771be6b5bd86361d3",
+      "actualSha256": "af36d314a090d8a08e3b765234973ec46c6f0965971088a771be6b5bd86361d3"
+    },
+    {
+      "file": "dibujos/paisaje-4.html",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "14167ae25f3e5e55f882fc6f86d86e3fb0a4c63b411a5291cbd99864aa7b04f6",
+      "actualSha256": "14167ae25f3e5e55f882fc6f86d86e3fb0a4c63b411a5291cbd99864aa7b04f6"
+    },
+    {
+      "file": "dibujos/paisaje-5.html",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "4a6875446632fe5be6ecb9c0da75d039bcaf87a4525b170fb54cb5bcd6fd64f9",
+      "actualSha256": "4a6875446632fe5be6ecb9c0da75d039bcaf87a4525b170fb54cb5bcd6fd64f9"
+    },
+    {
+      "file": "dibujos/perro.html",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "4082301a82929a4440c82f1cd99d9dc7c1031cf335aec7b030ab19f327b85d14",
+      "actualSha256": "4082301a82929a4440c82f1cd99d9dc7c1031cf335aec7b030ab19f327b85d14"
+    },
+    {
+      "file": "dibujos/pez.html",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "71e70043007433e7331c134ad7fca64cd5e08f5c42a3d807a0d5b924e5cd35cb",
+      "actualSha256": "71e70043007433e7331c134ad7fca64cd5e08f5c42a3d807a0d5b924e5cd35cb"
+    },
+    {
+      "file": "dibujos/pony-3.html",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "cc1a0323ca782f42aadf110657c024c0cf58975510c86a7d9a49d559084f97f3",
+      "actualSha256": "cc1a0323ca782f42aadf110657c024c0cf58975510c86a7d9a49d559084f97f3"
+    },
+    {
+      "file": "dibujos/pony-4.html",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "137b9bee303a1bb442d8782e402065008a9859ae260f9413f58b3d4c6a135ac3",
+      "actualSha256": "137b9bee303a1bb442d8782e402065008a9859ae260f9413f58b3d4c6a135ac3"
+    },
+    {
+      "file": "dibujos/pony-magico.html",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "dea69816d5ce1e365ae6d0ec86d84bb387ae55fc493f1300539ad5ff3f6e9007",
+      "actualSha256": "dea69816d5ce1e365ae6d0ec86d84bb387ae55fc493f1300539ad5ff3f6e9007"
+    },
+    {
+      "file": "dibujos/pony-princesa.html",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "e5b8ba21c8a1aa3e00ebfd3d332149842abfd6d2a9868e534ad984ea72048a79",
+      "actualSha256": "e5b8ba21c8a1aa3e00ebfd3d332149842abfd6d2a9868e534ad984ea72048a79"
+    },
+    {
+      "file": "dibujos/princesa.html",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "c380fb7b40db57b8aae5429918a74ddd7ce6a13b68c80e455c962503ee63958d",
+      "actualSha256": "c380fb7b40db57b8aae5429918a74ddd7ce6a13b68c80e455c962503ee63958d"
+    },
+    {
+      "file": "dibujos/pterodactilo.html",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "03693bb88d5d75965deff4f1f19e5134a6f515327e8a09daa7b6a18e8972ac12",
+      "actualSha256": "03693bb88d5d75965deff4f1f19e5134a6f515327e8a09daa7b6a18e8972ac12"
+    },
+    {
+      "file": "dibujos/regalo-navidad.html",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "6f3cb50949539f25985586f1cab57aff94f401d64a9bc5253237e83049041b76",
+      "actualSha256": "6f3cb50949539f25985586f1cab57aff94f401d64a9bc5253237e83049041b76"
+    },
+    {
+      "file": "dibujos/sirena.html",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "2d334fb7a813e732d11fd40ecf958a95e3c597abf652add15fec3f9dafece7fa",
+      "actualSha256": "2d334fb7a813e732d11fd40ecf958a95e3c597abf652add15fec3f9dafece7fa"
+    },
+    {
+      "file": "dibujos/tren.html",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "9ac979294248169ecf061725df480c4bac55c4f86d290c1435655bb6e0ae9c65",
+      "actualSha256": "9ac979294248169ecf061725df480c4bac55c4f86d290c1435655bb6e0ae9c65"
+    },
+    {
+      "file": "dibujos/triceratops.html",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "6d2f9ca8db5af7450566d8e87d1b9d85c5a73212d12bcc589714183fc1140d2c",
+      "actualSha256": "6d2f9ca8db5af7450566d8e87d1b9d85c5a73212d12bcc589714183fc1140d2c"
+    },
+    {
+      "file": "dibujos/unicornio.html",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "c9dad2d8a2b72610ed61adf050d87f5043d2400e870d95198bd603eeed5c6d7a",
+      "actualSha256": "c9dad2d8a2b72610ed61adf050d87f5043d2400e870d95198bd603eeed5c6d7a"
+    },
+    {
+      "file": "dibujos/vestido-princesa.html",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "bdeb5643665fb625d9b94e1f2222688f5e036e3c6d84bd5924131984ef69663f",
+      "actualSha256": "bdeb5643665fb625d9b94e1f2222688f5e036e3c6d84bd5924131984ef69663f"
+    },
+    {
+      "file": "docs/security-audit-2026-07-12.md",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "90b4e558180cda3e01bde45c64169c1b6ff841646c2236f5cea0b989baec1ee1",
+      "actualSha256": "90b4e558180cda3e01bde45c64169c1b6ff841646c2236f5cea0b989baec1ee1"
+    },
+    {
+      "file": "editor-i18n.js",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "821955ed9fc80e4bc017245ea377fc7799bad73750c1a68934df7f8c5f60657d",
+      "actualSha256": "821955ed9fc80e4bc017245ea377fc7799bad73750c1a68934df7f8c5f60657d"
+    },
+    {
+      "file": "editor-layout.css",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "065a02a86e54c457de0dbee0f0105b1971bdc89f5787e64ef81391728a7be9ec",
+      "actualSha256": "065a02a86e54c457de0dbee0f0105b1971bdc89f5787e64ef81391728a7be9ec"
+    },
+    {
+      "file": "editor-ui.js",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "ce00bbe958f83a9eb8e2731dfae7b28bcbbc92b01446d236fc0f0a488ec7e7e1",
+      "actualSha256": "ce00bbe958f83a9eb8e2731dfae7b28bcbbc92b01446d236fc0f0a488ec7e7e1"
+    },
+    {
+      "file": "en/dinosaur-coloring.html",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "377f99564939ef9977d7c77781276e0c20f642719246be831dd0c63846f8aed6",
+      "actualSha256": "377f99564939ef9977d7c77781276e0c20f642719246be831dd0c63846f8aed6"
+    },
+    {
+      "file": "en/privacy.html",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "75da62a8f135f03bb27197f558b83d005c60810079153f957bb8d558e3c49a69",
+      "actualSha256": "75da62a8f135f03bb27197f558b83d005c60810079153f957bb8d558e3c49a69"
+    },
+    {
+      "file": "english-page.js",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "5b02717e19905a7a54b295903d04eb249731db2f5cf3e7ef5125e8b7d2e65427",
+      "actualSha256": "5b02717e19905a7a54b295903d04eb249731db2f5cf3e7ef5125e8b7d2e65427"
+    },
+    {
+      "file": "familias-redirect.js",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "62b2c2fc0504490635bbe767481beaf2ab81be44fe1e4585217c4cff15d430a2",
+      "actualSha256": "62b2c2fc0504490635bbe767481beaf2ab81be44fe1e4585217c4cff15d430a2"
+    },
+    {
+      "file": "familias.css",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "c75522a11d03cc8a40befe6f8e5b899228f183ec29dc69ab5a5b07c928c986a5",
+      "actualSha256": "c75522a11d03cc8a40befe6f8e5b899228f183ec29dc69ab5a5b07c928c986a5"
+    },
+    {
+      "file": "familias.html",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "8d958b4fc802b3f6c2eddde6df0a978048cabab472321008da204bc53a73b128",
+      "actualSha256": "8d958b4fc802b3f6c2eddde6df0a978048cabab472321008da204bc53a73b128"
+    },
+    {
+      "file": "familias.js",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "213215a6f769da2bd1672a39a57ae9f2c8e2f2986ee44f2d57f811115e50a923",
+      "actualSha256": "213215a6f769da2bd1672a39a57ae9f2c8e2f2986ee44f2d57f811115e50a923"
+    },
+    {
+      "file": "flood-fill.js",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "7741c12530aeb9e0c78dc8cdcbeb6507de33e7624e10c9a5cf1d80eb0071dbaf",
+      "actualSha256": "7741c12530aeb9e0c78dc8cdcbeb6507de33e7624e10c9a5cf1d80eb0071dbaf"
+    },
+    {
+      "file": "home.css",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "a42e8dcf0b2b171598fd80fb46c32e73f549312d2e860a309ca6c02f195aa0e4",
+      "actualSha256": "a42e8dcf0b2b171598fd80fb46c32e73f549312d2e860a309ca6c02f195aa0e4"
+    },
+    {
+      "file": "home.js",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "7f812cfb192deaad2740b3350ebcde3ec5b9df34e6b44f329f186ee29a6ba227",
+      "actualSha256": "7f812cfb192deaad2740b3350ebcde3ec5b9df34e6b44f329f186ee29a6ba227"
+    },
+    {
+      "file": "index.html",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "168a810ac5b76c65664bb48b55b81aa6348bcc6e2a453f3360c26f69ef316483",
+      "actualSha256": "168a810ac5b76c65664bb48b55b81aa6348bcc6e2a453f3360c26f69ef316483"
+    },
+    {
+      "file": "packs/animales.html",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "4988aef7dbe2669907208767512c04e87c5e6da2808836b618fc86f0f7a9c7c2",
+      "actualSha256": "4988aef7dbe2669907208767512c04e87c5e6da2808836b618fc86f0f7a9c7c2"
+    },
+    {
+      "file": "packs/dinosaurios.html",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "6e937b55ed3807598522209ef6a05bfcb8430611b9249defad1e9817c474ef26",
+      "actualSha256": "6e937b55ed3807598522209ef6a05bfcb8430611b9249defad1e9817c474ef26"
+    },
+    {
+      "file": "packs/fantasia.html",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "58685290f387971fc72114020cae1391dcd3cb9bea005fe41508b6cc3181e4b7",
+      "actualSha256": "58685290f387971fc72114020cae1391dcd3cb9bea005fe41508b6cc3181e4b7"
+    },
+    {
+      "file": "packs/gabby.html",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "ad31f8b5b5b15b2d51a2004635d49922825eea782a5641eaf3ebd411c4e03743",
+      "actualSha256": "ad31f8b5b5b15b2d51a2004635d49922825eea782a5641eaf3ebd411c4e03743"
+    },
+    {
+      "file": "packs/navidad.html",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "0950fd783c2355f6d9a2a264b8bf3f615b2c733946a8331dcc1a71472ca475cb",
+      "actualSha256": "0950fd783c2355f6d9a2a264b8bf3f615b2c733946a8331dcc1a71472ca475cb"
+    },
+    {
+      "file": "packs/princesas.html",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "8a1d5156b3f819b333c663b1b52fb30e106c4368f678fb1f9bf8a129b67f32f5",
+      "actualSha256": "8a1d5156b3f819b333c663b1b52fb30e106c4368f678fb1f9bf8a129b67f32f5"
+    },
+    {
+      "file": "packs/vehiculos.html",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "7b5043c988a8eaa2724a21aa27366c219745f37a9ec9807987146f6124809e1a",
+      "actualSha256": "7b5043c988a8eaa2724a21aa27366c219745f37a9ec9807987146f6124809e1a"
+    },
+    {
+      "file": "paint-worker.js",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "a2320fd583bd4dd7b4e6a80e6d2afbebbe63e354831580a5249ff689df2f3616",
+      "actualSha256": "a2320fd583bd4dd7b4e6a80e6d2afbebbe63e354831580a5249ff689df2f3616"
+    },
+    {
+      "file": "paint.css",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "9a54e289ddd2e3cadc5abdf2714df3abda7e9862189e8535da6e07bc45ee0a7e",
+      "actualSha256": "9a54e289ddd2e3cadc5abdf2714df3abda7e9862189e8535da6e07bc45ee0a7e"
+    },
+    {
+      "file": "paint.html",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "741725839abca258ab72adab56c875cc39449d76353bd0290c6506506661bb47",
+      "actualSha256": "741725839abca258ab72adab56c875cc39449d76353bd0290c6506506661bb47"
+    },
+    {
+      "file": "paint.js",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "8b5af22a0534fa2f6caf55e9e23a80489c4e207c0364c9abc64afdc075726dbb",
+      "actualSha256": "8b5af22a0534fa2f6caf55e9e23a80489c4e207c0364c9abc64afdc075726dbb"
+    },
+    {
+      "file": "privacy-controls.css",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "643c0810796775f571067793c7d1bac020059a47d108b21798ac90949f89bb9e",
+      "actualSha256": "643c0810796775f571067793c7d1bac020059a47d108b21798ac90949f89bb9e"
+    },
+    {
+      "file": "privacy.html",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "abf7d7aeb764d1406e248b3ab055835be9bd061b3c9fc4cb181453e5fb689a40",
+      "actualSha256": "abf7d7aeb764d1406e248b3ab055835be9bd061b3c9fc4cb181453e5fb689a40"
+    },
+    {
+      "file": "privacy.js",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "9b075fa16a9f073664744bbf586be2f278a1235b26c1031e5168f2057d52b20c",
+      "actualSha256": "9b075fa16a9f073664744bbf586be2f278a1235b26c1031e5168f2057d52b20c"
+    },
+    {
+      "file": "product-events.js",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "a06d40d2701d8646d22a57e81cd12008a8c6ac8742c4de2f6ce5d64bee8e0a42",
+      "actualSha256": "a06d40d2701d8646d22a57e81cd12008a8c6ac8742c4de2f6ce5d64bee8e0a42"
+    },
+    {
+      "file": "README.md",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "f44cc8aaba1d8a2a71df28712d7b487590b225a569e408642ed72ac58a793901",
+      "actualSha256": "f44cc8aaba1d8a2a71df28712d7b487590b225a569e408642ed72ac58a793901"
+    },
+    {
+      "file": "robots.txt",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "5b92374bdb5127f0d94500b8f546daa8c6f89aea84a05fdbac595d5421ba9675",
+      "actualSha256": "5b92374bdb5127f0d94500b8f546daa8c6f89aea84a05fdbac595d5421ba9675"
+    },
+    {
+      "file": "seo.css",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "0f85e66b507b8554680092f7dd69ce66e84341cffed3c880dd9720abf0d46076",
+      "actualSha256": "0f85e66b507b8554680092f7dd69ce66e84341cffed3c880dd9720abf0d46076"
+    },
+    {
+      "file": "site-config.json",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "722f33c59588c53d016407c6c5d072461cae8679874e06396fd3a479b2abdea1",
+      "actualSha256": "722f33c59588c53d016407c6c5d072461cae8679874e06396fd3a479b2abdea1"
+    },
+    {
+      "file": "sitemap.xml",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "ba36bbaa2b8ccf220d76cdab85e98feab1e03b0fc359a51c9666766666e8e315",
+      "actualSha256": "ba36bbaa2b8ccf220d76cdab85e98feab1e03b0fc359a51c9666766666e8e315"
+    },
+    {
+      "file": "v2/call_X5hdjZ1VFTKpgBu7RlI53ts9.png",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "6a5e6b63bfb4abf487aaf0f421c7bafd6f10668609fb5dcd521ae1d3cd512d52",
+      "actualSha256": "6a5e6b63bfb4abf487aaf0f421c7bafd6f10668609fb5dcd521ae1d3cd512d52"
+    },
+    {
+      "file": "v2/paintme-home-backlog.md",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "4c600f9a78d17423ada7df47c2c930880c3e65bb4fdae51ef9079b09f586cd0c",
+      "actualSha256": "4c600f9a78d17423ada7df47c2c930880c3e65bb4fdae51ef9079b09f586cd0c"
+    },
+    {
+      "file": "v2/paintme-home-context.md",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "6b5aa3d3ccdc23d7fa1e77412c1cc8e9507b439d9448a124c5a3b53ecea3c527",
+      "actualSha256": "6b5aa3d3ccdc23d7fa1e77412c1cc8e9507b439d9448a124c5a3b53ecea3c527"
+    },
+    {
+      "file": "v2/paintme-home-prompt.md",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "e9c4e48cb93e96cc5c48d7c6b6448eb98d10c5b02bfe322d0fe80c97bebd4445",
+      "actualSha256": "e9c4e48cb93e96cc5c48d7c6b6448eb98d10c5b02bfe322d0fe80c97bebd4445"
+    },
+    {
+      "file": "v2/paintme-home-runbook.md",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "b4cc879154cfa29f9cff615af27399bd968ba3fe13633910b05e3d1704ec92dc",
+      "actualSha256": "b4cc879154cfa29f9cff615af27399bd968ba3fe13633910b05e3d1704ec92dc"
+    },
+    {
+      "file": "v2/README.md",
+      "status": 200,
+      "exact": true,
+      "expectedSha256": "42cd205256a0920217d0bea11c0eb97f9e207b2450db2353f0da2b799b64fdcd",
+      "actualSha256": "42cd205256a0920217d0bea11c0eb97f9e207b2450db2353f0da2b799b64fdcd"
+    }
+  ]
+}

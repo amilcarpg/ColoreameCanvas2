@@ -1,0 +1,16 @@
+{
+  "artifact": ".tools\\apks\\paintme-debug-noads-x86_64.apk",
+  "sha256": "d7f3a0b2f9dc86b2f241f3e791dd2bc927292d21c482506c53f5539c4d32f4ee",
+  "bytes": 129016986,
+  "package": "com.focuzlab.paintme",
+  "version": "1.0.0",
+  "minSdk": 24,
+  "targetSdk": 36,
+  "mode": "debug",
+  "flutterTargetPlatform": "android-x64",
+  "ads": "disabled",
+  "analytics": "disabled",
+  "productionSigned": false,
+  "installedOn": "emulator-5560",
+  "date": "2026-10-15"
+}

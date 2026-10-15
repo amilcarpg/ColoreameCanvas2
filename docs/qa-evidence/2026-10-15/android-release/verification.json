@@ -1,0 +1,44 @@
+{
+  "date": "2026-10-15",
+  "package": "com.focuzlab.paintme",
+  "versionName": "1.0.0",
+  "versionCode": "1",
+  "minSdk": "24",
+  "targetSdk": "36",
+  "debuggable": false,
+  "signerSha256": "13bd89e4ecec30ba3724217fa0393e04c41a82b1030ace72f1195a74d6a1262e",
+  "bundletoolVersion": "1.18.3",
+  "bundletoolValidateExit": 0,
+  "aabVerifiedSignedContentEntries": 593,
+  "apkSignatureVerified": true,
+  "apkZipAlignment16KVerified": true,
+  "ads": "disabled",
+  "analytics": "disabled",
+  "device": "emulator-5562",
+  "installedAndLaunched": true,
+  "paintSaveRestoreAfterForceStop": true,
+  "sameViewportScreenshotRoi": [
+    50,
+    580,
+    1030,
+    2040
+  ],
+  "restoredCanvasScreenshotExact": true,
+  "noActiveDefaultNetwork": true,
+  "physicalDevice": false,
+  "published": false,
+  "artifacts": {
+    "aab": {
+      "path": "flutter/build/app/outputs/bundle/release/app-release.aab",
+      "copy": ".tools\\apks\\paintme-1.0.0-release-noads.aab",
+      "bytes": 83126426,
+      "sha256": "bc1e195b726273fcde68af4ddf1d337cc873d9569f4efabdbfc4680599e684ea"
+    },
+    "apk": {
+      "path": "flutter/build/app/outputs/flutter-apk/app-release.apk",
+      "copy": ".tools\\apks\\paintme-1.0.0-release-noads.apk",
+      "bytes": 81460195,
+      "sha256": "f54bd651e8becd713ca820bb2fdb039a957ee9b42a333e8045cc3dcc1c0d83fc"
+    }
+  }
+}

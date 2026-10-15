@@ -37,3 +37,21 @@ También sincroniza metadatos, relacionados y queries de las **páginas HTML exi
 La suite Playwright pinta/exporta cada dibujo y compara dimensiones y todos los píxeles descargados. Sus fixtures verifican regiones aisladas y contornos protegidos del motor; no demuestran que todas las líneas de cada ilustración estén cerradas. Las pruebas físicas y revisión visual siguen en [pruebas pendientes](PRUEBAS-PENDIENTES.md).
 
 Esta herramienta es técnica. **CAT-02 quedó excluida por instrucción del usuario:** no implementa procedencia/licencias, filtro comercial ni aprobación de derechos. Generar archivos no autoriza comercialización o publicación.
+
+## Reparaciones CAT-04 del 14/10/2026
+
+Las nueve fuentes corregidas usan nombres `*-cat04-20261014.png`; los originales permanecen intactos. `legacyWebSrc` identifica la imagen anterior: los editores mantienen esa fuente y sus contornos al recuperar obras antiguas. Una obra nueva usa `webSrc`. El generador también actualiza referencias de imágenes en las páginas existentes.
+
+`downsampleFilter` admite `lanczos` (predeterminado histórico) y `bilinear`. Las nueve reparaciones usan bilinear: Lanczos reintroducía pequeñas islas blancas al reducir estos contornos binarios. No se modifica la selección de las otras 53 entradas.
+
+La reparación es reproducible desde originales preservados y un manifiesto con hashes. El script consulta por defecto; `--write` escribe únicamente las versiones nuevas y sus variantes. Requiere el entorno de `scripts/requirements-artwork-repair.txt`; puede instalarse en un entorno virtual dentro del proyecto. Los parámetros y la conservación de píxeles negros/créditos se comprueban por dibujo.
+
+```powershell
+python scripts/repair-artwork-catalog.py --report-dir docs/qa-evidence/2026-10-14/artwork-checklist
+# Aplicar solo una reparación ya analizada/autorizada:
+python scripts/repair-artwork-catalog.py --report-dir docs/qa-evidence/2026-10-14/artwork-checklist --write
+```
+
+`PAINTME_ARTWORK_OUTPUT` permite dirigir las auditorías a una carpeta de evidencia dentro del repositorio. `audit-artwork-browser.cjs` admite `PAINTME_ARTWORK_SLUGS` para repetir un subconjunto y `PAINTME_ARTWORK_REFERENCE` para su comparación extendida con un dibujo sin cambios. `merge-artwork-audits.py` valida hashes/metadatos antes de reutilizar evidencia; `report-artwork-review.py` rechaza fuentes, editor o revisión visual desactualizados. `render-artwork-region-maps.py` genera colores únicos por región y contrasta semillas/áreas con el navegador; no altera los dibujos.
+
+Los 11 desajustes históricos de bytes PNG se conservaron: `compare-artwork-pipeline.py` comprueba que sus píxeles son idénticos. El entorno de reparación tiene dependencias distintas al pipeline histórico y queda fijado por separado. [Resultados y límites actuales](RESULTADO-CHECKLIST-IMAGENES.md).

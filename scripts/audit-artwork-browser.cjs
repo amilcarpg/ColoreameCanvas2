@@ -8,7 +8,9 @@ const vm = require('node:vm');
 const root = path.resolve(__dirname, '..');
 const probe = process.argv.includes('--probe-triceratops');
 const extended = process.argv.includes('--extended');
-const output = path.join(root, 'docs/qa-evidence/2026-10-07/artwork-checklist', ...(probe ? ['triceratops-probe'] : []));
+const output = path.resolve(root, process.env.PAINTME_ARTWORK_OUTPUT || 'docs/qa-evidence/2026-10-07/artwork-checklist', ...(probe ? ['triceratops-probe'] : []));
+if (!output.startsWith(root + path.sep)) throw new Error('Artwork evidence must stay inside the project');
+const requestedSlugs = process.env.PAINTME_ARTWORK_SLUGS?.split(',');
 const playwright = require(process.env.PAINTME_PLAYWRIGHT_PATH || 'playwright');
 const engine = process.env.PAINTME_BROWSER_ENGINE || 'chromium';
 const catalog = JSON.parse(fs.readFileSync(path.join(root, 'base_png/catalog.json')));
@@ -16,6 +18,9 @@ const scope = { window: {} };
 vm.runInNewContext(fs.readFileSync(path.join(root, 'web/assets-list.js'), 'utf8'), scope);
 const assets = scope.window.ASSETS;
 const previous = extended ? JSON.parse(fs.readFileSync(path.join(output, 'browser-' + engine + '.json'))) : null;
+const referencePath = process.env.PAINTME_ARTWORK_REFERENCE ? path.resolve(root, process.env.PAINTME_ARTWORK_REFERENCE) : null;
+if (referencePath && !referencePath.startsWith(root + path.sep)) throw new Error('Artwork reference must stay inside the project');
+const fullReference = extended && referencePath ? JSON.parse(fs.readFileSync(referencePath)) : null;
 const hash = data => crypto.createHash('sha256').update(data).digest('hex');
 const mime = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.png': 'image/png' };
 async function main() {
@@ -35,7 +40,7 @@ async function main() {
   try {
     browser = await playwright[engine].launch(engine === 'chromium' ? { headless: true, executablePath: 'C:/Program Files/Google/Chrome/Application/chrome.exe' } : { headless: true });
     report.browserVersion = browser.version();
-    for (const asset of assets.filter(asset => !probe || asset.slug === 'triceratops')) {
+    for (const asset of assets.filter(asset => (!probe || asset.slug === 'triceratops') && (!requestedSlugs || requestedSlugs.includes(asset.slug)))) {
       const master = catalog.drawings.find(e => e.slug === asset.slug);
       const dir = path.join(output, asset.slug);
       fs.mkdirSync(dir, { recursive: true });
@@ -92,7 +97,9 @@ async function main() {
             const snapshotA = await page.evaluate(async () => { scheduleAutosave(); await autosave.flush(); return canvas.toDataURL('image/png'); });
             await page.evaluate(slug => selectAssetBySlug(slug, 'audit'), other.slug);
             await page.waitForFunction(() => isImageLoaded && !switchingAsset);
-            const seedB = previous.items.find(i => i.slug === other.slug).geometry.selected;
+            const referenceB = previous.items.find(i => i.slug === other.slug) || fullReference?.items.find(i => i.slug === other.slug);
+            if (!referenceB || referenceB.source_sha256 !== hash(fs.readFileSync(path.join(webRoot, other.src)))) throw new Error('Verified geometry reference required for ' + other.slug);
+            const seedB = referenceB.geometry.selected;
             await page.evaluate(({ seed, mode }) => { if (mode === 'paint') { activeColor = '#aa2255'; fillAtPoint(seed); } else { drawBrushSegment(seed, seed); drawingRevision++; setUnsavedChanges(true); scheduleAutosave(); } }, { seed: seedB, mode });
             if (mode === 'paint') await page.waitForFunction(() => !fillInProgress);
             const snapshotB = await page.evaluate(async () => { scheduleAutosave(); await autosave.flush(); return canvas.toDataURL('image/png'); });
@@ -189,9 +196,10 @@ async function main() {
           await page.locator('#restoreBtn').click();
           await page.waitForFunction(() => !restoringDrawing);
           result.restore_diff = await page.evaluate(async painted => {
-            const image = new Image(); image.src = painted; await image.decode();
+            const image = await PaintMe.decodeSavedPng(painted);
             const surface = document.createElement('canvas'); surface.width = canvas.width; surface.height = canvas.height;
             const c = surface.getContext('2d'); c.drawImage(image, 0, 0);
+            image.close?.();
             const before = c.getImageData(0, 0, canvas.width, canvas.height).data;
             const after = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
             let pixels = 0, maximum = 0;
@@ -202,6 +210,15 @@ async function main() {
           const restored = await page.evaluate(() => canvas.toDataURL('image/png'));
           const downloads = [];
           for (let i = 0; i < 3; i++) {
+            if (i > 0) {
+              await page.evaluate(({ mode, seed, i }) => {
+                activeColor = i === 1 ? '#cc5522' : '#2266cc';
+                if (mode === 'paint') fillAtPoint(seed);
+                else { drawBrushSegment(seed, seed); scheduleAutosave(); }
+              }, { mode, seed, i });
+              if (mode === 'paint') await page.waitForFunction(() => !fillInProgress);
+            }
+            const expectedDownload = await page.evaluate(() => canvas.toDataURL('image/png'));
             const downloadPromise = page.waitForEvent('download', { timeout: 15000 });
             await page.locator('#saveBtn').click();
             const download = await downloadPromise;
@@ -209,16 +226,17 @@ async function main() {
             for await (const chunk of stream) chunks.push(chunk);
             const bytes = Buffer.concat(chunks);
             const pixelExact = await page.evaluate(async ({ bytes, painted }) => {
-              const decode = async url => { const image = new Image(); image.src = url; await image.decode(); const surface = document.createElement('canvas'); surface.width = image.width; surface.height = image.height; const context = surface.getContext('2d'); context.drawImage(image, 0, 0); return { w: image.width, h: image.height, data: context.getImageData(0, 0, image.width, image.height).data }; };
+              const decode = async url => { const image = await PaintMe.decodeSavedPng(url); const surface = document.createElement('canvas'); surface.width = image.width; surface.height = image.height; const context = surface.getContext('2d'); context.drawImage(image, 0, 0); const result = { w: image.width, h: image.height, data: context.getImageData(0, 0, image.width, image.height).data }; image.close?.(); return result; };
               const received = await decode('data:image/png;base64,' + bytes), expected = await decode(painted);
               return received.w === expected.w && received.h === expected.h && received.data.every((v, j) => v === expected.data[j]);
-            }, { bytes: bytes.toString('base64'), painted: restored });
+            }, { bytes: bytes.toString('base64'), painted: expectedDownload });
             downloads.push({ filename: download.suggestedFilename(), bytes: bytes.length, sha256: hash(bytes), pixels_exact: pixelExact });
-            if (i === 0) fs.writeFileSync(path.join(dir, mode + '-' + engine + '-export.png'), bytes);
+            fs.writeFileSync(path.join(dir, mode + '-' + engine + '-export' + (i === 0 ? '' : '-' + (i + 1)) + '.png'), bytes);
           }
           result.downloads = downloads;
+          result.downloads_change_with_edits = new Set(downloads.map(d => d.sha256)).size === 3;
           result.elapsed_ms = Date.now() - started;
-          result.passed = result.pointer_changes_canvas && result.undo_exact && result.save_exact && result.restore_exact && downloads.every(d => d.pixels_exact) && (mode === 'paint' ? result.worker_fallback_exact : result.eraser.changed);
+          result.passed = result.pointer_changes_canvas && result.undo_exact && result.save_exact && result.restore_exact && result.downloads_change_with_edits && downloads.every(d => d.pixels_exact) && (mode === 'paint' ? result.worker_fallback_exact : result.eraser.changed);
         }
         item.page_errors = errors;
       } catch (err) { item.error = err.stack; console.error(asset.slug + ': ' + err.message); }

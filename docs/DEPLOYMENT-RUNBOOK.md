@@ -32,3 +32,29 @@ Después de una publicación, conservar URL del run, `GITHUB_SHA` del resumen de
 5. Tras publicar, comparar el SHA del run, repetir smoke público y registrar el resultado. Si falla, conservar evidencia y corregir la rama; no encadenar publicaciones a ciegas.
 
 Plantilla de registro: fecha, incidente, SHA anterior, SHA bueno de referencia, commits revertidos, SHA de rollback, URL del run, checks, smoke público y responsable. La ejecución remota y un rollback público quedan pendientes de una publicación autorizada.
+
+## Preparación verificable del 14/10/2026
+
+La versión local incluye `/familias.html`, redirección de `/adults.html`, correcciones CAT-04 y los valores GA4 recibidos con servicios apagados. El archivo real Firebase es local e ignorado por Git; no forma parte del sitio ni del despliegue Pages. No regenerar todos los PNG automáticamente para preparar una publicación: revisar primero el reporte del pipeline; los 11 desajustes históricos de codificación tienen píxeles iguales y están documentados en CAT-04.
+
+Después de las pruebas locales y antes de aprobar una revisión, crear su huella:
+
+```powershell
+node scripts/check-web.cjs
+node scripts/verify-web-gate.cjs
+node scripts/web-release.cjs snapshot --output docs/qa-evidence/2026-10-14/release-services/release-manifest.json
+```
+
+El manifiesto identifica cada archivo de `web/` por SHA-256 y registra HEAD y si el checkout tiene cambios. **HEAD de un checkout modificado no identifica el contenido preparado**: antes de publicar, revisar/crear el commit autorizado y regenerar el manifiesto. El comando exige los flags de anuncios/analítica apagados y los archivos críticos presentes; no sustituye las pruebas de navegador.
+
+Tras publicar la revisión autorizada y confirmar su SHA/run en Actions:
+
+```powershell
+node scripts/web-release.cjs verify --manifest docs/qa-evidence/2026-10-14/release-services/release-manifest.json --base-url https://www.paintme.club/ --output docs/qa-evidence/2026-10-14/release-services/public-after-release.json
+```
+
+La comparación incluye `/familias.html`, editores, helpers, configuración y vendedores. `--all` añade todos los PNG y demás archivos. Cualquier 404, redirección inesperada, timeout o SHA distinto produce fallo; un HTTP 200 de una versión antigua no pasa. Repetir además el smoke de pintar/guardar/restaurar/exportar y registrar cookies/red con servicios apagados.
+
+Base pública consultada el 14/10: run `38609845993`, SHA `d685174e2b6888005694143032ea923ef7b905c5`, completado correctamente. Los vendedores responden 200; `/familias.html` responde 404. Esta base **no está certificada como versión buena para todo el producto**; conserva evidencia de los endpoints consultados. Antes de un rollback debe elegirse un SHA de referencia con smoke aprobado para las funciones que se quieren recuperar. Preparar el revert como arriba y contrastar el sitio resultante con su propio manifiesto; conservar los vendedores publicados. Un rollback real requiere autorización de publicación y verificación del nuevo run. No se ejecutó un rollback remoto en esta entrega.
+
+Evidencia: [base pública](qa-evidence/2026-10-14/release-services/public-before-release.json), [runs de Pages](qa-evidence/2026-10-14/release-services/pages-runs-before-release.json) y [huella local](qa-evidence/2026-10-14/release-services/release-manifest.json).

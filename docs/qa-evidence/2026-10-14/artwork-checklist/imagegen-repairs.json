@@ -1,0 +1,222 @@
+[
+  {
+    "slug": "triceratops",
+    "original_file": "triceratops.png",
+    "generated_path": "C:\\Users\\aparedes\\.codex\\generated_images\\01a13b88-703e-7d50-a1cb-1f24df663b54\\exec-cf54ae42-6f3d-4dcd-b3dc-3d8b5b3e904b.png",
+    "prompt": "Close accidental contour gaps separating the head/frill from the exterior; preserve identity, pose, horns, spots and white background. Smooth continuous black outlines; no color, shading or added text.",
+    "tool": "image_gen.imagegen",
+    "master": "base_png/triceratops-cat04-20261014.png",
+    "web": "web/assets/triceratops-cat04-20261014.png",
+    "thumbnail": "web/assets/thumbs/triceratops-cat04-20261014.png",
+    "candidate": "docs/qa-evidence/2026-10-14/artwork-checklist/candidates/triceratops.png",
+    "original_sha256": "cecc8c4110a3e9a570b631482186b4de936a731da85fcde4b804af9fcb0e2172",
+    "new_sha256": "81c77763fe3ac2fc754600d00514d2939c621ba4bf69ab220e59de6fbe5d9778",
+    "candidate_decision": "Rejected: increased/remaining microregions; no graphical change incorporated",
+    "active_content": "Deterministic repair from the preserved original; characters and credits retained",
+    "active_master_sha256": "bb8ab3d5737afccc8aa0233595a48b1cc2d4fdc79185da3cb4e9a145d57e3563",
+    "deterministic_parameters": {
+      "method": "localized jaw closure",
+      "bbox": [
+        187,
+        731,
+        16,
+        18
+      ],
+      "changed_pixels": 121
+    }
+  },
+  {
+    "slug": "pony-magico",
+    "original_file": "pony1.png",
+    "generated_path": "C:\\Users\\aparedes\\.codex\\generated_images\\01a13b88-703e-7d50-a1cb-1f24df663b54\\exec-71cf862b-71d3-47c5-8e83-6fc5619cc1f0.png",
+    "prompt": "Use case: precise-object-edit. Edit target: supplied existing black/white coloring page. Repair technical raster noise and contour continuity for flood-fill coloring. Preserve image identity, every meaningful object, pose, proportions, layout and aspect ratio. Keep all three floral emblems, flowing mane and tail, four legs and expression. Change only the raster cleanliness: white backgrounds and region interiors must be solid clean white without grain or speckles; black contours must be continuous smooth solid black without pinholes or noise. Close accidental contour gaps so regions are independently flood-fillable. Preserve deliberate black eyes and details, and ALL existing credits, titles, logos and lettering; do NOT remove attribution. Do not add characters, simplify meaningful details or redesign. No new text or watermark. No shading, grey texture, color, gradients or photorealism. Maintain original aspect ratio. Output a clean repaired coloring-page PNG.",
+    "tool": "image_gen.imagegen",
+    "master": "base_png/pony1-cat04-20261014.png",
+    "web": "web/assets/pony1-cat04-20261014.png",
+    "thumbnail": "web/assets/thumbs/pony1-cat04-20261014.png",
+    "candidate": "docs/qa-evidence/2026-10-14/artwork-checklist/candidates/pony-magico.png",
+    "original_sha256": "2c033e9cfee3786602ae96bb9db4604c48e2a33cc068d03a11d706bdb1005b99",
+    "new_sha256": "e02400f79f67882c016e949a5ac2e6d0d92190f709d80c09178a3763271ab064",
+    "candidate_decision": "Rejected: increased/remaining microregions; no graphical change incorporated",
+    "active_content": "Deterministic repair from the preserved original; characters and credits retained",
+    "active_master_sha256": "afc5766705698ee147df4eb4aef115d2a9b39e6019175afc7100c7405dd2bf8b",
+    "deterministic_parameters": {
+      "threshold": 220,
+      "closing": 3
+    }
+  },
+  {
+    "slug": "pony-princesa",
+    "original_file": "pony2.png",
+    "generated_path": "C:\\Users\\aparedes\\.codex\\generated_images\\01a13b88-703e-7d50-a1cb-1f24df663b54\\exec-f38a7627-b68c-4996-bb0e-767561392e45.png",
+    "prompt": "Use case: precise-object-edit. Edit target: supplied existing black/white coloring page. Repair technical raster noise and contour continuity for flood-fill coloring. Preserve image identity, every meaningful object, pose, proportions, layout and aspect ratio. Keep horn, crown, wings, diamonds and flowing mane/tail in their exact locations. Change only the raster cleanliness: white backgrounds and region interiors must be solid clean white without grain or speckles; black contours must be continuous smooth solid black without pinholes or noise. Close accidental contour gaps so regions are independently flood-fillable. Preserve deliberate black eyes and details, and ALL existing credits, titles, logos and lettering; do NOT remove attribution. Do not add characters, simplify meaningful details or redesign. No new text or watermark. No shading, grey texture, color, gradients or photorealism. Maintain original aspect ratio. Output a clean repaired coloring-page PNG.",
+    "tool": "image_gen.imagegen",
+    "master": "base_png/pony2-cat04-20261014.png",
+    "web": "web/assets/pony2-cat04-20261014.png",
+    "thumbnail": "web/assets/thumbs/pony2-cat04-20261014.png",
+    "candidate": "docs/qa-evidence/2026-10-14/artwork-checklist/candidates/pony-princesa.png",
+    "original_sha256": "ce88080e6143a313f2998b7a1b6bd8d56fbcc878c6aade5449a00ff22adf8859",
+    "new_sha256": "3801e4a793b289121b21910cce59c9f39129aa709fb2c5af4874c2138185781a",
+    "candidate_decision": "Rejected: increased/remaining microregions; no graphical change incorporated",
+    "active_content": "Deterministic repair from the preserved original; characters and credits retained",
+    "active_master_sha256": "6ff7b1a68594bf1b1673e81ba2cbf40562f86e48520062ba45719259012f4b77",
+    "deterministic_parameters": {
+      "threshold": 200,
+      "closing": 3
+    }
+  },
+  {
+    "slug": "gabby-camping",
+    "original_file": "gabby-04-camping.png",
+    "generated_path": "C:\\Users\\aparedes\\.codex\\generated_images\\01a13b88-703e-7d50-a1cb-1f24df663b54\\exec-43817e27-0738-4161-ba64-d4595f5e4d36.png",
+    "prompt": "Use case: precise-object-edit. Edit target: supplied existing black/white coloring page. Repair technical raster noise and contour continuity for flood-fill coloring. Preserve image identity, every meaningful object, pose, proportions, layout and aspect ratio. Preserve the girl, rabbit, bear, picnic blanket, sandwiches, cups, apples, trees and clouds; preserve the small bottom credit ColoringBook.ai exactly. Change only the raster cleanliness: white backgrounds and region interiors must be solid clean white without grain or speckles; black contours must be continuous smooth solid black without pinholes or noise. Close accidental contour gaps so regions are independently flood-fillable. Preserve deliberate black eyes and details, and ALL existing credits, titles, logos and lettering; do NOT remove attribution. Do not add characters, simplify meaningful details or redesign. No new text or watermark. No shading, grey texture, color, gradients or photorealism. Maintain original aspect ratio. Output a clean repaired coloring-page PNG.",
+    "tool": "image_gen.imagegen",
+    "master": "base_png/gabby-04-camping-cat04-20261014.png",
+    "web": "web/assets/gabby-04-camping-cat04-20261014.png",
+    "thumbnail": "web/assets/thumbs/gabby-04-camping-cat04-20261014.png",
+    "candidate": "docs/qa-evidence/2026-10-14/artwork-checklist/candidates/gabby-camping.png",
+    "original_sha256": "b4dcdf63191dfee0dc3ff901484985ec811ec84f2a47f4d70e4b9c656d5044d7",
+    "new_sha256": "242ae47902cee21e76fe8fc00a2ffef5ef1ee746c2b4986e9eea787e95107f02",
+    "candidate_decision": "Rejected: increased/remaining microregions; no graphical change incorporated",
+    "active_content": "Deterministic repair from the preserved original; characters and credits retained",
+    "active_master_sha256": "2e763e1510f21b0b885133e906846900f3254aadb3e0b591ed02d12fc578c246",
+    "deterministic_parameters": {
+      "threshold": 220,
+      "closing": 3,
+      "preserve_bottom": 14
+    }
+  },
+  {
+    "slug": "gabby-pintando",
+    "original_file": "gabby-06-pintando.png",
+    "generated_path": "C:\\Users\\aparedes\\.codex\\generated_images\\01a13b88-703e-7d50-a1cb-1f24df663b54\\exec-e96bfe88-f11a-4ad9-a1aa-189c14205fe7.png",
+    "prompt": "Use case: precise-object-edit. Edit target: supplied existing black/white coloring page. Repair technical raster noise and contour continuity for flood-fill coloring. Preserve image identity, every meaningful object, pose, proportions, layout and aspect ratio. Preserve the cat painting a flower at an easel, sky, palette, paint splashes and the bottom credit ColoringBook.ai exactly. Change only the raster cleanliness: white backgrounds and region interiors must be solid clean white without grain or speckles; black contours must be continuous smooth solid black without pinholes or noise. Close accidental contour gaps so regions are independently flood-fillable. Preserve deliberate black eyes and details, and ALL existing credits, titles, logos and lettering; do NOT remove attribution. Do not add characters, simplify meaningful details or redesign. No new text or watermark. No shading, grey texture, color, gradients or photorealism. Maintain original aspect ratio. Output a clean repaired coloring-page PNG.",
+    "tool": "image_gen.imagegen",
+    "master": "base_png/gabby-06-pintando-cat04-20261014.png",
+    "web": "web/assets/gabby-06-pintando-cat04-20261014.png",
+    "thumbnail": "web/assets/thumbs/gabby-06-pintando-cat04-20261014.png",
+    "candidate": "docs/qa-evidence/2026-10-14/artwork-checklist/candidates/gabby-pintando.png",
+    "original_sha256": "7dd97baa470034d307f59029aef622aa36b1c8c01c89e074a4720db2d21895a3",
+    "new_sha256": "e797dd0871eb7cebd908e6288cb2eb12061ede1d21677bdaa3430d7e51a7b081",
+    "candidate_decision": "Rejected: increased/remaining microregions; no graphical change incorporated",
+    "active_content": "Deterministic repair from the preserved original; characters and credits retained",
+    "active_master_sha256": "dfcf63985062c59dc7bb9cc8f7ac4e6235337bb50b080fc69edcf8e374fbc302",
+    "deterministic_parameters": {
+      "threshold": 200,
+      "closing": 3,
+      "preserve_bottom": 30
+    }
+  },
+  {
+    "slug": "gabby-amigos",
+    "original_file": "gabby-10-amigos.png",
+    "generated_path": "C:\\Users\\aparedes\\.codex\\generated_images\\01a13b88-703e-7d50-a1cb-1f24df663b54\\exec-4757e897-c570-4d08-9702-fc9b0b780e7d.png",
+    "prompt": "Use case: precise-object-edit. Edit target: supplied existing black/white coloring page. Repair technical raster noise and contour continuity for flood-fill coloring. Preserve image identity, every meaningful object, pose, proportions, layout and aspect ratio. Preserve all seven characters, layout and heading GABBY CHAT exactly. Change only the raster cleanliness: white backgrounds and region interiors must be solid clean white without grain or speckles; black contours must be continuous smooth solid black without pinholes or noise. Close accidental contour gaps so regions are independently flood-fillable. Preserve deliberate black eyes and details, and ALL existing credits, titles, logos and lettering; do NOT remove attribution. Do not add characters, simplify meaningful details or redesign. No new text or watermark. No shading, grey texture, color, gradients or photorealism. Maintain original aspect ratio. Output a clean repaired coloring-page PNG.",
+    "tool": "image_gen.imagegen",
+    "master": "base_png/gabby-10-amigos-cat04-20261014.png",
+    "web": "web/assets/gabby-10-amigos-cat04-20261014.png",
+    "thumbnail": "web/assets/thumbs/gabby-10-amigos-cat04-20261014.png",
+    "candidate": "docs/qa-evidence/2026-10-14/artwork-checklist/candidates/gabby-amigos.png",
+    "original_sha256": "7c4b323b53af75284c899011236b28697f664d69d1f1c2667f355b5930c77e5d",
+    "new_sha256": "8df6285dccf206d2107fb09c4f22ea3bdccbe2d789901712076272eab3a1a25e",
+    "candidate_decision": "Rejected: increased/remaining microregions; no graphical change incorporated",
+    "active_content": "Deterministic repair from the preserved original; characters and credits retained",
+    "active_master_sha256": "8f80f4907d853b8b2726081502977066dd5ab5d6af5383969c6eb199ca2bda99",
+    "deterministic_parameters": {
+      "threshold": 200,
+      "closing": 3,
+      "preserve_top": 100
+    }
+  },
+  {
+    "slug": "gabby-cumpleanos",
+    "original_file": "gabby-13-cumpleanos.png",
+    "generated_path": "C:\\Users\\aparedes\\.codex\\generated_images\\01a13b88-703e-7d50-a1cb-1f24df663b54\\exec-e60d5f2f-8321-40f7-85f6-6da439a0b9e1.png",
+    "prompt": "Use case: precise-object-edit. Edit target: supplied existing black/white coloring page. Repair technical raster noise and contour continuity for flood-fill coloring. Preserve image identity, every meaningful object, pose, proportions, layout and aspect ratio. Preserve all five characters, balloons, confetti and composition exactly. Change only the raster cleanliness: white backgrounds and region interiors must be solid clean white without grain or speckles; black contours must be continuous smooth solid black without pinholes or noise. Close accidental contour gaps so regions are independently flood-fillable. Preserve deliberate black eyes and details, and ALL existing credits, titles, logos and lettering; do NOT remove attribution. Do not add characters, simplify meaningful details or redesign. No new text or watermark. No shading, grey texture, color, gradients or photorealism. Maintain original aspect ratio. Output a clean repaired coloring-page PNG.",
+    "tool": "image_gen.imagegen",
+    "master": "base_png/gabby-13-cumpleanos-cat04-20261014.png",
+    "web": "web/assets/gabby-13-cumpleanos-cat04-20261014.png",
+    "thumbnail": "web/assets/thumbs/gabby-13-cumpleanos-cat04-20261014.png",
+    "candidate": "docs/qa-evidence/2026-10-14/artwork-checklist/candidates/gabby-cumpleanos.png",
+    "original_sha256": "b0076728090190026d296b250a89b732a3e3d17527d3c91ea715f7e921b47177",
+    "new_sha256": "16cc828e6e1fdc6e45cfa7f0efaae4d03b82b40eebbcbb08f13e063dc0cf2e60",
+    "candidate_decision": "Rejected: increased/remaining microregions; no graphical change incorporated",
+    "active_content": "Deterministic repair from the preserved original; characters and credits retained",
+    "active_master_sha256": "01c039d77e7f6f279e9a66dc975c9f834cbfb0189a544138fb26b83b8dd46dbd",
+    "deterministic_parameters": {
+      "threshold": 200,
+      "closing": 3
+    }
+  },
+  {
+    "slug": "gabby-casa-magica",
+    "original_file": "gabby-18-casa-magica.png",
+    "generated_path": "C:\\Users\\aparedes\\.codex\\generated_images\\01a13b88-703e-7d50-a1cb-1f24df663b54\\exec-f5259d73-08df-48e6-87c0-561393a4450b.png",
+    "prompt": "Use case: precise-object-edit. Edit target: supplied existing black/white coloring page. Repair technical raster noise and contour continuity for flood-fill coloring. Preserve image identity, every meaningful object, pose, proportions, layout and aspect ratio. Preserve the cat-shaped multi-storey house, trees, slide, flowers and path exactly. Change only the raster cleanliness: white backgrounds and region interiors must be solid clean white without grain or speckles; black contours must be continuous smooth solid black without pinholes or noise. Close accidental contour gaps so regions are independently flood-fillable. Preserve deliberate black eyes and details, and ALL existing credits, titles, logos and lettering; do NOT remove attribution. Do not add characters, simplify meaningful details or redesign. No new text or watermark. No shading, grey texture, color, gradients or photorealism. Maintain original aspect ratio. Output a clean repaired coloring-page PNG.",
+    "tool": "image_gen.imagegen",
+    "master": "base_png/gabby-18-casa-magica-cat04-20261014.png",
+    "web": "web/assets/gabby-18-casa-magica-cat04-20261014.png",
+    "thumbnail": "web/assets/thumbs/gabby-18-casa-magica-cat04-20261014.png",
+    "candidate": "docs/qa-evidence/2026-10-14/artwork-checklist/candidates/gabby-casa-magica.png",
+    "original_sha256": "2ceff4c1dd691b66b7218df2b36bc5b22fedc4e4c790ed92194b04fb3d3a46f0",
+    "new_sha256": "3725390022b4f6f124e978b1c8ac69481549b51217ad7cd048a90b7031760ba0",
+    "candidate_decision": "Rejected: increased/remaining microregions; no graphical change incorporated",
+    "active_content": "Deterministic repair from the preserved original; characters and credits retained",
+    "active_master_sha256": "69afce861a9007aaff2407d1f571948404c3b1ac04bd09401382aa8f17b90db5",
+    "deterministic_parameters": {
+      "threshold": 200,
+      "closing": 0
+    }
+  },
+  {
+    "slug": "gabby-gato-flores",
+    "original_file": "gabby-02-gato-flores.png",
+    "original_sha256": "41027198e6b8e029d4cdffbe9a784c432c8b30e9c80917c5c951067dfb7c6a81",
+    "previous_entry": {
+      "slug": "gabby-gato-flores",
+      "label": "Gabby gato con flores",
+      "category": "gabby",
+      "pack": "gabby",
+      "featured": false,
+      "file": "gabby-02-gato-flores.png",
+      "platforms": [
+        "web"
+      ],
+      "webSrc": "assets/gabby/gabby-02-gato-flores.png",
+      "thumbnailSrc": "assets/thumbs/gabby-02-gato-flores.png",
+      "theme": "gabby",
+      "difficulty": "por-revisar",
+      "keywords": [
+        "gabby",
+        "gato",
+        "flores"
+      ]
+    },
+    "master": "base_png/gabby-02-gato-flores-cat04-20261014.png",
+    "web": "web/assets/gabby-02-gato-flores-cat04-20261014.png",
+    "thumbnail": "web/assets/thumbs/gabby-02-gato-flores-cat04-20261014.png",
+    "tool": "Authorized project Python pipeline",
+    "candidate_decision": "No ImageGen candidate used; localized repair from original",
+    "active_content": "Deterministic repair from the preserved original; characters and credits retained",
+    "active_master_sha256": "f1a77de2f921555a3eebda66f85546f41d951a3205493d72aeb52e8f33070c4d",
+    "deterministic_parameters": {
+      "method": "localized antenna-tip cleanup",
+      "boxes": [
+        [
+          535,
+          0,
+          110,
+          100
+        ],
+        [
+          645,
+          28,
+          110,
+          105
+        ]
+      ],
+      "threshold": 220,
+      "closing": 3
+    }
+  }
+]

@@ -509,19 +509,21 @@
       "category": "dinosaurios",
       "pack": "dinosaurios",
       "featured": false,
-      "file": "triceratops.png",
+      "file": "triceratops-cat04-20261014.png",
       "platforms": [
         "web",
         "flutter"
       ],
-      "webSrc": "assets/triceratops.png",
-      "thumbnailSrc": "assets/thumbs/triceratops.png",
+      "webSrc": "assets/triceratops-cat04-20261014.png",
+      "thumbnailSrc": "assets/thumbs/triceratops-cat04-20261014.png",
       "keywords": [
         "triceratops",
         "dinosaurios"
       ],
       "theme": "dinosaurios",
-      "difficulty": "medio"
+      "difficulty": "medio",
+      "legacyWebSrc": "assets/triceratops.png",
+      "downsampleFilter": "bilinear"
     },
     {
       "slug": "brontosaurio",
@@ -633,20 +635,22 @@
       "category": "fantasia",
       "pack": "fantasia",
       "featured": false,
-      "file": "pony1.png",
+      "file": "pony1-cat04-20261014.png",
       "platforms": [
         "web",
         "flutter"
       ],
-      "webSrc": "assets/pony1.png",
-      "thumbnailSrc": "assets/thumbs/pony1.png",
+      "webSrc": "assets/pony1-cat04-20261014.png",
+      "thumbnailSrc": "assets/thumbs/pony1-cat04-20261014.png",
       "keywords": [
         "pony",
         "magico",
         "fantasia"
       ],
       "theme": "fantasia",
-      "difficulty": "medio"
+      "difficulty": "medio",
+      "legacyWebSrc": "assets/pony1.png",
+      "downsampleFilter": "bilinear"
     },
     {
       "slug": "pony-princesa",
@@ -654,20 +658,22 @@
       "category": "princesas",
       "pack": "princesas",
       "featured": false,
-      "file": "pony2.png",
+      "file": "pony2-cat04-20261014.png",
       "platforms": [
         "web",
         "flutter"
       ],
-      "webSrc": "assets/pony2.png",
-      "thumbnailSrc": "assets/thumbs/pony2.png",
+      "webSrc": "assets/pony2-cat04-20261014.png",
+      "thumbnailSrc": "assets/thumbs/pony2-cat04-20261014.png",
       "keywords": [
         "pony",
         "princesa",
         "princesas"
       ],
       "theme": "princesas",
-      "difficulty": "medio"
+      "difficulty": "medio",
+      "legacyWebSrc": "assets/pony2.png",
+      "downsampleFilter": "bilinear"
     },
     {
       "slug": "pony-3",
@@ -934,19 +940,21 @@
       "category": "gabby",
       "pack": "gabby",
       "featured": false,
-      "file": "gabby-02-gato-flores.png",
+      "file": "gabby-02-gato-flores-cat04-20261014.png",
       "platforms": [
         "web"
       ],
-      "webSrc": "assets/gabby/gabby-02-gato-flores.png",
-      "thumbnailSrc": "assets/thumbs/gabby-02-gato-flores.png",
+      "webSrc": "assets/gabby-02-gato-flores-cat04-20261014.png",
+      "thumbnailSrc": "assets/thumbs/gabby-02-gato-flores-cat04-20261014.png",
       "theme": "gabby",
       "difficulty": "por-revisar",
       "keywords": [
         "gabby",
         "gato",
         "flores"
-      ]
+      ],
+      "legacyWebSrc": "assets/gabby/gabby-02-gato-flores.png",
+      "downsampleFilter": "bilinear"
     },
     {
       "slug": "gabby-auto",
@@ -973,18 +981,20 @@
       "category": "gabby",
       "pack": "gabby",
       "featured": false,
-      "file": "gabby-04-camping.png",
+      "file": "gabby-04-camping-cat04-20261014.png",
       "platforms": [
         "web"
       ],
-      "webSrc": "assets/gabby/gabby-04-camping.png",
-      "thumbnailSrc": "assets/thumbs/gabby-04-camping.png",
+      "webSrc": "assets/gabby-04-camping-cat04-20261014.png",
+      "thumbnailSrc": "assets/thumbs/gabby-04-camping-cat04-20261014.png",
       "theme": "gabby",
       "difficulty": "por-revisar",
       "keywords": [
         "gabby",
         "camping"
-      ]
+      ],
+      "legacyWebSrc": "assets/gabby/gabby-04-camping.png",
+      "downsampleFilter": "bilinear"
     },
     {
       "slug": "gabby-casa-auto",
@@ -1012,19 +1022,21 @@
       "category": "gabby",
       "pack": "gabby",
       "featured": false,
-      "file": "gabby-06-pintando.png",
+      "file": "gabby-06-pintando-cat04-20261014.png",
       "platforms": [
         "web"
       ],
-      "webSrc": "assets/gabby/gabby-06-pintando.png",
-      "thumbnailSrc": "assets/thumbs/gabby-06-pintando.png",
+      "webSrc": "assets/gabby-06-pintando-cat04-20261014.png",
+      "thumbnailSrc": "assets/thumbs/gabby-06-pintando-cat04-20261014.png",
       "theme": "gabby",
       "difficulty": "por-revisar",
       "keywords": [
         "gabby",
         "pintando",
         "arte"
-      ]
+      ],
+      "legacyWebSrc": "assets/gabby/gabby-06-pintando.png",
+      "downsampleFilter": "bilinear"
     },
     {
       "slug": "gabby-gato-espacial",
@@ -1091,18 +1103,20 @@
       "category": "gabby",
       "pack": "gabby",
       "featured": false,
-      "file": "gabby-10-amigos.png",
+      "file": "gabby-10-amigos-cat04-20261014.png",
       "platforms": [
         "web"
       ],
-      "webSrc": "assets/gabby/gabby-10-amigos.png",
-      "thumbnailSrc": "assets/thumbs/gabby-10-amigos.png",
+      "webSrc": "assets/gabby-10-amigos-cat04-20261014.png",
+      "thumbnailSrc": "assets/thumbs/gabby-10-amigos-cat04-20261014.png",
       "theme": "gabby",
       "difficulty": "por-revisar",
       "keywords": [
         "gabby",
         "amigos"
-      ]
+      ],
+      "legacyWebSrc": "assets/gabby/gabby-10-amigos.png",
+      "downsampleFilter": "bilinear"
     },
     {
       "slug": "gabby-sala",
@@ -1150,19 +1164,21 @@
       "category": "gabby",
       "pack": "gabby",
       "featured": false,
-      "file": "gabby-13-cumpleanos.png",
+      "file": "gabby-13-cumpleanos-cat04-20261014.png",
       "platforms": [
         "web"
       ],
-      "webSrc": "assets/gabby/gabby-13-cumpleanos.png",
-      "thumbnailSrc": "assets/thumbs/gabby-13-cumpleanos.png",
+      "webSrc": "assets/gabby-13-cumpleanos-cat04-20261014.png",
+      "thumbnailSrc": "assets/thumbs/gabby-13-cumpleanos-cat04-20261014.png",
       "theme": "gabby",
       "difficulty": "por-revisar",
       "keywords": [
         "gabby",
         "cumpleanos",
         "fiesta"
-      ]
+      ],
+      "legacyWebSrc": "assets/gabby/gabby-13-cumpleanos.png",
+      "downsampleFilter": "bilinear"
     },
     {
       "slug": "gabby-catrat",
@@ -1250,19 +1266,21 @@
       "category": "gabby",
       "pack": "gabby",
       "featured": false,
-      "file": "gabby-18-casa-magica.png",
+      "file": "gabby-18-casa-magica-cat04-20261014.png",
       "platforms": [
         "web"
       ],
-      "webSrc": "assets/gabby/gabby-18-casa-magica.png",
-      "thumbnailSrc": "assets/thumbs/gabby-18-casa-magica.png",
+      "webSrc": "assets/gabby-18-casa-magica-cat04-20261014.png",
+      "thumbnailSrc": "assets/thumbs/gabby-18-casa-magica-cat04-20261014.png",
       "theme": "gabby",
       "difficulty": "por-revisar",
       "keywords": [
         "gabby",
         "casa",
         "magica"
-      ]
+      ],
+      "legacyWebSrc": "assets/gabby/gabby-18-casa-magica.png",
+      "downsampleFilter": "bilinear"
     },
     {
       "slug": "gabby-casa-frontal",

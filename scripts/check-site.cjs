@@ -4,6 +4,7 @@ const root = path.resolve(process.env.PAINTME_SITE_ROOT || path.join(__dirname,'
 const domain = fs.readFileSync(path.join(root,'CNAME'),'utf8').trim();
 assert(/^[a-z0-9.-]+$/.test(domain), 'Invalid CNAME');
 const host = 'https://'+domain;
+const legacyRedirects = new Map([['adults.html','familias.html']]);
 function files(directory) {return fs.readdirSync(directory,{withFileTypes:true}).flatMap(item=>item.isDirectory()?files(path.join(directory,item.name)):[path.join(directory,item.name)]);}
 const html = files(root).filter(file=>file.endsWith('.html')), urls=[];
 for(const file of html) {
@@ -11,7 +12,12 @@ for(const file of html) {
   const canonical=content.match(/<link\s+rel="canonical"\s+href="([^"]+)"/i)?.[1];
   assert(canonical, 'Missing canonical: '+relative);
   const url=new URL(canonical);assert.equal(url.origin,host,relative);assert.equal(url.search,'',relative);assert.equal(url.hash,'',relative);
-  assert.equal(url.pathname, relative==='index.html'?'/':'/'+relative,relative);
+  const redirect = legacyRedirects.get(relative);
+  assert.equal(url.pathname, relative==='index.html'?'/':'/'+(redirect || relative),relative);
+  if (redirect) {
+    assert(/<meta\s+name="robots"\s+content="[^"]*noindex/i.test(content),'Legacy redirect must not be indexed: '+relative);
+    assert(content.includes('familias-redirect.js') && content.includes('url='+redirect),'Missing redirect or fallback: '+relative);
+  }
   if(!/<meta\s+name="robots"\s+content="[^"]*noindex/i.test(content)) urls.push(canonical);
   for(const match of content.matchAll(/(?:href|src)="([^"#]+)"/g)) {
     const value=match[1].replace(/&amp;/g,'&');

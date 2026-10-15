@@ -1,10 +1,13 @@
 from pathlib import Path
+import os
 import json
 from PIL import Image, ImageOps, ImageDraw, ImageFont
 import numpy as np
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / 'docs/qa-evidence/2026-10-07/artwork-checklist'
+OUT = (ROOT / os.environ.get('PAINTME_ARTWORK_OUTPUT', 'docs/qa-evidence/2026-10-07/artwork-checklist')).resolve()
+if not OUT.is_relative_to(ROOT):
+    raise ValueError('Evidence must stay inside the project')
 catalog = json.loads((ROOT / 'base_png/catalog.json').read_text(encoding='utf-8-sig'))
 font = ImageFont.truetype('C:/Windows/Fonts/arial.ttf', 15)
 for offset in range(0, len(catalog['drawings']), 16):

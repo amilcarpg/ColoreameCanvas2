@@ -1,0 +1,17 @@
+Verifies
+Verified using v1 scheme (JAR signing): false
+Verified using v2 scheme (APK Signature Scheme v2): true
+Verified using v3 scheme (APK Signature Scheme v3): false
+Verified using v3.1 scheme (APK Signature Scheme v3.1): false
+Verified using v4 scheme (APK Signature Scheme v4): false
+Verified for SourceStamp: false
+Number of signers: 1
+Signer #1 certificate DN: CN=PaintMe, OU=Mobile, O=PaintMe, L=Lima, ST=Lima, C=PE
+Signer #1 certificate SHA-256 digest: 13bd89e4ecec30ba3724217fa0393e04c41a82b1030ace72f1195a74d6a1262e
+Signer #1 certificate SHA-1 digest: 0df137b8260962a00067c69dd562eea5138e774b
+Signer #1 certificate MD5 digest: 69ca529da7e77bbe7b456a166c085445
+Signer #1 key algorithm: RSA
+Signer #1 key size (bits): 2048
+Signer #1 public key SHA-256 digest: ee5b8c8ab2cab014e9702ddf921638c49254d1ee1493ce11fec12cc8a3e7a2d6
+Signer #1 public key SHA-1 digest: de42a75797cdb84d375ca7190607c0ddaad68835
+Signer #1 public key MD5 digest: 9225c8782f55644c591a572d73c6bfd0

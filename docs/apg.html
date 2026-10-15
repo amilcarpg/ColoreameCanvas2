@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PaintMe — Borrador de privacidad</title>
+  <style>
+    body {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 24px;
+      font-family: system-ui, sans-serif;
+      line-height: 1.6;
+      color: #243047;
+      background: #fff;
+    }
+
+    h1, h2 {
+      line-height: 1.3;
+    }
+
+    section {
+      margin-bottom: 32px;
+    }
+
+    a {
+      color: #174da8;
+      overflow-wrap: anywhere;
+    }
+
+    a:focus-visible {
+      outline: 3px solid #174da8;
+      outline-offset: 4px;
+    }
+
+    .table-container {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    caption {
+      text-align: left;
+      font-weight: bold;
+      margin-bottom: 12px;
+    }
+
+    th, td {
+      border: 1px solid #cbd5e1;
+      padding: 12px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: #eef2f7;
+    }
+
+    .notice {
+      padding: 16px;
+      border-left: 4px solid #946200;
+      background: #fff7e6;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section aria-labelledby="uso">
+      <h1 id="uso">Uso de PaintMe</h1>
+
+      <p>PaintMe permite elegir dibujos, colorearlos y descargar una creación sin registro. Está pensado para niños desde los 4 años como orientación de uso, familias y docentes. Recomendamos acompañamiento adulto, especialmente para los más pequeños; no se exige pasar por la sección para familias para empezar a pintar.</p>
+
+      <p>La operación se realiza desde Perú. El alcance previsto es internacional, inicialmente en español e inglés; el contenido inglés disponible corresponde a un piloto.</p>
+    </section>
+
+    <section aria-labelledby="dibujos">
+      <h2 id="dibujos">Dibujos y preferencias en la web</h2>
+
+      <p>Los dibujos y copias de recuperación se guardan en IndexedDB o localStorage del navegador, separados por dibujo y herramienta. Las preferencias se recuerdan localmente cuando el navegador lo permite. Los módulos de guardado no envían los trazos ni el contenido del lienzo al operador.</p>
+
+      <p>Las copias permanecen hasta reemplazarlas o eliminarlas mediante las herramientas del sitio o del navegador. Una sesión privada puede eliminarlas al cerrar. No se sincronizan entre dispositivos ni entre balde y pincel. Una descarga PNG permite conservar una copia independiente.</p>
+    </section>
+
+    <section aria-labelledby="alojamiento">
+      <h2 id="alojamiento">Alojamiento y solicitudes técnicas</h2>
+
+      <p>Abrir el sitio requiere enviar solicitudes al proveedor de alojamiento, que puede procesar información técnica para servir los archivos y proteger el servicio. El proyecto configura publicación mediante GitHub Pages; esto no confirma qué infraestructura está atendiendo actualmente el dominio ni dónde se procesa cada solicitud.</p>
+
+      <p>GitHub informa que registra y almacena las IP de visitantes de sitios GitHub Pages para seguridad. Ese tratamiento pertenece al alojamiento y es distinto del guardado local de dibujos. Antes de aprobar el texto definitivo deben confirmarse proveedor efectivo, intermediarios, condiciones y conservación. No se afirma que los servidores estén en Estados Unidos por suposición.</p>
+    </section>
+
+    <section aria-labelledby="analitica">
+      <h2 id="analitica">Analítica y publicidad</h2>
+
+      <p>En la configuración web local revisada, la analítica y la publicidad externas están desactivadas. GA4 y Firebase Analytics están preparados como integraciones opcionales; el componente publicitario web no carga un proveedor en su estado actual.</p>
+
+      <p>Su futura activación requiere revisar el tratamiento de datos, proveedores, audiencia infantil y avisos correspondientes, además de actualizar esta información. Guardar una preferencia no activa por sí solo servicios deshabilitados. No es necesario aceptar esos servicios para pintar.</p>
+    </section>
+
+    <section aria-labelledby="flutter">
+      <h2 id="flutter">Aplicación Flutter</h2>
+
+      <p>La aplicación guarda obras, biblioteca y preferencias en archivos locales. El sistema operativo puede incluirlos en copias de seguridad conforme a su configuración. Firebase Analytics está preparado y desactivado en la configuración revisada.</p>
+
+      <p>El proyecto incluye un plugin publicitario; su presencia no demuestra que se estén mostrando anuncios. Publicidad está desactivada por defecto. La configuración efectiva de una versión distribuida, su tráfico y los backups deben verificarse en dispositivos antes de aprobar afirmaciones definitivas sobre la aplicación.</p>
+    </section>
+
+    <section aria-labelledby="exportar">
+      <h2 id="exportar">Descargar, imprimir y compartir</h2>
+
+      <p>Descargar PNG crea un archivo local. Imprimir lo entrega al navegador y al servicio de impresión elegido. Compartir desde la app entrega el archivo a la aplicación seleccionada. Esas acciones pueden sacar el dibujo de PaintMe o del dispositivo por decisión de quien las utiliza.</p>
+    </section>
+
+    <section aria-labelledby="contacto">
+      <h2 id="contacto">Consultas por correo</h2>
+
+      <p>El canal confirmado para consultas es <strong><a href="mailto:contancto.focuzlab@gmail.com">contancto.focuzlab@gmail.com</a></strong>. Si una persona escribe, el destinatario recibe su dirección y el contenido del mensaje a través del proveedor de correo. No es necesario escribir ni proporcionar una dirección para pintar. Recomendamos que las consultas las realice un adulto y que no incluya datos del niño que no sean necesarios para explicar el problema.</p>
+    </section>
+
+    <section aria-labelledby="cambios">
+      <h2 id="cambios">Cambios</h2>
+
+      <p>Esta información deberá revisarse si cambian el alojamiento, los servicios activos, la forma de guardar o compartir obras o las finalidades del tratamiento. Los cambios en publicidad y analítica requieren revisar el aviso antes de activarlos.</p>
+    </section>
+
+    <section aria-labelledby="pendientes">
+      <h2 id="pendientes">Pendientes para aprobar PRIV-02</h2>
+
+      <div class="table-container">
+        <table>
+          <caption>Información y verificaciones pendientes</caption>
+          <thead>
+            <tr>
+              <th scope="col">Pendiente</th>
+              <th scope="col">Información o verificación requerida</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Alojamiento efectivo</th>
+              <td>Confirmar proveedor e intermediarios del dominio publicado; datos técnicos, conservación y posibles transferencias.</td>
+            </tr>
+            <tr>
+              <th scope="row">Contacto</th>
+              <td>Definir uso, acceso, conservación y eliminación de mensajes recibidos. No inventar plazos.</td>
+            </tr>
+            <tr>
+              <th scope="row">Información del responsable</th>
+              <td>Evaluar qué identificación, dirección de contacto y mecanismos de derechos corresponden al tratamiento real. El usuario no autoriza publicar datos personales por defecto.</td>
+            </tr>
+            <tr>
+              <th scope="row">App distribuida</th>
+              <td>Verificar build efectivo, solicitudes nativas, SDKs y backups en dispositivo.</td>
+            </tr>
+            <tr>
+              <th scope="row">Aviso definitivo</th>
+              <td>Revisar información sobre destinatarios, finalidades, fundamentos y derechos que corresponda; aprobar el texto.</td>
+            </tr>
+            <tr>
+              <th scope="row">Concordancia pública</th>
+              <td>Comprobar enlaces, versión publicada y preferencias en el dominio real.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="notice">La preparación de este borrador no cierra PRIV-02 ni autoriza activar banners o analítica. No es necesario enumerar todos los países visitantes para cerrar UX-05; los requisitos aplicables se evalúan según la oferta y el tratamiento reales.</p>
+    </section>
+  </main>
+</body>
+</html>

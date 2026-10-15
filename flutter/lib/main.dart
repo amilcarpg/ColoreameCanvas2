@@ -13,6 +13,7 @@ import 'ad_service.dart';
 import 'autosave_controller.dart';
 import 'catalog_repository.dart';
 import 'drawing_engine.dart';
+import 'drawing_viewport.dart';
 import 'drawing_storage.dart';
 import 'export_service.dart';
 import 'feedback_settings.dart';
@@ -150,7 +151,7 @@ class _CatalogPageState extends State<CatalogPage> {
       query: _search.text,
     );
     return Scaffold(
-      backgroundColor: Colors.transparent,
+      backgroundColor: PaintMeColors.cream,
       appBar: PaintMeTopBar(
         actions: [
           PaintMeIconButton(
@@ -513,6 +514,7 @@ class _EditorPageState extends State<EditorPage> with WidgetsBindingObserver {
   late final _export = widget.exporter ?? ExportService();
   final _preferences = PreferencesRepository();
   final _transform = TransformationController();
+  final _viewportKey = GlobalKey<DrawingViewportState>();
   final Set<int> _pointers = {};
   DrawingEngine? _engine;
   AutosaveController? _autosave;
@@ -1038,7 +1040,7 @@ class _EditorPageState extends State<EditorPage> with WidgetsBindingObserver {
             ],
           ),
         ),
-        backgroundColor: Colors.transparent,
+        backgroundColor: PaintMeColors.cream,
         appBar: PaintMeTopBar(
           title: Text(
             widget.drawing.label,
@@ -1177,7 +1179,15 @@ class _EditorPageState extends State<EditorPage> with WidgetsBindingObserver {
                   child: PaintMeSurface(
                     padding: const EdgeInsets.all(8),
                     child: Center(
-                      child: Listener(
+                      child: DrawingViewport(
+                        key: _viewportKey,
+                        sourceSize: Size(
+                          engine.width.toDouble(),
+                          engine.height.toDouble(),
+                        ),
+                        sourceIdentity: engine,
+                        controller: _transform,
+                        multitouch: _pointers.length >= 2,
                         onPointerDown: _pointerDown,
                         onPointerMove: _pointerMove,
                         onPointerUp: _pointerUp,
@@ -1187,26 +1197,16 @@ class _EditorPageState extends State<EditorPage> with WidgetsBindingObserver {
                             _stroke = [];
                           });
                         },
-                        child: InteractiveViewer(
-                          transformationController: _transform,
-                          panEnabled: _pointers.length >= 2,
-                          scaleEnabled: _pointers.length >= 2,
-                          minScale: .5,
-                          maxScale: 3,
-                          boundaryMargin: const EdgeInsets.all(200),
-                          child: GestureDetector(
-                            onTapUp: _tap,
-                            child: LayeredCanvas(
-                              width: engine.width,
-                              height: engine.height,
-                              colorLayer: colorLayer,
-                              lineLayer: lineLayer,
-                              stroke: _stroke,
-                              strokeColor: Color(_color),
-                              strokeSize: _brushSize.toDouble(),
-                              erase: _tool == ToolMode.eraser,
-                            ),
-                          ),
+                        onTapUp: _tap,
+                        child: LayeredCanvas(
+                          width: engine.width,
+                          height: engine.height,
+                          colorLayer: colorLayer,
+                          lineLayer: lineLayer,
+                          stroke: _stroke,
+                          strokeColor: Color(_color),
+                          strokeSize: _brushSize.toDouble(),
+                          erase: _tool == ToolMode.eraser,
                         ),
                       ),
                     ),
@@ -1219,7 +1219,9 @@ class _EditorPageState extends State<EditorPage> with WidgetsBindingObserver {
                   children: [
                     Expanded(
                       child: OutlinedButton.icon(
-                        onPressed: () => _transform.value = Matrix4.identity(),
+                        onPressed: _actionsBlocked
+                            ? null
+                            : () => _viewportKey.currentState?.fit(),
                         icon: const Icon(Icons.fit_screen),
                         label: const Text('Ajustar'),
                       ),
@@ -1438,7 +1440,7 @@ class _PrivacyPageState extends State<PrivacyPage> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-    backgroundColor: Colors.transparent,
+    backgroundColor: PaintMeColors.cream,
     appBar: PaintMeTopBar(
       leading: PaintMeIconButton(
         icon: Icons.arrow_back,

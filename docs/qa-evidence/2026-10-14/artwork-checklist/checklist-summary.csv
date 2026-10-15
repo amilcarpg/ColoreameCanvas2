@@ -1,0 +1,63 @@
+slug,label,regions,tiny_regions,approved,failed,pending,blocked,decision
+dinosaurio,Dinosaurio feliz,52,22,22,0,10,4,Verificado en web de escritorio; pendiente de alcance físico/nativo
+gato,Gato curioso,28,11,22,0,10,4,Verificado en web de escritorio; pendiente de alcance físico/nativo
+perro,Perro juguetón,25,11,22,0,10,4,Verificado en web de escritorio; pendiente de alcance físico/nativo
+auto,Auto rojo,18,0,22,0,10,4,Verificado en web de escritorio; pendiente de alcance físico/nativo
+arbol-navidad,Árbol de navidad,73,5,22,0,10,4,Verificado en web de escritorio; pendiente de alcance físico/nativo
+mariposa,Mariposa,48,20,22,0,10,4,Verificado en web de escritorio; pendiente de alcance físico/nativo
+cohete,Cohete,28,9,22,0,10,4,Verificado en web de escritorio; pendiente de alcance físico/nativo
+princesa,Princesa,46,11,22,0,10,4,Verificado en web de escritorio; pendiente de alcance físico/nativo
+unicornio,Unicornio,54,27,22,0,10,4,Verificado en web de escritorio; pendiente de alcance físico/nativo
+castillo,Castillo,91,19,22,0,10,4,Verificado en web de escritorio; pendiente de alcance físico/nativo
+elefante,Elefante alegre,51,29,22,0,10,4,Verificado en web de escritorio; pendiente de alcance físico/nativo
+conejo,Conejo saltarín,28,11,22,0,10,4,Verificado en web de escritorio; pendiente de alcance físico/nativo
+pez,Pez sonriente,37,8,22,0,10,4,Verificado en web de escritorio; pendiente de alcance físico/nativo
+buho,Búho amable,32,11,22,0,10,4,Verificado en web de escritorio; pendiente de alcance físico/nativo
+camion,Camión feliz,27,7,22,0,10,4,Verificado en web de escritorio; pendiente de alcance físico/nativo
+avion,Avión divertido,21,6,22,0,10,4,Verificado en web de escritorio; pendiente de alcance físico/nativo
+barco,Barco de vela,33,12,22,0,10,4,Verificado en web de escritorio; pendiente de alcance físico/nativo
+tren,Tren juguete,41,4,22,0,10,4,Verificado en web de escritorio; pendiente de alcance físico/nativo
+muneco-nieve,Muñeco de nieve,40,12,22,0,10,4,Verificado en web de escritorio; pendiente de alcance físico/nativo
+regalo-navidad,Regalo navideño,44,10,22,0,10,4,Verificado en web de escritorio; pendiente de alcance físico/nativo
+campana-navidad,Campana navideña,61,33,22,0,10,4,Verificado en web de escritorio; pendiente de alcance físico/nativo
+dragon,Dragón bebé,102,42,22,0,10,4,Verificado en web de escritorio; pendiente de alcance físico/nativo
+hada,Hada mágica,91,36,22,0,10,4,Verificado en web de escritorio; pendiente de alcance físico/nativo
+sirena,Sirena feliz,62,30,22,0,10,4,Verificado en web de escritorio; pendiente de alcance físico/nativo
+triceratops,Triceratops,47,10,22,0,10,4,Verificado en web de escritorio; pendiente de alcance físico/nativo
+brontosaurio,Brontosaurio,25,4,22,0,10,4,Verificado en web de escritorio; pendiente de alcance físico/nativo
+pterodactilo,Pterodáctilo,46,26,22,0,10,4,Verificado en web de escritorio; pendiente de alcance físico/nativo
+corona-real,Corona real,43,10,22,0,10,4,Verificado en web de escritorio; pendiente de alcance físico/nativo
+carruaje-real,Carruaje real,108,26,22,0,10,4,Verificado en web de escritorio; pendiente de alcance físico/nativo
+vestido-princesa,Vestido de princesa,40,11,22,0,10,4,Verificado en web de escritorio; pendiente de alcance físico/nativo
+pony-magico,Pony mágico,53,1,22,0,10,4,Verificado en web de escritorio; pendiente de alcance físico/nativo
+pony-princesa,Pony princesa,86,4,22,0,10,4,Verificado en web de escritorio; pendiente de alcance físico/nativo
+pony-3,Pony 3,154,77,22,0,10,4,Verificado en web de escritorio; pendiente de alcance físico/nativo
+pony-4,Pony 4,113,51,22,0,10,4,Verificado en web de escritorio; pendiente de alcance físico/nativo
+casa-1,Casa 1,6,0,22,0,10,4,Verificado en web de escritorio; pendiente de alcance físico/nativo
+casa-2,Casa 2,12,0,22,0,10,4,Verificado en web de escritorio; pendiente de alcance físico/nativo
+casa-3,Casa 3,7,0,22,0,10,4,Verificado en web de escritorio; pendiente de alcance físico/nativo
+casa-4,Cohete sencillo,6,0,22,0,10,4,Verificado en web de escritorio; pendiente de alcance físico/nativo
+casa-5,Casa 5,16,0,22,0,10,4,Verificado en web de escritorio; pendiente de alcance físico/nativo
+paisaje-3,Paisaje 3,19,0,22,0,10,4,Verificado en web de escritorio; pendiente de alcance físico/nativo
+paisaje-4,Paisaje 4,7,0,22,0,10,4,Verificado en web de escritorio; pendiente de alcance físico/nativo
+paisaje-5,Paisaje 5,7,0,22,0,10,4,Verificado en web de escritorio; pendiente de alcance físico/nativo
+casa-simple,Casa simple,24,2,22,0,10,4,Verificado en web de escritorio; pendiente de alcance físico/nativo
+gabby-gato-volador,Gabby gato volador,259,197,24,0,8,4,Verificado en web de escritorio; pendiente de alcance físico/nativo
+gabby-gato-flores,Gabby gato con flores,246,176,24,0,8,4,Verificado en web de escritorio; pendiente de alcance físico/nativo
+gabby-auto,Gabby auto,230,172,24,0,8,4,Verificado en web de escritorio; pendiente de alcance físico/nativo
+gabby-camping,Gabby camping,116,16,24,0,8,4,Verificado en web de escritorio; pendiente de alcance físico/nativo
+gabby-casa-auto,Gabby casa y auto,394,143,24,0,8,4,Verificado en web de escritorio; pendiente de alcance físico/nativo
+gabby-pintando,Gabby pintando,104,15,24,0,8,4,Verificado en web de escritorio; pendiente de alcance físico/nativo
+gabby-gato-espacial,Gabby gato espacial,256,86,24,0,8,4,Verificado en web de escritorio; pendiente de alcance físico/nativo
+gabby-leyendo,Gabby leyendo,363,219,24,0,8,4,Verificado en web de escritorio; pendiente de alcance físico/nativo
+gabby-gato-simple,Gabby gato simple,268,230,24,0,8,4,Verificado en web de escritorio; pendiente de alcance físico/nativo
+gabby-amigos,Gabby amigos,405,52,24,0,8,4,Verificado en web de escritorio; pendiente de alcance físico/nativo
+gabby-sala,Gabby sala,417,203,24,0,8,4,Verificado en web de escritorio; pendiente de alcance físico/nativo
+gabby-gato-disfraz,Gabby gato disfrazado,269,200,24,0,8,4,Verificado en web de escritorio; pendiente de alcance físico/nativo
+gabby-cumpleanos,Gabby cumpleaños,285,9,24,0,8,4,Verificado en web de escritorio; pendiente de alcance físico/nativo
+gabby-catrat,Gabby Catrat,66,25,24,0,8,4,Verificado en web de escritorio; pendiente de alcance físico/nativo
+gabby-gato-espacial-2,Gabby gato espacial dos,129,24,24,0,8,4,Verificado en web de escritorio; pendiente de alcance físico/nativo
+gabby-gato-caja,Gabby gato caja,136,29,24,0,8,4,Verificado en web de escritorio; pendiente de alcance físico/nativo
+gabby-poster-amigos,Gabby póster de amigos,288,126,24,0,8,4,Verificado en web de escritorio; pendiente de alcance físico/nativo
+gabby-casa-magica,Gabby casa mágica,236,12,24,0,8,4,Verificado en web de escritorio; pendiente de alcance físico/nativo
+gabby-casa-frontal,Gabby casa frontal,138,29,24,0,8,4,Verificado en web de escritorio; pendiente de alcance físico/nativo
